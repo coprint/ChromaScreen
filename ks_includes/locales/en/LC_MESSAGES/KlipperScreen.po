@@ -1,0 +1,682 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: KlipperScreen\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-30 18:17-0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+msgid "Language Settings"
+msgstr "Language Settings"
+
+msgid "Please select the system language."
+msgstr "Please select the system language."
+
+msgid "English"
+msgstr "English"
+
+msgid "Deutsch"
+msgstr "Deutsch"
+
+msgid "French"
+msgstr "French"
+
+msgid "Turkish"
+msgstr "Turkish"
+
+msgid "Italian"
+msgstr "Italian"
+
+msgid "Spanish"
+msgstr "Spanish"
+
+msgid "Continue"
+msgstr "Continue"
+
+msgid "Contract Approval"
+msgstr ""
+"We have a 14-day return policy, which means you have 14 days after receiving your item to request a return.\n"
+"To be eligible for a return, your item must be in the same condition that you received it, unworn or unused, with tags, and in its original packaging. You’ll also need the receipt or proof of purchase. To start a return, you can contact us at coprint3d@gmail.com. Please note that returns will need to be sent to the address which will send.\n"
+"If your return is accepted, we’ll send you a return shipping label, as well as instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted. You can always contact us for any return question at coprint3d@gmail.com.\n"
+"Damages and issuesPlease inspect your order upon reception and contact us immediately if the item is defective, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.\n"
+"Unfortunately, we cannot accept returns on sale items or gift cards.\n"
+"ExchangesThe fastest way to ensure you get what you want is to return the item you have, and once the return is accepted, make a separate purchase for the new item.\n"
+"European Union 14 day cooling off periodNotwithstanding the above, if the merchandise is being shipped into the European Union, you have the right to cancel or return your order within 14 days, for any reason and without a justification. As above, your item must be in the same condition that you received it, unworn or unused, with tags, and in its original packaging with unopening. You’ll also need the receipt or proof of purchase."
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "Please read our agreement and confirm the terms."
+msgstr "Please read our agreement and confirm the terms."
+
+msgid "I have read and accept the Privacy Policy."
+msgstr "I have read and accept the Privacy Policy."
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Select Region"
+msgstr "Select Region"
+
+msgid "Please select your region to determine your time zone."
+msgstr "Please select your region to determine your time zone."
+
+msgid "Rename Your Device"
+msgstr "Rename Your Device"
+
+msgid "Please specify a custom name for your device."
+msgstr "Please specify a custom name for your device."
+
+msgid "Device Name"
+msgstr "Device Name"
+
+msgid "Connection Settings"
+msgstr "Connection Settings"
+
+msgid "Connect the device by entering the information of the network you are using."
+msgstr "Connect the device by entering the information of the network you are using."
+
+msgid "Connect"
+msgstr "Connect"
+
+msgid "Chip Settings"
+msgstr "Chip Settings"
+
+msgid "Please select the architecture, communication frequency, clock speed and model of the chip you will be using."
+msgstr "Please select the architecture, communication frequency, clock speed and model of the chip you will be using."
+
+msgid "Enable extra low-level configuration options"
+msgstr "Enable extra low-level configuration options"
+
+msgid "Select Microcontroller"
+msgstr "Select Microcontroller"
+
+msgid "Select the MCU located on the board you will be controlling."
+msgstr "Select the MCU located on the board you will be controlling."
+
+msgid "Select the Chip Model"
+msgstr "Select the Chip Model"
+
+msgid "Select the MCU model located on the board you will be controlling."
+msgstr "Select the MCU model located on the board you will be controlling."
+
+msgid "Bootloader Offset"
+msgstr "Bootloader Offset"
+
+msgid "Select the bootloader offset located on the board you will be controlling."
+msgstr "Select the bootloader offset located on the board you will be controlling."
+
+msgid "Clock Reference"
+msgstr "Clock Reference"
+
+msgid "Select the clock reference located on the board you will be controlling."
+msgstr "Select the clock reference located on the board you will be controlling."
+
+msgid "Com Interface"
+msgstr "Com Interface"
+
+msgid "Select the com interface model located on the board you will be controlling."
+msgstr "Select the com interface model located on the board you will be controlling."
+
+msgid "USB IDS"
+msgstr "USB IDS"
+
+msgid "Select the usb ids located on the board you will be controlling."
+msgstr "Select the usb ids located on the board you will be controlling."
+
+msgid "USB serial number from CHIPID"
+msgstr "USB serial number from CHIPID"
+
+msgid "Flash Chip"
+msgstr "Flash Chip"
+
+msgid "Select the chip model located on the board you will be controlling."
+msgstr "Select the chip model located on the board you will be controlling."
+
+msgid "Select Baud Rate"
+msgstr "Select Baud Rate"
+
+msgid "Select the Baud Rate to communicate with the processor you will be using."
+msgstr "Select the Baud Rate to communicate with the processor you will be using."
+
+msgid "Writing to SD Card"
+msgstr "Writing to SD Card"
+
+msgid "Insert the SD Card of your printer into ChromaPad to change the program of your 3D printer."
+msgstr "Insert the SD Card of your printer into ChromaPad to change the program of your 3D printer."
+
+msgid "Please insert the USB drive."
+msgstr "Please insert the USB drive."
+
+msgid "USB drive has been inserted."
+msgstr "USB drive has been inserted."
+
+msgid "Connect Your 3D Printer"
+msgstr "Connect Your 3D Printer"
+
+msgid "Connect your 3D printer to Co Print Smart using a USB cable."
+msgstr "Connect your 3D printer to Co Print Smart using a USB cable."
+
+msgid "Searching for Printer.."
+msgstr "Searching for Printer.."
+
+msgid "Finish"
+msgstr "Finish"
+
+msgid "Dimension"
+msgstr "Dimension"
+
+msgid "Heated Bed"
+msgstr "Heated Bed"
+
+msgid "Preheat PLA"
+msgstr "Preheat PLA"
+
+msgid "Preheat ABS"
+msgstr "Preheat ABS"
+
+msgid "Multi Filament Printing"
+msgstr "Multi Filament Printing"
+
+msgid "Change Color"
+msgstr "Change Color"
+
+msgid "Homing"
+msgstr "Homing"
+
+msgid "Move Axis"
+msgstr "Move Axis"
+
+msgid "Start Print"
+msgstr "Start Print"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Extrude"
+msgstr "Extrude"
+
+msgid "Temperature"
+msgstr "Temperature"
+
+msgid "Printer is returning to the starting position, please wait.."
+msgstr "Printer is returning to the starting position, please wait.."
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Print Files"
+msgstr "Print Files"
+
+msgid "Printers"
+msgstr "Printers"
+
+msgid "Configure"
+msgstr "Configure"
+
+msgid "Y Axis (Bed)"
+msgstr "Y Axis (Bed)"
+
+msgid "X Axis (Head)"
+msgstr "X Axis (Head)"
+
+msgid "X,Y,Z Movement Distance (mm)"
+msgstr "X,Y,Z Movement Distance (mm)"
+
+msgid "Z Axis"
+msgstr "Z Axis"
+
+msgid "Preheat For Extrude"
+msgstr "Preheat For Extrude"
+
+msgid "File Preview"
+msgstr "File Preview"
+
+msgid "File Name"
+msgstr "File Name"
+
+msgid "Print Time"
+msgstr "Print Time"
+
+msgid "Printer is returning to the starting position, please wait.."
+msgstr "Printer is returning to the starting position, please wait.."
+
+msgid "Filament"
+msgstr "Filament"
+
+msgid "Select"
+msgstr "Select"
+
+msgid "selected"
+msgstr "selected"
+
+msgid "files listed"
+msgstr "files listed"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Print"
+msgstr "Print"
+
+msgid "Connected Extruders"
+msgstr "Connected Extruders"
+
+msgid "Extruder Movement (mm)"
+msgstr "Extruder Movement (mm)"
+
+msgid "Slow"
+msgstr "Slow"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "High"
+msgstr "High"
+
+msgid "Cooldown"
+msgstr "Cooldown"
+
+msgid "Disable Stepper"
+msgstr "Disable Stepper"
+
+msgid "Select + - increase value"
+msgstr "Select + - increase value"
+
+msgid "Fan Speed"
+msgstr "Fan Speed"
+
+msgid "Click here to add another printer"
+msgstr "Click here to add another printer"
+
+msgid "Printing"
+msgstr "Printing"
+
+msgid "(Idle)"
+msgstr "(Idle)"
+
+msgid "Not working"
+msgstr "Not working"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Printer Status"
+msgstr "Printer Status"
+
+msgid "Z Offset"
+msgstr "Z Offset"
+
+msgid "Change Offset"
+msgstr "Change Offset"
+
+msgid "Speed Factor"
+msgstr "Speed Factor"
+
+msgid "Filament Change Count"
+msgstr "Filament Change Count"
+
+msgid "Release Filament"
+msgstr "Release Filament"
+
+msgid "Hold Filament"
+msgstr "Hold Filament"
+
+msgid "Change Filament Count"
+msgstr "Change Filament Count"
+
+msgid "Extrusion Factor"
+msgstr "Extrusion Factor"
+
+msgid "Pressure Advance"
+msgstr "Pressure Advance"
+
+msgid "Smooth Time"
+msgstr "Smooth Time"
+
+msgid "Machine"
+msgstr "Machine"
+
+msgid "Square Corner"
+msgstr "Square Corner"
+
+msgid "Acceleration"
+msgstr "Acceleration"
+
+msgid "Max Accel to Decel"
+msgstr "Max Accel to Decel"
+
+msgid "s"
+msgstr "s"
+
+msgid "mm/s"
+msgstr "mm/s"
+
+msgid "Printing File"
+msgstr "Printing File"
+
+msgid "Estimated Time"
+msgstr "Estimated Time"
+
+msgid "Probe Calibration"
+msgstr "Probe Calibration"
+
+msgid "Auto Leveling"
+msgstr "Auto Leveling"
+
+msgid "Manual Leveling"
+msgstr "Manual Leveling"
+
+msgid "Network"
+msgstr "Network"
+
+msgid "Input Shaper"
+msgstr "Input Shaper"
+
+msgid "Camera"
+msgstr "Camera"
+
+msgid "Console"
+msgstr "Console"
+
+msgid "Adv. Settings"
+msgstr "Adv. Settings"
+
+msgid "Movement"
+msgstr "Movement"
+
+msgid "Macros"
+msgstr "Macros"
+
+msgid "Prob Calibration"
+msgstr "Prob Calibration"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Z Offset Distance"
+msgstr "Z Offset Distance"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Automatic Table Calibration"
+msgstr "Automatic Table Calibration"
+
+msgid "Click the “Start Calibration” button to perform automatic table calibration."
+msgstr "Click the “Start Calibration” button to perform automatic table calibration."
+
+msgid "Temperature Setup"
+msgstr "Temperature Setup"
+
+msgid "Automatic bed leveling is being performed. Please wait.."
+msgstr "Automatic bed leveling is being performed. Please wait.."
+
+msgid "Stop Calibrating"
+msgstr "Stop Calibrating"
+
+msgid "Automatic bed calibration is completed. Please restart the system."
+msgstr "Automatic bed calibration is completed. Please restart the system."
+
+msgid "Reboot the System"
+msgstr "Reboot the System"
+
+msgid "Z Calibration Steps"
+msgstr "Z Calibration Steps"
+
+msgid "First, tighten the tension screws to their maximum value. Then, for the first step, make a height adjustment using paper."
+msgstr "First, tighten the tension screws to their maximum value. Then, for the first step, make a height adjustment using paper."
+
+msgid "Save Settings"
+msgstr "Save Settings"
+
+msgid "Connected"
+msgstr "Connected"
+
+msgid "Not Connected"
+msgstr "Not Connected"
+
+msgid "Click to connect."
+msgstr "Click to connect."
+
+msgid "Add Network"
+msgstr "Add Network"
+
+msgid "IP"
+msgstr "IP"
+
+msgid "Wifi SSID"
+msgstr "Wifi SSID"
+
+msgid "Wifi Password"
+msgstr "Wifi Password"
+
+msgid "Select Your Printer Type"
+msgstr "Select Your Printer Type"
+
+msgid "Calibration steps vary depending on your printer's motion mechanism. Please select the type of your printer."
+msgstr "Calibration steps vary depending on your printer's motion mechanism. Please select the type of your printer."
+
+msgid "Cartesian Type"
+msgstr "Cartesian Type"
+
+msgid "Corexy Type"
+msgstr "Corexy Type"
+
+msgid "Connect the Sensor"
+msgstr "Connect the Sensor"
+
+msgid "Place the Initial Sensor to the head of your printer."
+msgstr "Place the Initial Sensor to the head of your printer."
+
+msgid "Calibration will disconnect from other printers. Please make sure that other printers are not in operation"
+msgstr "Calibration will disconnect from other printers. Please make sure that other printers are not in operation"
+
+msgid "Next Step"
+msgstr "Next Step"
+
+msgid "Checking the Sensor Connection"
+msgstr "Checking the Sensor Connection"
+
+msgid "Sensor Connected"
+msgstr "Sensor Connected" 
+
+msgid "Please Wait"
+msgstr "Please Wait"
+
+msgid "You are ready to start the test."
+msgstr "You are ready to start the test."
+
+msgid "Start Calibration"
+msgstr "Start Calibration"
+
+msgid "X Axis Vibration Detection in Progress"
+msgstr "X Axis Vibration Detection in Progress"
+
+msgid "Please don’t touch the printer"
+msgstr "Please don’t touch the printer"
+
+msgid "X Axis Vibration Detection Complete"
+msgstr "X Axis Vibration Detection Complete"
+
+msgid "X-axis vibration compensation detection has been completed and the status is normal."
+msgstr "X-axis vibration compensation detection has been completed and the status is normal."
+
+msgid "Please Connect the Sensor"
+msgstr "Please Connect the Sensor"
+
+msgid "Place the Initial Sensor on your printer's bed using double-sided tape."
+msgstr "Place the Initial Sensor on your printer's bed using double-sided tape."
+
+msgid "Hot Bed"
+msgstr "Hot Bed"
+
+msgid "Y Axis Vibration Detection in Progress"
+msgstr "Y Axis Vibration Detection in Progress"
+
+msgid "Y Axis Vibration Detection Complete"
+msgstr "Y Axis Vibration Detection Complete"
+
+msgid "Y-axis vibration compensation detection has been completed and the status is normal."
+msgstr "Y-axis vibration compensation detection has been completed and the status is normal."
+
+msgid "Complete"
+msgstr "Complete"
+
+msgid "Printing Camera"
+msgstr "Printing Camera"
+
+msgid "Please connect a camera using the USB ports for printing monitoring."
+msgstr "Please connect a camera using the USB ports for printing monitoring."
+
+msgid "No Camera"
+msgstr "No Camera"
+
+msgid "Records"
+msgstr "Records"
+
+msgid "Cam Settings"
+msgstr "Cam Settings"
+
+msgid "Auto Scroll"
+msgstr "Auto Scroll"
+
+msgid "Clear"
+msgstr "Clear"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Systems / Update"
+msgstr "Systems / Update"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "24 Hour Time"
+msgstr "24 Hour Time"
+
+msgid "Auto close notifications"
+msgstr "Auto close notifications"
+
+msgid "Confirm emergency stop"
+msgstr "Confirm emergency stop"
+
+msgid "Estimated time method"
+msgstr "Estimated time method"
+
+msgid "Font Size"
+msgstr "Font Size"
+
+msgid "Hide sensor in temp"
+msgstr "Hide sensor in temp"
+
+msgid "Macro Shortcuts menu"
+msgstr "Macro Shortcuts menu"
+
+msgid "Printer connections"
+msgstr "Printer connections"
+
+msgid "Screen DPMS"
+msgstr "Screen DPMS"
+
+msgid "Screen power off time"
+msgstr "Screen power off time"
+
+msgid "Show heater power"
+msgstr "Show heater power"
+
+msgid "Slicer time corrections (%)"
+msgstr "Slicer time corrections (%)"
+
+msgid "Accel to Decel"
+msgstr "Accel to Decel"
+
+msgid "Velocity"
+msgstr "Velocity"
+
+msgid "Square Corner Velocity"
+msgstr "Square Corner Velocity"
+
+msgid "Movement Settings"
+msgstr "Movement Settings"
+
+msgid "Predefined Macros"
+msgstr "Predefined Macros"
+
+msgid "Bed Mesh"
+msgstr "Bed Mesh"
+
+msgid "Execute"
+msgstr "Execute"
+
+msgid "Full Update"
+msgstr "Full Update"
+
+msgid "Refresh"
+msgstr "Refresh"
+
+msgid "Restart"
+msgstr "Restart"
+
+msgid "Shut Down"
+msgstr "Shut Down"
+
+msgid "MCU Architecture"
+msgstr "MCU Architecture"
+
+msgid "Botloader Offset"
+msgstr "Botloader Offset"
+
+msgid "Processor Model"
+msgstr "Processor Model"
+
+msgid "Clock Referance"
+msgstr "Clock Referance"
+
+msgid "Unknown Heater"
+msgstr "Unknown Heater"
+
+msgid "Can't set above the maximum:"
+msgstr "Can't set above the maximum:"
+
+msgid "Current"
+msgstr "Current"
+
+msgid "Klipper Update"
+msgstr "Klipper Update"
+
+msgid "Mainsail"
+msgstr "Mainsail"
+
+msgid "Are you sure you wish to reboot the system?"
+msgstr "Are you sure you wish to reboot the system?"
+
+msgid "Are you sure you wish to shutdown the system?"
+msgstr "Are you sure you wish to shutdown the system?"
+
+msgid "Checking for updates, please wait..."
+msgstr "Checking for updates, please wait..."
+
+msgid "Performing Auto Home"
+msgstr "Performing Auto Home"
+
+msgid "X, Y, and Z axes are returning back to their home positions. Please wait."
+msgstr "X, Y, and Z axes are returning back to their home positions. Please wait."
+
+msgid "Detail"
+msgstr "Detail"
+
+msgid "Waiting"
+msgstr "Waiting"
+

@@ -1,0 +1,1018 @@
+* {
+    color: white;
+    font-size: KS_FONT_SIZEpx;
+    -GtkComboBox-appears-as-list: 0;
+    text-shadow: none;
+    box-shadow: none;
+    border: 0;
+}
+
+
+spinner {
+    
+    animation: spin 1s ease-in-out infinite;
+}
+
+button.menu {
+    border-bottom: 0em;
+    
+}
+
+label#progress-label {
+    color:#9A9A9A;
+    font-size: 1em;
+    min-width: 6em;
+}
+
+button.pause {
+    border-bottom: .2em solid #F7BA17;
+    padding-bottom: .4em;
+    padding-top: .4em;
+    padding-left: .4em;
+    padding-right: .4em;
+    background-color: #000000;
+    
+}
+
+button.close {
+    border-bottom: .2em solid #E74636;
+    padding-bottom: .4em;
+    padding-top: .4em;
+    padding-left: .4em;
+    padding-right: .4em;
+    background-color: #000000;
+    
+}
+#pause-cancel-button-box {
+    background-color: #000000;
+    border-radius: .5em;
+    padding: .4em;
+}
+
+#printing-right-info-box {
+    margin: 1em;
+}
+progressbar#progress-bar-extruder-blue progress{
+    background-image: none;
+    background-color: #00477B;
+    min-height: .5em;
+    border-radius: 15px;
+}
+progressbar#progress-bar-extruder-blue trough {
+    min-height: .5em;
+    border-radius: 15px;
+}
+progressbar#progress-bar-extruder-yellow progress{
+    background-image: none;
+    background-color: #F7BA17;
+    min-height: .5em;
+    border-radius: 15px;
+}
+progressbar#progress-bar-extruder-yellow trough {
+    min-height: .5em;
+    border-radius: 15px;
+}
+
+#extruder-box {
+    background-color: #000000;
+    border-radius: 15px;
+    min-height: 100px;
+}
+#zoffset-box {
+    background-color: #000000;
+    border-radius: 15px;
+    padding: 1rem;
+}
+#heatedBed_box {
+    background-color: #000000;
+    border-radius: 15px;
+    padding: 1rem;
+
+}
+#extruder-label {
+    color: #9A9A9A;
+    font-size: .75em;
+}
+.zoffset-entry {
+    border: 1px solid #505050;
+    border-radius: 10px;
+    background-color: #000000;
+}
+.speed-factor-entry {
+    border: 1px solid #505050;
+    border-radius: 10px;
+    background-color: #000000;
+
+}
+
+.spin-entry {
+    border: none;
+    background-color: #000000;
+}
+
+#zoffset-label {
+    font-size: 1.5rem;
+}
+#up-down-buttons {
+    background-color: #00477B;
+    border-radius: .5rem;
+    min-height: 4rem;
+}
+#scale-buttons {
+    background-color: transparent;
+    min-height: 2.5rem;
+}
+#speed-factor-button {
+    background-color: transparent;
+    min-height: 3.5rem;
+}
+#up-down-buttons-box {
+    border: 1px solid #505050;
+    border-radius: 10px;
+    color:  #000000;
+}
+
+scale.speed-factor-scale trough{
+    background-image: none;
+    min-height: .5em;
+    border-radius: 2rem;
+}
+scale.speed-factor-scale highlight{
+    background-image: none;
+    background-color: #00477B;
+    color: #00477B;
+    min-height: .5em;
+    border-radius:2rem ;
+}
+scale.speed-factor-scale slider{
+    background-image: none;
+
+}
+#menu-buttons {
+    font-size: 30px;
+}
+#menu-buttons:focus {
+    font-size: 30px;
+    border-radius: 0px 0px 40px 40px;
+    background-color: #333333;
+    border: none;
+}
+
+progressbar#progress-bar-print progress{
+    background-image: none;
+    background-color: #00477B;
+    min-height: 1em;
+    border-radius: 15px;
+}
+progressbar#progress-bar-print trough {
+    min-height: 1em;
+    border-radius: 15px;
+}
+
+#progress-label {
+    color: #9A9A9A;
+}
+
+
+
+
+
+/*General Button*/
+button#flat-button-blue {
+    background-color: #00477B;
+    background: #00477B;
+    font-size: 1.5em;
+    border-radius: 5px;
+    min-width: 10rem;
+}
+
+button#flat-button-green {
+    background-color: #161616;
+    background: #161616;
+    font-size: 1em;
+    color: #37AB56;
+    border-radius: 5px;
+    min-width: 10rem;
+}
+
+button#flat-button-yellow label{
+   
+    color: #F7BA17;
+}
+
+button#flat-button-green label{
+   
+    color: #37AB56;
+}
+
+button#flat-button-yellow {
+    background-color: #161616;
+    background: #161616;
+    font-size:1em;
+    color: #F7BA17;
+    border-radius: 5px;
+    min-width: 10rem;
+}
+/*Yazıcı Bağlama*/
+button#flat-button-black {
+    background-color: #161616;
+    background: #161616;
+    font-size:30;
+    border-radius: 10px;
+    padding: .5em;
+}
+button#flat-button-black:focus {
+    background-color: #161616;
+    background: #161616;
+    border: 1px solid #EAEAEA;
+    font-size:1.5em;
+    border-radius: 10px;
+    padding: .5em;
+    min-width: 10rem;
+}
+/*Menu*/
+button#menu-button {
+    color: #FFFFFF;
+    font-size: 30px;
+}
+button#menu-button:active {
+    color: #FFFFFF;
+    font-size: 30px;
+    border-radius: 40px 33px 0px 0px;
+    background: #181818;
+}
+/*PopUp*/
+label#info-popup-label {
+    color: #23A6F0;
+    font-size: 20px; 
+}
+/*Home Button*/
+button#flat-icon-button-green {
+    background: #007B65;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 21px;
+}
+button#flat-button-grey {
+    background: #686868;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: #070707;
+    font-size: 25px;
+}
+/*Delete Button*/
+button#delete-button {
+    background: #913C3C;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: #070707;
+    font-size: 25px;
+}
+/*Extruder*/
+button#stroked-button-black {
+    border: 1px solid #C1C1C1;
+    border-radius: 19px;
+    background: #161616;
+    color: #9A9A9A;
+}
+button#stroked-button-black:active {
+    border-radius: 19px;
+    background: #00477B;
+    color: #FFFFFF;
+}
+/*Extruder*/
+button#flat-button-white {
+    background: #D9D9D9;
+    border: 1px solid #9D9797;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: #1A1C1E;
+    font-size: 25px;
+}
+
+
+label#language-label {
+    font-size:18;
+    color:#9A9A9A;
+}
+
+
+
+label#init-header-subtext-label {
+    font-size:1em;
+    color:#9A9A9A;
+}
+label#init-header-subtitle-label {
+    font-size:1.2em;
+    color:#FFFFFF;
+}
+/*Chip Ayarlari*/
+#selection-box {
+    background: #242424;
+    border-radius: 10px;
+}
+label#selection-box-label {
+    font-size: 30px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+label#selection-box-label {
+    font-size: 30px;
+    font-weight: 500;
+    color: #FFFFFF;
+    background-color: #070707;
+}
+/*SD Kart Yazma*/
+#info-box {
+    background: #161616;
+    border-radius: 10px;
+}
+label#info-box-label-success {
+    color: #37AB56;
+    font-size: 30px;
+}
+label#info-box-label-waiting {
+    color: #F7BA17;
+    font-size: 30px;
+}
+label#contract-approval-label {
+    font-size: .75em;
+}
+#contract-accept-label {
+    font-size: 20;
+}
+#radio-selection-box {
+    font-size: 2em;
+}
+
+
+.custom-region {
+    padding: 5px;
+    font-size: 25px;
+    background-color: #333333;
+    color: #FFF;
+    min-height: 75px;
+    border-radius: 15px;
+}
+#region-combobox button {
+ 
+    font-size: 16px;
+    background-color: #333333;
+    border-radius: 5px;
+}
+#region-combobox window.popup {
+    color: royalblue;
+    background: royalblue;
+    font-weight: bold;
+    border: 3px dashed lightgreen;
+    margin-bottom: 100em;
+  }
+
+
+  list#region {
+    background-color: #333333;
+    border: 1px solid #9D9797;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: #1A1C1E;
+    font-size: 25px;
+    border: 0px;
+}
+
+list#wifi {
+    background-color: #13181c;
+    border: 1px solid #13181c;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: #1A1C1E;
+    font-size: 25px;
+    border: 0px;
+}
+
+box#wifi {
+    background-color: #333333;
+    border-radius: 7px;
+    padding: .5em;
+    margin: .1em;
+}
+
+box#chip {
+    background-color: #333333;
+    border-radius: 8px;
+    padding: 1em;
+    margin: .2em;
+    border: 0px;
+}
+
+entry#device-name {
+    background-color: #333333;
+    color: #f0f0f0;
+    border: 1px solid #9D9797;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+label#wifi-label {
+    
+    color:#f0f0f0;
+    
+}
+
+#tree-list {
+    background-color: #20292F;
+}
+#selected-printer-dimension {
+    font-size: 14px;
+    color: #83848C;
+    font-weight: 500;
+}
+#selected-printer-name{
+    font-size: 19px;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+.thumbnail {
+    background-color: #20292F;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+window {
+    background-color: #13181C;
+    -gtk-icon-shadow: none;
+}
+
+frame { 
+    border: 1px solid #fff;
+    border-radius: 10px
+}
+
+frame#chip { 
+    border: 0px;
+    border-radius: 10px
+}
+
+button {
+    background-image: none;
+    background-color: #13181C;
+    margin: .25em;
+    padding: .2em .5em 0;
+    border-radius: 0;
+    border: 0;
+    -gtk-icon-shadow: none;
+}
+
+button:active, .button_active {
+    background-color: #304C62;
+}
+
+button:disabled,
+button.color1:disabled,
+button.color2:disabled,
+button.color3:disabled,
+button.color4:disabled {
+    border: 0;
+}
+
+button:disabled label,
+button.color1:disabled label,
+button.color2:disabled label,
+button.color3:disabled label,
+button.color4:disabled label {
+    color: grey;
+}
+
+button label {
+    margin-top: .25em;
+    margin-bottom: .5em;
+}
+
+button.color1 {
+    border-bottom: .4em solid #ED6500;
+    margin: .3em;
+    min-height: 3em;
+}
+
+button.color2 {
+    border-bottom: .4em solid #B10080;
+    margin: .3em;
+    min-height: 3em;
+}
+
+button.color3 {
+    border-bottom: .4em solid #009384;
+    margin: .3em;
+    min-height: 3em;
+}
+
+button.color4 {
+    border-bottom: .4em solid #A7E100;
+    margin: .3em;
+    min-height: 3em;
+}
+button.color5 {
+    border-bottom: .4em solid #A7E100;
+    
+}
+
+
+
+button.status {
+    background-color: #13181C;
+}
+
+button.active {
+    background-color: #20303D;
+}
+
+button.file-list {
+    margin: 0;
+}
+
+button.update {
+    background: #009384;
+    border: .4em solid #009384;
+    border-radius: 0.4em;
+    font-weight: bold;
+}
+
+button.invalid {
+    background: #e61e1e;
+    border: .4em solid #e61e1e;
+    border-radius: 0.4em;
+    font-weight: bold;
+}
+
+combobox box button {
+    border: .05em solid #cccccc;
+    padding: .5em 1em;
+}
+
+combobox arrow {
+    min-width: 1em;
+}
+
+switch {
+    margin: 0.75em;
+    min-width: 6em;
+    min-height: 3em;
+    border: 0;
+    border-radius: 3em;
+}
+
+switch slider {
+    border: 0;
+}
+
+entry {
+    font-size: 1em;
+    background-color: #20292F;
+    border: .2em solid #13181C;
+    padding: .25em;
+}
+
+label {
+    color: white;
+}
+
+
+menu {
+    background-color: #13181C;
+    border: .1em solid #cccccc;
+}
+
+menuitem {
+    background-color: #13181C;
+    border: .1em solid #cccccc;
+    border-bottom: 0;
+    border-top: 0;
+}
+
+trough {
+    min-height: 2em;
+    background-color: #404E57;
+    color: white;
+    border: 1px solid black;
+}
+
+trough highlight, trough progress {
+    min-height: 2em;
+    background-color: #3584e4;
+    color: white;
+    border: 1px solid black;
+}
+
+trough progress.left {
+    border: 0px;
+}
+
+scale mark {
+    margin-top: 1em;
+    color: white;
+}
+
+scale trough slider {
+    min-height: 2em;
+    min-width: 2em;
+}
+
+scrollbar, scrollbar button, scrollbar trough {
+    border: none;
+    background-color: #13181C;
+}
+
+scrollbar slider {
+    min-width: .5em;
+    border-radius: .7em;
+    background-color: #404E57;
+}
+
+separator {
+    margin: 1em 2em;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+textview, textview text {
+    background: transparent;
+    font-family: Free Mono;
+}
+
+textview .time {
+    color: grey;
+}
+
+trough {
+    margin: .5em .5em;
+}
+
+.popup {
+    background-color: black;
+}
+
+.action_bar {
+    /* min-width: 4.5em; */
+    /* min-height: 4.5em; */
+}
+
+.title_bar {
+    min-height: 2em;
+}
+
+.content {
+    margin: 0 .1em;
+}
+
+.dialog {
+    border: .1em solid black;
+    padding: 2.5em;
+    background-color: black;
+    margin: 1em;
+}
+
+.dialog button {
+    padding: 1.5em;
+    border-bottom: .4em solid #009384;
+    margin-top: 1em;
+}
+
+.dialog button:nth-child(1) {
+    border-bottom-color: green;
+}
+
+.dialog button:nth-child(2) {
+    border-bottom-color: red;
+}
+
+.distbutton_active {
+    background-color: #20303D;
+}
+
+.distbutton_top {
+    border: .15em solid white;
+    border-right: 0;
+    border-top-left-radius: .75em;
+    border-bottom-left-radius: .75em;
+    margin-right: 0;
+    min-height: 3em;
+}
+
+.distbutton {
+    border: .15em solid white;
+    border-left: .15em solid #ccc;
+    border-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 3em;
+}
+
+.distbutton_bottom {
+    border: .15em solid white;
+    border-left: .15em solid #ccc;
+    border-top-right-radius: .7em;
+    border-bottom-right-radius: .7em;
+    margin-left: 0;
+    min-height: 3em;
+}
+
+.fan_slider {
+    margin: 0 1em 0 1em;
+    color: white;
+}
+
+.frame-item {
+    min-height: 4.5em;
+    padding: .2em .3em;
+    border-bottom: 1px solid rgba(255,255,255,0.05)
+}
+
+.heatergraph {
+    min-height: 350px;
+}
+
+.heater-grid {
+    margin-right: .1em;
+}
+
+.heater-grid label {
+    min-height: 0em;
+    padding: 0;
+    margin: 0;
+}
+
+.heater-grid button{
+    margin: .2em;
+    min-height: 2.9em;
+    padding: 0 .5em;
+}
+
+.heater-grid-temp {
+    min-width: 8em;
+}
+
+.keyboard_box {
+    margin-top: 35px;
+}
+
+.keyboard_matchbox {
+    margin-top: 42px;
+}
+
+.keyboard_pad {
+    margin: 0.05em;
+    padding: 0.0em;
+    border-radius: 0.7em;
+}
+
+.message_popup_popover {
+    border: 0;
+    background-color: Transparent;
+    padding: 0;
+}
+
+.message_popup {
+    border: .1em solid white;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 0;
+}
+
+.message_popup button{
+    padding: 1em;
+}
+
+.message_popup_echo, .message_popup_echo button {
+    background-color: #367554;
+}
+
+.message_popup_warning, .message_popup_warning button {
+    background-color: #f9a825;
+}
+
+.message_popup_error, .message_popup_error button {
+    background-color: #9e2f3a;
+}
+
+.numpad{
+    margin-top: 30px;
+}
+
+.numpad_tleft {
+    border: .15em solid white;
+    border-bottom: 0;
+    border-right: 0;
+    border-top-left-radius: .7em;
+    margin: .15em 0 0 .15em;
+}
+
+.numpad_top {
+    border: .15em solid white;
+    border-bottom: 0;
+    border-right: 0;
+    margin: .15em 0 0 0;
+}
+
+.numpad_tright {
+    border: .15em solid white;
+    border-bottom: 0;
+    border-top-right-radius: .7em;
+    margin: .15em .15em 0 0;
+}
+
+.numpad_left {
+    border: .15em solid white;
+    border-right: 0;
+    border-bottom: 0;
+    margin: 0 0 0 .15em;
+}
+
+.numpad_button {
+    border: .15em solid white;
+    border-right: 0;
+    border-bottom: 0;
+    margin: 0;
+}
+
+.numpad_right {
+    border: .15em solid white;
+    border-bottom: 0;
+    margin: 0 .15em 0 0;
+}
+
+.numpad_bleft {
+    border: .15em solid white;
+    border-right: 0;
+    border-bottom-left-radius: .7em;
+    margin: 0 0 .15em .15em;
+}
+
+.numpad_bottom {
+    border: .15em solid white;
+    border-right: 0;
+    margin: 0 0 .15em 0;
+}
+
+.numpad_bright {
+    border: .15em solid white;
+    border-bottom-right-radius: .7em;
+    margin: 0 .15em .15em 0;
+}
+
+.printing-filename {
+    font-size: 1em;
+    font-weight: bold;
+    margin: .25em .25em 0 0;
+}
+
+.printing-info {
+    margin-right: .25em;
+}
+.printing-info button {
+    margin: 0 .1em;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: .5em;
+}
+
+.printing-info-secondary label {
+    margin-left: .75em;
+}
+
+.printing-status {
+    color: #f0f0f0;
+    font-size: .75em;
+    font-style: italic;
+    margin: 0 0 0 0;
+}
+
+.printing-progress-text {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: white;
+}
+
+.printing-status-label {
+    padding-top: .25em;
+    padding-bottom: .15em;
+    color: #ccc;
+    font-size: 1.25em;
+}
+
+.print-filename {
+    font-size: 1.1em;
+    margin-bottom: 0.2em;
+
+}
+
+.print-info {
+    font-size: 0.95em;
+}
+
+.tempbutton_top {
+    border: .15em solid white;
+    border-bottom: 0;
+    border-top-left-radius: .75em;
+    border-top-right-radius: .75em;
+    margin-bottom: 0;
+}
+
+.tempbutton {
+    border: .15em solid white;
+    border-top: .15em solid #ccc;
+    border-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.tempbutton_bottom {
+    border: .15em solid white;
+    border-top: .15em solid #ccc;
+    border-bottom-left-radius: .7em;
+    border-bottom-right-radius: .7em;
+    margin-top: 0;
+}
+
+.updater-item {
+    min-height: 3em;
+    padding: .2em;
+}
+
+.message {
+    border: .1em solid #981E1F;
+    font-size: 1em;
+    padding: 2.5em;
+    color: white;
+    background-color: #981E1F;
+}
+
+.message button {
+    background-color: white;
+    color: black;
+    padding: 2em 2.5em 2em 2.5em;
+}
+
+.system-program-grid {
+    padding: 0.25em;
+    padding-right: .5em;
+    padding-bottom: 0;
+}
+
+.warning {
+    background-color: rgba(30, 204, 39, 0.7);
+}
+
+.error {
+    background-color: rgba(204, 30, 30, 0.7);
+}
+
+popover {
+    background-color: #222;
+}
+
+popover button {
+    background-color: #222;
+}
+
+.screensaver, .screensaver button, .screensaver button:hover, .screensaver button:focus, .screensaver button:active {
+    background-color: black;
+    border: 0;
+    margin: 0;
+}
+
+.option_slider_max trough highlight, trough progress {
+    background-color: darkred;
+}
+
+.filament_sensor {
+    border-radius: 3em;
+}
+
+.filament_sensor switch {
+    margin: 0;
+}
+
+.filament_sensor_detected {
+    background-color: darkgreen;
+}
+
+.filament_sensor_empty {
+    background-color: darkred;
+}
+
+/* Hardcoded values until creation of dynamic CSS updates */
+.graph_label_hidden {padding-left: .9em;} /* .4em on top of normal button padding */
+.graph_label_extruder {border-left-width: .4em; border-left-style: solid;}
+.graph_label_extruder1 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_extruder2 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_extruder3 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_extruder4 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_heater_bed {border-left-width: .4em; border-left-style: solid;}
+.graph_label_fan_1 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_fan_2 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_fan_3 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_fan_4 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_sensor_1 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_sensor_2 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_sensor_3 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_sensor_4 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_sensor_5 {border-left-width: .4em; border-left-style: solid;}
