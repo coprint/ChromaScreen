@@ -12,6 +12,16 @@ ChromaScreen comes with a special multi-extruder management panel that is not av
 
 ![](https://github.com/coprint/ChromaScreen/blob/main/images/ChromaPad_Setup_Wizard.gif?raw=true)
 
+### Redesigned User Experience
+
+Navigate menus designed for user experience with high resolution and vibrant colors. Enhance your Klipper experience with model preview, user-defined macro options, precision-oriented algorithms. Real-time monitoring of your 3D printer with the camera and time-lapse shooting of the 3D printers you produce easily.
+
+<img src="/images/ChromaPad_User_Experience.jpg">
+
+
+### Open Source Commitment
+
+ChromaPad respects the open source community and in the spirit of the community, users will be free to modify and customize the source code.
 
 ### Community
 <p align="left">
