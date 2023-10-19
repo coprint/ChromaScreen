@@ -24,13 +24,7 @@ Navigate menus designed for user experience with high resolution and vibrant col
 ChromaPad respects the open source community and in the spirit of the community, users will be free to modify and customize the source code.
 
 ### Community
-<p align="left">
-<a href="https://twitter.com/CoPrint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="coprint3d" height="30" width="40" /></a>
-<a href="https://www.linkedin.com/company/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="coprint3d" height="30" width="40" /></a>
-<a href="https://www.facebook.com/3dcoprint" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="3dcoprint" height="30" width="40" /></a>
-<a href="https://instagram.com/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="coprint3d" height="30" width="40" /></a>
-<a href="https://discord.gg/5f8gGDkDgN" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="5f8gGDkDgN" height="30" width="40" /></a>
-</p>
+
 
 <br clear="both">
 
@@ -55,4 +49,3 @@ ChromaPad respects the open source community and in the spirit of the community,
   </a>
 </div>
 
-###
