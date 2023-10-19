@@ -6,6 +6,13 @@ ChromaScreen software is developed by Co Print based on Klipper Screen software.
 
 <img src="/images/ChromaPad_Screens.jpg">
 
+### Setup Wizard and Multiple Extruder Management
 
+ChromaScreen comes with a special multi-extruder management panel that is not available on other Klipper tablets and allows for multi-filament printing, as well as a setup wizard to get rid of the installation complexity that Klipper users most often complain about.
 
-
+#### Community
+Facebook Group: https://www.facebook.com/3dcoprint
+Instagram: https://www.instagram.com/coprint3d
+Twitter: https://twitter.com/CoPrint3d
+Discord: https://discord.gg/5f8gGDkDgN
+LinkedIn: https://www.linkedin.com/company/coprint3d
