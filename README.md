@@ -32,6 +32,8 @@ ChromaPad respects the open source community and in the spirit of the community,
 <a href="https://discord.gg/5f8gGDkDgN" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="5f8gGDkDgN" height="30" width="40" /></a>
 </p>
 
+<br clear="both">
+
 <div align="left">
   <a href="https://twitter.com/CoPrint3D" target="_blank">
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/twitter/default.svg" width="52" height="40" alt="twitter logo"  />
