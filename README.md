@@ -16,3 +16,12 @@ Instagram: https://www.instagram.com/coprint3d<br/>
 Twitter: https://twitter.com/CoPrint3d<br/>
 Discord: https://discord.gg/5f8gGDkDgN<br/>
 LinkedIn: https://www.linkedin.com/company/coprint3d<br/>
+
+<h3 align="left">Connect with me:</h3>
+<p align="left">
+<a href="https://twitter.com/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="coprint3d" height="30" width="40" /></a>
+<a href="https://linkedin.com/in/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="coprint3d" height="30" width="40" /></a>
+<a href="https://fb.com/3dcoprint" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="3dcoprint" height="30" width="40" /></a>
+<a href="https://instagram.com/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="coprint3d" height="30" width="40" /></a>
+<a href="https://discord.gg/5f8gGDkDgN" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="5f8gGDkDgN" height="30" width="40" /></a>
+</p>
