@@ -1,4 +1,4 @@
-# ChromaScreen | Advanced Klipper Software
+# ChromaScreen
 
 ### ChromaScreen | Advanced Klipper Software
 
