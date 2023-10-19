@@ -26,8 +26,9 @@ ChromaPad respects the open source community and in the spirit of the community,
 ### Community
 <p align="left">
 <a href="https://twitter.com/CoPrint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/twitter/default.svg" alt="coprint3d" height="35" width="47" /></a>
-<a href="https://www.linkedin.com/company/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme generator/master/src/assets/icons/social/linkedin/default.svg" alt="coprint3d" height="35" width="47" /></a>
-<a href="https://www.facebook.com/3dcoprint" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="3dcoprint" height="35" width="47" /></a>
-<a href="https://instagram.com/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="coprint3d" height="35" width="47" /></a>
-<a href="https://discord.gg/5f8gGDkDgN" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="5f8gGDkDgN" height="35" width="47" /></a>
+<a href="https://www.linkedin.com/company/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/linkedin/default.svg" alt="coprint3d" height="35" width="47" /></a>
+<a href="https://instagram.com/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/instagram/default.svg" alt="coprint3d" height="35" width="47" /></a>  
+<a href="https://www.facebook.com/3dcoprint" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/facebook/default.svg" alt="3dcoprint" height="35" width="47" /></a>
+<a href="https://www.youtube.com/@CoPrint3D" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/youtube/default.svg" alt="3dcoprint" height="35" width="47" /></a>
+<a href="https://discord.gg/5f8gGDkDgN" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/discord/default.svg" alt="5f8gGDkDgN" height="35" width="47" /></a>
 </p>
