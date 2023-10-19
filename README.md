@@ -25,7 +25,7 @@ ChromaPad respects the open source community and in the spirit of the community,
 
 ### Community
 <p align="left">
-<a href="https://coprint3d.com/" target="blank"><img align="center" src="https://raw.githubusercontent.com/coprint/ChromaScreen/main/images/CoPrint_Logo.png" alt="coprint3d" height="47" width="47" /></a>
+<a href="https://coprint3d.com/" target="blank"><img align="center" src="https://raw.githubusercontent.com/coprint/ChromaScreen/main/images/CoPrint_Logo.png" alt="coprint3d" height="35" width="35" /></a>
 <a href="https://twitter.com/CoPrint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/twitter/default.svg" alt="coprint3d" height="35" width="47" /></a>
 <a href="https://www.linkedin.com/company/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/linkedin/default.svg" alt="coprint3d" height="35" width="47" /></a>
 <a href="https://instagram.com/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/instagram/default.svg" alt="coprint3d" height="35" width="47" /></a>  
