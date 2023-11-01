@@ -24,6 +24,8 @@ Navigate menus designed for user experience with high resolution and vibrant col
 ChromaPad respects the open source community and in the spirit of the community, users will be free to modify and customize the source code.
 
 ### ChromaScreen is fork of KlipperScreen
+Originally derived from the KlipperScreen project, ChromaScreen was designed to meet the specific needs and requirements of its user base. ChromaScreen's development and features are differentiated to provide a unique and specialized experience to its users.
+Thanks to Klipper, Mainsail, Moonraker, KlipperScreen.
 
 ### Community
 <p align="left">
