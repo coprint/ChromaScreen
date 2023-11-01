@@ -1,6 +1,6 @@
 # ChromaScreen
 
-### ChromaScreen | Advanced Klipper Software
+### ChromaScreen | Advanced Klipper Interface Software
 
 ChromaScreen software is developed by Co Print based on Klipper Screen software. The user interface has been carefully organized with insights from valuable user experience and feedback. With a unique structure and additional features that perfectly complement your printing journey, the outstanding Chroma Screen software combines with ChromaPad's powerful processor and compact design to create the highest performing pad on the market for 3D printer users.
 
@@ -22,6 +22,8 @@ Navigate menus designed for user experience with high resolution and vibrant col
 ### Open Source Commitment
 
 ChromaPad respects the open source community and in the spirit of the community, users will be free to modify and customize the source code.
+
+### ChromaScreen is fork of KlipperScreen
 
 ### Community
 <p align="left">
