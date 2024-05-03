@@ -6,7 +6,7 @@ from gi.repository import Gtk, Pango, GLib, GdkPixbuf
 class InfoDialog(Gtk.Dialog):
     def __init__(self,this, _content, isActive= True):
         super().__init__(title="Info Dialog",parent=None ,flags=0)
-        
+        self.parent = this
         self.set_size_request(0, 0)
         self.set_default_size(800, 20)
 
@@ -43,7 +43,19 @@ class InfoDialog(Gtk.Dialog):
         closeButton.set_always_show_image(True)
         if(isActive):
             closeButton.connect("clicked", lambda x: self.destroy())
-
+        emergencyStopButton = None
+        try:
+            emergencyStopIcon = this._gtk.Image("emergencyicon", 35, 35)
+            emergencyStopButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+            emergencyStopButtonBox.set_halign(Gtk.Align.CENTER)
+            emergencyStopButtonBox.set_valign(Gtk.Align.CENTER)
+            emergencyStopButtonBox.pack_start(emergencyStopIcon, False, False, 0)
+            emergencyStopButton = Gtk.Button(name ="emergency-button-diaolog")
+            emergencyStopButton.add(emergencyStopButtonBox)
+            emergencyStopButton.connect("clicked", self.on_click_emergency_stop)
+            emergencyStopButton.set_always_show_image (True)
+        except:
+            print('Error')
 
 
         mainBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=30)
@@ -52,6 +64,9 @@ class InfoDialog(Gtk.Dialog):
         mainBox.pack_start(alertImage, False, False, 0)
         mainBox.pack_start(content, False, False, 0)
         mainBox.pack_start(closeButton, False, False, 0)
+        if emergencyStopButton:
+            mainBox.pack_start(emergencyStopButton, False, False, 0)
+
         
         box = self.get_content_area()
         box.set_halign(Gtk.Align.CENTER)
@@ -60,5 +75,8 @@ class InfoDialog(Gtk.Dialog):
         box.add(mainBox)
        
         self.show_all()
+    def on_click_emergency_stop(self, button):
+        self.destroy()
+        self.parent._screen._ws.klippy.emergency_stop()
         
    

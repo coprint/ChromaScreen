@@ -21,16 +21,7 @@ class CoPrintChipSelection(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      
-        chips = [
-            {'Name': "9600",  'Button': Gtk.RadioButton()},
-            {'Name': "14400",  'Button': Gtk.RadioButton()},
-            {'Name': "19200",  'Button': Gtk.RadioButton()},
-            {'Name': "38400", 'Button': Gtk.RadioButton()},
-            {'Name': "57600", 'Button': Gtk.RadioButton()},
-            {'Name': "115200",  'Button': Gtk.RadioButton()},
-            {'Name': "128000", 'Button': Gtk.RadioButton()},
-            {'Name': "256000", 'Button': Gtk.RadioButton()},
-            ]
+       
         
         self.labels['actions'] = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self.labels['actions'].set_hexpand(True)
@@ -50,18 +41,32 @@ class CoPrintChipSelection(ScreenPanel):
         row = 0
         count = 0
         
-        group =chips[0]['Button']
-        for chip in chips:
-            chipName = Gtk.Label(chip['Name'],name ="wifi-label")
+        listMcu = []
+        for choice in self._screen.kconfig.choices:
+            if choice.visibility != 0 and choice.nodes[0].prompt[0] == "Processor speed":
+                for chip in choice.syms:
+                    if chip.visibility != 0:
+                        tempChip ={}
+                        tempChip['Obj'] = chip
+                        tempChip['Button'] = Gtk.RadioButton()
+                        listMcu.append(tempChip)
+            
+
+        group = next((x for x in listMcu if x['Obj'].str_value == 'y'), None)['Button']
+
+
+        for chip in listMcu:
+            chipName = Gtk.Label(self._screen.rename_string(chip['Obj'].nodes[0].prompt[0],15),name ="wifi-label")
             chipName.set_alignment(0,0.5)
             
-            chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(group,"")
-            if chips[0]['Name'] == chip['Name']:
-                 chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(None,"")
+            if chip['Obj'].str_value == 'y':
+                 chip['Button'] = Gtk.RadioButton(label="")
+            else:
+                chip['Button'] = Gtk.RadioButton.new_with_mnemonic_from_widget(group,"")
            
            
             
-            chip['Button'].connect("toggled",self.radioButtonSelected, chip['Name'])
+            chip['Button'].connect("toggled",self.radioButtonSelected, chip['Obj'])
             chip['Button'].set_alignment(1,0.5)
             chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
            
@@ -70,17 +75,20 @@ class CoPrintChipSelection(ScreenPanel):
            
             chipBox.pack_end(chip['Button'], False, False, 10)
             
-            f.add(chipBox)
+            eventBox = Gtk.EventBox()
+            eventBox.connect("button-press-event", self.eventBoxFunc, chip['Obj'])
+            eventBox.add(chipBox)
+            f.add(eventBox)
             grid.attach(f, count, row, 1, 1)
             count += 1
-            if count % 2 is 0:
+            if count % 1 is 0:
                 count = 0
                 row += 1
 
 
        
         
-        gridBox = Gtk.FlowBox()
+        gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
         '''diller bitis'''
@@ -111,7 +119,7 @@ class CoPrintChipSelection(ScreenPanel):
         backButtonBox.pack_start(backLabel, False, False, 0)
         self.backButton = Gtk.Button(name ="back-button")
         self.backButton.add(backButtonBox)
-        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_mcu_flash_chip')
+        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_chip_selection')
         self.backButton.set_always_show_image (True)       
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
@@ -129,14 +137,19 @@ class CoPrintChipSelection(ScreenPanel):
       
         self.content.add(page)
         self._screen.base_panel.visible_menu(False)
+
+    def eventBoxFunc(self,a,b,obj):
+        self.radioButtonSelected(None, obj)
+
+    def radioButtonSelected(self, button, selected):
        
-    def radioButtonSelected(self, button, baudRate):
-        self.selected = baudRate
+        self._screen._changeKconfig(selected.name)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
     
     
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_sd_card_selection", "co_print_sd_card_selection", None, 2)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
         
     def on_click_back_button(self, button, data):
         
-        self._screen.show_panel(data, data, "Language", 1, False)
+        self._screen.show_panel(data, data, "co_print_chip_selection", 1, False)

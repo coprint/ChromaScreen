@@ -5,7 +5,7 @@ import contextlib
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.kalibrationinfodialog import KalibrationInfoDialog
-from ks_includes.widgets.zaxishorizontal import zAxisHorizontal
+from ks_includes.widgets.zaxishorizontalcalibration import zAxisHorizontalCalibration
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 
@@ -95,7 +95,9 @@ class CoPrintProbeCalibrationScreen(ScreenPanel):
         changeOffsetBox.pack_start(changeOffsetLabelBox, False, False, 10)
         changeOffsetBox.pack_start(changeOffsetButtonBox, False, False, 20)
         
-        zAxis = zAxisHorizontal(self, True)
+        
+        
+        zAxis = zAxisHorizontalCalibration(self, True)
         
         zOffsetLabel = Gtk.Label(_("Z Offset"))
         
@@ -161,11 +163,37 @@ class CoPrintProbeCalibrationScreen(ScreenPanel):
         dialog.destroy()
 
     def process_update(self, action, data):
-        zoffset = float(self._printer.data["gcode_move"]["homing_origin"][2])
-        if self.zoffset.get_label() != '{:.3f}'.format(zoffset):
-                    self.zoffset.set_label('{:.3f}'.format(zoffset))
+        if action == "notify_busy":
+            #self.process_busy(data)
+            return
+        if action == "notify_status_update":
+            if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
+               # self.widgets['zposition'].set_text("Z: ?")
+                print("Z: ?")
+            elif "gcode_move" in data and "gcode_position" in data['gcode_move']:
+                #self.update_position(data['gcode_move']['gcode_position'])
+                print(data['gcode_move']['gcode_position'])
+        elif action == "notify_gcode_response":
+            data = data.lower()
+            if "unknown" in data:
+                #self.buttons_not_calibrating()
+                logging.info(data)
+            #elif "save_config" in data:
+                #self.buttons_not_calibrating()
+            elif "out of range" in data:
+                self._screen.show_popup_message(data)
+                #self.buttons_not_calibrating()
+                logging.info(data)
+            elif "fail" in data and "use testz" in data:
+                self._screen.show_popup_message(_("Failed, adjust position first"))
+                #self.buttons_not_calibrating()
+                logging.info(data)
+            #elif "use testz" in data or "use abort" in data or "z position" in data:
+                #self.buttons_calibrating()
+        return
                     
     def start_calibration(self):
+        self.zoffset.set_label('{:.3f}'.format(0))
         functions = []
         self.probe = self._printer.get_probe()
         if self._printer.config_section_exists("stepper_z") \
@@ -207,9 +235,9 @@ class CoPrintProbeCalibrationScreen(ScreenPanel):
         elif method == "endstop":
             self._screen._ws.klippy.gcode_script(KlippyGcodes.Z_ENDSTOP_CALIBRATE)
 
-    def _move_to_position(self):
+    def _move_to_position(self, zhop):
         x_position = y_position = None
-        z_hop = speed = None
+        speed = None
         # Get position from config
         if self.ks_printer_cfg is not None:
             x_position = self.ks_printer_cfg.getfloat("calibrate_x_position", None)
@@ -220,8 +248,8 @@ class CoPrintProbeCalibrationScreen(ScreenPanel):
             y_position = self._config.get_config()['z_calibrate_position'].getfloat("calibrate_y_position", None)
 
         if self.probe:
-            if "sample_retract_dist" in self.probe:
-                z_hop = self.probe['sample_retract_dist']
+            #if "sample_retract_dist" in self.probe:
+                #z_hop = self.probe['sample_retract_dist']
             if "speed" in self.probe:
                 speed = self.probe['speed']
 
@@ -236,23 +264,25 @@ class CoPrintProbeCalibrationScreen(ScreenPanel):
             if y_position is None:
                 y_position = float(safe_z_xy[1])
                 logging.debug(f"Using safe_z y:{y_position}")
-            if 'z_hop' in safe_z:
-                z_hop = safe_z['z_hop']
+            #if 'z_hop' in safe_z:
+                #z_hop = safe_z['z_hop']
             if 'z_hop_speed' in safe_z:
                 speed = safe_z['z_hop_speed']
 
         speed = 15 if speed is None else speed
-        z_hop = 5 if z_hop is None else z_hop
-        self._screen._ws.klippy.gcode_script(f"G91\nG0 Z{z_hop} F{float(speed) * 60}")
-        if self._printer.get_stat("gcode_move", "absolute_coordinates"):
-            self._screen._ws.klippy.gcode_script("G90")
+        #z_hop = 5 if z_hop is None else z_hop
+       
+        self._screen._ws.klippy.gcode_script(f"TESTZ Z={zhop}")
+        #self._screen._ws.klippy.gcode_script(f"G91\nG0 Z{zhop} F{float(speed) * 60}")
+       # if self._printer.get_stat("gcode_move", "absolute_coordinates"):
+        #    self._screen._ws.klippy.gcode_script("G90")
 
         if x_position is not None and y_position is not None:
             logging.debug(f"Configured probing position X: {x_position} Y: {y_position}")
-            self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
+           # self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
         elif "delta" in self._printer.get_config_section("printer")['kinematics']:
             logging.info("Detected delta kinematics calibrating at 0,0")
-            self._screen._ws.klippy.gcode_script('G0 X0 Y0 F3000')
+           # self._screen._ws.klippy.gcode_script('G0 X0 Y0 F3000')
         else:
             self._calculate_position()
 
@@ -287,7 +317,18 @@ class CoPrintProbeCalibrationScreen(ScreenPanel):
     def accept(self, widget):
         logging.info("Accepting Z position")
         self._screen._ws.klippy.gcode_script(KlippyGcodes.ACCEPT)
+        self.save_config()
 
+
+    def save_config(self):
+
+        script = {"script": "SAVE_CONFIG"}
+        self._screen._confirm_send_action(
+            None,
+            _("Save configuration?") + "\n\n" + _("Klipper will reboot"),
+            "printer.gcode.script",
+            script
+        )
 
     def home(self):
         self._screen._ws.klippy.gcode_script(KlippyGcodes.HOME, self.finished)

@@ -25,10 +25,10 @@ button.menu {
 label#progress-label {
     color:#9A9A9A;
     font-size: 1em;
-    min-width: 12.5rem;
+    min-width: 10.5rem;
 }
 #printing-screen-left-box {
-    min-width: 30rem;
+    min-width: 28rem;
 }
 button.pause {
     border-bottom: .2em solid #F7BA17;
@@ -139,6 +139,24 @@ button.system-shut-down {
 button.system-shut-down label{
     font-size: .9em;
 }
+button.not-connected-shut-down {
+    border-bottom: .3em solid #DB4437;
+    background-color: transparent;
+    min-width: 5.4rem;
+    
+}
+button.not-connected-shut-down label{
+    font-size: .9em;
+}
+button.not-connected-setting {
+    border-bottom: .3em solid #F7BA17;
+    background-color: transparent;
+    min-width: 5.4rem;
+    
+}
+button.not-connected-setting label{
+    font-size: .9em;
+}
 #bottom-menu-label {
     padding-top: .4rem;
     padding-left: .5rem;
@@ -199,6 +217,186 @@ progressbar#printing-progress trough {
     min-height: .5em;
     border-radius: 15px;
 }
+#selected-printer-box {
+    border: 1px solid #4A4A4A;
+    border-radius: 15px;
+}
+#printer-event-box {
+    background-color: #161616;
+    
+    border-radius: 15px;
+    min-width: 16rem;
+}
+.selected-event-box {
+    border: 3px solid #138FD3;
+    border-radius: 15px;
+    min-width: 16rem;
+  
+}
+#warning-header-yellow-label {
+    color: #F4AA0B;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+#warning-content-yellow-label {
+    color: #F4AA0B;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+#warning-header-red-label {
+    color: #EC5F59;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+#warning-content-red-label {
+    color: #EC5F59;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+#report-box-yellow {
+    background: #2C2116;
+    border: 1.5px solid #F4AA0B;
+    border-radius: 10px;
+    padding: 1rem;
+   
+}
+#report-box-red {
+    background: #2C1B1B;
+    border: 1.5px solid #EC5F59;
+    border-radius: 10px;
+    padding: 1rem;
+   
+}
+#wiki-box {
+    background: #162C17;
+    border: 1.5px solid #37AB56;
+    border-radius: 10px;
+    padding: 1rem;
+}
+#wiki-header-green-label {
+    color: #2CC054;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+#wiki-content-green-label {
+    color: #2CC054;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+#system-restart-yellow-button {
+    border-radius: 5px;
+    border: 1px solid #F7BA17;
+    background: #2C2116;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#system-restart-yellow-button label{
+    font-size: 1rem;
+}
+#system-restart-yellow-button:active {
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+#system-restart-red-button {
+    border-radius: 5px;
+    border: 1px solid #EC5F59;
+    background: #2C1B1B;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#system-restart-red-button label{
+    font-size: 1rem;
+}
+#system-restart-red-button:active {
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+#log-files-button {
+    border-radius: 5px;
+    border: 1px solid #4994EC;
+    background: #101F31;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 10rem;
+}
+#log-files-button label{
+    font-size: 1rem;
+    color: #4994EC;
+}
+#log-files-button:active {
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 10rem;
+}
+#log-files-box {
+    background-color: #161616;
+    border-radius: .65rem;
+ 
+}
+#log-files-label-box{
+    padding: .5rem;
+    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
+    border-radius: .65rem .65rem 0 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#update-manager-label-box{
+    padding: .75rem;
+    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
+    border-radius: .65rem .65rem 0 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#update-box {
+    padding: .75rem .65rem;
+}
+#kipper-label {
+    font-size: 1rem;
+}
+#klipper-version-label {
+    font-size: .9rem;
+}
+#update-manager-button {
+    border-radius: 5px;
+    border: 1px solid #4994EC;
+    background: #101F31;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 5rem;
+}
+#update-manager-button label {
+    font-size: 1rem;
+    color: #4994EC;
+}
+#update-manager-button:active {
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 5rem;
+}
+#up-to-date-button {
+    border-radius: 5px;
+    border: 1.2px solid #3B5736;
+    background: #071008;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 5rem;
+}
+#up-to-date-button label {
+    font-size: 1rem;
+    color: #3B5736;
+}
+#up-to-date-button:active {
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 5rem;
+}
+#update-manager-box {
+    min-width: 27rem;
+    background: #161616;
+}
 #printer-detail-box {
     background-color: transparent;
     min-width: 17rem;
@@ -231,6 +429,10 @@ progressbar#printing-progress trough {
 #printer-status-not-working {
     font-size: .8rem;
     color: #C9C5C5;
+}
+#printer-status-not-configured {
+    font-size: .8rem;
+    color: #E87142;
 }
 #printing-label {
     font-size: .9rem;
@@ -285,8 +487,7 @@ progressbar#printing-progress trough {
     padding-bottom: .25em;
 }
 #zoffset-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 15px;
+   
     padding: 1rem;
 }
 #heatedBed_box {
@@ -321,7 +522,10 @@ font-size: 1.4em;
 }
 
 #printing-files-label-title {
-    min-width: 20rem;
+    font-weight: 700;
+}
+#printing-files-label-content {
+    font-weight: 400;
 }
 #number-label-box {
     border-radius: 7px;
@@ -581,7 +785,19 @@ button#increase-button {
 #scale-buttons {
     background-color: transparent;
     min-height: 2.5rem;
+    padding-right: 30px;
 }
+
+
+#scale-buttons-left {
+    background-color: transparent;
+    min-height: 2.5rem;
+    padding-left: 30px;
+}
+
+
+
+
 #speed-factor-button {
     background-color: transparent;
     min-height: 3.5rem;
@@ -598,11 +814,22 @@ button#increase-button {
 #counter-input-buttons-box {
     margin-top: .75rem;
 }
+
+#tab-total-usabe-box {
+    /*  */
+}
+
 #z-axis-button-box {
     border: 1px solid #F1F1F1;
     border-radius: 20px;
     color:  #000000;
     padding: .8rem;
+}
+#z-axis-tab-button-box {
+    border: 1px solid #F1F1F1;
+    border-radius: 20px;
+    color:  #000000;
+    padding: .3rem;
 }
 #extruder-select-box {
     padding: .6rem;
@@ -627,7 +854,7 @@ button#increase-button {
     padding: .6rem;
     background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
     border-radius: 10px;
-    min-width: 6rem;
+    min-width: 4rem;
 }
 #extruder-select-box:focus {
     padding: .6rem;
@@ -694,6 +921,28 @@ scale.fan-speed slider{
     background-color: #333333;
     border: none;
 }
+#emergency-button {
+    border-radius: 5px;
+    background-color: #e60c0c;
+    border: none;
+    margin-bottom: 1rem;
+    padding-bottom: .3rem;
+}
+
+#emergency-button-diaolog {
+    border-radius: 5px;
+    background-color: #e60c0c;
+    border: none;
+    margin-top: 1rem;
+    padding-bottom: .3rem;
+    
+}
+
+#emergency-button:active {
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: none;
+}
 
 #region-combo-button {
  
@@ -712,6 +961,7 @@ progressbar#progress-bar-print progress{
     background-color: #00477B;
     min-height: 1em;
     border-radius: 15px;
+
 }
 progressbar#progress-bar-print trough {
     min-height: 1em;
@@ -753,6 +1003,45 @@ button#flat-button-blue:active {
     font-size: 1.5em;
     border-radius: 5px;
     min-width: 10rem;
+}
+button#flat-button-yellow-skip {
+    background-color: #F7BA17;
+    background: #F7BA17;
+    font-size: 1.5em;
+    border-radius: 5px;
+    min-width: 10rem;
+}
+button#flat-button-yellow-skip:active {
+    background-color: #ffffff;
+    font-size: 1.5em;
+    border-radius: 5px;
+    min-width: 10rem;
+}
+button#select-button-blue {
+    background: linear-gradient(180deg, #12B1F6 0%, #134B8E 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 1.5em;
+    border-radius: 10px;
+    min-width: 12rem;
+}
+button#select-button-blue:active {
+    background: #ffffff;
+    font-size: 1.5em;
+    border-radius: 10px;
+    min-width: 12rem;
+}
+button#select-button-gray {
+    background: linear-gradient(180deg, #9B9DA7 0%, #8F8F8F 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 1.5em;
+    border-radius: 10px;
+    min-width: 12rem;
+}
+button#select-button-gray:active {
+    background: #ffffff;
+    font-size: 1.5em;
+    border-radius: 10px;
+    min-width: 12rem;
 }
 button#flat-button-blue-brand {
     background-color: #00477B;
@@ -813,10 +1102,15 @@ button#flat-button-black:focus {
     min-width: 12rem;
 }
 #print-files-button {
-    background-color: #00477B;
+    background-color: #F3F1F1;
     border-radius: 5px;
     padding-left: 3rem;
     padding-right: 3rem;
+}
+#print-files-button label{
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 #print-files-button:active {
@@ -856,8 +1150,31 @@ button#printer-detail-button:active label{
     font-size: .9rem;
 }
 
+
+button#printer-setup-button {
+    background-color: #E87142;
+    border-radius: 8px;
+    min-width: 5rem;
+}
+button#printer-setup-button label {
+    font-size: .9rem;
+}
+button#printer-setup-button:active {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    min-width: 7rem;
+}
+button#printer-setup-button:active label{
+    color: #000000;
+    font-size: .9rem;
+}
+
+
+
+
 #print-file-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
+    background: #161616;
+    border: 1px solid #4A4A4A;
     border-radius: 15px;
 }
 #setting-button{
@@ -987,6 +1304,10 @@ label#init-header-subtitle-label {
     font-size:1.2em;
     color:#FFFFFF;
 }
+label#loading-label {
+    font-size:1.2em;
+    color:#F7BA17;
+}
 /*Chip Ayarlari*/
 #selection-box {
     background: #242424;
@@ -1031,7 +1352,15 @@ label#contract-approval-label {
     background-color: #20292F;
     border: .0em solid #13181C;
     padding: .0em;
+   
 
+}
+.brand-entry{
+    font-size: 1em;
+    background-color: #20292F;
+    border: .0em solid #13181C;
+    padding: .0em;
+    padding-left: 1em;
 }
 .custom-region {
     padding: 5px;
@@ -1053,7 +1382,23 @@ label#contract-approval-label {
     border: 3px dashed lightgreen;
     margin-bottom: 100em;
   }
+ 
+  #brand-combobox button.combo {
+    border-radius: 10px;
+    border: 1px solid #5D5D5D;
+    min-width: 13.5rem;
 
+  }
+
+  list#brand {
+    background-color: #000000;
+    border: 1px solid #9D9797;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   
+    color: #1A1C1E;
+    font-size: 25px;
+    border: 1px;
+}
 
 list#region {
     background-color: #333333;
@@ -1100,7 +1445,24 @@ entry#device-name {
 label#wifi-label {
     
     color:#f0f0f0;
+    font-size: 1.5rem;
+}
+label#wifi-labell {
     
+    color:#f0f0f0;
+    font-size: 0.5rem;
+}
+label#chip-label {
+    
+    color:#f0f0f0;
+    font-size: 1.1rem;
+}
+
+
+
+checkbutton#check-button-label label{
+   
+    font-size: 1.1rem;
 }
 
 treeview.view#tree-list {
@@ -1108,7 +1470,7 @@ treeview.view#tree-list {
     font-size: 1rem;
 }
 #selected-printer-dimension {
-    font-size: 14px;
+    font-size: 12px;
     color: #83848C;
     font-weight: 500;
 }
@@ -1119,7 +1481,7 @@ treeview.view#tree-list {
 }
 .thumbnail {
     background-color: #20292F;
-    border-radius: 10px;
+    margin: .5em;
 }
 
 entry#counter-input {
@@ -1138,9 +1500,37 @@ entry#counter-input {
 }
 
 #printing-grid-box {
-    margin-right: 1.5rem;
+    margin-right: 2rem;
 }
 
+#home-tab-box {
+    background-color: #0E0E0E;
+    border-radius: 8px;
+    padding: .6rem;
+    min-width: 51rem;
+    min-height: 17rem;
+}
+
+#home-tab-box-title{
+   
+    
+}
+
+#home-tab-title-label {
+    background: linear-gradient(180deg, rgba(139, 139, 139, 0.90) 0%, rgba(139, 139, 139, 0.00) 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 9rem;
+    border-radius: 11px 11px 0px 0px;
+    padding: .5rem 0 0 .5rem;
+}
+#home-tab-title-label label{
+    font-size: 1.2rem;
+}
+
+#home-tab-title-label:checked {
+    background: transparent;
+    background-color: #2B2B2B;
+}
 
 
 window {
@@ -1402,15 +1792,14 @@ scrollbar slider {
     border-radius: .7em;
     background-color: #404E57;
 }
-#selected-printer-box {
-    background-color: #000000;
-    border-radius: 15px;
-    min-width: 20rem;
-}
 
 separator {
     margin: 1em 2em;
     background-color: rgba(255, 255, 255, 0.5);
+}
+.exp-separator {
+    margin: .22em .22em;
+    background-color: #4F4F4F;
 }
 
 textview, textview text {
@@ -1801,6 +2190,8 @@ checkbutton check {
     min-height: 25px;
     background-color: #00747B;
 }
+
+
 #send-button {
     background-color: #00477B;
     border-radius: 4px;
@@ -1913,7 +2304,7 @@ button.macros label{
     font-size: 1.2em;
     }
 #auto-leveling-label {
-    font-size: 1.4em;
+    font-size: 1.0em;
 }
 #probe-calibration-label-box {
     border-radius: 7px;
@@ -1949,7 +2340,7 @@ button.macros label{
 }
 #auto-leveling-label-box {
     border: 1.3px solid #FFFFFF;
-    min-width: 9rem;
+    min-width: 7rem;
     padding-top: 1.75rem;
     padding-bottom: 1.75rem;
 }
@@ -2014,12 +2405,20 @@ box.auto-leveling-label-box-active-white {
     border-radius: 10px;
     padding: 2rem;
 }
+#wifi-card-boxx {
+    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
+    padding: 1rem;
+    border-radius: 10px;
+    min-width: 45rem;
+}
+
 #wifi-card-box {
     background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
     padding: 1rem;
     border-radius: 10px;
-    min-width: 37rem;
+    min-width: 60rem;
 }
+
 
 #system-setting-card-box {
     background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
@@ -2030,6 +2429,7 @@ box.auto-leveling-label-box-active-white {
 
 #wifi-name-label {
     font-weight: 500;
+    font-size: 1.5rem;
 }
 #wifi-status-label {
     font-size: 1.1rem;
@@ -2088,8 +2488,7 @@ button.probe-change-offset-button-active {
     min-height: 3.5rem;
 }
 #probe-zoffset-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    border-radius: 10px;
+   
     padding: 1rem;
 }
 #z-axis-horizontal-button-box {
@@ -2189,6 +2588,38 @@ scale.movement-setting trough slider{
 }
 #add-network-button label{
     font-size: 1.1rem;
+}
+#disconnect-network-button {
+    background: linear-gradient(180deg, #FA3C3C 0%, #793A3A 100%);
+    border-radius: 5px;
+    min-height: 2.5rem; 
+    min-width: 6.5rem;
+   
+}
+#disconnect-network-button:active {
+    background: #FFFFFF;
+    border-radius: 5px;
+    min-height: 2.5rem; 
+   
+}
+#disconnect-network-button label{
+    font-size: .85rem;
+}
+#forgot-network-button {
+    background: linear-gradient(180deg, #D9D9D9 0%, #7D7D7D 100%);
+    border-radius: 5px;
+    min-height: 2.5rem; 
+    min-width: 6.5rem;
+   
+}
+#forgot-network-button:active {
+    background: #FFFFFF;
+    border-radius: 5px;
+    min-height: 2.5rem; 
+   
+}
+#forgot-network-button label{
+    font-size: .85rem;
 }
 #next-step-button {
     background-color: #00477B;
@@ -2343,7 +2774,13 @@ combobox.adv-setting-combo window.popup *{
 .alert-info-dialog label{
     color: #23A6F0;
 }
-
+.bin-generate-dialog {
+    border: 3px solid #2d2d2d;
+    /* padding: 2rem; */
+    background-color: #2d2d2d;
+  
+    border-radius: 5px;
+}
 .new-numpad-dialog {
     border: .1em solid #CFCDCD;
     background-color: black;
@@ -2359,12 +2796,28 @@ combobox.adv-setting-combo window.popup *{
 #info-dialog-content-box {
     margin: 2rem;
 }
+
+#info-dialog-content-box-brand {
+    padding: .5rem;
+    margin: .5rem;
+}
 #info-dialog-title-label {
     font-weight: 700;
     font-size: 1.5rem;
 }
+#info-dialog-brand-label {
+    font-size: 1.5rem;
+}
+
 #info-dialog-content-label {
     font-size: 1.2rem;
+}
+#bin-generate-dialog-content-label {
+    font-size: 1.2rem;
+    color: #F7BA17;
+}
+#bin-generate-dialog-content-box {
+   
 }
 .numpad-new{
     margin-top: 0px;
@@ -2396,6 +2849,180 @@ combobox.adv-setting-combo window.popup *{
 
     background-color: #2B4A79;
 }
+#filament-tab-greeen-button {
+    border-radius: 8px;
+    background: #48A34C;
+    min-width: 2.3rem;
+    min-height: 3.3rem;
+}
+#filament-tab-black-button {
+    border-radius: 8px;
+    min-width: 2.3rem;
+    min-height: 3.3rem;
+    background: #0E0E0E;
+}
+#filament-tab-greeen-button-box {
+    border-radius: 10px;
+    border: 1px solid #8E8E8E;
+}
+#load-button {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #818181 0%, #353535 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    min-width: 6rem;
+}
+#load-unload-label {
+    padding-left: .5rem;
+    font-size: 1.1rem   ;
+}
+#loaded-label {
+    color: #48A34C;
+    font-size: 1rem;
+}
+#parked-label {
+    color: #A8A8A8;
+    font-size: 1rem;
+}
+#home-filament-box-input-label {
+    min-width: 7rem;
+
+}
+#load-unload-button-box {
+    min-height: 2rem;
+}
+#home-tab-filament-cut-button {
+    background: linear-gradient(180deg, #818181 0%, #353535 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    min-height: 2.5rem;
+    min-width: 6rem;
+}
+#home-tab-filament-cut-button label{
+    font-size: 1.1rem;
+}
+#system-content-label{
+    padding-left: .6rem;
+    font-size: .8rem;
+    color: #FFFFFF;
+}
+#system-content-title-label{
+    padding-left: .6rem;
+    font-size: .8rem;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+#system-restart-tab-blue-button {
+    border-radius: 7px;
+    background: linear-gradient(180deg, #12B1F6 0%, #134B8E 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#system-restart-tab-blue-button label{
+    font-size: 1rem;
+}
+#system-restart-tab-blue-button:active {
+    border-radius: 7px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+#system-restart-tab-red-button {
+    border-radius: 7px;
+    background: linear-gradient(180deg, #F62D12 0%, #B47C6A 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#system-restart-tab-red-button label{
+    font-size: 1rem;
+}
+#system-restart-tab-red-button:active {
+    border-radius: 7px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+#system-shutdown-tab-grey-button {
+    border-radius: 7px;
+    background: linear-gradient(180deg, #929292 0%, #2D2D2D 100%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#system-shutdown-tab-grey-button label{
+    font-size: 1rem;
+}
+#system-shutdown-tab-grey-button:active {
+    border-radius: 7px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#directivity-button {
+    background-color: #0E0E0E;
+}
+#directivity-button:active {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+#up-down-tab-buttons {
+    background-color: #00477B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    min-height: 2.8rem;
+    min-width: 2.5rem;
+    
+}
+#up-down-tab-buttons:active {
+    background-color: #ffffff;
+    border-radius: 12px;
+    min-height: 2.8rem;
+    min-width: 2.5rem;
+    
+}
+#system-total-times-title-label{
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding-left: 2rem;
+    font-weight: 600;
+}
+#system-total-times-content-label{
+    color: #FFFFFF;
+    font-size: 2rem;
+    padding-left: 2rem;
+    font-weight: 600;
+}
+#system-tab-button-label{
+    padding-left: .5rem;
+}
+.tab-separator {
+    margin: .22em .22em;
+    min-width: 10rem;
+    background-color: #4F4F4F;
+}
+
+#zoffset-with-speed-factor-box {
+    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
+    border-radius: 10px;
+    padding: .5rem;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+    min-width: 535px;
+}
+
+
+#prev-next-button {
+    border-radius: 75px;
+    background-color: #000000;
+    padding: .5rem;
+}
+#prev-next-button:active {
+    background-color: #FFFFFF;
+    border-radius: 150px;
+}
+#selectable-box {
+    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
+    border-radius: 10px;
+    padding: .5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
 /* Yeni CSSler */
 
 /* Hardcoded values until creation of dynamic CSS updates */

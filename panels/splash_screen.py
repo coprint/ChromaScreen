@@ -24,7 +24,7 @@ class SplashScreenPanel(ScreenPanel):
         self.labels['text'].set_halign(Gtk.Align.CENTER)
         self.labels['text'].set_valign(Gtk.Align.CENTER)
 
-        self.labels['menu'] = self._gtk.Button("settings", _("Menu Noya"), "color4")
+        self.labels['menu'] = self._gtk.Button("settings", _("Menu Co Print"), "color4")
         self.labels['menu'].connect("clicked", self._screen._go_to_submenu, "")
         self.labels['restart'] = self._gtk.Button("refresh", _("Klipper Restart"), "color1")
         self.labels['restart'].connect("clicked", self.restart)

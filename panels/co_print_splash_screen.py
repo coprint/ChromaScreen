@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 
@@ -58,9 +59,17 @@ class CoPrintSplashScreenPanel(ScreenPanel):
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         main.pack_start(info, True, True, 0)
         main.pack_end(self.labels['actions'], False, False, 0)
-        
+        self.config_data = None
         self.show_restart_buttons()
-        self.start_timer()
+        try:
+            f = open(self._screen.path_config, encoding='utf-8')
+       
+            self.config_data = json.load(f)
+        except Exception as e:
+            logging.exception(e) 
+       
+
+        self.start_timerr()
         self.content.add(main)
         
         
@@ -69,27 +78,37 @@ class CoPrintSplashScreenPanel(ScreenPanel):
         
         self.show_restart_buttons()
 
-    def start_timer(self):
+    def start_timerr(self):
         """ Start the timer. """
-        self.timeout_id = GLib.timeout_add(1500, self.on_timeout, None)
+        self.timeout_id = GLib.timeout_add(2500, self.on_timeout, None)
         
 
     def on_timeout(self, *args, **kwargs):
-        """ A timeout function.
-        Return True to stop it.
-        This is not a precise timer since next timeout  
-        is recalculated based on the current time.""" 
-        if self._screen.connected_printer :
-            self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
-            #self._screen.show_panel("co_print_language_select_screen", "co_print_language_select_screen", "Language", 1, False)
+        self.changed = False
+        if(self.config_data != None):
+            if(self.config_data['InitConfigDone'] == False):
+                self.changed = True
+                self._screen.show_panel("co_print_language_select_screen", "co_print_language_select_screen", "Language", 1, False)
+            elif(self.config_data['Printer1WizardDone'] == False):
+                self.changed = True
+                self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
+           
 
-        else:
-            self._screen.show_panel("co_print_language_select_screen", "co_print_language_select_screen", "Language", 1, False)
+
+        if(self.changed == False):
+            if self._screen.connected_printer :
+                if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
+
+                    self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
+                    #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
+                else:
+                    #self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
+                    self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
+            else:
+                self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
 
         
-        #self._screen.show_panel("co_print_network_setting_screen", "co_print_network_setting_screen", "Language", 1, False)
-        #self._screen.show_panel("co_print_change_printer", "co_print_change_printer", "Language", 1, False)        
-        #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False) 
+       
         
         self.timeout_id = None
         #self.destroy()
@@ -117,7 +136,7 @@ class CoPrintSplashScreenPanel(ScreenPanel):
 
     def activate(self):
         self.check_power_status()
-        self.start_timer()
+        
         self._screen.base_panel.show_macro_shortcut(False)
         self._screen.base_panel.show_heaters(False)
         self._screen.base_panel.show_estop(False)

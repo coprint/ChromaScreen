@@ -35,7 +35,7 @@ class CoPrintPrintingFilesScreen(ScreenPanel):
         self.time_24 = self._config.get_main_config().getboolean("24htime", True)
 
 
-        sortdir = self._config.get_main_config().get("print_sort_dir", "name_asc")
+        sortdir = self._config.get_main_config().get("print_sort_dir", "date_desc")
         sortdir = sortdir.split('_')
         if sortdir[0] not in ["name", "date"] or sortdir[1] not in ["asc", "desc"]:
             sortdir = ["name", "asc"]
@@ -87,7 +87,7 @@ class CoPrintPrintingFilesScreen(ScreenPanel):
         
         self.deleteButton = Gtk.Button(('Delete'),name ="file-delete-button")
         self.deleteButton.connect("clicked", self.delete_selected)
-        self.homeButton = Gtk.Button(('Home'),name ="file-home-button")
+        self.homeButton = Gtk.Button(('Refresh'),name ="file-home-button")
         self.homeButton.connect("clicked", self.reload_files)
         deleteButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         deleteButtonBox.set_valign(Gtk.Align.CENTER)
@@ -111,7 +111,7 @@ class CoPrintPrintingFilesScreen(ScreenPanel):
 
         self.main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.main.set_hexpand(True)
-        self.main.pack_start(printFilesTitlesBox, False, True, 0)
+        #self.main.pack_start(printFilesTitlesBox, False, True, 0)
         self.main.pack_start(self.scroll, False, True, 15)
         self.main.pack_start(actionBox, False, False, 0)
         self.main.pack_end(BottomMenu(self, False), False, True, 0)
@@ -291,7 +291,11 @@ class CoPrintPrintingFilesScreen(ScreenPanel):
        
         if filename is not None:
             fileinfo = self._screen.files.get_file_info(fullpath)
-            estimated_time = self.format_time(fileinfo["estimated_time"])
+            if "estimated_time" in fileinfo:
+                estimated_time = self.format_time(fileinfo["estimated_time"])
+            else:
+                estimated_time= ' '
+            
             size = self.format_size(fileinfo["size"])
 
             row = PrintFile(self,filename, size, estimated_time, fullpath)
@@ -302,7 +306,7 @@ class CoPrintPrintingFilesScreen(ScreenPanel):
                 "name": name
             }
         else:
-            self.directories[fullpath] = row
+            self.directories[fullpath] = Gtk.Grid()
             self.labels['directories'][fullpath] = {
                 "info": info,
                 "name": name
@@ -383,7 +387,7 @@ class CoPrintPrintingFilesScreen(ScreenPanel):
         logging.info(f"Starting print:")
 
     def image_load(self, filepath):
-        pixbuf = self.get_file_image(filepath, self._screen.width / 4.5, self._screen.height / 4.5 ,small=True)
+        pixbuf = self.get_file_image(filepath, 120, 120 ,small=False)
         if pixbuf is not None:
             self.files[filepath].thumbnail.set_from_pixbuf(pixbuf)
             #self.labels['files'][filepath]['icon'].set_image(Gtk.Image.new_from_pixbuf(pixbuf))

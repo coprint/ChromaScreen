@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from ks_includes.widgets.bottommenu import BottomMenu
@@ -21,22 +22,7 @@ class CoPrintChangePrinter(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
-        printingDetail1 = PrinterDetail(self, "Creality Ender 3", "Printer 1", _("Printing"),
-                                        "printer-status-continuing", "printer-1")
-        printingDetail2 = PrinterDetail(self, "Ender 3 S1 PRO", "Printer 2", _("Waiting"), "printer-status-paused",
-                                        "printer-2")
-        printingDetail3 = PrinterDetail(self, "Ender 3 S1 PRO", "Printer 3", _("Waiting"), "printer-status-paused",
-                                        "printer-3")
-        printingDetail4 = PrinterDetail(self, "Ender 3 S1 PRO", "Printer 4", _("Waiting"), "printer-status-paused",
-                                        "printer-4")
-        printingDetail5 = PrinterDetail(self, "Ender 3 S1 PRO", "Printer 5", _("Not Working"),
-                                        "printer-status-not-working", "printer-5")
-        printingDetail6 = PrinterDetail(self, "Ender 3 S1 PRO", "Printer 6", _("Not Working"),
-                                        "printer-status-not-working", "printer-6")
-        printingDetail7 = PrinterDetail(self, "Ender 3 S1 PRO", "Printer 7", _("Not Working"),
-                                        "printer-status-not-working", "printer-7")
-        printingDetail8 = PrinterDetail(self, "Ender 3 S1 PRO", "Printer 8", _("Not Working"),
-                                        "printer-status-not-working", "printer-8")
+       
 
         printers = self._config.get_printers()
 
@@ -45,16 +31,37 @@ class CoPrintChangePrinter(ScreenPanel):
         printer_grid.set_column_spacing(20)
         left = 0
         top = 0
+
+
+        self.config_data = None
+        
+        try:
+            f = open(self._screen.path_config, encoding='utf-8')
+       
+            self.config_data = json.load(f)
+        except Exception as e:
+            logging.exception(e) 
+
         for i, printer in enumerate(printers):
             printer_status_style = "printer-status-not-working"
-
-            if printer['data'].state == 'ready':
+            
+            if self.config_data['Printer'+str(i+1)+'WizardDone'] == False:
+                printer_status_style = "printer-status-not-configured"
+                name = 'None'
+                state = 'Not Installed Yet'
+            elif printer['data'].state == 'ready':
                 printer_status_style = "printer-status-paused"
+                state =  _(printer['data'].state)
+                name = list(printer)[0]
             elif printer['data'].state == 'printing':
                 printer_status_style = "printer-status-continuing"
-            name = list(printer)[0]
+                name = list(printer)[0]
+                state =  _(printer['data'].state)
+            else:
+                name = list(printer)[0]
+                state =  _(printer['data'].state)
 
-            printingDetail = PrinterDetail(self, name, "Printer " + str(i + 1), _(printer['data'].state), printer_status_style,
+            printingDetail = PrinterDetail(self, name, (i + 1), state, printer_status_style,
                                            "printer-"+ str(i+1))
             printer_grid.attach(printingDetail, left, top, 1, 1)
             if left == 0:

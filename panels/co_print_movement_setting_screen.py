@@ -172,6 +172,10 @@ class CoPrintMovementSettingScreen(ScreenPanel):
     
     
     def process_update(self, action, data):
+        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
+        #     page_url = 'co_print_home_not_connected_screen'
+        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)
+            
         if self._printer.state != 'error' :
             if (('toolhead' in data) and ('max_velocity' in data['toolhead'])): 
                 machine_velocity = data['toolhead']['max_velocity']

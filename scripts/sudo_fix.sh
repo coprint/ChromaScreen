@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# KlipperScreen sudo fix. Modified from moonraker-sudo
+# ChromaPad sudo fix. Modified from moonraker-sudo
 
 # moonraker-sudo (mnrkrsudo)
 # Provides a specified Group that is intended to elevate user privileges
@@ -19,8 +19,8 @@ set -e
 ### Configuration
 
 SUDOERS_DIR='/etc/sudoers.d'
-SUDOERS_FILE='021-sudo-for-klipperscreen'
-NEW_GROUP='klipperscreensudo'
+SUDOERS_FILE='021-sudo-for-chromapad'
+NEW_GROUP='chromapadsudo'
 
 
 ### Functions
@@ -48,7 +48,7 @@ create_sudoers_file()
 ### /sbin/systemctl "reboot", /sbin/apt "update", .....
 Cmnd_Alias IWLIST = /sbin/iwlist wlan[0-9] scan
 Cmnd_Alias IWCONFIG = /sbin/iwconfig wlan[0-9]
-Cmnd_Alias SYSTEMCTL_KS_RESTART = /bin/systemctl restart KlipperScreen
+Cmnd_Alias SYSTEMCTL_KS_RESTART = /bin/systemctl restart ChromaPad
 
 %GROUPNAME ALL=(ALL) NOPASSWD: IWCONFGI, IWLIST, SYSTEMCTL_KS_RESTART
 #EOF

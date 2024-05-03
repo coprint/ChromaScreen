@@ -20,18 +20,7 @@ class CoPrintMcuSelection(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      
-        chips = [
-            {'Name': "Atmega AVR",  'Button': Gtk.RadioButton()},
-            {'Name': "SAM 3 / 4 / E70",  'Button': Gtk.RadioButton()},
-            {'Name': "SAM D21 / SAM D51",  'Button': Gtk.RadioButton()},
-            {'Name': "LPC176X", 'Button': Gtk.RadioButton()},
-            {'Name': "STM 32", 'Button': Gtk.RadioButton()},
-            {'Name': "Raspberry Pİ RP2040",  'Button': Gtk.RadioButton()},
-            {'Name': "Beaglebone PRU", 'Button': Gtk.RadioButton()},
-            {'Name': "Linux Procces", 'Button': Gtk.RadioButton()},
-            {'Name': "Beaglebone PRU", 'Button': Gtk.RadioButton()},
-            {'Name': "Host simulator", 'Button': Gtk.RadioButton()},
-            ]
+       
         
         self.labels['actions'] = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self.labels['actions'].set_hexpand(True)
@@ -51,38 +40,56 @@ class CoPrintMcuSelection(ScreenPanel):
                          row_spacing=10)
         row = 0
         count = 0
+
+        listMcu = []
+        for chip in self._screen.kconfig.choices[0].syms:
+            tempChip ={}
+            tempChip['Obj'] = chip
+            tempChip['Button'] = Gtk.RadioButton()
+            listMcu.append(tempChip)
+            
+
+        group = next((x for x in listMcu if x['Obj'].str_value == 'y'), None)['Button']
         
-        group =chips[0]['Button']
-        for chip in chips:
-            chipName = Gtk.Label(chip['Name'],name ="wifi-label")
-            chipName.set_alignment(0,0.5)
+        for chip in listMcu:
+            if chip['Obj'].visibility != 0:
+                chipName = Gtk.Label(self._screen.rename_string(chip['Obj'].nodes[0].prompt[0],15),name ="wifi-label")
+                chipName.set_alignment(0,0.5)
+                
+                
+                if  chip['Obj'].str_value == 'y':
+                    chip['Button'] = Gtk.RadioButton(label="")
+                else:
+                    chip['Button'] = Gtk.RadioButton.new_with_mnemonic_from_widget(group,"")
+
             
-            chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(group,"")
-            if chips[0]['Name'] == chip['Name']:
-                 chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(None,"")
-           
-           
             
-            chip['Button'].connect("toggled",self.radioButtonSelected, chip['Name'])
-            chip['Button'].set_alignment(1,0.5)
-            chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
-           
-            f = Gtk.Frame(name="chip")
-            chipBox.pack_start(chipName, False, True, 10)
-           
-            chipBox.pack_end(chip['Button'], False, False, 10)
+                
+                chip['Button'].connect("toggled",self.radioButtonSelected, chip['Obj'])
+                chip['Button'].set_alignment(1,0.5)
+                chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10, name="chip")
             
-            f.add(chipBox)
-            grid.attach(f, count, row, 1, 1)
-            count += 1
-            if count % 2 is 0:
-                count = 0
-                row += 1
+                f = Gtk.Frame(name="chip")
+                chipBox.pack_start(chipName, False, True, 10)
+            
+                chipBox.pack_end(chip['Button'], False, False, 10)
+                
+                
+                eventBox = Gtk.EventBox()
+                eventBox.connect("button-press-event", self.eventBoxFunc, chip['Obj'])
+                eventBox.add(chipBox)
+                f.add(eventBox)
+
+                grid.attach(f, count, row, 1, 1)
+                count += 1
+                if count % 1 is 0:
+                    count = 0
+                    row += 1
 
 
        
         
-        gridBox = Gtk.FlowBox()
+        gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
  
@@ -92,8 +99,7 @@ class CoPrintMcuSelection(ScreenPanel):
         self.scroll.set_min_content_height(self._screen.height * .3)
         self.scroll.set_kinetic_scrolling(True)
         self.scroll.get_overlay_scrolling()
-        self.scroll.set_margin_left(self._gtk.action_bar_width *1)
-        self.scroll.set_margin_right(self._gtk.action_bar_width*1)
+     
         
         self.scroll.add(gridBox)
         
@@ -131,12 +137,17 @@ class CoPrintMcuSelection(ScreenPanel):
       
         self.content.add(page)
         self._screen.base_panel.visible_menu(False)
-        
-    def radioButtonSelected(self, button, baudRate):
-        self.selected = baudRate
+
+    def eventBoxFunc(self,a,b,obj):
+        self.radioButtonSelected(None, obj)
+            
+    def radioButtonSelected(self, button, selected):
+       
+        self._screen._changeKconfig(selected.name)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
        
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_mcu_model_selection", "co_print_mcu_model_selection", None, 2)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
         
    
 

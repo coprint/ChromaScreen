@@ -99,6 +99,7 @@ class KlippyFiles:
             GLib.idle_add(self.run_callbacks, *args)
             return
 
+        
         self.filelist.append(filename)
         self.files[filename] = {
             "size": item['size'],

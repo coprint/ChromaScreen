@@ -31,15 +31,28 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
     selectedExtruder = ""
     extruderChanged = False
     temp_extruder_temp = 0
-    extruders = [
-            {'Name': '1', 'Icon': 'ext_1', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '2', 'Icon': 'ext_2', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '3', 'Icon': 'ext_3', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '4', 'Icon': 'ext_4', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '5', 'Icon': 'ext_5', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '6', 'Icon': 'ext_6', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '7', 'Icon': 'ext_7', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '8', 'Icon': 'ext_8', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
+    extruders_init = [
+            {'Name': '1', 'Icon': 'ext_1', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '2', 'Icon': 'ext_2', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '3', 'Icon': 'ext_3', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '4', 'Icon': 'ext_4', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '5', 'Icon': 'ext_5', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '6', 'Icon': 'ext_6', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '7', 'Icon': 'ext_7', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '8', 'Icon': 'ext_8', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '9',  'Icon': 'ext_9', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '10', 'Icon': 'ext_10', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '11', 'Icon': 'ext_11', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '12', 'Icon': 'ext_12', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '13', 'Icon': 'ext_13', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '14', 'Icon': 'ext_14', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '15', 'Icon': 'ext_15', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '16', 'Icon': 'ext_16', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '17', 'Icon': 'ext_17', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '18', 'Icon': 'ext_18', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '19', 'Icon': 'ext_19', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+            {'Name': '20', 'Icon': 'ext_20', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
+
             ]
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -48,13 +61,16 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         self.distance = 50
         self.preheat_options = self._screen._config.get_preheat_options()
         self.h = 1
-        grid = Gtk.Grid(column_homogeneous=True,
+        self.grid = Gtk.Grid(column_homogeneous=True,
                          column_spacing=10,
                          row_spacing=10)
-        row = 0
-        count = 0
-        extruderIndex = 0
-
+       
+        extruder_count = sum(1 for key in self._printer.devices.keys() if 'extruder' in key)
+        self.count = 4
+        if extruder_count > 4:
+            self.count = extruder_count
+        self.extruders = self.extruders_init[:self.count]
+        self.startIndex = 0
         for extruder in self.extruders:
             
             extruder['Image'] = self._gtk.Image(extruder['Icon'], self._gtk.content_width * .10 , self._gtk.content_height * .10)
@@ -73,13 +89,9 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
             eventBox.add(extruderBox)
             extruder['EventBox'] = Gtk.Frame(name= "extrude")
             extruder['EventBox'].add(eventBox)
-            grid.attach(extruder['EventBox'], count, row, 1, 1)
-            count += 1
-            extruderIndex +=1
-            if count % 2 == 0:
-                count = 0
-                row += 1
-      
+           
+
+       
            
 
         for d in (self._printer.get_tools() + self._printer.get_heaters()):
@@ -108,17 +120,60 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
                 self.select_heater(None, h)
 
 
-   
+
+        prevIcon = self._gtk.Image("moveust", 45, 45)
+        self.prevButton = Gtk.Button(name ="prev-next-button")
+        self.prevButton.add(prevIcon)
+        self.prevButton.connect("clicked", self.show_prev_page)
+        self.prevButton.set_always_show_image (True) 
+        prevButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        prevButtonBox.set_halign(Gtk.Align.CENTER)
+        prevButtonBox.pack_start(self.prevButton, False, False, 0)
+
+
+        nextIcon = self._gtk.Image("movealt", 45, 45)
+        self.nextButton = Gtk.Button(name ="prev-next-button")
+        self.nextButton.add(nextIcon)
+        self.nextButton.connect("clicked", self.show_next_page)
+        self.nextButton.set_always_show_image (True)   
+        nextButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        nextButtonBox.set_halign(Gtk.Align.CENTER)
+        nextButtonBox.pack_start(self.nextButton, False, False, 0)
+
         
+        gridBox = Gtk.Box()
+        gridBox.set_halign(Gtk.Align.CENTER)
+        gridBox.add(self.grid)
+
+        self.sliderBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+       
+        self.sliderBox.set_halign(Gtk.Align.CENTER)
+        self.sliderBox.pack_start(gridBox, False, False, 0)
+        self.generateGrid()
+
+        selectableBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        selectableBox.set_name("selectable-box")
+        selectableBox.pack_start(self.sliderBox, False, False, 0)
+ 
+        
+        fixed = Gtk.Fixed()
+        fixed.set_valign(Gtk.Align.START)
+        fixed.set_halign(Gtk.Align.START)
+        fixed.put(selectableBox, 5, 5)
+        fixed.put(prevButtonBox, 60, -30)
+        fixed.put(nextButtonBox, 60, 320)
+
+
            
-        connectedExtruders = Gtk.Label(_("Connected Extruders"), name="connected-extruder-label")  
+        connectedExtruders = Gtk.Label(_("Select Controlled \n Extruder"), name="move-label")  
         connectedExtrudersBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0) 
-        connectedExtrudersBox.set_halign(Gtk.Align.START)
+        connectedExtrudersBox.set_halign(Gtk.Align.CENTER)
+        connectedExtruders.set_justify(Gtk.Justification.CENTER)
         connectedExtrudersBox.add(connectedExtruders)
-        gridBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        gridBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=40)
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(connectedExtrudersBox)
-        gridBox.add(grid)
+        gridBox.add(fixed)
         
         moveButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         moveButtonBox.set_halign(Gtk.Align.CENTER)
@@ -132,7 +187,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         extrusionSpeedButtonBox.set_halign(Gtk.Align.CENTER)
         extrusionSpeedButtonBox.set_name("move-page-common-box")
 
-        extrusionSpeedButtons = MoveButtonBoxText(_("Extrusion Speed (mm)"), _("Slow"), _("Normal"), _("High"), "400", "extrusion-speed-button", self)
+        extrusionSpeedButtons = MoveButtonBoxText(_("Extrusion Speed (mm)"), _("Slow"), _("Normal"), _("High"), "50", "extrusion-speed-button", self)
 
         extrusionSpeedButtonBox.add(extrusionSpeedButtons)
  
@@ -216,6 +271,8 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
     
         self.content_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
         self.content_box.set_hexpand(True)
+        self.content_box.set_halign(Gtk.Align.CENTER)
+        self.content_box.set_valign(Gtk.Align.CENTER)
         self.content_box.pack_start(gridBox, False, True, 0)
         self.content_box.pack_start(extrudeBox_box, False, True, 0)
         self.content_box.pack_start(moveButtonBox, False, True, 0)
@@ -226,12 +283,88 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         
         self.main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.main.set_vexpand(True)
-        self.main.pack_start(self.content_box, False, True, 0)
+        self.main.pack_start(self.content_box, False, False, 0)
         self.main.pack_end(BottomMenu(self, True), False, True, 0)
         
      
         self.content.add(self.main)
+
+
+    def generateGrid(self):
+
+        if self.sliderBox.get_children() != None:
+            for child in self.sliderBox.get_children():
+                self.sliderBox.remove(child)
+
+        grid = Gtk.Grid(column_homogeneous=True,
+                         column_spacing=10,
+                         row_spacing=10)
+        
+
+        row = 0
+        count = 0
+        for extruder in self.extruders[self.startIndex: self.startIndex+4]:
+           
+            extruder['Image'] = self._gtk.Image(extruder['Icon'], self._gtk.content_width * .10 , self._gtk.content_height * .10)
+           
+            if extruder['RadioButtonStatus']:
+
+                extruder['RadioButton'] = self._gtk.Image('active', self._gtk.content_width * .04 , self._gtk.content_height * .04)
+            else:
+                extruder['RadioButton'] = self._gtk.Image('passive', self._gtk.content_width * .04 , self._gtk.content_height * .04)
+
+            alignment = Gtk.Alignment.new(1, 0, 0, 0)
+            alignment.add(extruder['RadioButton'])
             
+            extruderBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+            extruderBox.set_name("extruder-extruder-select-box")
+            extruderBox.pack_start(alignment, False, False, 5)
+            extruderBox.pack_start(extruder['Image'], False, True, 5)
+            
+            eventBox = Gtk.EventBox()
+
+            eventBox.add(extruderBox)
+            extruder['EventBox'] = Gtk.Frame(name= "extrude")
+            extruder['EventBox'].add(eventBox)
+
+            grid.attach(extruder['EventBox'], count, row, 1, 1)
+            count += 1
+           
+            if count % 2 == 0:
+                count = 0
+                row += 1
+
+        gridBox = Gtk.Box()
+        gridBox.set_halign(Gtk.Align.CENTER)
+        gridBox.add(grid)
+
+
+     
+        self.sliderBox.pack_start(gridBox, False, False, 0)
+        self.content.show_all()
+        return True
+       
+
+    
+
+    def show_next_page(self, widget):
+      
+        self.startIndex = self.startIndex +4
+        if self.startIndex > self.count -4:
+            self.startIndex =self.count-4
+        self.generateGrid()
+       
+
+    def show_prev_page(self, widget):
+        self.startIndex = self.startIndex -4
+        if self.startIndex < 0:
+            self.startIndex =0
+        
+    
+        self.generateGrid()
+
+
+
     def open_numpad(self, widget):
         
         dialog = KeyPadNew(self)
@@ -273,20 +406,25 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         self._screen._ws.klippy.gcode_script("T" + str(index))
 
     def process_update(self, action, data):
-       
+            
         if self._printer.state != 'error' :
 
-            if self.selectedExtruder != self._printer.data["toolhead"]["extruder"]:
-                self.extruderChanged = False
-                self.selectedExtruder = self._printer.data["toolhead"]["extruder"]
-                self.connectedExtruder.set_label(self._printer.data["toolhead"]["extruder"])
+
+
+            extruder_list = self._printer.get_tools()
+            for extruder in extruder_list:
+                if self._printer.data[extruder]["motion_queue"] != None:
+                    if self.selectedExtruder != extruder:
+                        self.selectedExtruder = extruder
+                        self.extruderChanged = False
+                        self.connectedExtruder.set_label(self.selectedExtruder)
 
             extrude = self._printer.get_config_section(self.selectedExtruder)
             if (extrude):
-                self.ExtruderMax_temp = float(self._printer.get_config_section(self.selectedExtruder)['max_temp'])
+                self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])
 
             extruder_temp = 0
-            extruder_array = self._printer.get_temp_store(self.selectedExtruder)
+            extruder_array = self._printer.get_temp_store(self._printer.data["toolhead"]["extruder"])
             
             if(extruder_array):
                 extruder_temp = extruder_array['temperatures'][-1]
@@ -312,20 +450,21 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
 
             self.extruderChanged = True
             for extruder in self._printer.get_tools():
-                svg_file = "styles/z-bolt/images/active.svg"
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file, self._gtk.content_width * .04 , self._gtk.content_height * .04)
-                
-                self.extruders[i]['RadioButton'].set_from_pixbuf(pixbuf)
-                if self.extruders[i]['Extrude'] is None:
-                    self.extruders[i]['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
-                
-                self.extruders[i]['Extrude'] = extruder
-                if self.extruders[i]['Extrude'] != self.selectedExtruder:
-                    self.extruders[i]['EventBox'].get_style_context().remove_class("extrude-active")
-                    
-                else:
-                    self.extruders[i]['EventBox'].get_style_context().add_class("extrude-active")
-                i += 1
+                if extruder != 'extruder':
+                    svg_file = "styles/z-bolt/images/active.svg"
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file, self._gtk.content_width * .04 , self._gtk.content_height * .04)
+                    self.extruders[i]['RadioButtonStatus'] = True
+                    self.extruders[i]['RadioButton'].set_from_pixbuf(pixbuf)
+                    if self.extruders[i]['Extrude'] is None:
+                        self.extruders[i]['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
+
+                    self.extruders[i]['Extrude'] = extruder
+                    if self.extruders[i]['Extrude'] != self.selectedExtruder:
+                        self.extruders[i]['EventBox'].get_style_context().remove_class("extrude-active")
+
+                    else:
+                        self.extruders[i]['EventBox'].get_style_context().add_class("extrude-active")
+                    i += 1
 
  
     
@@ -413,7 +552,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
     
     def add_device(self, device):
         if self.selectedExtruder != "" and self._printer.get_config_section(self.selectedExtruder):
-            self.ExtruderMax_temp = float(self._printer.get_config_section(self.selectedExtruder)['max_temp'])
+            self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])
     
         logging.info(f"Adding device: {device}")
 

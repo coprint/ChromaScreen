@@ -60,7 +60,10 @@ class CoPrintSdCardSelectionProcess(ScreenPanel):
       
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
+        
        
+   
+            
     def radioButtonSelected(self, button, baudRate):
         self.selected = baudRate
     

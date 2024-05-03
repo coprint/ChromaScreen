@@ -87,7 +87,7 @@ class PercentageFactor(Gtk.Box):
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         main.set_hexpand(True)
         main.set_valign(Gtk.Align.START)
-        main.set_size_request(this._screen.width *.5, -1)
+        main.set_size_request(this._screen.width *.45, -1)
         main.pack_start(speedFactorBox, True, True, 0)
         main.pack_start(buttonBox, True, True, 0)
         

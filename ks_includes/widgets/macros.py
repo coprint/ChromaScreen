@@ -27,7 +27,7 @@ class Macros(Gtk.Box):
         macroButton.connect("clicked", this.run_gcode_macro, _macroName)
         
         
-        macroBox.set_name("wifi-card-box")
+        macroBox.set_name("wifi-card-boxx")
         macroBox.pack_start(macroLabelBox, False, False, 0)
         macroBox.pack_end(macroButton, False, False, 0)
         macroBox.set_valign(Gtk.Align.CENTER)

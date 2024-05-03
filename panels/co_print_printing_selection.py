@@ -1,12 +1,13 @@
 import logging
 import os
+import subprocess
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
+import pyudev
 from ks_includes.screen_panel import ScreenPanel
 
 
@@ -27,7 +28,7 @@ class CoPrintPrintingSelection(ScreenPanel):
        
         
         self.continueButton = Gtk.Button(_('Searching for Printer..'),name ="flat-button-yellow")
-        self.continueButton.connect("clicked", self.on_click_continue_button)
+        #self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
@@ -58,15 +59,35 @@ class CoPrintPrintingSelection(ScreenPanel):
         main.pack_end(buttonBox, True, False, 10)
         main.pack_end(spinner, False, False, 0)
         
-        
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
        
+        GLib.idle_add(self.control_usb, None)
+
+   
+    def control_usb(self, args):
+        self.isSuccess= False
+        context = pyudev.Context()
+        monitor = pyudev.Monitor.from_netlink(context)
+        monitor.filter_by(subsystem='usb')
+        device = monitor.poll(timeout=30)
+        if device != None:
+            
+            if device.action == 'add':
+               self.on_click_continue_button()
+               self.isSuccess= True
+               
+                    
+            if device.action == 'unbind':
+                print('{} unbind'.format(device))
+        if self.isSuccess  == False:
+            GLib.timeout_add_seconds(1, self.control_usb, None)
+        return False
     def radioButtonSelected(self, button, baudRate):
         self.selected = baudRate
     
     
-    def on_click_continue_button(self, continueButton):
+    def on_click_continue_button(self):
         self._screen.show_panel("co_print_printing_selection_port", "co_print_printing_selection_port", None, 2)
         
     def on_click_back_button(self, button, data):

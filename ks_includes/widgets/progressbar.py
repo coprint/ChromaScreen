@@ -30,7 +30,7 @@ class ProgressBar(Gtk.Box):
         extruder_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         extruder_box.set_hexpand(True)
         extruder_box.set_valign(Gtk.Align.CENTER)
-        extruder_box.add(this._gtk.Image(_image, 40, 40))
+        extruder_box.add(this._gtk.Image(_image, 30, 30))
         extruder_box.add(self.label)
         extruder_box.add(self.scale_progress)
         extruder_box.add(numPadButton)

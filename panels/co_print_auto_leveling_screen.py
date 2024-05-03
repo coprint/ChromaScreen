@@ -6,8 +6,7 @@ import gi
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.infodialog import InfoDialog
-from ks_includes.widgets.kalibrationinfodialog import KalibrationInfoDialog
-from ks_includes.widgets.zaxishorizontal import zAxisHorizontal
+
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
@@ -39,6 +38,7 @@ class CoPrintAutoLevelingScreen(ScreenPanel):
         self.numberlabel = {}
         self.numberLabelBox = {}
         direction = '+'
+        self.z_cal_values = []
 
         for x in range(25):
 
@@ -90,7 +90,8 @@ class CoPrintAutoLevelingScreen(ScreenPanel):
         autoLevelingBox.pack_start(autoLevelingLabel, False, False, 0)
         autoLevelingBox.pack_start(self.autoLevelingContentLabelBox, False, False, 10)
 
-        self.temperatureButton = Gtk.Button(_('Temperature Setup'), name="probe-calibration-start-button")
+        self.temperatureButton = Gtk.Button(_('Save'), name="probe-calibration-start-button")
+        self.temperatureButton.connect("clicked", self.save_calibration)
         temperatureButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         temperatureButtonBox.set_halign(Gtk.Align.CENTER)
         temperatureButtonBox.pack_start(self.temperatureButton, False, False, 0)
@@ -105,7 +106,7 @@ class CoPrintAutoLevelingScreen(ScreenPanel):
         self.buttonBox.set_halign(Gtk.Align.CENTER)
         self.buttonBox.set_name("probe-calibration-start-button-box")
         self.buttonBox.pack_start(startButtonBox, True, False, 0)
-        #self.buttonBox.pack_start(temperatureButtonBox, True, False, 0)
+        self.buttonBox.pack_start(temperatureButtonBox, True, False, 0)
 
         self.spinnerBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.spinnerBox.set_halign(Gtk.Align.CENTER)
@@ -128,35 +129,100 @@ class CoPrintAutoLevelingScreen(ScreenPanel):
         self.page.pack_start(main_box, False, True, 0)
         self.page.pack_end(menu, False, True, 0)
 
+
         self.content.add(self.page)
 
     def process_update(self, action, data):
+        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
+        #     page_url = 'co_print_home_not_connected_screen'
+        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)    
+        if action == "notify_status_update":
+             if ('configfile' in data) and data['configfile']['save_config_pending_items']['bed_mesh default']['points']:
+                 matrix_array= []
+                 pending_data = data['configfile']['save_config_pending_items']['bed_mesh default']['points']
+                 pending_data.split('\n')
+                 for index_x, x in enumerate( pending_data.split('\n ')):
+                      if x != '':
+                        array_x = x.split(', ')
+                        for index_y, value_s in enumerate(array_x):
+                                if value_s != '':
+                                    value = "{:.2f}".format( float(value_s))
+                                    self.numberlabel[str(index_x-1) + '/' + str(index_y)].set_label(str(value))
+                                    
+                                    self.numberLabelBox[str(index_x-1) + '/' + str(index_y)].get_style_context().remove_class(
+                                        "auto-leveling-label-box-active-white")
+                                    self.numberLabelBox[str(index_x-1) + '/' + str(index_y)].get_style_context().add_class(
+                                        "auto-leveling-label-box-active")
+
+             if 'bed_mesh' in data:
+                matrix_array= []
+                if len(data['bed_mesh']['probed_matrix']) > 1:
+                    matrix_array = data['bed_mesh']['probed_matrix']
+                   
+                    print(data['bed_mesh']['probed_matrix'])
+                else:
+                     if 'default' in data['bed_mesh']['profiles']:
+                         matrix_array = data['bed_mesh']['profiles']['default']['points']
+                for index_x, x in enumerate(matrix_array):
+                        for index_y, value in enumerate(x):
+                            self.numberlabel[str(index_x) + '/' + str(index_y)].set_label(str(value))
+                            
+                            self.numberLabelBox[str(index_x) + '/' + str(index_y)].get_style_context().remove_class(
+                                "auto-leveling-label-box-active-white")
+                            self.numberLabelBox[str(index_x) + '/' + str(index_y)].get_style_context().add_class(
+                                "auto-leveling-label-box-active")
+                            #if index_x < 5:
+                            # self.numberLabelBox[str(index_x) + '/' + str(index_y)].get_style_context().add_class(
+                            #   "auto-leveling-label-box-active-white")
+
         if action == "notify_gcode_response":
             # print(data)
             if data.find("z=") != -1:
-                print(data.split("z=", 1)[1])
-                calibration_value = str(round(float(data.split("z=", 1)[1]), 2))
-                self.numberlabel[str(self.row_grid) + '/' + str(self.count_grid)].set_label(calibration_value)
+               # if len(self.z_cal_values) <  25:
+                    xy = data.split(" ")[3].split(',')
+                    val = {"x" : xy[0], "y": xy[1],  "z": data.split("z=", 1)[1]}
+                    print(data.split("z=", 1)[1])
+                    calibration_value = str(round(float(data.split("z=", 1)[1]), 2))
+                    #self.numberlabel[str(self.row_grid) + '/' + str(self.count_grid)].set_label(calibration_value)
+                    
+                    #self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().remove_class(
+                    #    "auto-leveling-label-box-active-white")
+                    #self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().add_class(
+                    #    "auto-leveling-label-box-active")
+                    self.z_cal_values.append(val)
+                    print(len(self.z_cal_values))
 
-                self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().remove_class(
-                    "auto-leveling-label-box-active-white")
-                self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().add_class(
-                    "auto-leveling-label-box-active")
-
-                self.count_grid += 1
-                if self.count_grid % 5 is 0:
-                    self.count_grid = 0
-                    self.row_grid += 1
-                if self.row_grid < 5:
-                    self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().add_class(
-                        "auto-leveling-label-box-active-white")
+                    self.count_grid += 1
+                    if self.count_grid % 5 is 0:
+                        self.count_grid = 0
+                        self.row_grid += 1
+                   # if self.row_grid < 5:
+                     #   self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().add_class(
+                      #      "auto-leveling-label-box-active-white")
 
         # if self._printer.state != 'error':
 
         # print(self._printer.data['bed_mesh']['probed_matrix'])
-
+    def save_calibration(self, widget):
+         self.save_config()
     def start_calibration(self, widget):
+        self.count_grid = 0
+        self.row_grid = 0
+        for x in range(25):
+            self.numberlabel[str(self.row_grid) + '/' + str(self.count_grid)].set_label(" 0.00")
+            self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().remove_class(
+                "auto-leveling-label-box-active-white")
+            self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().remove_class(
+                "auto-leveling-label-box-active")
+            self.count_grid += 1
+            if self.count_grid % 5 is 0:
+                self.count_grid = 0
+                self.row_grid += 1
 
+        self.count_grid = 0
+        self.row_grid = 0
+    
+        self.z_cal_values = []
         self.spinner = Gtk.Spinner()
         self.spinner.props.width_request = 70
         self.spinner.props.height_request = 70
@@ -225,7 +291,8 @@ class CoPrintAutoLevelingScreen(ScreenPanel):
         for child in self.buttonBox.get_children():
             self.buttonBox.remove(child)
 
-        self.temperatureButton = Gtk.Button(_('Temperature Setup'), name="probe-calibration-start-button")
+        self.temperatureButton = Gtk.Button(_('Save'), name="probe-calibration-start-button")
+        self.temperatureButton.connect("clicked", self.save_calibration)
         temperatureButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         temperatureButtonBox.set_halign(Gtk.Align.CENTER)
         temperatureButtonBox.pack_start(self.temperatureButton, False, False, 0)
@@ -261,9 +328,28 @@ class CoPrintAutoLevelingScreen(ScreenPanel):
 
     def finished_calibrate(self, result, method, params):
         print(result)
+       
         self.stop_calibration(None)
-        self.save_config()
+       
+        if  ('error' in result) == False:
+            #self.save_config()
+            print('success')
+        else:
+            self.open_info_dialog(str(result['error']))
         # self._screen._ws.klippy.gcode_script("SAVE_CONFIG")
+
+
+    def open_info_dialog(self, error):
+        self.dialog = InfoDialog(self, (error), True)
+        self.dialog.get_style_context().add_class("alert-info-dialog")
+       
+        self.dialog.set_decorated(False)
+        self.dialog.set_size_request(0, 0)
+      
+     
+
+        response = self.dialog.run()
+ 
 
     def save_config(self):
 
@@ -276,6 +362,7 @@ class CoPrintAutoLevelingScreen(ScreenPanel):
         )
 
     def calibrate_mesh(self):
+        #self.stop_calibration(None)
         self._screen.show_popup_message(_("Calibrating"), level=1)
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self.home()

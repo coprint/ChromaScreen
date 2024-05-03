@@ -19,23 +19,23 @@ SCREEN_BLANKING_OPTIONS = [
     14400,  # 4 Hours
 ]
 
-klipperscreendir = pathlib.Path(__file__).parent.resolve().parent
+chromapaddir = pathlib.Path(__file__).parent.resolve().parent
 
 
 class ConfigError(Exception):
     pass
 
 
-class KlipperScreenConfig:
+class ChromaPadConfig:
     config = None
-    configfile_name = "KlipperScreen.conf"
+    configfile_name = "ChromaPad.conf"
     do_not_edit_line = "#~# --- Do not edit below this line. This section is auto generated --- #~#"
     do_not_edit_prefix = "#~#"
 
     def __init__(self, configfile, screen=None):
         self.lang_list = None
         self.errors = []
-        self.default_config_path = os.path.join(klipperscreendir, "ks_includes", "defaults.conf")
+        self.default_config_path = os.path.join(chromapaddir, "ks_includes", "defaults.conf")
         self.config = configparser.ConfigParser()
         self.config_path = self.get_config_file_location(configfile)
         logging.debug(f"Config path location: {self.config_path}")
@@ -98,9 +98,15 @@ class KlipperScreenConfig:
         i =0
         for printer in self.printers:
             i += 1
+           
+
             name = list(printer)[0]
             item = self.printers[self.printers.index(printer)]
             item[name]['moonraker_port'] = str(7124 + i)
+            if len(self.printers) == 1:
+                item[name]['log_file'] = 'printer_data'
+            else:
+                item[name]['log_file'] = 'printer_' + str(i) + '_data'
             if item[name]['moonraker_api_key'] != "":
                 item[name]['moonraker_api_key'] = "redacted"
 
@@ -110,6 +116,7 @@ class KlipperScreenConfig:
             name = list(printer)[0]
             item = conf_printers_debug[conf_printers_debug.index(printer)]
             item[name]['moonraker_port'] = str(7124 + i)
+            item[name]['log_file'] = 'printer_' + str(i) + '_data'
             if item[name]['moonraker_api_key'] != "":
                 item[name]['moonraker_api_key'] = "redacted"
         logging.debug(f"Configured printers: {json.dumps(conf_printers_debug, indent=2)}")
@@ -118,11 +125,11 @@ class KlipperScreenConfig:
         self._create_configurable_options(screen)
 
     def create_translations(self):
-        lang_path = os.path.join(klipperscreendir, "ks_includes", "locales")
+        lang_path = os.path.join(chromapaddir, "ks_includes", "locales")
         self.lang_list = [d for d in os.listdir(lang_path) if not os.path.isfile(os.path.join(lang_path, d))]
         self.lang_list.sort()
         for lng in self.lang_list:
-            self.langs[lng] = gettext.translation('KlipperScreen', localedir=lang_path, languages=[lng], fallback=True)
+            self.langs[lng] = gettext.translation('ChromaPad', localedir=lang_path, languages=[lng], fallback=True)
 
         lang = self.get_main_config().get("language", None)
         logging.debug(f"Selected lang: {lang} OS lang: {locale.getdefaultlocale()[0]}")
@@ -284,7 +291,7 @@ class KlipperScreenConfig:
             {"invert_z": {"section": "main", "name": _("Invert Z"), "type": None, "value": "False"}},
             {"move_speed_xy": {"section": "main", "name": _("XY Move Speed (mm/s)"), "type": None, "value": "50"}},
             {"move_speed_z": {"section": "main", "name": _("Z Move Speed (mm/s)"), "type": None, "value": "10"}},
-            {"print_sort_dir": {"section": "main", "type": None, "value": "name_asc"}},
+            {"print_sort_dir": {"section": "main", "type": None, "value": "date_desc"}},
         ]
 
         self.configurable_options.extend(panel_options)
@@ -293,7 +300,7 @@ class KlipperScreenConfig:
         for lang in self.lang_list:
             lang_opt.append({"name": lang, "value": lang})
 
-        t_path = os.path.join(klipperscreendir, 'styles')
+        t_path = os.path.join(chromapaddir, 'styles')
         themes = [d for d in os.listdir(t_path) if (not os.path.isfile(os.path.join(t_path, d)) and d != "z-bolt")]
         themes.sort()
         theme_opt = self.configurable_options[1]['theme']['options']
@@ -385,15 +392,15 @@ class KlipperScreenConfig:
         return ["\n".join(user_def), None if saved_def is None else "\n".join(saved_def)]
 
     def get_config_file_location(self, file):
-        # Passed config (-c) by default is ~/KlipperScreen.conf
+        # Passed config (-c) by default is ~/ChromaPad.conf
         logging.info(f"Passed config (-c): {file}")
         if os.path.exists(file):
             return file
 
-        file = os.path.join(klipperscreendir, self.configfile_name)
+        file = os.path.join(chromapaddir, self.configfile_name)
         if os.path.exists(file):
             return file
-        file = os.path.join(klipperscreendir, self.configfile_name.lower())
+        file = os.path.join(chromapaddir, self.configfile_name.lower())
         if os.path.exists(file):
             return file
 

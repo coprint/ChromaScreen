@@ -20,32 +20,33 @@ class BottomMenu(Gtk.Box):
         printFilesIcon = this._gtk.Image("folder", 35, 35)
         printersIcon = this._gtk.Image("printerchange", 35, 35)
         configureIcon = this._gtk.Image("configure", 35, 35)
+        emergencyStopIcon = this._gtk.Image("emergencyicon", 35, 35)
         backIcon = this._gtk.Image("back-arrow", 35, 35)
         
-        if _backButtonActive:
-            backLabel = Gtk.Label(_("Back"), name="bottom-menu-label")            
-            backButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-            backButtonBox.set_halign(Gtk.Align.CENTER)
-            backButtonBox.set_valign(Gtk.Align.CENTER)
-            backButtonBox.pack_start(backIcon, False, False, 0)
-            backButtonBox.pack_start(backLabel, False, False, 0)
-            self.backButton = Gtk.Button(name ="menu-buttons")
-            self.backButton.add(backButtonBox)
-            self.backButton.connect("clicked", self.on_click_menu_button, 'co_print_home_screen')
-            self.backButton.set_always_show_image (True)
-            menuBox.pack_start(self.backButton, True, True, 0)
-        else:
-            dashboardLabel = Gtk.Label(("Dashboard"), name="bottom-menu-label")            
-            dashboardButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-            dashboardButtonBox.set_halign(Gtk.Align.CENTER)
-            dashboardButtonBox.set_valign(Gtk.Align.CENTER)
-            dashboardButtonBox.pack_start(dashboardIcon, False, False, 0)
-            dashboardButtonBox.pack_start(dashboardLabel, False, False, 0)
-            self.dashboardButton = Gtk.Button(name ="menu-buttons")
-            self.dashboardButton.add(dashboardButtonBox)
-            self.dashboardButton.connect("clicked", self.on_click_menu_button, 'co_print_home_screen')
-            self.dashboardButton.set_always_show_image (True)
-            menuBox.pack_start(self.dashboardButton, True, True, 0)
+        # if _backButtonActive:
+        #     backLabel = Gtk.Label(_("Back"), name="bottom-menu-label")            
+        #     backButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        #     backButtonBox.set_halign(Gtk.Align.CENTER)
+        #     backButtonBox.set_valign(Gtk.Align.CENTER)
+        #     backButtonBox.pack_start(backIcon, False, False, 0)
+        #     backButtonBox.pack_start(backLabel, False, False, 0)
+        #     self.backButton = Gtk.Button(name ="menu-buttons")
+        #     self.backButton.add(backButtonBox)
+        #     self.backButton.connect("clicked", self.on_click_menu_button, 'co_print_home_screen')
+        #     self.backButton.set_always_show_image (True)
+        #     menuBox.pack_start(self.backButton, True, True, 0)
+        # else:
+        dashboardLabel = Gtk.Label(("Dashboard"), name="bottom-menu-label")            
+        dashboardButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        dashboardButtonBox.set_halign(Gtk.Align.CENTER)
+        dashboardButtonBox.set_valign(Gtk.Align.CENTER)
+        dashboardButtonBox.pack_start(dashboardIcon, False, False, 0)
+        dashboardButtonBox.pack_start(dashboardLabel, False, False, 0)
+        self.dashboardButton = Gtk.Button(name ="menu-buttons")
+        self.dashboardButton.add(dashboardButtonBox)
+        self.dashboardButton.connect("clicked", self.on_click_menu_button, 'co_print_home_screen')
+        self.dashboardButton.set_always_show_image (True)
+        menuBox.pack_start(self.dashboardButton, True, True, 0)
             
          
         printFilesLabel = Gtk.Label(("Print Files"), name="bottom-menu-label")            
@@ -81,9 +82,21 @@ class BottomMenu(Gtk.Box):
         configureButtonBox.pack_start(configureLabel, False, False, 0)
         configureButton = Gtk.Button(name ="menu-buttons")
         configureButton.add(configureButtonBox)
-        configureButton.connect("clicked", self.on_click_menu_button, 'co_print_setting_screen')
+        configureButton.connect("clicked", self.on_click_menu_button, 'co_print_setting_screen', False)
         configureButton.set_always_show_image (True)
         menuBox.pack_start(configureButton, True, True, 0)
+
+        
+        emergencyStopButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        emergencyStopButtonBox.set_halign(Gtk.Align.CENTER)
+        emergencyStopButtonBox.set_valign(Gtk.Align.CENTER)
+        emergencyStopButtonBox.pack_start(emergencyStopIcon, False, False, 0)
+
+        emergencyStopButton = Gtk.Button(name ="emergency-button")
+        emergencyStopButton.add(emergencyStopButtonBox)
+        emergencyStopButton.connect("clicked", self.on_click_emergency_stop)
+        emergencyStopButton.set_always_show_image (True)
+        menuBox.pack_start(emergencyStopButton, True, False, 0)
         
       
         
@@ -92,13 +105,22 @@ class BottomMenu(Gtk.Box):
        
         self.add(menuBox)
 
-    def on_click_menu_button(self, button, data):
+    def on_click_emergency_stop(self, button):
         
-        if(self.parent._printer.state == 'printing'):
-            data = 'co_print_printing_screen'
-       
+        self.parent._screen._ws.klippy.emergency_stop()
+    def on_click_menu_button(self, button, data, active_page = True):
 
-        self.parent._screen.show_panel(data, data, "Language", 1, False)    
+        if  active_page:
+            if self.parent._printer.state == 'error' or self.parent._printer.state == 'shutdown' or self.parent._printer.state == 'disconnected':
+                self.parent._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen",
+                                        "Language", 1, False)
+            else:
+                self.parent._screen.show_panel(data, data, "Language", 1, False)
+                
+        elif(self.parent._printer.state != 'printing'):
+            self.parent._screen.show_panel(data, data, "Language", 1, False)
+
+
     
 
     

@@ -1,5 +1,7 @@
 import logging
 import os
+import subprocess
+from ks_includes.widgets.changeMcuSetting import ChangeMCUDialog
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 
@@ -20,10 +22,7 @@ class CoPrintMcuUsbIds(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      
-        chips = [
-            {'Name': "(0x1d50) USB vendor ID",  'Button': Gtk.RadioButton()},
-            {'Name': "(0x614e) USB  device ID",  'Button': Gtk.RadioButton()},
-            ]
+       
         
         self.labels['actions'] = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self.labels['actions'].set_hexpand(True)
@@ -38,43 +37,12 @@ class CoPrintMcuUsbIds(ScreenPanel):
     
         '''diller bitis'''
         
-        grid = Gtk.Grid(column_homogeneous=True,
-                         column_spacing=10,
-                         row_spacing=10)
-        row = 0
-        count = 0
-        
-        group =chips[0]['Button']
-        for chip in chips:
-            chipName = Gtk.Label(chip['Name'],name ="wifi-label")
-            chipName.set_alignment(0,0.5)
-            
-            chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(group,"")
-            if chips[0]['Name'] == chip['Name']:
-                 chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(None,"")
-           
-           
-            
-            chip['Button'].connect("toggled",self.radioButtonSelected, chip['Name'])
-            chip['Button'].set_alignment(1,0.5)
-            chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
-           
-            f = Gtk.Frame(name="chip")
-            chipBox.pack_start(chipName, False, True, 10)
-           
-            chipBox.pack_end(chip['Button'], False, False, 10)
-            
-            f.add(chipBox)
-            grid.attach(f, count, row, 1, 1)
-            count += 1
-            if count % 1 is 0:
-                count = 0
-                row += 1
+        self.checkButton = CheckButtonBox(self, _('USB serial number from CHIPID'),  self.lowLevelChanged)
 
-
+        grid = self.handleMenu()
        
         
-        gridBox = Gtk.FlowBox()
+        gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
  
@@ -84,12 +52,11 @@ class CoPrintMcuUsbIds(ScreenPanel):
         self.scroll.set_min_content_height(self._screen.height * .3)
         self.scroll.set_kinetic_scrolling(True)
         self.scroll.get_overlay_scrolling()
-        self.scroll.set_margin_left(self._gtk.action_bar_width *1)
-        self.scroll.set_margin_right(self._gtk.action_bar_width*1)
+    
         
         self.scroll.add(gridBox)
         
-        self.checkButton = CheckButtonBox(self, _('USB serial number from CHIPID'))
+       
         
         self.checkButton.set_hexpand(True)
         self.checkButton.set_margin_left(self._gtk.action_bar_width *3)
@@ -115,7 +82,7 @@ class CoPrintMcuUsbIds(ScreenPanel):
         backButtonBox.pack_start(backLabel, False, False, 0)
         self.backButton = Gtk.Button(name ="back-button")
         self.backButton.add(backButtonBox)
-        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_mcu_com_interface')
+        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_chip_selection')
         self.backButton.set_always_show_image (True)       
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
@@ -137,11 +104,135 @@ class CoPrintMcuUsbIds(ScreenPanel):
         self.content.add(page)
         self._screen.base_panel.visible_menu(False)
         
-    def radioButtonSelected(self, button, baudRate):
-        self.selected = baudRate
+    
+    
+
+    def lowLevelChanged(self, lowLeveStatus):
+       
+        if lowLeveStatus:
+             self._screen._changeKconfig("USB_SERIAL_NUMBER_CHIPID")
+        else:
+            self._screen._changeKconfigFalse("USB_SERIAL_NUMBER_CHIPID")
+
+        for child in self.scroll.get_children():
+            self.scroll.remove(child)
+
+        grid = self.handleMenu()
+
+        gridBox = Gtk.Box()
+        gridBox.set_halign(Gtk.Align.CENTER)
+        gridBox.add(grid)
+
+        
+        
+        self.scroll.add(gridBox)
+        self.content.show_all()
+
+
+    def handleMenu(self):
+        sym = self._screen.kconfig.syms['USB_SERIAL_NUMBER_CHIPID']
+       
+        if sym.str_value == 'y':
+              
+            self.checkButton.set_active(True)
+        else:
+            self.checkButton.set_active(False)
+
+        grid = Gtk.Grid(column_homogeneous=True,
+                            column_spacing=10,
+                            row_spacing=10)
+        row = 0
+        count = 0
+        
+        listMcu = []
+        for choice in self._screen.kconfig.menus:
+            if choice.prompt[0] == "USB ids":
+                for choice in self._screen.kconfig.unique_defined_syms:
+                    if choice.visibility != 0 and choice.choice == None and choice.name != 'LOW_LEVEL_OPTIONS':
+                        
+                        print(choice.name+ ' ' + choice.nodes[len(choice.nodes)-1].prompt[0] + ' ' + choice.str_value)
+                        
+                        
+                        if 'USB'  in choice.name :
+                            tempChip ={}
+                            tempChip['Obj'] = choice
+                            
+                            listMcu.append(tempChip)
+            
+
+        
+        for chip in listMcu:
+            if chip['Obj'].str_value != 'n' and chip['Obj'].str_value != 'y':
+                chipName = Gtk.Label(self._screen.rename_string('(' + chip['Obj'].str_value + ') ' + chip['Obj'].nodes[len(chip['Obj'].nodes)-1].prompt[0],15),name ="wifi-label")
+                chipName.set_alignment(0,0.5)
+                
+                
+                
+                
+                
+                chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
+                
+                f = Gtk.Frame(name="chip")
+                chipBox.pack_start(chipName, False, True, 10)
+                eventBox = Gtk.EventBox()
+            
+                    
+                eventBox.connect("button-press-event", self.openDialog, chip['Obj'])
+                
+                eventBox.add(chipBox)
+                        
+                f.add(eventBox)
+                grid.attach(f, count, row, 1, 1)
+                count += 1
+                if count % 1 is 0:
+                    count = 0
+                    row += 1
+            
+        return grid
+
+    def openDialog(self, a,b, choice):
+        
+        dialog = ChangeMCUDialog( choice.nodes[len(choice.nodes)-1].prompt[0], self,choice.str_value)
+        dialog.get_style_context().add_class("network-dialog")
+        dialog.set_decorated(False)
+
+        response = dialog.run()
+ 
+        if response == Gtk.ResponseType.OK:
+            dialog.destroy()
+            self._screen._changeKconfigSetValue(choice.name, dialog.psw)
+            
+            for child in self.scroll.get_children():
+                self.scroll.remove(child)
+           
+            grid = self.handleMenu()
+
+
+            gridBox = Gtk.Box()
+            gridBox.set_halign(Gtk.Align.CENTER)
+            gridBox.add(grid)
+
+            
+            
+            self.scroll.add(gridBox)
+            self.content.show_all()
+
+
+            
+        elif response == Gtk.ResponseType.CANCEL:
+            subprocess.Popen(["pkill", "onboard"])
+            dialog.destroy()
+
+    def eventBoxFunc(self,a,b,obj):
+        self.radioButtonSelected(None, obj)
+        
+    def radioButtonSelected(self, button, selected):
+       
+        self._screen._changeKconfig(selected.name)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
        
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_mcu_flash_chip", "co_print_mcu_flash_chip", None, 2)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
         
    
 

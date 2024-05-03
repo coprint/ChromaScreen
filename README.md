@@ -1,39 +1,13 @@
-# ChromaScreen
+# ChromaPad
 
-### ChromaScreen | Advanced Klipper Interface Software
+ChromaPad is a touchscreen GUI that interfaces with [Klipper](https://github.com/kevinOConnor/klipper) via [Moonraker](https://github.com/arksine/moonraker). It can switch between multiple printers to access them from a single location, and it doesn't even need to run on the same host, you can install it on another device and configure the IP address to access the printer.
 
-ChromaScreen software is developed by Co Print based on Klipper Screen software. The user interface has been carefully organized with insights from valuable user experience and feedback. With a unique structure and additional features that perfectly complement your printing journey, the outstanding Chroma Screen software combines with ChromaPad's powerful processor and compact design to create the highest performing pad on the market for 3D printer users.
+[Click here to access the documentation.](https://ChromaPad.readthedocs.io/en/latest/)
 
-<img src="/images/ChromaPad_Screens.jpg">
+### Inspiration
+ChromaPad was inspired by [OctoScreen](https://github.com/Z-Bolt/OctoScreen/) and the need for a touchscreen GUI that
+will natively work with [Klipper](https://github.com/kevinOConnor/klipper) and [Moonraker](https://github.com/arksine/moonraker).
 
-### Setup Wizard and Multiple Extruder Management
+[![Main Menu](docs/img/panels/main_panel.png)](https://ChromaPad.readthedocs.io/en/latest/Panels/)
 
-ChromaScreen comes with a special multi-extruder management panel that is not available on other Klipper tablets and allows for multi-filament printing, as well as a setup wizard to get rid of the installation complexity that Klipper users most often complain about.
-
-![](https://github.com/coprint/ChromaScreen/blob/main/images/ChromaPad_Setup_Wizard.gif?raw=true)
-
-### Redesigned User Experience
-
-Navigate menus designed for user experience with high resolution and vibrant colors. Enhance your Klipper experience with model preview, user-defined macro options, precision-oriented algorithms. Real-time monitoring of your 3D printer with the camera and time-lapse shooting of the 3D printers you produce easily.
-
-<img src="/images/ChromaPad_User_Experience.jpg">
-
-
-### Open Source Commitment
-
-ChromaPad respects the open source community and in the spirit of the community, users will be free to modify and customize the source code.
-
-### ChromaScreen is fork of KlipperScreen
-Originally derived from the KlipperScreen project, ChromaScreen was designed to meet the specific needs and requirements of its user base. ChromaScreen's development and features are differentiated to provide a unique and specialized experience to its users.
-Thanks to Klipper, Mainsail, Moonraker, KlipperScreen.
-
-### Community
-<p align="left">
-<a href="https://coprint3d.com/" target="blank"><img align="center" src="https://raw.githubusercontent.com/coprint/ChromaScreen/main/images/CoPrint_Logo.png" alt="coprint3d" height="35" width="35" /></a>
-<a href="https://twitter.com/CoPrint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/twitter/default.svg" alt="coprint3d" height="35" width="47" /></a>
-<a href="https://www.linkedin.com/company/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/linkedin/default.svg" alt="coprint3d" height="35" width="47" /></a>
-<a href="https://instagram.com/coprint3d" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/instagram/default.svg" alt="coprint3d" height="35" width="47" /></a>  
-<a href="https://www.facebook.com/3dcoprint" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/facebook/default.svg" alt="3dcoprint" height="35" width="47" /></a>
-<a href="https://www.youtube.com/@CoPrint3D" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/youtube/default.svg" alt="3dcoprint" height="35" width="47" /></a>
-<a href="https://discord.gg/5f8gGDkDgN" target="blank"><img align="center" src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/discord/default.svg" alt="5f8gGDkDgN" height="35" width="47" /></a>
-</p>
+[More Screenshots](https://ChromaPad.readthedocs.io/en/latest/Panels/)

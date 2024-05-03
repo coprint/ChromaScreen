@@ -23,13 +23,6 @@ class CoPrintSplashScreenPanel(ScreenPanel):
         super().__init__(screen, title)
 
 
-        #wd = os.getcwd()
-        #os.chdir("/home/noya/klipper/")
-        #make_process = subprocess.Popen(['make', 'menuconfig'], shell=False, stdout=subprocess.PIPE, cwd="/home/noya/klipper/", stderr=subprocess.STDOUT)
-        #make_process = subprocess.check_output(['make', 'menuconfig']).decode('utf -8')
-        #out, err = make_process.communicate()
-        #print("stdout: {}".format(out))
-        #os.chdir(wd)
 
        
         
@@ -148,7 +141,7 @@ class CoPrintSplashScreenPanel(ScreenPanel):
         locale_code = lang_map.get(lang, 'en_US.UTF-8')
         locale_code_language = language_map.get(lang, 'en_US')
         self.open_info_dialog()
-        sudoPassword = 'c317tek'
+        sudoPassword = self._screen.pc_password
         command = 'locale-gen ' + locale_code_language
         p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 

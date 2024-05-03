@@ -1,4 +1,5 @@
 import crypt
+import json
 import logging
 import os
 from signal import SIGTERM
@@ -106,27 +107,25 @@ class CoPrintProductNaming(ScreenPanel):
        
 
     def on_click_continue_button(self, continueButton):
-        #sudoPassword = '12345'
 
         logging.debug(f"Device Name: " + self.entry.get_text())
 
-        # password ="12345" 
-        # encPass = crypt.crypt(password,"22")
-        # command2 = "useradd -p "+encPass+" " + self.entry.get_text()
-
-
-        # # command2 = 'sudo adduser temporary'
-        # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command2))
-
        
-        # command = 'usermod -l habip noya'
-        # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
-
         
+        try:
+            f = open(self._screen.path_config, encoding='utf-8')
+       
+            self.config_data = json.load(f)
+            self.config_data['InitConfigDone'] = True
+            json_object = json.dumps(self.config_data, indent=4)
+ 
+          
+            with open(self._screen.path_config, "w") as outfile:
+                outfile.write(json_object)
 
-        # command3 = 'update-locale LC_ALL=' + locale_code
-        # p = os.system('echo %s|sudo -S %s' % (sudoPassword, command3))
-    
+        except Exception as e:
+            logging.exception(e) 
+
         self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 2)
         
     def on_click_back_button(self, button, data):

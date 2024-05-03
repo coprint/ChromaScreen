@@ -104,7 +104,7 @@ class CoPrintWifiSelectionConnect(ScreenPanel):
 
 
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
+        self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", None, 2)
 
         #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
         

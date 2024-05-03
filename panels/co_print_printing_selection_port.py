@@ -1,5 +1,6 @@
 import logging
 import os
+import subprocess
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 
@@ -30,15 +31,16 @@ class CoPrintPrintingSelectionPort(ScreenPanel):
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
 
+       
 
-        self.portOne = Gtk.Button("usb-0:1:1.0-port0",name ="flat-button-black")
+        self.portOne = Gtk.Button("---",name ="flat-button-black")
        
         self.portOne.set_hexpand(True)
         portOneBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         portOneBox.pack_start(self.portOne, False, False, 0)
 
 
-        self.portTwo = Gtk.Button("usb-0:1:1.0-port1",name ="flat-button-black")
+        self.portTwo = Gtk.Button("---",name ="flat-button-black")
         
         self.portTwo.set_hexpand(True)
         portTwoBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -58,26 +60,94 @@ class CoPrintPrintingSelectionPort(ScreenPanel):
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
         
+
+        self.portBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        self.portBox.pack_start(portOneBox, False, False, 10)
+        # self.portBox.pack_start(portTwoBox, False, False, 5)
+
+
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+       
+       
        
         main.pack_start(mainBackButtonBox, False, False, 0)
         main.pack_start(initHeader, False, False, 0)
-        main.pack_start(portOneBox, False, False, 10)
-        main.pack_start(portTwoBox, False, False, 5)
+        main.pack_start(self.portBox, False, False, 0)
         main.pack_end(buttonBox, False, True, 30)
        
-      
+        GLib.timeout_add_seconds(1, self.control_usb, None)
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
+    def control_usb(self, args):
+        command = 'ls /dev/serial/by-path/*'
        
+        string = os.popen(command).read()
+        print(string)
+        array = string.split('\n')
+
+        usb_parts = []
+        for child in self.portBox.get_children():
+            self.portBox.remove(child)
+
+        if string != '':
+            for part in array:
+                parts = part.split('usb-')
+                if len(parts) > 1:
+                    desired_part = parts[1]
+                    usb_parts.append('usb-' + desired_part)
+                    self.portTwo = Gtk.Button('usb-' + desired_part,name ="flat-button-black")
+                    self.portTwo.set_hexpand(True)
+                    self.portTwo.connect("clicked", self.on_click_select_path, part)
+                    portTwoBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+                    portTwoBox.pack_start(self.portTwo, False, False, 0)
+                    self.portBox.add(portTwoBox)
+        else:
+            self.portTwo = Gtk.Button('usb-1:0:1',name ="flat-button-black")
+            self.portTwo.set_hexpand(True)
+            self.portTwo.connect("clicked", self.on_click_select_path, 'usb-1:0:1')
+            portTwoBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+            portTwoBox.pack_start(self.portTwo, False, False, 0)
+            self.portBox.add(portTwoBox)
+        
+
+   
+        
+        
+        
+        self.content.show_all()
+       
+
     def radioButtonSelected(self, button, baudRate):
         self.selected = baudRate
     
     
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_printing_brand_selection", "co_print_printing_brand_selection", None, 2)
+        self._screen.show_panel("co_print_printing_selection_done", "co_print_printing_selection_done", None, 2)
         
    
     def on_click_back_button(self, button, data):
         
         self._screen.show_panel(data, data, "Language", 1, False)
+    
+    def update_mcu_serial(self, new_serial):
+        # Dosyayı oku ve satırları bir liste olarak al
+        file_path = os.path.join(os.path.expanduser("~/"), "printer_"+str(self._screen.selected_printer_index)+"_data", "config")
+        with open(file_path+ "/printer.cfg", 'r') as file:
+            lines = file.readlines()
+
+        # Dosyanın içinde dolaşarak MCU serisi olan satırı bul
+        for i, line in enumerate(lines):
+            if line.strip().startswith("[mcu]"):
+                # MCU serisini güncelle
+                lines[i+1] = f"serial: {new_serial}\n"
+                break
+
+        # Dosyayı güncelle
+        with open(file_path+ "/printer.cfg", 'w') as file:
+            file.writelines(lines)
+        self.on_click_continue_button(None)
+
+    def on_click_select_path(self, button, data):
+        
+        self.update_mcu_serial(data)
+        print(data)

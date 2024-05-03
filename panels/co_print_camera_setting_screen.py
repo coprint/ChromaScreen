@@ -2,7 +2,6 @@ import logging
 import os
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-import mpv
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
@@ -11,8 +10,8 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 
 from ks_includes.screen_panel import ScreenPanel
-
-
+from contextlib import suppress
+import mpv
 def create_panel(*args):
     return CoPrintCameraSettingScreen(*args)
 
@@ -46,13 +45,39 @@ class CoPrintCameraSettingScreen(ScreenPanel):
         cameraLabelBox.pack_start(self.cameraTitleBox, False, False, 0)
         cameraLabelBox.pack_end(self.cameraContentBox, False, False, 10)
         
+
+
         self.cameraBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.cameraBox.set_name("camera-box")
         cameraLabel = Gtk.Label(_("No Camera"), name="camera-label")
         cameraImage = self._gtk.Image("no-camera", self._screen.width *.07, self._screen.width *.07)
-        self.cameraBox.pack_start(cameraLabel, False, False, 0)
-        self.cameraBox.pack_end(cameraImage, False, False, 0)
+       
+        #self.cameraBox.pack_end(cameraImage, False, False, 0)
         
+        camera_enable = False
+        self.mpv = None
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        for i, cam in enumerate(self._printer.cameras):
+            if not cam["enabled"]:
+                continue
+            logging.info(cam)
+            cam[cam["name"]] = self._gtk.Button(
+                image_name="camera", label=cam["name"],
+                scale=self.bts, position=Gtk.PositionType.LEFT, lines=1
+            )
+            cam[cam["name"]].set_hexpand(True)
+            cam[cam["name"]].set_vexpand(True)
+            cam[cam["name"]].connect("clicked", self.play, cam)
+            camera_enable = True
+            self.cameraBox.pack_end(cam[cam["name"]], False, False, 0)
+
+        if camera_enable == False:
+            self.cameraBox.pack_start(cameraLabel, False, False, 0)
+        self.scroll = self._gtk.ScrolledWindow()
+        self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        self.scroll.add(box)
+
+
         self.refreshIcon = self._gtk.Image("update", self._screen.width *.035, self._screen.width *.035)
         refreshButton = Gtk.Button(name ="setting-button")
         refreshButton.set_image(self.refreshIcon)
@@ -61,7 +86,7 @@ class CoPrintCameraSettingScreen(ScreenPanel):
         refreshButtonBox.set_valign(Gtk.Align.CENTER)
         refreshButtonBox.add(refreshButton)
 
-        self.fullScreenIcon = self._gtk.Image("update", self._screen.width * .035, self._screen.width * .035)
+        self.fullScreenIcon = self._gtk.Image("full_screen", self._screen.width * .035, self._screen.width * .035)
         fullScreenButton = Gtk.Button(name="setting-button")
         fullScreenButton.set_image(self.fullScreenIcon)
         fullScreenButton.set_always_show_image(True)
@@ -109,6 +134,11 @@ class CoPrintCameraSettingScreen(ScreenPanel):
         main.pack_start(cameraRefreshBox, False, False, 50)
         
 
+
+      
+        #self.content.add(self.scroll)
+
+
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         page.set_vexpand(True)
         page.pack_start(cameraLabelBox, False, False, 0)
@@ -118,10 +148,64 @@ class CoPrintCameraSettingScreen(ScreenPanel):
         
         self.content.add(page)
 
-        GLib.idle_add(self.show_frame, None)
+        #GLib.idle_add(self.show_frame, None)
 
 
+    def play(self, widget, cam):
+        url = cam['stream_url']
+        if url.startswith('/'):
+            logging.info("camera URL is relative")
+            endpoint = self._screen.apiclient.endpoint.split(':')
+            url = f"{endpoint[0]}:{endpoint[1]}{url}"
+        if '/webrtc' in url:
+            self._screen.show_popup_message(_('WebRTC is not supported by the backend trying Stream'))
+            url = url.replace('/webrtc', '/stream')
+        vf = ""
+        if cam["flip_horizontal"]:
+            vf += "hflip,"
+        if cam["flip_vertical"]:
+            vf += "vflip,"
+        vf += f"rotate:{cam['rotation'] * 3.14159 / 180}"
+        logging.info(f"video filters: {vf}")
 
+        if self.mpv:
+            self.mpv.terminate()
+        self.mpv = mpv.MPV(fullscreen=False, log_handler=self.log, vo='gpu,wlshm,xv,x11')
+
+        self.mpv.vf = vf
+
+        with suppress(Exception):
+            self.mpv.profile = 'sw-fast'
+
+        # LOW LATENCY PLAYBACK
+        with suppress(Exception):
+            self.mpv.profile = 'low-latency'
+        self.mpv.untimed = True
+        self.mpv.audio = 'no'
+
+        @self.mpv.on_key_press('MBTN_LEFT' or 'MBTN_LEFT_DBL')
+        def clicked():
+            self.mpv.quit(0)
+
+        logging.debug(f"Camera URL: {url}")
+        self.mpv.play(url)
+
+        try:
+            self.mpv.wait_for_playback()
+        except mpv.ShutdownError:
+            logging.info('Exiting Fullscreen')
+        except Exception as e:
+            logging.exception(e)
+        self.mpv.terminate()
+        self.mpv = None
+        if len(self._printer.cameras) == 1:
+            self._screen._menu_go_back()
+
+    def log(self, loglevel, component, message):
+        logging.debug(f'[{loglevel}] {component}: {message}')
+        if loglevel == 'error' and 'No Xvideo support found' not in message and 'youtube-dl' not in message:
+            self._screen.show_popup_message(f'{message}')
+   
     def show_frame(self, args):
         if self.mpv:
             self.mpv.terminate()

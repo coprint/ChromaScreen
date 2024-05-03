@@ -13,6 +13,9 @@ class KalibrationInfoDialog(Gtk.Dialog):
         # )
         self.set_size_request(0, 0)
         self.set_default_size(350, 20)
+        pos = self.get_position()
+        # Move dialog to the desired location
+        self.move(pos[0] + 125, pos[1] + 225)
 
         title = Gtk.Label(_("Performing Auto Home"), name="info-dialog-title-label")
         content = Gtk.Label(_("X, Y, and Z axes are returning back to their home positions. Please wait."), name="info-dialog-content-label")

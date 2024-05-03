@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Uninstalling KlipperScreen"
+echo "Uninstalling ChromaPad"
 echo ""
 echo "* Stopping service"
-sudo service KlipperScreen stop
+sudo service ChromaPad stop
 echo "* Removing unit file"
-sudo rm /etc/systemd/system/KlipperScreen.service
+sudo rm /etc/systemd/system/ChromaPad.service
 echo "* Removing enviroment"
-sudo rm -rf ~/.KlipperScreen-env
+sudo rm -rf ~/.ChromaPad-env
 echo "!! Please remove $(dirname `pwd`) manually"
 echo "Done"

@@ -37,9 +37,9 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         isUpdateReqMainsail = False
         if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
-        macroone = SystemSetting(self, _("Klipper Update") + _("Current")+ self.version_info['klipper']['version'] +")", _("Update"), isUpdateReqKlipper, 'klipper')
-        #macrotwo = SystemSetting(self, "Co Print Smart (Current v1.435b)", _("Update"), True)
-        macrothree = SystemSetting(self,_("Mainsail") + _("Current") + self.version_info['mainsail']['version'] +")", _("Update"), isUpdateReqMainsail, 'mainsail')
+        macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
+        #macrotwo = SystemSetting(self, "Co Print Smart (Current v1.435b)", ("Update"), True)
+        macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
        
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         
@@ -121,9 +121,9 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         isUpdateReqMainsail = False
         if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
-        macroone = SystemSetting(self, _("Klipper Update") + _("Current") + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
+        macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
         #macrotwo = SystemSetting(self, "Co Print Smart (Current v1.435b)", ("Update"), True)
-        macrothree = SystemSetting(self,_("Mainsail") + _("Current") + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
+        macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
 
 
         self.macro_flowbox.pack_start(macroone, True, True, 0)

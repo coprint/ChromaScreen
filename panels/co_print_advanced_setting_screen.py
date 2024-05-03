@@ -296,7 +296,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         self._screen.show_panel("co_print_system_setting_screen", "co_print_system_setting_screen", "Language", 1, False)
 
     def change_page(self, widget, event):
-        self._screen.show_panel("co_print_language_select_screen", "co_print_language_select_screen", "Language", 1,
+        self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1,
                                 False)
 
     def on_scale_changed(self, scale, value):

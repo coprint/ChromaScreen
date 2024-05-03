@@ -1,5 +1,5 @@
-# Network in KlipperScreen is a connection in NetworkManager
-# Interface in KlipperScreen is a device in NetworkManager
+# Network in ChromaPad is a connection in NetworkManager
+# Interface in ChromaPad is a device in NetworkManager
 
 import contextlib
 import logging

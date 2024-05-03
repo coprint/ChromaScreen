@@ -28,7 +28,7 @@ class CoPrintWifiSelectionSelect(ScreenPanel):
         # ComboBox'a öğeler ekle
         
         self.selectedWifiImage = self._gtk.Image("sinyal", self._gtk.content_width * .05 , self._gtk.content_height * .05)
-        self.selectedWifiName = Gtk.Label("",name ="wifi-label")
+        self.selectedWifiName = Gtk.Label("",name ="wifi-labell")
         self.selectedWifiName.set_alignment(0,0.5)
         self.selectedWifiImage.set_alignment(1,0.5)
 
@@ -83,7 +83,7 @@ class CoPrintWifiSelectionSelect(ScreenPanel):
        
     def initialize(self, items):
         self.selectedMenu = items
-        self.selectedWifiName.set_label(self.selectedMenu)
+        self.selectedWifiName.set_label('')
     
 
     def give_name(self,a,b):

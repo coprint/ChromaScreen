@@ -65,8 +65,8 @@ class zAxisHorizontal(Gtk.Box):
             self.printer._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z_ADJUST={direction}{abs(value)} MOVE=1")
             
             
-            if hasattr(self.printer, "zoffset"):
-                self.printer.zoffset.set_label('{:.3f}'.format(new_value))
+            # if hasattr(self.printer, "zoffset"):
+            #     self.printer.zoffset.set_label('{:.3f}'.format(new_value))
     def updateValue(self, value):
         current_value = value
         self.entry.set_text('{:.2f}'.format(current_value))

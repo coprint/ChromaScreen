@@ -20,18 +20,7 @@ class CoPrintMcuComInterface(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      
-        chips = [
-            {'Name': "USB (on PA11/PA12)",  'Button': Gtk.RadioButton()},
-            {'Name': "Serial (on USART1 PA10/PA9)",  'Button': Gtk.RadioButton()},
-            {'Name': "Serial (on USART1 PB7/PB6)",  'Button': Gtk.RadioButton()},
-            {'Name': "Serial (on USART2 PA3/PA2)", 'Button': Gtk.RadioButton()},
-            {'Name': "Serial (on USART2 PD6/PD5)", 'Button': Gtk.RadioButton()},
-            {'Name': "Serial (on USART3 PB11/PB10)",  'Button': Gtk.RadioButton()},
-            {'Name': "Serial (on USART3 PD9/PD8)",  'Button': Gtk.RadioButton()},
-            {'Name': "CAN bus (on PA11/PA12)",  'Button': Gtk.RadioButton()},
-            {'Name': "CAN bus (on PA11/PB9)",  'Button': Gtk.RadioButton()},
-            {'Name': "CAN bus (on PA11/PB9)", 'Button': Gtk.RadioButton()}
-            ]
+      
         
         self.labels['actions'] = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self.labels['actions'].set_hexpand(True)
@@ -50,18 +39,31 @@ class CoPrintMcuComInterface(ScreenPanel):
         row = 0
         count = 0
         
-        group =chips[0]['Button']
-        for chip in chips:
-            chipName = Gtk.Label(chip['Name'],name ="wifi-label")
+        listMcu = []
+        for choice in self._screen.kconfig.choices:
+            if choice.visibility != 0 and choice.nodes[0].prompt[0] == "Communication interface":
+                for chip in choice.syms:
+                    if chip.visibility != 0:
+                        tempChip ={}
+                        tempChip['Obj'] = chip
+                        tempChip['Button'] = Gtk.RadioButton()
+                        listMcu.append(tempChip)
+            
+
+        group = next((x for x in listMcu if x['Obj'].str_value == 'y'), None)['Button']
+
+        for chip in listMcu:
+            chipName = Gtk.Label(self._screen.rename_string(chip['Obj'].nodes[0].prompt[0],15),name ="wifi-label")
             chipName.set_alignment(0,0.5)
             
-            chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(group,"")
-            if chips[0]['Name'] == chip['Name']:
-                 chip['Button'] = Gtk.RadioButton.new_with_label_from_widget(None,"")
+            if chip['Obj'].str_value == 'y':
+                 chip['Button'] = Gtk.RadioButton(label="")
+            else:
+                chip['Button'] = Gtk.RadioButton.new_with_mnemonic_from_widget(group,"")
            
            
             
-            chip['Button'].connect("toggled",self.radioButtonSelected, chip['Name'])
+            chip['Button'].connect("toggled",self.radioButtonSelected, chip['Obj'])
             chip['Button'].set_alignment(1,0.5)
             chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
            
@@ -70,7 +72,10 @@ class CoPrintMcuComInterface(ScreenPanel):
            
             chipBox.pack_end(chip['Button'], False, False, 10)
             
-            f.add(chipBox)
+            eventBox = Gtk.EventBox()
+            eventBox.connect("button-press-event", self.eventBoxFunc, chip['Obj'])
+            eventBox.add(chipBox)
+            f.add(eventBox)
             grid.attach(f, count, row, 1, 1)
             count += 1
             if count % 1 is 0:
@@ -80,7 +85,7 @@ class CoPrintMcuComInterface(ScreenPanel):
 
        
         
-        gridBox = Gtk.FlowBox()
+        gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
  
@@ -110,7 +115,7 @@ class CoPrintMcuComInterface(ScreenPanel):
         backButtonBox.pack_start(backLabel, False, False, 0)
         self.backButton = Gtk.Button(name ="back-button")
         self.backButton.add(backButtonBox)
-        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_mcu_clock_reference')
+        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_chip_selection')
         self.backButton.set_always_show_image (True)       
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
@@ -130,12 +135,17 @@ class CoPrintMcuComInterface(ScreenPanel):
       
         self.content.add(page)
         self._screen.base_panel.visible_menu(False)
-        
-    def radioButtonSelected(self, button, baudRate):
-        self.selected = baudRate
+
+    def eventBoxFunc(self,a,b,obj):
+        self.radioButtonSelected(None, obj)
+            
+    def radioButtonSelected(self, button, selected):
+       
+        self._screen._changeKconfig(selected.name)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
        
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_mcu_usb_ids", "co_print_mcu_usb_ids", None, 2)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
         
    
 

@@ -10,14 +10,17 @@ from gi.repository import Gtk, GLib, Pango
 class CheckButtonBox(Gtk.Box):
   
 
-    def __init__(self, this, _content, onCheck=None):
+    def __init__(self, this, _content, onCheck=None, funVal=None, InitVal=None):
         super().__init__()
         self.onCheck = onCheck
+        self.funVal = funVal
+
         self.button1 = Gtk.CheckButton(label=_content)
       
         
         self.button1.connect("toggled", self.on_button_toggled)
-        
+        if(InitVal is not None):
+             self.button1.set_active(InitVal)
         info = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         info.set_halign(Gtk.Align.START)
         
@@ -25,9 +28,15 @@ class CheckButtonBox(Gtk.Box):
 
         self.add(info)
 
+    def set_active(self, value):
+        if self.button1.get_active() != value:
+         self.button1.set_active(value)
     def on_button_toggled(self, button):
         if(self.onCheck is not None):
-            self.onCheck(button.get_active())
+            if(self.funVal is not None):
+                self.onCheck(button.get_active(), self.funVal)
+            else:
+                self.onCheck(button.get_active())
 
         if button.get_active():
             print("Radio butonu seçildi:", button.get_label())

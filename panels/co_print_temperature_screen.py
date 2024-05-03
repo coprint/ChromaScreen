@@ -77,6 +77,10 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
         extruderLabelBox.set_halign(Gtk.Align.CENTER)
         extruderLabelBox.pack_start(self.extruderLabel, False, False, 0)
         extruderLabelBox.pack_end(numPadButtonExtruder, False, False, 0)
+
+        extruderLabelBoxEventBox = Gtk.EventBox()
+        extruderLabelBoxEventBox.add(extruderLabelBox)
+        extruderLabelBoxEventBox.connect("button-press-event", self.open_numpad_event, 'extruder')
         
         downIcon = self._gtk.Image("eksi", self._screen.width *.03, self._screen.width *.03)
         upIcon = self._gtk.Image("arti", self._screen.width *.03, self._screen.width *.03)
@@ -86,7 +90,7 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
         upButton.set_always_show_image(True)
         upButton.connect("clicked", self.up_down_button_clicked, "extruder", "+")
         
-        downButton = Gtk.Button(name ="scale-buttons")
+        downButton = Gtk.Button(name ="scale-buttons-left")
         downButton.set_image(downIcon)
         downButton.set_always_show_image(True)
         downButton.connect("clicked", self.up_down_button_clicked, "extruder", "-")
@@ -95,7 +99,7 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
         extruderInputBox.set_valign(Gtk.Align.CENTER)
         extruderInputBox.set_halign(Gtk.Align.CENTER)
         extruderInputBox.add(downButton)     
-        extruderInputBox.add(extruderLabelBox)
+        extruderInputBox.add(extruderLabelBoxEventBox)
         extruderInputBox.add(upButton)  
         
         extruderImage = self._gtk.Image("extrudericon", self._screen.width *.07, self._screen.width *.07)
@@ -120,7 +124,9 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
         heatedBedLabelBox.pack_start(self.heatedBedLabel, False, False, 0)
         heatedBedLabelBox.pack_end(numPadButtonHeatedBed, False, False, 0)
         
-        
+        heatedBedLabelBoxEventBox = Gtk.EventBox()
+        heatedBedLabelBoxEventBox.add(heatedBedLabelBox)
+        heatedBedLabelBoxEventBox.connect("button-press-event", self.open_numpad_event, 'bed')
    
         
         downIcon = self._gtk.Image("eksi", self._screen.width *.03, self._screen.width *.03)
@@ -131,7 +137,7 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
         upButton.set_always_show_image(True)
         upButton.connect("clicked", self.up_down_button_clicked, "heatedBed", "+")
         
-        downButton = Gtk.Button(name ="scale-buttons")
+        downButton = Gtk.Button(name ="scale-buttons-left")
         downButton.set_image(downIcon)
         downButton.set_always_show_image(True)
         downButton.connect("clicked", self.up_down_button_clicked, "heatedBed", "-")
@@ -140,7 +146,7 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
         heatedBedInputBox.set_valign(Gtk.Align.CENTER)
         heatedBedInputBox.set_halign(Gtk.Align.CENTER)
         heatedBedInputBox.add(downButton)     
-        heatedBedInputBox.add(heatedBedLabelBox)
+        heatedBedInputBox.add(heatedBedLabelBoxEventBox)
         heatedBedInputBox.add(upButton)  
         
         heatedBedImage = self._gtk.Image("tablaicon", self._screen.width *.07, self._screen.width *.07)
@@ -263,6 +269,26 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
        
         dialog.destroy()
 
+    def open_numpad_event(self, widget, event, type):
+        
+        dialog = KeyPadNew(self)
+        dialog.get_style_context().add_class("new-numpad-dialog")
+        dialog.set_decorated(False)
+        response = dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            print(dialog.resp)
+            resp = dialog.resp
+            if type == 'extruder':
+                self.change_extruder_temperature(int(resp))
+            else:
+                self.change_bed_temperature(int(resp))
+            
+            
+        elif response == Gtk.ResponseType.CANCEL:
+            print("The Cancel button was clicked")
+       
+        dialog.destroy()
     def change_temp_constant(self, widget, constant):
         logging.info(f"### Temp constant {constant}")
         self.buttons[f"{self.constant}"].get_style_context().remove_class("increase-button-active")
@@ -490,6 +516,10 @@ class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
         self._screen._ws.klippy.gcode_script(KlippyGcodes.set_fan_speed(value))
     
     def process_update(self, action, data):
+        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
+        #     page_url = 'co_print_home_not_connected_screen'
+        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)
+            
         if self._printer.state != 'error' :
             
            

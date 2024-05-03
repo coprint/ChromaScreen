@@ -1,9 +1,0 @@
-.idea/
-KlipperScreen.conf
-__pycache__/
-*.py[cod]
-*$py.class
-dist/
-build/
-venv/
-.DS_Store

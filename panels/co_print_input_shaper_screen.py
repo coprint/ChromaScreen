@@ -143,6 +143,10 @@ class CoPrintInputShaperScreen(ScreenPanel):
         self.content.show_all()
 
     def process_update(self, action, data):
+        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
+        #     page_url = 'co_print_home_not_connected_screen'
+        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)    
+
         if action == "notify_gcode_response":
             print(data)
 
@@ -421,6 +425,7 @@ class CoPrintInputShaperScreen(ScreenPanel):
             "printer.gcode.script",
             script
         )
+        self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
 
     def yaxis_complete_page(self, widget):
         self.xaxis_timeout_id = None

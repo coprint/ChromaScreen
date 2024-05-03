@@ -1,3 +1,4 @@
+import datetime
 import logging
 import os
 import time
@@ -5,13 +6,14 @@ from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
+from ks_includes.widgets.hometab import HomeTab
 from ks_includes.widgets.keypad import Keypad
 from ks_includes.widgets.progressbar import ProgressBar
 from ks_includes.widgets.mainbutton import MainButton
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
-
+from datetime import datetime, timedelta
 
 def create_panel(*args):
     return CoPrintHomeScreen(*args)
@@ -26,12 +28,18 @@ class Singleton(type):
 
 class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
     selectedExtruder = ""
+    instant_cpu = 0
+    instant_mem = 0
     active_heater = None
     extruderChanged = False
     getToolsActivated = False
     desiredTemp = 1
     temp_extruder_temp = 0
     temp_heater_bed_temp = 0
+    print_stats = []
+    total_used = {}
+    mcu_version = ''
+    filament_usage_array = []
     extruders = [
             {'Name': '1', 'Icon': 'ext_1', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
             {'Name': '2', 'Icon': 'ext_2', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
@@ -116,7 +124,7 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         connectedExtruderLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         connectedExtruderLabelBox.set_name("extruder-heatedbad-label-box")
         connectedExtruderLabelBox.set_valign(Gtk.Align.CENTER)
-        self.connectedExtruder = Gtk.Label("Extruder 1", name="connected-extruder-label")
+        self.connectedExtruder = Gtk.Label("Extruder Temperature", name="connected-extruder-label")
         self.connectedExtruder.set_justify(Gtk.Justification.LEFT)
         connectedExtruderLabelBox.pack_start(self.connectedExtruder, False, False, 0)
         connectedExtruderBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
@@ -153,176 +161,14 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         connectedHeatedBox.pack_start(heatedBedWithButton_box, False, False, 0)
 
         ###########################
-
-
-        E1Button = Gtk.ColorButton(name="e1-button")
-        E1CurrentColor = Gdk.RGBA()
-        E1CurrentColor.parse("#F7BA17")
-        E1Button.set_rgba(E1CurrentColor)
-        E1Button.set_title("Select a color")
-        E1Button.connect('color-set', self.on_color_set)
-        E1Button.get_style_context().add_class("DSFGSDFHSH")
-        E1ButtonLabel = Gtk.Label("E1", name="e1-button-label")
-        E1Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E1Button_box.set_name("color-button-box")
-        E1Button_box.set_halign(Gtk.Align.CENTER)
-        E1Button_box.pack_start(E1ButtonLabel, False, False, 0)
-        E1Button_box.pack_start(E1Button, False, False, 0)
-
-
-        E2Button = Gtk.ColorButton(name ="e1-button")
-        E2CurrentColor = Gdk.RGBA()
-        E2CurrentColor.parse("#178BF7")
-        E2Button.set_rgba(E2CurrentColor)
-        E2Button.set_title("Select a color")
-        E2Button.connect('color-set', self.on_color_set)
-        E2ButtonLabel = Gtk.Label("E2", name="e1-button-label")
-        E2Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E2Button_box.set_name("color-button-box")
-        E2Button_box.set_halign(Gtk.Align.CENTER)
-        E2Button_box.pack_start(E2ButtonLabel, False, False, 0)
-        E2Button_box.pack_start(E2Button, False, False, 0)
-
-
-        E3Button = Gtk.ColorButton(name ="e1-button")
-        E3CurrentColor = Gdk.RGBA()
-        E3CurrentColor.parse("#BD17F7")
-        E3Button.set_rgba(E3CurrentColor)
-        E3Button.set_title("Select a color")
-        E3Button.connect('color-set', self.on_color_set)
-        E3ButtonLabel = Gtk.Label("E3", name="e1-button-label")
-        E3Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E3Button_box.set_name("color-button-box")
-        E3Button_box.set_halign(Gtk.Align.CENTER)
-        E3Button_box.pack_start(E3ButtonLabel, False, False, 0)
-        E3Button_box.pack_start(E3Button, False, False, 0)
-
-
-        E4Button = Gtk.ColorButton(name ="e1-button")
-        E4CurrentColor = Gdk.RGBA()
-        E4CurrentColor.parse("#17F7EA")
-        E4Button.set_rgba(E4CurrentColor)
-        E4Button.set_title("Select a color")
-        E4Button.connect('color-set', self.on_color_set)
-        E4ButtonLabel = Gtk.Label("E4", name="e1-button-label")
-        E4Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E4Button_box.set_name("color-button-box")
-        E4Button_box.set_halign(Gtk.Align.CENTER)
-        E4Button_box.pack_start(E4ButtonLabel, False, False, 0)
-        E4Button_box.pack_start(E4Button, False, False, 0)
-
-
-        E5Button = Gtk.ColorButton(name ="e1-button")
-        E5CurrentColor = Gdk.RGBA()
-        E5CurrentColor.parse("#F74D17")
-        E5Button.set_rgba(E5CurrentColor)
-        E5Button.set_title("Select a color")
-        E5Button.connect('color-set', self.on_color_set)
-        E5ButtonLabel = Gtk.Label("E5", name="e1-button-label")
-        E5Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E5Button_box.set_name("color-button-box")
-        E5Button_box.set_halign(Gtk.Align.CENTER)
-        E5Button_box.pack_start(E5ButtonLabel, False, False, 0)
-        E5Button_box.pack_start(E5Button, False, False, 0)
-
-
-        E6Button = Gtk.ColorButton(name ="e1-button")
-        E6CurrentColor = Gdk.RGBA()
-        E6CurrentColor.parse("#FFFBF1")
-        E6Button.set_rgba(E6CurrentColor)
-        E6Button.set_title("Select a color")
-        E6Button.connect('color-set', self.on_color_set)
-        E6ButtonLabel = Gtk.Label("E6", name="e1-button-label")
-        E6Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E6Button_box.set_name("color-button-box")
-        E6Button_box.set_halign(Gtk.Align.CENTER)
-        E6Button_box.pack_start(E6ButtonLabel, False, False, 0)
-        E6Button_box.pack_start(E6Button, False, False, 0)
-
-
-        E7Button = Gtk.ColorButton(name ="e1-button")
-        E7CurrentColor = Gdk.RGBA()
-        E7CurrentColor.parse("#332FD0")
-        E7Button.set_rgba(E7CurrentColor)
-        E7Button.set_title("Select a color")
-        E7Button.connect('color-set', self.on_color_set)
-        E7ButtonLabel = Gtk.Label("E7", name="e1-button-label")
-        E7Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E7Button_box.set_name("color-button-box")
-        E7Button_box.set_halign(Gtk.Align.CENTER)
-        E7Button_box.pack_start(E7ButtonLabel, False, False, 0)
-        E7Button_box.pack_start(E7Button, False, False, 0)
-
-
-        E8Button = Gtk.ColorButton(name ="e1-button")
-        E8CurrentColor = Gdk.RGBA()
-        E8CurrentColor.parse("#28DF99")
-        E8Button.set_rgba(E8CurrentColor)
-        E8Button.set_title("Select a color")
-        E8Button.connect('color-set', self.on_color_set)
-        E8ButtonLabel = Gtk.Label("E8", name="e1-button-label")
-        E8Button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        E8Button_box.set_halign(Gtk.Align.CENTER)
-        E8Button_box.set_name("color-button-box")
-        E8Button_box.pack_start(E8ButtonLabel, False, False, 0)
-        E8Button_box.pack_start(E8Button, False, False, 0)
-
-        gridBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
-        gridBox.set_halign(Gtk.Align.CENTER)
-
-        gridLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        gridLabelBox.set_name("extruder-heatedbad-label-box")
-        gridLabelBox.set_valign(Gtk.Align.CENTER)
-        gridLabel = Gtk.Label(_("Multi Filament Printing"), name="connected-extruder-label")
-        gridLabel.set_justify(Gtk.Justification.LEFT)
-        gridLabelBox.pack_start(gridLabel, False, False, 0)
-        gridBox.pack_start(gridLabelBox, False, False, 0)
-        gridBox.pack_start(grid, False, False, 0)
-
-        multiFlamet_grid = Gtk.Grid()
-        multiFlamet_grid.set_name("home-multifilament-select-box")
-        multiFlamet_grid.set_column_spacing(5)
-        multiFlamet_grid.set_row_spacing(5)
-        multiFlamet_grid.set_column_homogeneous(True)
-        multiFlamet_grid.attach(E1Button_box, 0, 1, 1, 1)
-        multiFlamet_grid.attach(E2Button_box, 0, 2, 1, 1)
-        multiFlamet_grid.attach(E3Button_box, 0, 3, 1, 1)
-        multiFlamet_grid.attach(E4Button_box, 0, 4, 1, 1)
-        multiFlamet_grid.attach(E5Button_box, 0, 5, 1, 1)
-        multiFlamet_grid.attach(E6Button_box, 0, 6, 1, 1)
-        multiFlamet_grid.attach(E7Button_box, 0, 7, 1, 1)
-        multiFlamet_grid.attach(E8Button_box, 0, 8, 1, 1)
-
-
-
-        changeColorBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        changeColorBox.set_name("extruder-heatedbad-label-box")
-        changeColorBox.set_valign(Gtk.Align.CENTER)
-        changeColorLabel = Gtk.Label(_("Change Color"), name="connected-extruder-label")
-        changeColorLabel.set_justify(Gtk.Justification.CENTER)
-        changeColorBox.pack_start(changeColorLabel, False, False, 0)
-
-        scroll = self._gtk.ScrolledWindow()
-        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        scroll.set_kinetic_scrolling(True)
-        scroll.get_overlay_scrolling()
-        scroll.set_hexpand(True)
-        scroll.set_vexpand(True)
-        scroll.add(multiFlamet_grid)
-
-        multiFilamentGridBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
-        multiFilamentGridBox.pack_start(changeColorBox, False, False, 0)
-        multiFilamentGridBox.pack_start(scroll, True, True, 0)
-
-        multiFlamentButton_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=15)
-        multiFlamentButton_box.add(gridBox)
-        multiFlamentButton_box.add(multiFilamentGridBox)
-
+        
+        self.tab_box = HomeTab(self)
+      
         left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
         left_box.pack_start(connectedExtruderBox, False, False, 0)
         left_box.pack_start(connectedHeatedBox, False, False, 0)
 
-        left_box.pack_end(multiFlamentButton_box, True, True, 0)
+        left_box.pack_start(self.tab_box, False, False, 0)
 
         homeButton = MainButton(self, "home", _("Homing"), "home-home", "co_print_home_screen", 1.2, True)
         moveButton = MainButton(self, "move", _("Move Axis"), "home-move", 'co_print_move_axis_screen', 1.2, False)
@@ -357,9 +203,213 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         page.pack_end(menu, False, True, 0)
 
 
+        self._screen._ws.send_method("server.history.totals", None, self.finished_history)
+
+       
+        
+        self._screen._ws.send_method("printer.info", None, self.finished_printer_info)
+        self._screen._ws.send_method("server.files.get_directory", None, self.finished_server_get_directory)
+       
+    
+        self._screen._ws.send_method("printer.objects.subscribe", {"objects":{"webhooks":None,"configfile":None,"mcu":None,"gcode_move":None,"print_stats":None,"virtual_sdcard":None,"heaters":None,"heater_bed":None,"fan":None,"gcode_macro LOAD_FILAMENT":None,"gcode_macro UNLOAD_FILAMENT":None,"gcode_macro START_PRINT_PLA":None,"gcode_macro go_screw_1":None,"gcode_macro go_screw_2":None,"gcode_macro go_screw_3":None,"gcode_macro go_screw_4":None,"stepper_enable":None,"motion_report":None,"query_endstops":None,"idle_timeout":None,"system_stats":None,"manual_probe":None,"toolhead":None,"extruder":None}}, self.finished_printer_mcus)
+
+
+
+        
+
         self.content.add(page)
 
 
+
+
+
+    def get_filament_usage_array(self, state):
+        output = []
+        start_date = datetime.now() - timedelta(days=6)
+        start_date = start_date.replace(hour=0, minute=0, second=0, microsecond=0)
+
+        jobs_filtered = [
+            job for job in state['jobs'] if datetime.utcfromtimestamp(job['start_time']) >= start_date and job['filament_used'] > 0
+        ]
+
+       
+
+        for i in range(6):
+            tmp_date = start_date + timedelta(days=i)
+            output.append([int(tmp_date.timestamp()), 0])
+
+        if jobs_filtered:
+            for current in jobs_filtered:
+                current_start_date = datetime.utcfromtimestamp(current['start_time']).replace(hour=0, minute=0, second=0, microsecond=0)
+                index = next((i for i, element in enumerate(output) if element[0] == int(current_start_date.timestamp())), -1)
+                if index != -1:
+                    output[index][1] += round(current['filament_used'] / 1000, 2)
+
+        return sorted(output, key=lambda x: x[0], reverse=True)
+
+    def finished_printer_mcus(self, result, method, params):
+         #print(result)
+         self.mcu_constants = result['result']['status']
+     
+    def finished_printer_info(self, result, method, params):
+        self.printer_version = result['result']['software_version']
+        self._screen._ws.send_method("machine.system_info", None, self.finished_system_info)
+        #print(result['result']['software_version'])
+
+    def finished_server_get_directory(self, result, method, params):
+        
+        print(result['result']['software_version'])
+
+   
+
+    def format_filesize(self, file_size_in_bytes):
+        i = -1
+        byte_units = [' kB', ' MB', ' GB', ' TB', ' PB', ' EB', ' ZB', ' YB']
+        while file_size_in_bytes > 1024:
+            file_size_in_bytes /= 1024
+            i += 1
+
+        return f"{max(file_size_in_bytes, 0.1):.1f}{byte_units[i]}"
+
+    def finished_system_info(self, result, method, params):
+        state = result['result']
+        print(state)
+
+
+        class HostStats:
+            def __init__(self):
+                self.cpuName = None
+                self.cpuDesc = None
+                self.bits = None
+                self.version = None
+                self.pythonVersion = None
+                self.os = None
+                self.release_info = None
+                self.load = 0
+                self.loadPercent = 0
+                self.loadProgressColor = 'primary'
+                self.memoryFormat = None
+                self.memUsed = '0 B'
+                self.memAvail = '0 B'
+                self.memTotal = '0 B'
+                self.memUsage = None
+                self.memUsageColor = 'primary'
+                self.tempSensor = {'temperature': 0, 'measured_min_temp': None, 'measured_max_temp': None}
+
+        output = HostStats()
+
+        if 'system_info' in state:
+            version = None
+            if  self.printer_version:
+                version = '-'.join(self.printer_version.split('-')[:4])
+
+            python_version = None
+            if state['system_info'].get('python') and state['system_info']['python'].get('version_string'):
+                first_space = state['system_info']['python']['version_string'].find(' ')
+                python_version = state['system_info']['python']['version_string'][:first_space + 1]
+
+            cpu_cores = state['system_info']['cpu_info']['cpu_count'] if state['system_info']['cpu_info'].get('cpu_count') else 1
+            #load = round((root_state.get('printer', {}).get('system_stats', {}).get('sysload', 0)) * 100) / 100
+            load = 0
+            load_percent = round((load / cpu_cores) * 100)
+
+
+
+            output.loadProgressColor = 'primary'
+            if load_percent > 95:
+                output.loadProgressColor = 'error'
+            elif load_percent > 80:
+                output.loadProgressColor = 'warning'
+
+
+           
+            memory_format = None
+            mem_usage = None
+            mem_avail = self.usage_info['system_memory']['available'] * 1024
+            mem_total =  self.usage_info['system_memory']['total'] * 1024
+
+            if mem_avail > 0 and mem_total > 0:
+                memory_format = f"{self.format_filesize(mem_total - mem_avail)} / {self.format_filesize(mem_total)}"
+                mem_usage = round(((mem_total - mem_avail) / mem_total) * 100)
+            elif mem_total:
+                memory_format = self.format_filesize(mem_total)
+
+            mem_usage_color = 'primary'
+            if mem_usage and mem_usage > 95:
+                mem_usage_color = 'error'
+            elif mem_usage and mem_usage > 80:
+                mem_usage_color = 'warning'
+
+         
+            output.cpuName = state['system_info']['cpu_info'].get('processor', None)
+            output.cpuDesc = state['system_info']['cpu_info'].get('cpu_desc', None)
+            output.bits = state['system_info']['cpu_info'].get('bits', None)
+            output.version = version
+            output.pythonVersion = python_version
+            output.os = state['system_info']['distribution'].get('name', None)
+            output.release_info = state['system_info']['distribution'].get('release_info', None)
+            output.load = load
+            output.loadPercent = min(load_percent, 100)
+            output.memoryFormat = memory_format
+            
+            output.memUsed = self.format_filesize(mem_total - mem_avail)
+            output.memAvail = self.format_filesize(mem_avail)
+            output.memTotal = self.format_filesize(mem_total)
+            output.memUsage = mem_usage
+            output.memUsageColor = mem_usage_color
+          
+            self.hostInfo = output
+
+
+    def finished_history_list(self, result, method, params):
+        arr2 = {}
+        print(result)
+        self.filament_usage_array = self.get_filament_usage_array(result['result'])
+        for d in result['result']['jobs']:
+            t = arr2.setdefault(d['status'], [])
+            t.append(d)
+        #total_jobs
+        self.print_stats = []   
+        keysList = list(arr2.keys())    
+        for key in keysList:
+            print(key + ': ' + str(len(arr2[key])))
+            print_stat = {'name': key, 'value': len(arr2[key])}
+            self.print_stats.append(print_stat)
+    
+        self.tab_box.static_value()
+
+
+      
+
+      
+
+
+    def finished_history(self, result, method, params):
+        #print(result)
+        # milimetre - metre
+        # sn - saat
+
+        #total_jobs
+        #print(result['result']['job_totals']['total_jobs'])
+
+        #total_time
+        #print(result['result']['job_totals']['total_time'])
+
+        #total_print_time
+        #print(result['result']['job_totals']['total_print_time'])
+
+
+        #total_filament_used
+        #print(result['result']['job_totals']['total_filament_used'])
+
+        self.total_used = {'total_filament_used': result['result']['job_totals']['total_filament_used'],
+                           'total_print_time': result['result']['job_totals']['total_print_time'],
+                           'total_time': result['result']['job_totals']['total_time'],
+                           'total_jobs': result['result']['job_totals']['total_jobs']}
+        self._screen._ws.send_method("server.history.list", None, self.finished_history_list)
+        #self.tab_box.static_value()
+
+       
 
     def on_switch_activated(self, switch, gparam,switchName):
         if switch.get_active():
@@ -381,11 +431,16 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
 
 
     def chanceExtruder(self, eventBox, gparam, extruder):
+        extruder_list = self._printer.get_tools()
+        selected_extruder = ''
+        for temp_extruder in extruder_list:
+            if self._printer.data[temp_extruder]["motion_queue"] != None:
+                selected_extruder = temp_extruder
         index = next((i for i, item in enumerate(self.extruders) if item['Extrude'] == extruder), -1)
-        oldIndex = next((i for i, item in enumerate(self.extruders) if item['Extrude'] == self._printer.data["toolhead"]["extruder"]), -1)
+        oldIndex = next((i for i, item in enumerate(self.extruders) if item['Extrude'] == selected_extruder), -1)
         self.extruders[oldIndex]['EventBox'].get_style_context().remove_class("extrude-active")
         self.extruders[index]['EventBox'].get_style_context().add_class("extrude-active")
-        self.connectedExtruder.set_label(extruder)
+        #self.connectedExtruder.set_label(extruder)
         self._screen._ws.klippy.gcode_script("T" + str(index))
 
 
@@ -419,10 +474,20 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
 
 
     def change_extruder_temperature(self,temp):
-
+       
         max_temp = float(self._printer.get_config_section(self._printer.data["toolhead"]["extruder"])['max_temp'])
         if self.validate(self._printer.data["toolhead"]["extruder"], temp, max_temp):
             self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self._printer.data["toolhead"]["extruder"]), temp)
+        
+        self.timeout_id = GLib.timeout_add(1000, self.on_timeout, None)
+       
+
+    
+    def on_timeout(self, *args, **kwargs):
+        self.desiredTemp = 1
+        self.timeout_id = None
+        #self.destroy()
+        return False
 
 
     def change_bed_temperature_pre(self, target):
@@ -448,6 +513,12 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
              self.extruderSwitch.set_active(False)
 
         self.change_extruder_temperature(self.extruder_temp_target_pre)
+
+
+    def filament_cut(self, widget):
+        self._screen._ws.klippy.gcode_script(
+            "FILAMENT_CUT"  # FILAMENT_CUT
+        )
 
 
     def set_temperature(self, widget, setting):
@@ -654,8 +725,65 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         self.desiredTemp = 1
         self.extruderChanged = False
 
-    def process_update(self, action, data):
 
+    def format_frequency(self, frequency):
+        i = -1
+        units = [' kHz', ' MHz', ' GHz']
+        while frequency > 1000:
+            frequency /= 1000
+            i += 1
+
+        return f"{max(frequency, 0.1):.0f}{units[i]}"
+    count = 0
+    def process_update(self, action, data):
+      
+        
+        if action == 'notify_proc_stat_update':
+            self.usage_info = data
+            self.count +=1
+            self.instant_cpu = data['system_cpu_usage']['cpu']
+            self.instant_mem = (data['system_memory']['used']/ data['system_memory']['total'])*100
+            if self.count == 4:
+                self.count=0
+                self.tab_box.updateCPU(self.instant_cpu)
+                self.tab_box.updateMEM(self.instant_mem)
+               
+        
+           
+        if action == 'notify_status_update':
+          
+            for key in data:
+                if key == 'mcu' or key.startswith('mcu '):
+                    self.mcus = []
+                    mcu = data[key]
+                    version_output = (self.mcu_constants[key].get('mcu_version', 'unknown')).split('-')[:4]
+                    version_output = '-'.join(version_output)
+
+                    load = 0
+                    if mcu.get('last_stats') and mcu['last_stats'].get('mcu_task_avg') and mcu['last_stats'].get('mcu_task_stddev'):
+                        load = mcu['last_stats']['mcu_task_avg'] + (3 * mcu['last_stats']['mcu_task_stddev']) / 0.0025
+
+                    load_progress_color = 'primary'
+                    if load > 0.95:
+                        load_progress_color = 'error'
+                    elif load > 0.8:
+                        load_progress_color = 'warning'
+                   
+                    self.mcus.append({
+                        'name': key,
+                        'mcu_constants': self.mcu_constants[key]['mcu_constants'],
+                        'last_stats': self.mcu_constants[key]['last_stats'],
+                        'version': version_output,
+                        'chip': self.mcu_constants[key]['mcu_constants']['MCU'] if self.mcu_constants[key]['mcu_constants'] else None,
+                        'freq': mcu['last_stats']['freq'] if mcu['last_stats'].get('freq') else None,
+                        'freqFormat': self.format_frequency(mcu['last_stats']['freq']) if mcu['last_stats'].get('freq') else None,
+                        'awake': "{:.2f}".format(mcu['last_stats']['mcu_awake'] / 5) if mcu['last_stats'].get('mcu_awake') else None,
+                        'load': "{:.2f}".format(load),
+                        'loadPercent': round(load * 100) if load < 1 else 100,
+                        'loadProgressColor': load_progress_color,
+                        #'tempSensor': getters.get_mcu_temp_sensor(key),
+                    })
+                    
 
         if self._printer.state != 'error' :
 
@@ -688,12 +816,17 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                     if h not in self.active_heaters:
                         self.select_heater(None, h)
 
-            if self.selectedExtruder != self._printer.data["toolhead"]["extruder"]:
-                self.extruderChanged = False
-                self.selectedExtruder = self._printer.data["toolhead"]["extruder"]
-                self.connectedExtruder.set_label(self._printer.data["toolhead"]["extruder"])
+            extruder_list = self._printer.get_tools()
+            for extruder in extruder_list:
+                if self._printer.data[extruder]["motion_queue"] != None:
+                    if self.selectedExtruder != extruder:
+                        self.selectedExtruder = extruder
+                        self.extruderChanged = False
+                        #self.connectedExtruder.set_label(self.selectedExtruder)
 
-            extrude = self._printer.get_config_section(self.selectedExtruder)
+
+
+            extrude = self._printer.get_config_section('extruder')
             if(extrude):
                 self.ExtruderMax_temp = float(extrude['max_temp'])
 
@@ -701,19 +834,20 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                 self.extruderChanged = True
                 i= 0
                 for extruder in self._printer.get_tools():
-                    svg_file = "styles/z-bolt/images/active.svg"
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file, self._gtk.content_width * .05 , self._gtk.content_height * .05)
+                    if extruder != 'extruder':
+                        svg_file = "styles/z-bolt/images/active.svg"
+                        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file, self._gtk.content_width * .05 , self._gtk.content_height * .05)
 
-                    self.extruders[i]['RadioButton'].set_from_pixbuf(pixbuf)
-                    if self.extruders[i]['Extrude'] == None:
-                     self.extruders[i]['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
-                    self.extruders[i]['Extrude'] = extruder
-                    if self.extruders[i]['Extrude'] != self.selectedExtruder:
-                        self.extruders[i]['EventBox'].get_style_context().remove_class("extrude-active")
+                        self.extruders[i]['RadioButton'].set_from_pixbuf(pixbuf)
+                        if self.extruders[i]['Extrude'] == None:
+                         self.extruders[i]['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
+                        self.extruders[i]['Extrude'] = extruder
+                        if self.extruders[i]['Extrude'] != self.selectedExtruder:
+                            self.extruders[i]['EventBox'].get_style_context().remove_class("extrude-active")
 
-                    else:
-                        self.extruders[i]['EventBox'].get_style_context().add_class("extrude-active")
-                    i += 1
+                        else:
+                            self.extruders[i]['EventBox'].get_style_context().add_class("extrude-active")
+                        i += 1
 
                 for x in range(i, 8):
                     svg_file = "styles/z-bolt/images/passive.svg"
@@ -778,8 +912,10 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                 self.temp_extruder_temp = extruder_temp
                 if(self.extruder_temp_target_pre != 0):
                      self.extruder.updateValue(extruder_temp/self.extruder_temp_target_pre, str(round(extruder_temp,1)) + f"° / {self.extruder_temp_target_pre}°")
+                     self.tab_box.updateValue(str(round(extruder_temp,1)) + f"° / {self.extruder_temp_target_pre}°")
                 else:
                      self.extruder.updateValue(1/1, str(round(extruder_temp,1)) + f"° / {self.extruder_temp_target_pre}°")
+                     self.tab_box.updateValue(str(round(extruder_temp,1)) + f"° / {self.extruder_temp_target_pre}°")
 
 
 

@@ -10,7 +10,7 @@ import traceback  # noqa
 import locale
 import sys
 import gi
-
+from kconfiglib import Kconfig
 from ks_includes.widgets.infodialog import InfoDialog
 
 gi.require_version("Gtk", "3.0")
@@ -27,7 +27,7 @@ from ks_includes.files import KlippyFiles
 from ks_includes.KlippyGtk import KlippyGtk
 from ks_includes.printer import Printer
 from ks_includes.widgets.keyboard import Keyboard
-from ks_includes.config import KlipperScreenConfig
+from ks_includes.config import ChromaPadConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -51,7 +51,9 @@ PRINTER_BASE_STATUS_OBJECTS = [
     'exclude_object',
 ]
 
-klipperscreendir = pathlib.Path(__file__).parent.resolve()
+
+chromapaddir = pathlib.Path(__file__).parent.resolve()
+
 
 
 def set_text_direction(lang=None):
@@ -72,9 +74,25 @@ def set_text_direction(lang=None):
 def state_execute(callback):
     callback()
 
+class cd:
+    """Context manager for changing the current working directory"""
+    def __init__(self, newPath):
+        self.newPath = os.path.expanduser(newPath)
 
-class KlipperScreen(Gtk.Window):
+    def __enter__(self):
+        self.savedPath = os.getcwd()
+        os.chdir(self.newPath)
+
+    def __exit__(self, etype, value, traceback):
+        os.chdir(self.savedPath)
+
+class ChromaPad(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
+    #pc_password = '12345'
+    pc_password = 'c317tek'
+    is_debug = False
+    is_redirect_not_connected = True
+
     _cur_panels = []
     connecting = False
     connecting_to_printer = None
@@ -93,23 +111,42 @@ class KlipperScreen(Gtk.Window):
     reinit_count = 0
     max_retries = 4
     initialized = False
+   
+    computer_name = os.path.expanduser("~/")
+    klipper_path = f'{computer_name}klipper'
+   
+    path_read = f'{computer_name}klipper/src/Kconfig'
+    path_brand = f'{computer_name}ChromaPad/scripts/printer_brand_list.json'
+    path_config = f'{computer_name}ChromaPad/scripts/config.json'
+    selected_wizard_printer = 'Printer1WizardDone'
+    selected_printer_index = 1
+
+    path_base_brand = f'{computer_name}ChromaPad/scripts/printer_brand_mcu/'
+    kconfig = None
+    
+    log_path = os.path.join(os.path.expanduser("~/"), "printer_data", "logs")
+
+    
 
     def __init__(self, args, version):
         try:
-            super().__init__(title="KlipperScreen")
+            super().__init__(title="ChromaPad")
         except Exception as e:
             logging.exception(e)
             raise RuntimeError from e
+
         self.blanking_time = 600
         self.use_dpms = True
+        self.isEnter = False
         self.apiclient = None
+        self.not_connected_log_file = None
         self.version = version
         self.dialogs = []
         self.confirm = None
-        klipperscreendir = pathlib.Path(__file__).parent.resolve()
+        chromapaddir = pathlib.Path(__file__).parent.resolve()
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
 
-        self._config = KlipperScreenConfig(configfile, self)
+        self._config = ChromaPadConfig(configfile, self)
         self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
 
         self.connect("key-press-event", self._key_press_event)
@@ -119,19 +156,21 @@ class KlipperScreen(Gtk.Window):
             monitor = Gdk.Display.get_default().get_monitor(0)
         if monitor is None:
             raise RuntimeError("Couldn't get default monitor")
-        self.width = self._config.get_main_config().getint("width", monitor.get_geometry().width)
-        self.height = self._config.get_main_config().getint("height", monitor.get_geometry().height)
+        self.width = 1024
+        self.height = 600
         self.set_default_size(self.width, self.height)
         self.set_resizable(True)
-        if not (self._config.get_main_config().get("width") or self._config.get_main_config().get("height")):
-            self.fullscreen()
+
+        if self.is_debug == False:
+            if not (self._config.get_main_config().get("width") or self._config.get_main_config().get("height")):
+                self.fullscreen()
         self.vertical_mode = self.width < self.height
         logging.info(f"Screen resolution: {self.width}x{self.height}")
         self.theme = self._config.get_main_config().get('theme')
         self.show_cursor = self._config.get_main_config().getboolean("show_cursor", fallback=False)
         self.gtk = KlippyGtk(self)
         self.init_style()
-        self.set_icon_from_file(os.path.join(klipperscreendir, "styles", "icon.svg"))
+        self.set_icon_from_file(os.path.join(chromapaddir, "styles", "icon.svg"))
 
         self.base_panel = BasePanel(self, title="Base Panel")
         self.add(self.base_panel.main_grid)
@@ -152,8 +191,42 @@ class KlipperScreen(Gtk.Window):
             self.dialogs = []
         self.set_screenblanking_timeout(self._config.get_main_config().get('screen_blanking'))
         
+        
+        
+        
+        with cd(self.klipper_path):
+            self.kconfig = Kconfig(self.path_read)
+        
 
         self.initial_connection()
+
+    def rename_string(self, string, length_string):
+        if len(string) > length_string:
+            #return string[:length_string-3] + "..."
+            return string
+        else:
+            return string
+    def rename_string_printer(self, string, length_string):
+        if len(string) > length_string:
+            return string[:length_string-3] + "..."
+            #return string
+        else:
+            return string
+        
+    def _changeKconfig(self, name):
+        
+         sym = self.kconfig.syms[name]
+         sym.set_value("y")
+    def _changeKconfigSetValue(self, name, value):
+        
+         sym = self.kconfig.syms[name]
+         sym.set_value(value)
+        
+    def _changeKconfigFalse(self, name):
+        
+         sym = self.kconfig.syms[name]
+         sym.set_value("n")
+   
 
     def initial_connection(self):
         self.printers = self._config.get_printers()
@@ -182,6 +255,11 @@ class KlipperScreen(Gtk.Window):
            self.connect_printer(pname)
 
     def connect_printer(self, name):
+        
+        for i, printer in enumerate(self.printers):
+             if list(printer)[0] == name:
+                 self.selected_wizard_printer = 'Printer'+str(i+1)+'WizardDone'
+                 self.selected_printer_index = i+1
         self.connecting_to_printer = name
         if self._ws is not None and self._ws.connected:
             self._ws.close()
@@ -199,7 +277,8 @@ class KlipperScreen(Gtk.Window):
             if name == list(printer)[0]:
                 ind = self.printers.index(printer)
                 break
-
+        self.not_connected_log_file = self.printers[ind][name]["log_file"]
+        self.log_path = os.path.join(os.path.expanduser("~/"), self.not_connected_log_file, "logs")
         self.printer = self.printers[ind]["data"]
         self.apiclient = KlippyRest(
             self.printers[ind][name]["moonraker_host"],
@@ -391,8 +470,8 @@ class KlipperScreen(Gtk.Window):
         scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scroll.add(message)
 
-        help_msg = _("Provide KlipperScreen.log when asking for help.\n")
-        help_msg += _("KlipperScreen will reboot")
+        help_msg = _("Provide ChromaPad.log when asking for help.\n")
+        help_msg += _("ChromaPad will reboot")
         help_notice = Gtk.Label(label=help_msg)
         help_notice.set_line_wrap(True)
 
@@ -416,18 +495,18 @@ class KlipperScreen(Gtk.Window):
     def restart_ks(self, *args):
         logging.debug(f"Restarting {sys.executable} {' '.join(sys.argv)}")
         os.execv(sys.executable, ['python'] + sys.argv)
-        self._ws.send_method("machine.services.restart", {"service": "KlipperScreen"})  # Fallback
+        self._ws.send_method("machine.services.restart", {"service": "ChromaPad"})  # Fallback
 
     def init_style(self):
         settings = Gtk.Settings.get_default()
         settings.set_property("gtk-theme-name", "Adwaita")
         settings.set_property("gtk-application-prefer-dark-theme", False)
-        css_data = pathlib.Path(os.path.join(klipperscreendir, "styles", "base.css")).read_text()
+        css_data = pathlib.Path(os.path.join(chromapaddir, "styles", "base.css")).read_text()
 
-        with open(os.path.join(klipperscreendir, "styles", "base.conf")) as f:
+        with open(os.path.join(chromapaddir, "styles", "base.conf")) as f:
             style_options = json.load(f)
         # Load custom theme
-        theme = os.path.join(klipperscreendir, "styles", self.theme)
+        theme = os.path.join(chromapaddir, "styles", self.theme)
         theme_style = os.path.join(theme, "style.css")
         theme_style_conf = os.path.join(theme, "style.conf")
 
@@ -746,7 +825,7 @@ class KlipperScreen(Gtk.Window):
             if 'message' in data and 'Error' in data['message']:
                 logging.error(f"{action}:{data['message']}")
                 self.show_popup_message(data['message'], 3)
-                if "KlipperScreen" in data['message']:
+                if "ChromaPad" in data['message']:
                     self.restart_ks()
         elif action == "notify_power_changed":
             logging.debug("Power status changed: %s", data)
@@ -776,8 +855,14 @@ class KlipperScreen(Gtk.Window):
     def process_update(self, *args):
         GLib.idle_add(self.base_panel.process_update, *args)
         for x in self.subscriptions:
-            #print('idle' + x)
-            #self.panels[x].process_update(*args)
+           
+            if self.is_redirect_not_connected:
+                if self.printer.state == 'error' or self.printer.state == 'shutdown' or self.printer.state ==  'disconnected':
+                    page_url = 'co_print_home_not_connected_screen'
+                    if x != 'co_print_home_not_connected_screen':
+                        self.show_panel(page_url, page_url, "Language", 1, False)
+            
+            
             GLib.idle_add(self.panels[x].process_update, *args)
 
     def _confirm_send_action(self, widget, text, method, params=None):
@@ -806,7 +891,7 @@ class KlipperScreen(Gtk.Window):
         if self.confirm is not None:
             self.gtk.remove_dialog(self.confirm)
         self.confirm = self.gtk.Dialog(self, buttons, label, self._confirm_send_action_response, method, params)
-        self.confirm.set_title("KlipperScreen")
+        self.confirm.set_title("ChromaPad")
 
     def _confirm_send_action_response(self, dialog, response_id, method, params):
         self.gtk.remove_dialog(dialog)
@@ -821,9 +906,11 @@ class KlipperScreen(Gtk.Window):
 
     def printer_initializing(self, msg, remove=False):
         self.close_popup_message()
+        
         if 'co_print_splash_screen' not in self.panels or remove:
-            self.show_panel('co_print_splash_screen', "co_print_splash_screen", None, 2)
+            self.show_panel('co_print_splash_screen', "co_print_splash_screen",  self.isEnter, 2)
         self.panels['co_print_splash_screen'].update_text(msg)
+        self.isEnter = True
 
     def search_power_devices(self, devices):
         found_devices = []
@@ -908,6 +995,11 @@ class KlipperScreen(Gtk.Window):
         self.files.initialize()
         self.files.refresh_files()
 
+        if "webcam" in state["result"]["components"]:
+            cameras = self.apiclient.send_request("server/webcams/list")
+            if cameras is not False:
+                self.printer.configure_cameras(cameras['result']['webcams'])
+
         logging.info("Printer initialized")
         self.initialized = True
         self.reinit_count = 0
@@ -932,6 +1024,7 @@ class KlipperScreen(Gtk.Window):
         self.close_popup_message()
         self.show_panel('co_print_splash_screen', "co_print_splash_screen", None, 2, items=self._config.get_menu_items("__main"))
         self.base_panel_show_all()
+        self.isEnter = True
         self.base_panel.visible_menu(False) 
 
     def printer_printing(self):
@@ -1013,20 +1106,24 @@ class KlipperScreen(Gtk.Window):
 
 
 def main():
+    os.system("export DISPLAY=:0")
+    os.system("xrandr --newmode  \"1024x600_60.00\"  48.96  1024 1064 1168 1312  600 601 604 622  -HSync +Vsync")
+    os.system("xrandr --addmode HDMI-1 \"1024x600_60.00\" ")
+    os.system("xrandr --output HDMI-1 --mode \"1024x600_60.00\" ")
     version = functions.get_software_version()
-    parser = argparse.ArgumentParser(description="KlipperScreen - A GUI for Klipper")
+    parser = argparse.ArgumentParser(description="ChromaPad - A GUI for Klipper")
     homedir = os.path.expanduser("~")
 
     parser.add_argument(
-        "-c", "--configfile", default=os.path.join(homedir, "KlipperScreen.conf"), metavar='<configfile>',
-        help="Location of KlipperScreen configuration file"
+        "-c", "--configfile", default=os.path.join(homedir, "ChromaPad.conf"), metavar='<configfile>',
+        help="Location of ChromaPad configuration file"
     )
     logdir = os.path.join(homedir, "printer_data", "logs")
     if not os.path.exists(logdir):
         logdir = "/tmp"
     parser.add_argument(
-        "-l", "--logfile", default=os.path.join(logdir, "KlipperScreen.log"), metavar='<logfile>',
-        help="Location of KlipperScreen logfile output"
+        "-l", "--logfile", default=os.path.join(logdir, "ChromaPad.log"), metavar='<logfile>',
+        help="Location of ChromaPad logfile output"
     )
     args = parser.parse_args()
 
@@ -1037,12 +1134,12 @@ def main():
 
     functions.patch_threading_excepthook()
 
-    logging.info(f"KlipperScreen version: {version}")
+    logging.info(f"ChromaPad version: {version}")
     if not Gtk.init_check(None)[0]:
         logging.critical("Failed to initialize Gtk")
         raise RuntimeError
     try:
-        win = KlipperScreen(args, version)
+        win = ChromaPad(args, version)
     except Exception as e:
         logging.exception("Failed to initialize window")
         raise RuntimeError from e

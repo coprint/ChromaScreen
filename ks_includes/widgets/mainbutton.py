@@ -1,10 +1,15 @@
 import logging
+import logging
 import os
 import gi
+from matplotlib import pyplot as plt
 from ks_includes.KlippyGcodes import KlippyGcodes
+from ks_includes.widgets.heatergraph import HeaterGraph
 from ks_includes.widgets.infodialog import InfoDialog
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib
+
+
 
 
 class MainButton(Gtk.Box):
@@ -13,7 +18,8 @@ class MainButton(Gtk.Box):
     def __init__(self,this, _image, _label, _style, _clickMenu, _imageDimension, _isOpenDialog):
         super().__init__(orientation=Gtk.Orientation.VERTICAL)
         self.parent = this
-        
+      
+            
         
         if _isOpenDialog:
             Button = this._gtk.Button(_image, _label, _style, _imageDimension)

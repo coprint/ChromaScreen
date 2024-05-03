@@ -131,7 +131,7 @@ class CoPrintWifiSelection(ScreenPanel):
             self._screen.show_panel("co_print_wifi_selection_select", "co_print_wifi_selection_select", None, 2, True, items=self.selectedWifiIndex)
         else:
             #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
-            self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
+            self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", None, 2)
        
 
     #asıl kullanılan metod bu diğer metodu sayfayı görüntülemek için yazdım
@@ -174,14 +174,23 @@ class CoPrintWifiSelection(ScreenPanel):
                             icon = 'signal-medium'
                         if str(name) not in wifiNames:
                             wifiNames.append(str(name))
-                            self.wifies.append({'Name': str(name), 'Icon': icon})
+                            connectionStatus = self.is_connected_to(str(name), connected_wifi_list)
+                            if connectionStatus:
+                                self.wifies.insert(0, {'Name': str(name), 'Icon': icon,
+                                                       'ConnectionStatus': connectionStatus})
+                            else:
+                                self.wifies.append(
+                                    {'Name': str(name), 'Icon': icon, 'ConnectionStatus': connectionStatus})
                     
             for wifi in self.wifies:
+                connection_button_visible = False
                 connection_status = _('Not Connected')
-                if self.is_connected_to(wifi['Name'], connected_wifi_list):
+                if wifi['ConnectionStatus']:
                     connection_status = _('Connected')
-                    
-                wifione = WifiCard(self, wifi['Icon'], wifi['Name'], connection_status)
+                    connection_button_visible = True
+
+                wifione = WifiCard(self, wifi['Icon'], wifi['Name'], connection_status, connection_button_visible)
+
                 wifi_flowbox.pack_start(wifione, False, False, 0)
 
            

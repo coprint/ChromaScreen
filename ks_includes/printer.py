@@ -344,3 +344,7 @@ class Printer:
                     temp = 0
                 self.tempstore[device][x].append(temp)
         return True
+
+    def configure_cameras(self, data):
+        self.cameras = data
+        logging.debug(f"Cameras: {self.cameras}")

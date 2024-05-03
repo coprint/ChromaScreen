@@ -93,6 +93,9 @@ class KlippyWebsocket(threading.Thread):
 
     def on_message(self, *args):
         message = args[1] if len(args) == 2 else args[0]
+
+      
+
         response = json.loads(message)
         if "id" in response and response['id'] in self.callback_table:
             args = (response,

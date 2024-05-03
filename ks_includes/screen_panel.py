@@ -13,6 +13,7 @@ class ScreenPanel:
     _printer = None
     _gtk = None
     ks_printer_cfg = None
+    
    
     def __init__(self, screen, title):
         self.menu = None
@@ -42,6 +43,8 @@ class ScreenPanel:
     def _autoscroll(self, scroll, *args):
         adj = scroll.get_vadjustment()
         adj.set_value(adj.get_upper() - adj.get_page_size())
+
+  
 
     def emergency_stop(self, widget):
         if self._config.get_main_config().getboolean('confirm_estop', False):

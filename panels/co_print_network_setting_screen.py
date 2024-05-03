@@ -1,6 +1,7 @@
 import logging
 import os
 import socket
+import numpy as np
 import subprocess
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
@@ -213,27 +214,36 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
                             icon = 'signal-medium'
                         if str(name) not in wifiNames:
                             wifiNames.append(str(name))
-                            self.wifies.append({'Name': str(name), 'Icon': icon})
-                    
+                            connectionStatus = self.is_connected_to(str(name), connected_wifi_list)
+                            if connectionStatus:
+                                self.wifies.insert(0, {'Name': str(name), 'Icon': icon, 'ConnectionStatus': connectionStatus})
+                            else:    
+                                self.wifies.append({'Name': str(name), 'Icon': icon, 'ConnectionStatus': connectionStatus})
+
+
             for wifi in self.wifies:
+                connection_button_visible = False  
                 connection_status = _('Not Connected')
-                if self.is_connected_to(wifi['Name'], connected_wifi_list):
+                if wifi['ConnectionStatus']:
                     connection_status = _('Connected')
-                    
-                wifione = WifiCard(self, wifi['Icon'], wifi['Name'], connection_status)
+                    connection_button_visible = True
+                 
+                wifione = WifiCard(self, wifi['Icon'], wifi['Name'], connection_status, connection_button_visible)
+               
                 wifi_flowbox.pack_start(wifione, False, False, 0)
+               
 
             for child in self.scroll.get_children():
                 self.scroll.remove(child)
         else:
 
-            wifione = WifiCard(self, "signal-high", "Co Print 5G", "Connected")
-            wifitwo = WifiCard(self, "signal-high", "TurkTelekom Wifi", "Click to connect.")
-            wifithree = WifiCard(self, "signal-medium", "Superonline Wifi", "Click to connect.")
-            wififour = WifiCard(self, "signal-medium", "Superonline Wifi", "Click to connect.")
-            wififive = WifiCard(self, "signal-medium", "Superonline Wifi", "Click to connect.")
-            wifisix = WifiCard(self, "signal-low", "Superonline Wifi2", "Click to connect.")
-            wifiseven = WifiCard(self, "signal-low", "Superonline Wifi2", "Click to connect.")
+            wifione = WifiCard(self, "signal-high", "Co Print 5Gadasdasdasdasdasd", "Connected", True)
+            wifitwo = WifiCard(self, "signal-high", "TurkTelekom Wifi", "Click to connect.", False)
+            wifithree = WifiCard(self, "signal-medium", "Superonline Wifi", "Click to connect.", False)
+            wififour = WifiCard(self, "signal-medium", "Superonline Wifi", "Click to connect.", False)
+            wififive = WifiCard(self, "signal-medium", "Superonline Wifi", "Click to connect.", False)
+            wifisix = WifiCard(self, "signal-low", "Superonline Wifi2", "Click to connect.", False)
+            wifiseven = WifiCard(self, "signal-low", "Superonline Wifi2", "Click to connect.", False)
             wifi_flowbox.pack_start(wifione, True, True, 0)
             wifi_flowbox.pack_start(wifitwo, True, True, 0)
             wifi_flowbox.pack_start(wifithree, True, True, 0)
@@ -269,7 +279,7 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
             
             if status:
                 self.close_dialog(self.waitDialog)
-                self._screen.show_panel("co_print_wifi_selection_connect", "co_print_wifi_selection_connect", None, 2, True, items=name, password=psw)
+                self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2, True, items=name, password=psw)
             else:
                 self.close_dialog(self.waitDialog)
                 self.showMessageBox(_('Connection Failed'))
@@ -294,8 +304,14 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
         response = self.dialog.run()
     
     def connect_to(self, ssid: str, password: str):
-        
-        subprocess.call(['nmcli', 'd', 'wifi', 'connect', ssid, 'password', password])
+        wifi_list_string = subprocess.check_output(['nmcli', '-f', 'NAME', 'con', 'show']).decode()
+        wifi_list = wifi_list_string.split("\n")
+        is_saved = np.any([ssid in i.strip() for i in wifi_list])
+
+        if is_saved:
+            subprocess.call(['nmcli', 'c', 'up', 'id', ssid])
+        else:
+            subprocess.call(['nmcli', 'd', 'wifi', 'connect', ssid, 'password', password])
         connected_wifi_list = self.what_wifi()
         return self.is_connected_to(ssid, connected_wifi_list)
     

@@ -680,3 +680,7 @@ msgstr "Detail"
 msgid "Waiting"
 msgstr "Waiting"
 
+msgid "Disconnect"
+msgstr "Disconnect"
+
+
