@@ -70,7 +70,7 @@ class BottomMenu(Gtk.Box):
         pintersButtonBox.pack_start(pintersLabel, False, False, 0)
         pintersButton = Gtk.Button(name ="menu-buttons")
         pintersButton.add(pintersButtonBox)
-        pintersButton.connect("clicked", self.on_click_menu_button, 'co_print_change_printer')
+        pintersButton.connect("clicked", self.on_click_menu_button, 'co_print_change_printer', False)
         pintersButton.set_always_show_image (True)
         menuBox.pack_start(pintersButton, True, True, 0)
 
