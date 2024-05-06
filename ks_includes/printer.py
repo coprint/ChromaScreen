@@ -11,6 +11,7 @@ class Printer:
         self.config = {}
         self.data = {}
         self.state = "disconnected"
+        self.state_message = ""
         self.state_cb = state_cb
         self.state_callbacks = state_callbacks
         self.devices = {}
@@ -132,6 +133,8 @@ class Printer:
             return  # disconnected, startup, ready, shutdown, error, paused, printing
         if state != self.state:
             logging.debug(f"Changing state from '{self.state}' to '{state}'")
+            #if state == 'error' or state == 'disconnected' or state == 'shutdown':
+            self.state_message = self.data['webhooks']['state_message']
             self.state = state
         if self.state_callbacks[state] is not None:
             logging.debug(f"Adding callback for state: {state}")
