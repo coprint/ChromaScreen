@@ -27,6 +27,7 @@ class Singleton(type):
 
 
 class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
+    total_jobs = -1
     selectedExtruder = ""
     instant_cpu = 0
     instant_mem = 0
@@ -385,29 +386,16 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
 
 
     def finished_history(self, result, method, params):
-        #print(result)
-        # milimetre - metre
-        # sn - saat
+        if result['result']['job_totals']['total_jobs'] == self.total_jobs:
+            self.tab_box.static_value()
+        else:
+            self.total_jobs = result['result']['job_totals']['total_jobs']
+            self.total_used = {'total_filament_used': result['result']['job_totals']['total_filament_used'],
+                               'total_print_time': result['result']['job_totals']['total_print_time'],
+                               'total_time': result['result']['job_totals']['total_time'],
+                               'total_jobs': result['result']['job_totals']['total_jobs']}
+            self._screen._ws.send_method("server.history.list", None, self.finished_history_list)
 
-        #total_jobs
-        #print(result['result']['job_totals']['total_jobs'])
-
-        #total_time
-        #print(result['result']['job_totals']['total_time'])
-
-        #total_print_time
-        #print(result['result']['job_totals']['total_print_time'])
-
-
-        #total_filament_used
-        #print(result['result']['job_totals']['total_filament_used'])
-
-        self.total_used = {'total_filament_used': result['result']['job_totals']['total_filament_used'],
-                           'total_print_time': result['result']['job_totals']['total_print_time'],
-                           'total_time': result['result']['job_totals']['total_time'],
-                           'total_jobs': result['result']['job_totals']['total_jobs']}
-        self._screen._ws.send_method("server.history.list", None, self.finished_history_list)
-        #self.tab_box.static_value()
 
        
 

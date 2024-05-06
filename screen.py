@@ -837,8 +837,8 @@ class ChromaPad(Gtk.Window):
                     self.show_popup_message(data[6:], 1)
                 elif data.startswith("!! "):
                     self.show_popup_message(data[3:], 3)
-
-                  
+                elif data.startswith("// ") and data.endswith("'extruder'"):
+                    self.process_update(action,data)     
                 elif "unknown" in data.lower() and \
                         not ("TESTZ" in data or "MEASURE_AXES_NOISE" in data or "ACCELEROMETER_QUERY" in data):
                     self.show_popup_message(data)
