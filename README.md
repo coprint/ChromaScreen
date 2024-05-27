@@ -11,3 +11,4 @@ will natively work with [Klipper](https://github.com/kevinOConnor/klipper) and [
 [![Main Menu](docs/img/panels/main_panel.png)](https://ChromaPad.readthedocs.io/en/latest/Panels/)
 
 [More Screenshots](https://ChromaPad.readthedocs.io/en/latest/Panels/)
+edit
