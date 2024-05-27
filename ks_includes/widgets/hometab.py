@@ -106,7 +106,7 @@ class HomeTab(Gtk.Box):
                 horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
                 connectionstyle = f"angle,angleA=0,angleB={ang}"
                 kw["arrowprops"].update({"connectionstyle": connectionstyle})
-                ax.annotate(_(self.this.print_stats[i]['name']) + '\n ' +str(self.this.print_stats[i]['value']), color='w', 
+                ax.annotate(_(self.this.print_stats[i]['name']) + ' ' +str(self.this.print_stats[i]['value']), color='w', 
                             xy=(x, y), xytext=(1.20*np.sign(x), 1.4*y),fontsize=7,
                             horizontalalignment=horizontalalignment, **kw)
 

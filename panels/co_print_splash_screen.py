@@ -100,10 +100,10 @@ class CoPrintSplashScreenPanel(ScreenPanel):
                 if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
 
                     self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
-                    #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
+                    #self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
                 else:
-                    #self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
-                    self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
+                    self._screen.show_panel("co_print_region_selection_new", "co_print_region_selection_new", "Language", 1, False)
+                    #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
             else:
                 self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
 

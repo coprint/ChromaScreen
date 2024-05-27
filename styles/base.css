@@ -149,7 +149,7 @@ button.not-connected-shut-down label{
     font-size: .9em;
 }
 button.not-connected-setting {
-    border-bottom: .3em solid #F7BA17;
+    border-bottom: .3em solid #4285F4;
     background-color: transparent;
     min-width: 5.4rem;
     
@@ -933,7 +933,7 @@ scale.fan-speed slider{
     border-radius: 5px;
     background-color: #e60c0c;
     border: none;
-    margin-top: 1rem;
+    
     padding-bottom: .3rem;
     
 }

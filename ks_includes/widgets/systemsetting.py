@@ -28,7 +28,7 @@ class SystemSetting(Gtk.Box):
         macroLabelBox.pack_start(macroLabel, False, False, 0)
         
         macroButton = Gtk.Button(_buttonName,name ="advanced-setting-button")
-        macroButton.connect("clicked", this.update_program, name)
+        macroButton.connect("clicked", this.VersionControl, name)
         
         macroButton.set_sensitive(_refreshButtonVisibility)
         

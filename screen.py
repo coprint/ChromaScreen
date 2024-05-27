@@ -88,10 +88,10 @@ class cd:
 
 class ChromaPad(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
-    #pc_password = '12345'
-    pc_password = 'c317tek'
-    is_debug = False
-    is_redirect_not_connected = True
+    pc_password = '12345'
+    #pc_password = 'c317tek'
+    is_debug = True
+    is_redirect_not_connected = False
 
     _cur_panels = []
     connecting = False
@@ -117,6 +117,7 @@ class ChromaPad(Gtk.Window):
    
     path_read = f'{computer_name}klipper/src/Kconfig'
     path_brand = f'{computer_name}ChromaPad/scripts/printer_brand_list.json'
+    base_dir = f'{computer_name}ChromaPad'
     path_config = f'{computer_name}ChromaPad/scripts/config.json'
     selected_wizard_printer = 'Printer1WizardDone'
     selected_printer_index = 1
@@ -1111,6 +1112,7 @@ def main():
     os.system("xrandr --addmode HDMI-1 \"1024x600_60.00\" ")
     os.system("xrandr --output HDMI-1 --mode \"1024x600_60.00\" ")
     version = functions.get_software_version()
+    
     parser = argparse.ArgumentParser(description="ChromaPad - A GUI for Klipper")
     homedir = os.path.expanduser("~")
 

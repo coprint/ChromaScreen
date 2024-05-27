@@ -1,10 +1,14 @@
+import json
 import logging
 import os
 import time
+from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
+from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
+from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.keypad import Keypad
 from ks_includes.widgets.progressbar import ProgressBar
 from ks_includes.widgets.mainbutton import MainButton
@@ -131,7 +135,7 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
 
         restartButtonsAndLogFilesBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
         restartButtonsAndLogFilesBox.pack_start(restartBox, False, False, 0)
-        restartButtonsAndLogFilesBox.pack_start(logFilesBox, False, False, 0)
+        #restartButtonsAndLogFilesBox.pack_start(logFilesBox, False, False, 0)
 
 
         #-----update maganer-----#
@@ -151,6 +155,23 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
             self.update_status = False
             self.version_info = False
 
+
+
+        self.config_data = None
+        try:
+            f = open(self._screen.path_config, encoding='utf-8')
+       
+            self.config_data = json.load(f)
+        except Exception as e:
+            logging.exception(e) 
+
+        self.IsKlipperNeedUpdate = False
+        self.IsMainsailNeedUpdate = False
+        if(self.config_data != None):
+            if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
+                self.IsKlipperNeedUpdate = True
+            if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
+                self.IsMainsailNeedUpdate = True
 
         isUpdateReqKlipper = False
         if self.version_info and self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
@@ -175,11 +196,9 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         klipperVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         klipperVersionLabelBox.pack_start(klipperVersionLabel, False, False, 0)
 
-       
-
         if isUpdateReqKlipper:
             klipperUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
-            klipperUpdateButton.connect("clicked", self.update_program, "klipper")
+            klipperUpdateButton.connect("clicked", self.VersionControl, "klipper")
             klipperVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
             klipperVersionBox.pack_start(klipperUpdateLabelBox, False, False, 0)
             klipperVersionBox.pack_start(klipperVersionLabelBox, False, False, 0)
@@ -220,7 +239,7 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
 
         if isUpdateReqMainsail:
             mainsailUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
-            mainsailUpdateButton.connect("clicked", self.update_program, "mainsail")
+            mainsailUpdateButton.connect("clicked", self.VersionControl, "mainsail")
             mainsailVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
             mainsailVersionBox.pack_start(mainsailUpdateLabelBox, False, False, 0)
             mainsailVersionBox.pack_start(mainsailVersionLabelBox, False, False, 0)
@@ -323,8 +342,8 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         shutDownButtonBox.pack_start(shutDownButton, False, False, 0)
        
 
-        settingButton = self._gtk.Button("reload", _("Restart"), "not-connected-setting", 1)
-        settingButton.connect("clicked", self.reboot_poweroff, "reboot")
+        settingButton = self._gtk.Button("network", _("Network"), "not-connected-setting", 1)
+        settingButton.connect("clicked", self.network_page, "reboot")
         settingButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         settingButtonBox.set_name("main-button-box")
         #settingButtonBox.add(settingButton)
@@ -358,6 +377,51 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
 
         self.content.add(page)
 
+    def clean_version(self, version_str):
+        # Başlangıçtaki 'v' karakterini kaldır
+        if version_str.startswith('v'):
+            version_str = version_str[1:]
+        
+        # Ana versiyon numarasını ve ek bilgiyi ayrıştır
+        if '-' in version_str:
+            main_version, build = version_str.split('-')
+            build = int(build)
+        else:
+            main_version = version_str
+            build = 0  # Eğer ek bilgi yoksa build 0 olarak kabul edilir
+        
+        # Ana versiyon numarasını parçalarına ayır (major, minor, patch)
+        major, minor, patch = map(int, main_version.split('.'))
+        
+        return major, minor, patch, build
+    
+    def VersionControl(self, widget, name):
+        isDialogShow = True
+        if name == "klipper" and self.IsKlipperNeedUpdate:
+            isDialogShow = False
+        
+        if name == "mainsail" and self.IsMainsailNeedUpdate:
+            isDialogShow = False
+
+        if isDialogShow:  
+            content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
+            dialog = AreYouSureDialog( content, self)
+            dialog.get_style_context().add_class("network-dialog")
+            dialog.set_decorated(False)
+
+            response = dialog.run()
+    
+            if response == Gtk.ResponseType.OK:
+                self.update_program(None, name)
+                print('Ok')
+                dialog.destroy()
+            
+
+            elif response == Gtk.ResponseType.CANCEL:
+                print('Cancel')
+                dialog.destroy()
+        else:
+            self.update_program(None, name)
 
     def log_files(self, widget, type):
 
@@ -410,6 +474,10 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
             dialog.set_title(_("Restart"))
         else:
             dialog.set_title(_("Shut Down"))
+
+    def network_page(self, widget, method):
+        self._screen.show_panel("co_print_network_setting_screen", "co_print_network_setting_screen", "Language", 1, False)
+        
             
     def reboot_poweroff_confirm(self, dialog, response_id, method):
         self._gtk.remove_dialog(dialog)

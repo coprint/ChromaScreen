@@ -7,6 +7,7 @@ import gi
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.hometab import HomeTab
+from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.keypad import Keypad
 from ks_includes.widgets.progressbar import ProgressBar
 from ks_includes.widgets.mainbutton import MainButton
@@ -213,9 +214,6 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
     
         self._screen._ws.send_method("printer.objects.subscribe", {"objects":{"webhooks":None,"configfile":None,"mcu":None,"gcode_move":None,"print_stats":None,"virtual_sdcard":None,"heaters":None,"heater_bed":None,"fan":None,"gcode_macro LOAD_FILAMENT":None,"gcode_macro UNLOAD_FILAMENT":None,"gcode_macro START_PRINT_PLA":None,"gcode_macro go_screw_1":None,"gcode_macro go_screw_2":None,"gcode_macro go_screw_3":None,"gcode_macro go_screw_4":None,"stepper_enable":None,"motion_report":None,"query_endstops":None,"idle_timeout":None,"system_stats":None,"manual_probe":None,"toolhead":None,"extruder":None}}, self.finished_printer_mcus)
 
-
-
-        
 
         self.content.add(page)
 

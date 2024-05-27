@@ -61,12 +61,13 @@ class InfoDialog(Gtk.Dialog):
         mainBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=30)
         mainBox.set_halign(Gtk.Align.CENTER)
         mainBox.set_valign(Gtk.Align.CENTER)
-        mainBox.pack_start(alertImage, False, False, 0)
-        mainBox.pack_start(content, False, False, 0)
-        mainBox.pack_start(closeButton, False, False, 0)
         if emergencyStopButton:
             mainBox.pack_start(emergencyStopButton, False, False, 0)
-
+        mainBox.pack_start(alertImage, False, False, 0)
+        mainBox.pack_start(content, False, False, 0)
+        if(isActive):
+            mainBox.pack_start(closeButton, False, False, 0)
+        
         
         box = self.get_content_area()
         box.set_halign(Gtk.Align.CENTER)

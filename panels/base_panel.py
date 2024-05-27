@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import contextlib
 import logging
+import os
+import subprocess
+import sys
 
 import gi
 
@@ -189,7 +192,7 @@ class BasePanel(ScreenPanel):
 
     def add_content(self, panel):
         self.current_panel = panel
-        self.set_title(panel.title)
+        self.set_title(str(panel.title))
         self.content.add(panel.content)
 
     def back(self, widget=None):
@@ -331,6 +334,8 @@ class BasePanel(ScreenPanel):
             return
         self.control['estop'].set_sensitive(False)
 
+    
+    
     def set_ks_printer_cfg(self, printer):
         ScreenPanel.ks_printer_cfg = self._config.get_printer_config(printer)
         if self.ks_printer_cfg is not None:
@@ -368,11 +373,46 @@ class BasePanel(ScreenPanel):
         logging.info("Finishing update")
         self._screen.updating = False
         self._gtk.remove_dialog(dialog)
-        self._screen._menu_go_back(home=True)
+        self._screen.show_panel("co_print_splash_screen", "co_print_splash_screen", "Language", 1, False)
 
     def close_update_dialog(self, *args):
         logging.info("Closing update dialog")
         if self.update_dialog in self._screen.dialogs:
             self._screen.dialogs.remove(self.update_dialog)
         self.update_dialog = None
-        self._screen._menu_go_back(home=True)
+        self._screen.show_panel("co_print_splash_screen", "co_print_splash_screen", "Language", 1, False)
+
+    def run_command(self, command):
+        """
+        Verilen komutu çalıştırır ve çıktıyı yazdırır.
+        """
+        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        stdout, stderr = process.communicate()
+        if process.returncode != 0:
+            print(f"Komut çalıştırılırken hata oluştu: {stderr.decode('utf-8')}")
+           
+        else:
+            print(stdout.decode('utf-8'))
+
+    def update_project(self):
+        try:
+           # Proje dizinine git
+        
+            os.chdir(self._screen.base_dir)
+            
+            # Git pull komutunu çalıştırarak en son değişiklikleri al
+            print("Proje güncelleniyor...")
+            self.run_command("git pull")
+            
+            # Gerekirse bağımlılıkları güncelle
+            requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaPad-requirements.txt")
+            if os.path.exists(requirements_file):
+                print("Bağımlılıklar güncelleniyor...")
+                self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaPad-requirements.txt")
+        
+            print("Güncelleme tamamlandı.")
+        except Exception as e:
+            logging.debug(f"Error parsing jinja for title:\n{e}")
+
+       
+        

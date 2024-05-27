@@ -1,7 +1,11 @@
+import json
 import logging
 import os
+import subprocess
+import sys
 import gi
 import contextlib
+from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.macros import Macros
 from ks_includes.widgets.systemsetting import SystemSetting
@@ -22,7 +26,10 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         super().__init__(screen, title)
         
         menu = BottomMenu(self, False)
-    
+
+
+       
+                
 
         update_resp = self._screen.apiclient.send_request("machine/update/status")
         self.update_status = update_resp['result']
@@ -38,20 +45,35 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
-        #macrotwo = SystemSetting(self, "Co Print Smart (Current v1.435b)", ("Update"), True)
+        macrotwo = SystemSetting(self, "ChoromaScreen", ("Update"), True, 'ChoromaScreen')
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
        
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        
+        self.config_data = None
+        try:
+            f = open(self._screen.path_config, encoding='utf-8')
+       
+            self.config_data = json.load(f)
+        except Exception as e:
+            logging.exception(e) 
+
+        self.IsKlipperNeedUpdate = False
+        self.IsMainsailNeedUpdate = False
+        if(self.config_data != None):
+            if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
+                self.IsKlipperNeedUpdate = True
+            if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
+                self.IsMainsailNeedUpdate = True
 
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         
+        self.macro_flowbox.pack_start(macrotwo, True, True, 10)
         self.macro_flowbox.pack_start(macroone, True, True, 0)
-        #macro_flowbox.pack_start(macrotwo, True, True, 10)
+        
         self.macro_flowbox.pack_start(macrothree, True, True, 0)
         
         updateButton = self._gtk.Button("download", _("Full Update"), "system-full-update", 1.4)
-        updateButton.connect("clicked", self.update_program, 'full')
+        updateButton.connect("clicked", self.VersionControl, 'full')
         updateButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         updateButtonBox.set_name("main-button-box")
         updateButtonBox.add(updateButton)
@@ -99,6 +121,8 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         
         self.content.add(page)
 
+
+   
 
     def update_program_info(self):
         for child in self.macro_flowbox_parent.get_children():
@@ -154,6 +178,60 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         self._screen.close_popup_message()
 
 
+    def clean_version(self, version_str):
+        # Başlangıçtaki 'v' karakterini kaldır
+        if version_str.startswith('v'):
+            version_str = version_str[1:]
+        
+        # Ana versiyon numarasını ve ek bilgiyi ayrıştır
+        if '-' in version_str:
+            main_version, build = version_str.split('-')
+            build = int(build)
+        else:
+            main_version = version_str
+            build = 0  # Eğer ek bilgi yoksa build 0 olarak kabul edilir
+        
+        # Ana versiyon numarasını parçalarına ayır (major, minor, patch)
+        major, minor, patch = map(int, main_version.split('.'))
+        
+        return major, minor, patch, build
+    
+    def VersionControl(self, widget, name):
+
+        if name == 'ChoromaScreen':
+            self._screen.base_panel.update_project()
+        else:
+            isDialogShow = True
+            if name == "klipper" and self.IsKlipperNeedUpdate:
+                isDialogShow = False
+            
+            if name == "mainsail" and self.IsMainsailNeedUpdate:
+                isDialogShow = False
+
+            if name == "full" and (self.IsMainsailNeedUpdate and self.self.IsKlipperNeedUpdate):
+                isDialogShow = False
+
+            if isDialogShow:  
+                content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
+                dialog = AreYouSureDialog( content, self)
+                dialog.get_style_context().add_class("network-dialog")
+                dialog.set_decorated(False)
+
+                response = dialog.run()
+        
+                if response == Gtk.ResponseType.OK:
+                    self.update_program(None, name)
+                    print('Ok')
+                    dialog.destroy()
+                
+
+                elif response == Gtk.ResponseType.CANCEL:
+                    print('Cancel')
+                    dialog.destroy()
+            else:
+                self.update_program(None, name)
+
+            
     def update_program(self, widget, program):
         if self._screen.updating or not self.update_status:
             return
