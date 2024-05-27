@@ -88,10 +88,10 @@ class cd:
 
 class ChromaPad(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
-    pc_password = '12345'
-    #pc_password = 'c317tek'
-    is_debug = True
-    is_redirect_not_connected = False
+    #pc_password = '12345'
+    pc_password = 'c317tek'
+    is_debug = False
+    is_redirect_not_connected = True
 
     _cur_panels = []
     connecting = False
@@ -146,7 +146,7 @@ class ChromaPad(Gtk.Window):
         self.confirm = None
         chromapaddir = pathlib.Path(__file__).parent.resolve()
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
-
+       
         self._config = ChromaPadConfig(configfile, self)
         self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
 

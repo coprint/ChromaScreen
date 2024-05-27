@@ -12,7 +12,7 @@ from gi.repository import GLib, Gtk, Pango
 from jinja2 import Environment
 from datetime import datetime
 from math import log
-
+from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 from ks_includes.screen_panel import ScreenPanel
 
 
@@ -411,6 +411,22 @@ class BasePanel(ScreenPanel):
                 self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaPad-requirements.txt")
         
             print("Güncelleme tamamlandı.")
+            content = _("Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için yeniden başlatmak istiyor musunuz?")  
+            dialog = AreYouSureDialog( content, self)
+            dialog.get_style_context().add_class("network-dialog")
+            dialog.set_decorated(False)
+
+            response = dialog.run()
+    
+            if response == Gtk.ResponseType.OK:
+                self._screen.restart_ks()
+                print('Ok')
+                dialog.destroy()
+            
+
+            elif response == Gtk.ResponseType.CANCEL:
+                print('Cancel')
+                dialog.destroy()
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
 

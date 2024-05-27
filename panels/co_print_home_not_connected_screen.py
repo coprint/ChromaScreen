@@ -182,6 +182,33 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
             isUpdateReqMainsail = True
 
 
+         #-----chromascreen update-----#
+        chromascreenUpdateLabel = Gtk.Label(_("Chromascreen"), name="kipper-label")
+        chromascreenUpdateLabel.set_justify(Gtk.Justification.LEFT)
+        chromascreenUpdateLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        chromascreenUpdateLabelBox.pack_start(chromascreenUpdateLabel, False, False, 0)
+
+        chromascreenVersionLabel = Gtk.Label(_("Version: ") + self._screen.version, name="klipper-version-label")
+        chromascreenVersionLabel.set_justify(Gtk.Justification.LEFT)
+        chromascreenVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        chromascreenVersionLabelBox.pack_start(chromascreenVersionLabel, False, False, 0)
+
+        chromascreenUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
+        chromascreenUpdateButton.connect("clicked", self.VersionControl, "ChoromaScreen")
+        chromascreenVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
+        chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
+       
+        
+       
+
+        chromascreenUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        chromascreenUpdateBox.set_name("update-box")
+        chromascreenUpdateBox.pack_start(chromascreenVersionBox, False, False, 0)
+        chromascreenUpdateBox.pack_end(chromascreenUpdateButton, False, False, 0)
+        box_array.append(chromascreenUpdateBox)
+
+
         #-----klipper update-----#
         klipperUpdateLabel = Gtk.Label(_("Klipper"), name="kipper-label")
         klipperUpdateLabel.set_justify(Gtk.Justification.LEFT)
@@ -258,39 +285,11 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         mainsailUpdateBox.pack_end(mainsailUpdateButton, False, False, 0)
         box_array.append(mainsailUpdateBox)
 
-        #-----chromascreen update-----#
-        chromascreenUpdateLabel = Gtk.Label(_("Chromascreen"), name="kipper-label")
-        chromascreenUpdateLabel.set_justify(Gtk.Justification.LEFT)
-        chromascreenUpdateLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        chromascreenUpdateLabelBox.pack_start(chromascreenUpdateLabel, False, False, 0)
-
-        chromascreenVersionLabel = Gtk.Label(_("Version: ") + _("v1.00"), name="klipper-version-label")
-        chromascreenVersionLabel.set_justify(Gtk.Justification.LEFT)
-        chromascreenVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        chromascreenVersionLabelBox.pack_start(chromascreenVersionLabel, False, False, 0)
-
-        
-        if isUpdateReqMainsail:
-            chromascreenUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
-            #klipperUpdateButton.connect("clicked", self.klipperUpdateButton)
-            chromascreenVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
-            chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
-        else:
-
-            chromascreenUpdateButton = Gtk.Button(_('Up-to-date'),name ="up-to-date-button")
-            #klipperUpdateButton.connect("clicked", self.klipperUpdateButton)
-            chromascreenVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
-            chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
-        
        
 
-        chromascreenUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        chromascreenUpdateBox.set_name("update-box")
-        chromascreenUpdateBox.pack_start(chromascreenVersionBox, False, False, 0)
-        chromascreenUpdateBox.pack_end(chromascreenUpdateButton, False, False, 0)
-        box_array.append(chromascreenUpdateBox)
+        
+       
+       
         
         updateManagerBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         updateManagerBox.set_name("update-manager-box")
@@ -396,32 +395,39 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         return major, minor, patch, build
     
     def VersionControl(self, widget, name):
-        isDialogShow = True
-        if name == "klipper" and self.IsKlipperNeedUpdate:
-            isDialogShow = False
-        
-        if name == "mainsail" and self.IsMainsailNeedUpdate:
-            isDialogShow = False
 
-        if isDialogShow:  
-            content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
-            dialog = AreYouSureDialog( content, self)
-            dialog.get_style_context().add_class("network-dialog")
-            dialog.set_decorated(False)
-
-            response = dialog.run()
-    
-            if response == Gtk.ResponseType.OK:
-                self.update_program(None, name)
-                print('Ok')
-                dialog.destroy()
-            
-
-            elif response == Gtk.ResponseType.CANCEL:
-                print('Cancel')
-                dialog.destroy()
+        if name == 'ChoromaScreen':
+            self._screen.base_panel.update_project()
         else:
-            self.update_program(None, name)
+            isDialogShow = True
+            if name == "klipper" and self.IsKlipperNeedUpdate:
+                isDialogShow = False
+            
+            if name == "mainsail" and self.IsMainsailNeedUpdate:
+                isDialogShow = False
+
+            if name == "full" and (self.IsMainsailNeedUpdate and self.self.IsKlipperNeedUpdate):
+                isDialogShow = False
+
+            if isDialogShow:  
+                content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
+                dialog = AreYouSureDialog( content, self)
+                dialog.get_style_context().add_class("network-dialog")
+                dialog.set_decorated(False)
+
+                response = dialog.run()
+        
+                if response == Gtk.ResponseType.OK:
+                    self.update_program(None, name)
+                    print('Ok')
+                    dialog.destroy()
+                
+
+                elif response == Gtk.ResponseType.CANCEL:
+                    print('Cancel')
+                    dialog.destroy()
+            else:
+                self.update_program(None, name)
 
     def log_files(self, widget, type):
 

@@ -45,7 +45,7 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
-        macrotwo = SystemSetting(self, "ChoromaScreen", ("Update"), True, 'ChoromaScreen')
+        macrotwo = SystemSetting(self, "ChoromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , True, 'ChoromaScreen')
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
        
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
