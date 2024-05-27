@@ -48,7 +48,7 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         reportHeaderBox.pack_start(warningYellowIcon, False, False, 0)
         reportHeaderBox.pack_start(warningHeaderLabel, False, False, 0)
 
-        warningContentLabel = Gtk.Label(_("Lost communication with MCU 'mcu' Once the underlying issue is corrected, use the 'FIRMWARE_RESTART' command to reset the firmware, reload the config, and restart the host software. Printer is shutdown"), name="warning-content-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-content-red-label #
+        warningContentLabel = Gtk.Label(self._printer.state_message, name="warning-content-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-content-red-label #
         warningContentLabel.set_max_width_chars(65)
         warningContentLabel.set_line_wrap(True)
         warningContentLabel.set_justify(Gtk.Justification.LEFT)

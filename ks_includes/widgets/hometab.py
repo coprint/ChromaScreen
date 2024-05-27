@@ -173,12 +173,12 @@ class HomeTab(Gtk.Box):
             canvas2.set_has_window(False)
         
             fig2.set_facecolor('#0E0E0E')
-
-        
-        
+            mon, sec = divmod(self.this.total_used['total_print_time'], 60)
+            hr, mon = divmod(mon, 60)
+            label = ("%dh %02dm %02ds" % (hr, mon, sec))
             totalPrintTimeLabel = Gtk.Label(_("Total Print Time"), name="system-total-times-title-label")
             totalPrintTimeLabel.set_halign(Gtk.Align.START)
-            totalPrintTimeValue = Gtk.Label(time.strftime('%Hh %Mm %Ss', time.gmtime(self.this.total_used['total_print_time'])), name="system-total-times-content-label")
+            totalPrintTimeValue = Gtk.Label(label, name="system-total-times-content-label")
             totalPrintTimeValue.set_halign(Gtk.Align.START)
             separatorTotalPrint = Gtk.HSeparator()
             separatorTotalPrint.get_style_context().add_class("tab-separator")
