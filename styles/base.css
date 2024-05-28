@@ -3022,6 +3022,33 @@ combobox.adv-setting-combo window.popup *{
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
+#timezone-box {
+    background-color: #161616;
+    padding: 1.5rem;
+    border-radius: 10px;
+    min-width: 20rem;
+}
+#timezone-select-box {
+    background-color: #00747B;
+    padding: 1.5rem;
+    border: 1px solid #FFF5F5;
+    border-radius: 10px;
+    min-width: 20rem;
+}
+#timezone-label {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+#time-label {
+    color: #FFFFFF;
+    font-size: 45px;
+    font-weight: 500;
+}
+#current-time-label {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 400;
+}
 
 /* Yeni CSSler */
 

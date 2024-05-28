@@ -1,10 +1,13 @@
 import logging
 import os
+import subprocess
+import time
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
+from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.wificard import WifiCard
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
@@ -29,8 +32,17 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
                         { "name":"7200", "value":"7200" }, { "name":"14400", "value":"14400" }
          
         ]
+        languages = [
+            {'Lang':'en' ,'Name': _('English'), 'Icon': 'English', 'Button': Gtk.RadioButton()},
+            {'Lang':'fr' ,'Name': _('French'), 'Icon': 'France', 'Button': Gtk.RadioButton()},
+            {'Lang':'ge' ,'Name': _("Deutsch"), 'Icon': 'Germany', 'Button': Gtk.RadioButton()},
+            {'Lang':'tr' ,'Name': _("Turkish"), 'Icon': 'Turkey', 'Button': Gtk.RadioButton()},
+            {'Lang':'it' ,'Name': _('Italian'), 'Icon': 'Italy', 'Button': Gtk.RadioButton()},
+            {'Lang':'sp' ,'Name': _('Spanish'), 'Icon': 'Spain', 'Button': Gtk.RadioButton()},
+            
+            ]
 
-
+        self.dialog = None
         menu = BottomMenu(self, False)
         
         #System Update#
@@ -67,7 +79,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         autoCloseBox.set_name("adv-settings-box-with-switch")
         autoCloseBox.pack_start(autoCloseLabel, False, False, 0)
         autoCloseBox.pack_end(self.autoCloseSwitch, False, False, 0)
-        box_array.append(autoCloseBox)
+        #box_array.append(autoCloseBox)
         
         #Confirm emergency stop#
         #
@@ -79,7 +91,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         confirmEmergencyBox.set_name("adv-settings-box-with-switch")
         confirmEmergencyBox.pack_start(confirmEmergencyLabel, False, False, 0)
         confirmEmergencyBox.pack_end(self.confirmEmergencySwitch, False, False, 0)
-        box_array.append(confirmEmergencyBox)
+        #box_array.append(confirmEmergencyBox)
         
         #Estimated time method#
         #print_estimate_method
@@ -107,7 +119,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         estimatedTimeBox.set_name("adv-settings-box")
         estimatedTimeBox.pack_start(estimatedTimeLabel, False, False, 0)
         estimatedTimeBox.pack_end(estimated_time_combo, False, False, 0)
-        box_array.append(estimatedTimeBox)
+        #box_array.append(estimatedTimeBox)
         
         #Font Size#
         fontSizeLabel = Gtk.Label(_("Font Size"))
@@ -132,7 +144,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         fontSizeBox.set_name("adv-settings-box")
         fontSizeBox.pack_start(fontSizeLabel, False, False, 0)
         fontSizeBox.pack_end(font_size_combo, False, False, 0)
-        box_array.append(fontSizeBox)
+        #box_array.append(fontSizeBox)
         
         #Hide sensor in temp#
         #
@@ -146,7 +158,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         hideSensorTempBox.set_name("adv-settings-box-with-switch")
         hideSensorTempBox.pack_start(hideSensorTempLabel, False, False, 0)
         hideSensorTempBox.pack_end(self.hideSensorTempSwitch, False, False, 0)
-        box_array.append(hideSensorTempBox)
+        #box_array.append(hideSensorTempBox)
         
         #Macro Shortcuts menu#
         #
@@ -160,10 +172,73 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         macroShortcutBox.set_name("adv-settings-box-with-switch")
         macroShortcutBox.pack_start(macroShortcutLabel, False, False, 0)
         macroShortcutBox.pack_end(self.macroShortcutSwitch, False, False, 0)
-        box_array.append(macroShortcutBox)
+        #box_array.append(macroShortcutBox)
         
+
+
+
+        #Language#
+        languageLabel = Gtk.Label(_("Language"))
+        language_store = Gtk.ListStore(str, str)
+        
+        current_lang_index= 0
+        self.current_lang =  self._config.current_lang
+        for index, language in enumerate(languages):
+            if language["Lang"] == self.current_lang:
+                current_lang_index = index
+            language_store.append([language["Name"],language["Lang"]])
+
+        
+            
+        language_combo = Gtk.ComboBox.new_with_model(language_store)
+        language_combo.connect("changed", self.on_language_change)
+        language_combo.get_style_context().add_class("adv-setting-combo")
+        language_renderer_text = Gtk.CellRendererText()
+        language_combo.pack_start(language_renderer_text, True)
+        language_combo.add_attribute(language_renderer_text, "text", 0)
+        language_combo.set_entry_text_column(1)
+        language_combo.set_active(current_lang_index)
+        languageBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        languageBox.set_name("adv-settings-box")
+        languageBox.pack_start(languageLabel, False, False, 0)
+        languageBox.pack_end(language_combo, False, False, 0)
+        box_array.append(languageBox)
+        #Language#      
+
+
+         #Timezone#
+        timezoneLabel = Gtk.Label(_("Country/State"))
+        timezone_store = Gtk.ListStore(str, str)
+        selected_timezone_index= 0
+        current_timezone = time.strftime('%z')
+        gmt_offsets = range(-12, 15)
+        self.hour_offset = int(current_timezone[:-2])
+        for index, offset in enumerate(gmt_offsets):
+            if offset == self.hour_offset:
+                 selected_timezone_index = index
+            oset = f"Etc/GMT{'+' if offset <= 0 else ''}{offset*-1}" 
+            offset_str = f"GMT{'+' if offset >= 0 else ''}{offset}"
+            timezone_store.append([offset_str,oset])
+
+        timezone_combo = Gtk.ComboBox.new_with_model(timezone_store)
+        timezone_combo.connect("changed", self.on_timezone_change)
+        timezone_combo.get_style_context().add_class("adv-setting-combo")
+        timezone_renderer_text = Gtk.CellRendererText()
+        timezone_combo.pack_start(timezone_renderer_text, True)
+        timezone_combo.add_attribute(timezone_renderer_text, "text", 0)
+        timezone_combo.set_entry_text_column(1)
+        timezone_combo.set_active(selected_timezone_index)
+        timezoneBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        timezoneBox.set_name("adv-settings-box")
+        timezoneBox.pack_start(timezoneLabel, False, False, 0)
+        timezoneBox.pack_end(timezone_combo, False, False, 0)
+        box_array.append(timezoneBox)
+        #timezone#     
+
+
+
         #Printer connections#
-        printerConnectionLabel = Gtk.Label(_("Printer connections"))
+        printerConnectionLabel = Gtk.Label(_("Back to Wizard"))
         settingIcon = self._gtk.Image("ayarlar", self._screen.width *.04, self._screen.width *.04)
         settingButton = Gtk.Button(name ="setting-button")
         settingButton.set_image(settingIcon)
@@ -197,7 +272,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         DPMSBox.set_name("adv-settings-box-with-switch")
         DPMSBox.pack_start(DPMSLabel, False, False, 0)
         DPMSBox.pack_end(self.DPMSSwitch, False, False, 0)
-        box_array.append(DPMSBox)
+        #box_array.append(DPMSBox)
         
         #Screen power off time#
         powerOffTimeLabel = Gtk.Label(_("Screen power off time"))
@@ -240,7 +315,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         showHeaterPowerBox.set_name("adv-settings-box-with-switch")
         showHeaterPowerBox.pack_start(showHeaterPowerLabel, False, False, 0)
         showHeaterPowerBox.pack_end(self.showHeaterPowerSwitch, False, False, 0)
-        box_array.append(showHeaterPowerBox)
+        #box_array.append(showHeaterPowerBox)
         
         #Slicer time corrections#
         #print_estimate_compensation
@@ -262,7 +337,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         slicerTimeBox.set_name("adv-settings-box")
         slicerTimeBox.pack_start(slicerTimeLabel, False, False, 0)
         slicerTimeBox.pack_end(self.scale, True, True, 0)
-        box_array.append(slicerTimeBox)
+        #box_array.append(slicerTimeBox)
         
         
         scrollBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -306,5 +381,80 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         
         #self.printing.set_fan_speed(self.type,value)
         self.fanSpeedInput.set_text('{:.0f}'.format(value) + '%')
+    
+    def on_timezone_change(self, combo):
+        tree_iter = combo.get_active_iter()
+        if tree_iter is not None:
+            model = combo.get_model()
+            value = model[tree_iter][1]
+            self.set_timezone(value)
+            logging.debug(f"[]changed to {value}")
+            
+    
+    def on_language_change(self, combo):
+        tree_iter = combo.get_active_iter()
+        if tree_iter is not None:
+            model = combo.get_model()
+            value = model[tree_iter][1]
+            if self.current_lang != value:
+                self.changeLang(value)
+                logging.debug(f"[]changed to {value}")
+            
+    def set_timezone(self, timezone):
+        try:
+            sudoPassword = self._screen.pc_password
+            command = 'timedatectl set-timezone ' + timezone
+            p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+            #subprocess.run(["sudo", "timedatectl", "set-timezone", timezone], check=True)
+            print(f"Zaman dilimi başarıyla '{timezone}' olarak ayarlandı.")
+        except subprocess.CalledProcessError as e:
+            print(f"Zaman dilimi ayarlanırken bir hata oluştu: {e}")
+             
+    def changeLang(self, lang):
+        self._screen.change_language(lang)
+        lang_map = {
+            'en': 'en_US.UTF-8',
+            'tr': 'tr_TR.UTF-8',
+            'fr': 'fr_FR.UTF-8',
+            'ge': 'de_DE.UTF-8',
+            'it': 'it_IT.UTF-8',
+            'sp': 'es_ES.UTF-8',
+        }
+
+        language_map = {
+            'en': 'en_US',
+            'tr': 'tr_TR',
+            'fr': 'fr_FR',
+            'ge': 'de_DE',
+            'it': 'it_IT',
+            'sp': 'es_ES',
+        }
+
+        locale_code = lang_map.get(lang, 'en_US.UTF-8')
+        locale_code_language = language_map.get(lang, 'en_US')
+       
+        sudoPassword = self._screen.pc_password
+        command = 'locale-gen ' + locale_code_language
+        p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+
+        command2 = 'update-locale LANG=' + locale_code
+        p = os.system('echo %s|sudo -S %s' % (sudoPassword, command2))
+
+        command3 = 'update-locale LC_ALL=' + locale_code
+        p = os.system('echo %s|sudo -S %s' % (sudoPassword, command3))
+      
+
+    def open_info_dialog(self):
+        if self.dialog == None:
+            self.dialog = InfoDialog(self, "Değişikleriniz Başarıyla Tamamlandı", True)
+            self.dialog.get_style_context().add_class("alert-info-dialog")
         
+            self.dialog.set_decorated(False)
+            self.dialog.set_size_request(0, 0)
+        
+            response = self.dialog.run()
+   
+    def finished(self):
+        self.dialog.response(Gtk.ResponseType.CANCEL)
+        self.dialog.destroy()
     

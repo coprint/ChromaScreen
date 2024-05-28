@@ -2,15 +2,13 @@ import logging
 import os
 import pytz
 import subprocess
-
+from datetime import datetime
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
 from ks_includes.screen_panel import ScreenPanel
-
+from ks_includes.widgets.timezone import Timezone
 
 def create_panel(*args):
     return CoPrintRegionSelection(*args)
@@ -21,52 +19,45 @@ class CoPrintRegionSelection(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         initHeader = InitHeader (self, _('Select Region'),_('Please select your region to determine your time zone.'),'Bolgesecimi')
-        countries = []
-        timezones = pytz.all_timezones
-        for timezone in timezones:
-           countries.append(timezone)
-         
-        # ComboBox'u oluştur
-        self.regionCombobox = Gtk.ComboBoxText.new_with_entry()
-        self.regionCombobox.set_name("region-combobox")
-        self.regionCombobox.set_entry_text_column(0)
-        self.regionCombobox.connect("changed", self.on_combobox_changed)
-     
-        # Entry'ı oluştur
-        self.entry = Gtk.Label(xalign=0, name="region-menu-label")
-        #self.entry.set_margin_left(20) 
-        self.entry.get_style_context().add_class("region-entry")
-        #self.entry.set_editable(False)
-        #self.entry.set_can_focus(False)
 
-        self.regionCombobox.set_active(0)
-
-        # Açılır listenin boyutunu ayarla
-        combo_box_text = self.regionCombobox.get_child()
-        style_context = combo_box_text.get_style_context()
-        style_context.add_class("custom-region")
-       
-        self.listbox = Gtk.ListBox(name ="region")
-        self.listbox.set_selection_mode(Gtk.SelectionMode.SINGLE)
-        
-        for country in countries:
-            label = Gtk.Label(label=country, xalign=0, name="region-menu-label")
-            label.set_name("region-label")
-            label.set_margin_left(20) 
-            label.set_justify(Gtk.Justification.LEFT) 
-            self.listbox.add(label)
 
         
-        self.listbox.set_activate_on_single_click(True)
-        self.listbox.connect("row-activated", self.on_listbox_row_activated)
+
+
+        current_time_utc = datetime.utcnow().replace(tzinfo=pytz.utc)
+        gmt_offsets = range(-12, 15)
+        times_in_timezones = []
+        for offset in gmt_offsets:
+            oset = f"Etc/GMT{'+' if offset <= 0 else ''}{offset*-1}"
+            tz = pytz.FixedOffset(offset * 60)
+            current_time_in_tz = current_time_utc.astimezone(tz)
+            offset_str = f"GMT{'+' if offset >= 0 else ''}{offset}"
+            times_in_timezones.append((offset_str, current_time_in_tz.strftime('%H:%M'), oset))
+
+        timezone_grid = Gtk.Grid()
+        timezone_grid.set_halign(Gtk.Align.CENTER)
+        timezone_grid.set_row_spacing(20)
+        timezone_grid.set_column_spacing(20)
         
+        for index, (offset, current_time, oset) in enumerate(times_in_timezones):
+            self.time_zone_box = Timezone(self, offset, current_time, oset)
+            row = index // 2
+            col = index % 2
+            timezone_grid.attach(self.time_zone_box, col, row, 1, 1)
+           
         self.scroll = self._gtk.ScrolledWindow()
-        self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        self.scroll.set_kinetic_scrolling(True)
-        self.scroll.get_overlay_scrolling()
-      
-        self.scroll.add(self.listbox)
-        
+        self.scroll.add(timezone_grid)
+        now = datetime.now()        
+             
+        currentLabel = Gtk.Label("Current: ", name="current-time-label")
+        self.timeLabel = Gtk.Label(now.strftime('%H:%M')  , name="current-time-label")
+        currentTimeBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        currentTimeBox.set_halign(Gtk.Align.CENTER)
+        currentTimeBox.pack_start(currentLabel, False, False, 0)
+        currentTimeBox.pack_start(self.timeLabel, False, False, 0)
+
+
+
         self.continueButton = Gtk.Button(_('Continue'),name ="flat-button-blue")
         self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
@@ -74,19 +65,6 @@ class CoPrintRegionSelection(ScreenPanel):
         buttonBox.pack_start(self.continueButton, False, False, 0)
         buttonBox.set_center_widget(self.continueButton)
    
-        
-        self.listOpenButton = Gtk.Button(image=self._gtk.Image("expand-arrow-down", 50, 50), name ="region-combobox-button")
-        self.listOpenButton.connect("clicked", self.on_button_clicked)
-        
-        vbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        vbox.pack_start(self.entry, True, True, 0)
-        vbox.pack_end(self.listOpenButton, False, False, 0)
-        
-        vbox_with_comboBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        vbox_with_comboBox.set_halign(Gtk.Align.CENTER)
-        vbox_with_comboBox.pack_start(vbox, False, False, 0)
-        vbox_with_comboBox.pack_start(self.scroll, False, True, 0)
-        vbox_with_comboBox.set_name("region-select-box")
         
         backIcon = self._gtk.Image("back-arrow", 35, 35)
         backLabel = Gtk.Label(_("Back"), name="bottom-menu-label")            
@@ -108,11 +86,11 @@ class CoPrintRegionSelection(ScreenPanel):
         
         main.set_hexpand(True)
         main.set_vexpand(True)
-        #main.set_halign(Gtk.Align.CENTER)
         main.pack_start(mainBackButtonBox, False, False, 0)
         main.pack_start(initHeader, False, False, 0)
-        main.pack_start(vbox_with_comboBox, False, True, 0)
-        main.pack_end(buttonBox, True, False, 5)
+        main.pack_start(currentTimeBox, False, False, 13)
+        main.pack_start(self.scroll, False, True, 0)
+        main.pack_end(buttonBox, False, False, 25)
         
         
         fixed = Gtk.Overlay()
@@ -120,48 +98,61 @@ class CoPrintRegionSelection(ScreenPanel):
         fixed.add_overlay(main)
         self.content.add(fixed)
 
-        
-    def on_country_combo_changed(self, combo):
-        tree_iter = combo.get_active_iter()
-        if tree_iter is not None:
-            model = combo.get_model()
-            country = model[tree_iter][0]
-            print("Selected: country=%s" % country)
+    def timezone_select(self,a,b,c, d):
+     
+       self.set_timezone(c)
+       self.time_zone_box.get_style_context().add_class("timezone-select-box")
+          
+       self.timeLabel.set_label(d)
 
-    def change_timezone(self, timezone):
-        command = f"timedatectl set-timezone {timezone.get_text()}"
-        subprocess.run(command, shell=True)
+        
+    # def on_country_combo_changed(self, combo):
+    #     tree_iter = combo.get_active_iter()
+    #     if tree_iter is not None:
+    #         model = combo.get_model()
+    #         country = model[tree_iter][0]
+    #         print("Selected: country=%s" % country)
+
+    # def change_timezone(self, timezone):
+    #     command = f"timedatectl set-timezone {timezone.get_text()}"
+    #     subprocess.run(command, shell=True)
 
     def on_click_continue_button(self, continueButton):
-        self.change_timezone(self.entry)
         self._screen.show_panel("co_print_product_naming", "co_print_product_naming", None, 2)
         
-    def on_combobox_changed(self, combobox):
-        active_text = combobox.get_active_text()
-        print("Seçilen seçenek:", active_text)
+    # def on_combobox_changed(self, combobox):
+    #     active_text = combobox.get_active_text()
+    #     print("Seçilen seçenek:", active_text)
         
-    def on_listbox_row_activated(self, listbox, row):
-        # Seçilen öğenin değerini Entry kutusuna yazdırma
-        selected_value = row.get_child().get_label()
-        self.entry.set_text(selected_value)
+    # def on_listbox_row_activated(self, listbox, row):
+    #     selected_value = row.get_child().get_label()
+    #     self.entry.set_text(selected_value)
         
-    def on_arrow_clicked(self, widget, event):
-        # Ok simgesi tıklandığında yapılacak işlemler
-        if self.listbox.get_visible():
-            self.listbox.hide()
-        else:
-            allocation = self.entry.get_allocation()
-            x, y = self.entry.translate_coordinates(self, allocation.x, allocation.y + allocation.height)
-            self.listbox.set_size_request(allocation.width, -1)
-            self.move(x, y)
-            self.listbox.show_all()
-    def on_button_clicked(self, button):
-        # Listbox öğesinin görünürlüğünü tersine çevirme
-        if self.listbox.get_visible():
-            self.listbox.hide()
-        else:
-            self.listbox.show()
+    # def on_arrow_clicked(self, widget, event):
+    #     if self.listbox.get_visible():
+    #         self.listbox.hide()
+    #     else:
+    #         allocation = self.entry.get_allocation()
+    #         x, y = self.entry.translate_coordinates(self, allocation.x, allocation.y + allocation.height)
+    #         self.listbox.set_size_request(allocation.width, -1)
+    #         self.move(x, y)
+    #         self.listbox.show_all()
+    # def on_button_clicked(self, button):
+    #     if self.listbox.get_visible():
+    #         self.listbox.hide()
+    #     else:
+    #         self.listbox.show()
     
     def on_click_back_button(self, button, data):
         
         self._screen.show_panel(data, data, "Language", 1, False)
+
+    def set_timezone(self, timezone):
+        try:
+            sudoPassword = self._screen.pc_password
+            command = 'timedatectl set-timezone ' + timezone
+            p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+            #subprocess.run(["sudo", "timedatectl", "set-timezone", timezone], check=True)
+            print(f"Zaman dilimi başarıyla '{timezone}' olarak ayarlandı.")
+        except subprocess.CalledProcessError as e:
+            print(f"Zaman dilimi ayarlanırken bir hata oluştu: {e}")
