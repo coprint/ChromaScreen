@@ -1,6 +1,7 @@
 import logging
 import os
 import subprocess
+import time
 
 import gi
 
@@ -69,7 +70,7 @@ class CoPrintSplashScreenPanel(ScreenPanel):
         with cd(path):
             # we are in ~/Library
             subprocess.call("make")
-       
+        time.sleep(10)
         self._screen.show_panel("co_print_sd_card_selection_process_waiting", "co_print_sd_card_selection_process_waiting", None, 2)   
         return False
     

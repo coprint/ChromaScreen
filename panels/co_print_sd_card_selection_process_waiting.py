@@ -202,7 +202,7 @@ class CoPrintSdCardSelectionProcessWaiting(ScreenPanel):
         
         self.buttonBox.add(self.writeDone)
         self.content.show_all()
-        GLib.timeout_add_seconds(2, self.on_click_continue_button)
+        GLib.timeout_add_seconds(15, self.on_click_continue_button)
        
     
     

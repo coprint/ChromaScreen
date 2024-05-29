@@ -28,13 +28,6 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
         super().__init__(screen, title)
         
         menu = BottomMenu(self, False)
-
-        hostname=socket.gethostname()   
-        IPAddr=socket.gethostbyname(hostname)
-        #IPAddr = socket.gethostbyname(hostname)
-        #host_addr = socket.gethostbyname(hostname + ".local")
-
-        #ip = host_addr
         self.ip = '--'
         connectionSettingsLabel = Gtk.Label(_("Connection Settings"), name="connection-setting-label")
         connectionSettingsLabel.set_justify(Gtk.Justification.LEFT)
@@ -155,11 +148,6 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
             dialog.destroy()
     
     def refresh(self, widget):
-
-
-        hostname=socket.gethostname()   
-        IPAddr=socket.gethostbyname(hostname)
-       # host_addr = socket.gethostbyname(hostname + ".local")
 
         gws = netifaces.gateways()
         if "default" in gws and netifaces.AF_INET in gws["default"]:
@@ -318,8 +306,3 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
     def close_dialog(self, dialog):
         dialog.response(Gtk.ResponseType.CANCEL)
         dialog.destroy()  
-    
-    
-       
-        
-    

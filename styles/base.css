@@ -1,1601 +1,1589 @@
 * {
-    color: white;
-    font-size: KS_FONT_SIZEpx;
-    -GtkComboBox-appears-as-list: 0;
-    text-shadow: none;
-    box-shadow: none;
-    border: 0;
+	color: white;
+	font-size: KS_FONT_SIZEpx;
+	-gtkcombobox-appears-as-list: 0;
+	text-shadow: none;
+	box-shadow: none;
+	border: 0;
 }
 
-
 spinner {
-    
-    animation: spin 1s ease-in-out infinite;
+	animation: spin 1s ease-in-out infinite;
 }
 
 button.menu {
-    border-bottom: 0em;
-    
+	border-bottom: 0em;
 }
 
-#region-select-box{
-    min-width: 500px;
+#region-select-box {
+	min-width: 500px;
 }
 
 label#progress-label {
-    color:#9A9A9A;
-    font-size: 1em;
-    min-width: 10.5rem;
+	color: #9a9a9a;
+	font-size: 1em;
+	min-width: 10.5rem;
 }
 #printing-screen-left-box {
-    min-width: 28rem;
+	min-width: 28rem;
 }
 button.pause {
-    border-bottom: .2em solid #F7BA17;
-    padding-bottom: .4em;
-    padding-top: .4em;
-    padding-left: .4em;
-    padding-right: .4em;
-    background-color: #000000;
-    
+	border-bottom: 0.2em solid #f7ba17;
+	padding-bottom: 0.4em;
+	padding-top: 0.4em;
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+	background-color: #000000;
 }
 
 button.close {
-    border-bottom: .2em solid #E74636;
-    padding-bottom: .4em;
-    padding-top: .4em;
-    padding-left: .4em;
-    padding-right: .4em;
-    background-color: #000000;
-    
+	border-bottom: 0.2em solid #e74636;
+	padding-bottom: 0.4em;
+	padding-top: 0.4em;
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+	background-color: #000000;
 }
 
 button.resume {
-    border-bottom: .2em solid #00f54e;
-    padding-bottom: .4em;
-    padding-top: .4em;
-    padding-left: .4em;
-    padding-right: .4em;
-    background-color: #000000;
-    
+	border-bottom: 0.2em solid #00f54e;
+	padding-bottom: 0.4em;
+	padding-top: 0.4em;
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+	background-color: #000000;
 }
-
 
 button.home-home {
-    border-bottom: .3em solid #F4B400;
-    background-color: transparent;
+	border-bottom: 0.3em solid #f4b400;
+	background-color: transparent;
 }
-button.home-home label{
-    font-size: .8em;
+button.home-home label {
+	font-size: 0.8em;
 }
 button.home-move {
-    border-bottom: .3em solid #4285F4;
-    background-color: transparent;
+	border-bottom: 0.3em solid #4285f4;
+	background-color: transparent;
 }
-button.home-move label{
-    font-size: .8em;
+button.home-move label {
+	font-size: 0.8em;
 }
 button.home-start {
-    border-bottom: .3em solid #0F9D58;
-    background-color: transparent;
+	border-bottom: 0.3em solid #0f9d58;
+	background-color: transparent;
 }
-button.home-start label{
-    font-size: .8em;
+button.home-start label {
+	font-size: 0.8em;
 }
 button.home-setting {
-    border-bottom: .3em solid #DB4437;
-    background-color: transparent;
+	border-bottom: 0.3em solid #db4437;
+	background-color: transparent;
 }
-button.home-setting label{
-    font-size: .8em;
+button.home-setting label {
+	font-size: 0.8em;
 }
 button.home-extrude {
-	border-bottom: .3em solid #E87142;
-    background-color: transparent;
+	border-bottom: 0.3em solid #e87142;
+	background-color: transparent;
 }
-button.home-extrude label{
-    font-size: .8em;
+button.home-extrude label {
+	font-size: 0.8em;
 }
 button.home-temperature {
-    border-bottom: .3em solid #9B479F;
-    background-color: transparent;
+	border-bottom: 0.3em solid #9b479f;
+	background-color: transparent;
 }
-button.home-temperature label{
- font-size: .8em;
+button.home-temperature label {
+	font-size: 0.8em;
 }
 button.system-full-update {
-    border-bottom: .3em solid #F4B400;
-    background-color: transparent;
-    min-width: 8rem;
-    min-height: 8rem;
+	border-bottom: 0.3em solid #f4b400;
+	background-color: transparent;
+	min-width: 8rem;
+	min-height: 8rem;
 }
-button.system-full-update label{
-    font-size: .9em;
+button.system-full-update label {
+	font-size: 0.9em;
 }
 button.system-refresh {
-    border-bottom: .3em solid #4285F4;
-    background-color: transparent;
-    min-width: 8rem;
-    min-height: 8rem;
+	border-bottom: 0.3em solid #4285f4;
+	background-color: transparent;
+	min-width: 8rem;
+	min-height: 8rem;
 }
-button.system-refresh label{
-    font-size: .9em;
+button.system-refresh label {
+	font-size: 0.9em;
 }
 button.system-restart {
-    border-bottom: .3em solid #0F9D58;
-    background-color: transparent;
-    min-width: 8rem;
-    min-height: 8rem;
+	border-bottom: 0.3em solid #0f9d58;
+	background-color: transparent;
+	min-width: 8rem;
+	min-height: 8rem;
 }
-button.system-restart label{
-    font-size: .9em;
+button.system-restart label {
+	font-size: 0.9em;
 }
 button.system-shut-down {
-    border-bottom: .3em solid #DB4437;
-    background-color: transparent;
-    min-width: 8rem;
-    min-height: 8rem;
+	border-bottom: 0.3em solid #db4437;
+	background-color: transparent;
+	min-width: 8rem;
+	min-height: 8rem;
 }
-button.system-shut-down label{
-    font-size: .9em;
+button.system-shut-down label {
+	font-size: 0.9em;
 }
 button.not-connected-shut-down {
-    border-bottom: .3em solid #DB4437;
-    background-color: transparent;
-    min-width: 5.4rem;
-    
+	border-bottom: 0.3em solid #db4437;
+	background-color: transparent;
+	min-width: 5.4rem;
 }
-button.not-connected-shut-down label{
-    font-size: .9em;
+button.not-connected-shut-down label {
+	font-size: 0.9em;
 }
 button.not-connected-setting {
-    border-bottom: .3em solid #4285F4;
-    background-color: transparent;
-    min-width: 5.4rem;
-    
+	border-bottom: 0.3em solid #4285f4;
+	background-color: transparent;
+	min-width: 5.4rem;
 }
-button.not-connected-setting label{
-    font-size: .9em;
+button.not-connected-setting label {
+	font-size: 0.9em;
 }
 #bottom-menu-label {
-    padding-top: .4rem;
-    padding-left: .5rem;
+	padding-top: 0.4rem;
+	padding-left: 0.5rem;
 }
 #back-button-label {
-    padding-top: .4rem;
-    padding-left: .5rem;
-    color: #D9D9D9;
+	padding-top: 0.4rem;
+	padding-left: 0.5rem;
+	color: #d9d9d9;
 }
 #back-button:active {
-    background-color: #FFFFFF;
-    border-radius: 5px;
+	background-color: #ffffff;
+	border-radius: 5px;
 }
 #pause-cancel-button-box {
-    background-color: #000000;
-    border-radius: .5em;
-    padding: .4em;
+	background-color: #000000;
+	border-radius: 0.5em;
+	padding: 0.4em;
 }
 #main-button-box {
-    background: linear-gradient(180deg, #909090 0%, #5F5E5E 100%);
-    border-radius: .5em;
-    padding: .4em;
+	background: linear-gradient(180deg, #909090 0%, #5f5e5e 100%);
+	border-radius: 0.5em;
+	padding: 0.4em;
 }
-
 
 #printing-right-info-box {
-    margin: 1em;
+	margin: 1em;
 }
-progressbar#progress-bar-extruder-blue progress{
-    background-image: none;
-    background-color: #00477B;
-    min-height: .5em;
-    border-radius: 15px;
+progressbar#progress-bar-extruder-blue progress {
+	background-image: none;
+	background-color: #00477b;
+	min-height: 0.5em;
+	border-radius: 15px;
 }
 progressbar#progress-bar-extruder-blue trough {
-    min-height: .5em;
-    border-radius: 15px;
-    background-color: #C6C6CC;
+	min-height: 0.5em;
+	border-radius: 15px;
+	background-color: #c6c6cc;
 }
-progressbar#progress-bar-extruder-yellow progress{
-    background-image: none;
-    background-color: #F7BA17;
-    min-height: .5em;
-    border-radius: 15px;
+progressbar#progress-bar-extruder-yellow progress {
+	background-image: none;
+	background-color: #f7ba17;
+	min-height: 0.5em;
+	border-radius: 15px;
 }
 progressbar#progress-bar-extruder-yellow trough {
-    min-height: .5em;
-    border-radius: 15px;
-    background-color: #C6C6CC;
+	min-height: 0.5em;
+	border-radius: 15px;
+	background-color: #c6c6cc;
 }
-progressbar#printing-progress progress{
-    background-image: none;
-    background-color: #F7BA17;
-    min-height: .5em;
-    border-radius: 15px;
+progressbar#printing-progress progress {
+	background-image: none;
+	background-color: #f7ba17;
+	min-height: 0.5em;
+	border-radius: 15px;
 }
 progressbar#printing-progress trough {
-    min-height: .5em;
-    border-radius: 15px;
+	min-height: 0.5em;
+	border-radius: 15px;
 }
 #selected-printer-box {
-    border: 1px solid #4A4A4A;
-    border-radius: 15px;
+	border: 1px solid #4a4a4a;
+	border-radius: 15px;
 }
 #printer-event-box {
-    background-color: #161616;
-    
-    border-radius: 15px;
-    min-width: 16rem;
+	background-color: #161616;
+
+	border-radius: 15px;
+	min-width: 16rem;
 }
 .selected-event-box {
-    border: 3px solid #138FD3;
-    border-radius: 15px;
-    min-width: 16rem;
-  
+	border: 3px solid #138fd3;
+	border-radius: 15px;
+	min-width: 16rem;
 }
 #warning-header-yellow-label {
-    color: #F4AA0B;
-    font-size: 1.35rem;
-    font-weight: 600;
+	color: #f4aa0b;
+	font-size: 1.35rem;
+	font-weight: 600;
 }
 #warning-content-yellow-label {
-    color: #F4AA0B;
-    font-size: 1.1rem;
-    font-weight: 400;
+	color: #f4aa0b;
+	font-size: 1.1rem;
+	font-weight: 400;
 }
 #warning-header-red-label {
-    color: #EC5F59;
-    font-size: 1.35rem;
-    font-weight: 600;
+	color: #ec5f59;
+	font-size: 1.35rem;
+	font-weight: 600;
 }
 #warning-content-red-label {
-    color: #EC5F59;
-    font-size: 1.1rem;
-    font-weight: 400;
+	color: #ec5f59;
+	font-size: 1.1rem;
+	font-weight: 400;
 }
 
 #report-box-yellow {
-    background: #2C2116;
-    border: 1.5px solid #F4AA0B;
-    border-radius: 10px;
-    padding: 1rem;
-   
+	background: #2c2116;
+	border: 1.5px solid #f4aa0b;
+	border-radius: 10px;
+	padding: 1rem;
 }
 #report-box-red {
-    background: #2C1B1B;
-    border: 1.5px solid #EC5F59;
-    border-radius: 10px;
-    padding: 1rem;
-   
+	background: #2c1b1b;
+	border: 1.5px solid #ec5f59;
+	border-radius: 10px;
+	padding: 1rem;
 }
 #wiki-box {
-    background: #162C17;
-    border: 1.5px solid #37AB56;
-    border-radius: 10px;
-    padding: 1rem;
+	background: #162c17;
+	border: 1.5px solid #37ab56;
+	border-radius: 10px;
+	padding: 1rem;
 }
 #wiki-header-green-label {
-    color: #2CC054;
-    font-size: 1.35rem;
-    font-weight: 600;
+	color: #2cc054;
+	font-size: 1.35rem;
+	font-weight: 600;
 }
 #wiki-content-green-label {
-    color: #2CC054;
-    font-size: 1.1rem;
-    font-weight: 400;
+	color: #2cc054;
+	font-size: 1.1rem;
+	font-weight: 400;
 }
 #system-restart-yellow-button {
-    border-radius: 5px;
-    border: 1px solid #F7BA17;
-    background: #2C2116;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	border: 1px solid #f7ba17;
+	background: #2c2116;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-#system-restart-yellow-button label{
-    font-size: 1rem;
+#system-restart-yellow-button label {
+	font-size: 1rem;
 }
 #system-restart-yellow-button:active {
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
 
 #system-restart-red-button {
-    border-radius: 5px;
-    border: 1px solid #EC5F59;
-    background: #2C1B1B;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	border: 1px solid #ec5f59;
+	background: #2c1b1b;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-#system-restart-red-button label{
-    font-size: 1rem;
+#system-restart-red-button label {
+	font-size: 1rem;
 }
 #system-restart-red-button:active {
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
 
 #log-files-button {
-    border-radius: 5px;
-    border: 1px solid #4994EC;
-    background: #101F31;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 10rem;
+	border-radius: 5px;
+	border: 1px solid #4994ec;
+	background: #101f31;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 10rem;
 }
-#log-files-button label{
-    font-size: 1rem;
-    color: #4994EC;
+#log-files-button label {
+	font-size: 1rem;
+	color: #4994ec;
 }
 #log-files-button:active {
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 10rem;
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 10rem;
 }
 #log-files-box {
-    background-color: #161616;
-    border-radius: .65rem;
- 
+	background-color: #161616;
+	border-radius: 0.65rem;
 }
-#log-files-label-box{
-    padding: .5rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    border-radius: .65rem .65rem 0 0;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+#log-files-label-box {
+	padding: 0.5rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 0.65rem 0.65rem 0 0;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-#update-manager-label-box{
-    padding: .75rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    border-radius: .65rem .65rem 0 0;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+#update-manager-label-box {
+	padding: 0.75rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 0.65rem 0.65rem 0 0;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 #update-box {
-    padding: .75rem .65rem;
+	padding: 0.75rem 0.65rem;
 }
 #kipper-label {
-    font-size: 1rem;
+	font-size: 1rem;
 }
 #klipper-version-label {
-    font-size: .9rem;
+	font-size: 0.9rem;
 }
 #update-manager-button {
-    border-radius: 5px;
-    border: 1px solid #4994EC;
-    background: #101F31;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 5rem;
+	border-radius: 5px;
+	border: 1px solid #4994ec;
+	background: #101f31;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 5rem;
 }
 #update-manager-button label {
-    font-size: 1rem;
-    color: #4994EC;
+	font-size: 1rem;
+	color: #4994ec;
 }
 #update-manager-button:active {
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 5rem;
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 5rem;
 }
 #up-to-date-button {
-    border-radius: 5px;
-    border: 1.2px solid #3B5736;
-    background: #071008;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 5rem;
+	border-radius: 5px;
+	border: 1.2px solid #3b5736;
+	background: #071008;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 5rem;
 }
 #up-to-date-button label {
-    font-size: 1rem;
-    color: #3B5736;
+	font-size: 1rem;
+	color: #3b5736;
 }
 #up-to-date-button:active {
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 5rem;
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 5rem;
 }
 #update-manager-box {
-    min-width: 27rem;
-    background: #161616;
+	min-width: 27rem;
+	background: #161616;
 }
 #printer-detail-box {
-    background-color: transparent;
-    min-width: 17rem;
+	background-color: transparent;
+	min-width: 17rem;
 }
 #printer-name-label {
-    font-size: 1.1rem;
-    font-weight: 700;
+	font-size: 1.1rem;
+	font-weight: 700;
 }
 #printer-sub-name-label {
-    font-size: 0.9rem;
-    color: #83848C;
+	font-size: 0.9rem;
+	color: #83848c;
 }
 #printer-dimension-label {
-    font-size: 0.9rem;
-    color: #83848C;
+	font-size: 0.9rem;
+	color: #83848c;
 }
 #printer-status-label {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-right: 0.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	margin-right: 0.5rem;
 }
 #printer-status-continuing {
-    font-size: .8rem;
-    color: #1BBC91;
+	font-size: 0.8rem;
+	color: #1bbc91;
 }
 #printer-status-paused {
-    font-size: .8rem;
-    color: #F7BA17;
+	font-size: 0.8rem;
+	color: #f7ba17;
 }
 #printer-status-not-working {
-    font-size: .8rem;
-    color: #C9C5C5;
+	font-size: 0.8rem;
+	color: #c9c5c5;
 }
 #printer-status-not-configured {
-    font-size: .8rem;
-    color: #E87142;
+	font-size: 0.8rem;
+	color: #e87142;
 }
 #printing-label {
-    font-size: .9rem;
-    color: #C2C2C2;
-    font-weight: 500;
+	font-size: 0.9rem;
+	color: #c2c2c2;
+	font-weight: 500;
 }
 #printer-file-name-label {
-    color: #848484;
-    font-size: .9rem;
+	color: #848484;
+	font-size: 0.9rem;
 }
 #time-remaining-label {
-    color: #C2C2C2;
-    font-weight: 600;
-    font-size: .9rem;
+	color: #c2c2c2;
+	font-weight: 600;
+	font-size: 0.9rem;
 }
 #change-printer-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-   
-    padding: .5rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 15px;
+
+	padding: 0.5rem;
 }
 #printing-stop-button {
-    background-color: transparent;
+	background-color: transparent;
 }
 #printing-stop-button:active {
-    background-color: #FFFFFF;
+	background-color: #ffffff;
 }
 #add-printer-box {
-    background-color: #000000;
-    border: 2px dashed #505050;
-    border-radius: 15px;
-    min-width: 31rem;
-    min-height: 11rem;
-    margin-top: 1.5rem;
-
+	background-color: #000000;
+	border: 2px dashed #505050;
+	border-radius: 15px;
+	min-width: 31rem;
+	min-height: 11rem;
+	margin-top: 1.5rem;
 }
 #add-printer-label {
-    color: #83848C;
-    font-size: 1.1rem;
+	color: #83848c;
+	font-size: 1.1rem;
 }
 
 #extruder-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 10px;
-    min-height: 3em;
-   /*margin: 1em;*/ 
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 10px;
+	min-height: 3em;
+	/*margin: 1em;*/
 
-    padding-left: .6em;
-    padding-right: .6em;
-    padding-top: .25em;
-    padding-bottom: .25em;
+	padding-left: 0.6em;
+	padding-right: 0.6em;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
 }
 #zoffset-box {
-   
-    padding: 1rem;
+	padding: 1rem;
 }
 #heatedBed_box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 10px;
-    padding: .5rem;
-
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 10px;
+	padding: 0.5rem;
 }
 #extruder-label {
-    color: #9A9A9A;
-    font-size: .75em;
+	color: #9a9a9a;
+	font-size: 0.75em;
 }
 .zoffset-entry {
-    border: 1px solid #FFFFFF;
-    border-radius: 7px;
-    background-color: transparent;
+	border: 1px solid #ffffff;
+	border-radius: 7px;
+	background-color: transparent;
 }
 .speed-factor-entry {
-    border: 1px solid #FFFFFF;
-    border-radius: 7px;
-    background-color: transparent;
-
+	border: 1px solid #ffffff;
+	border-radius: 7px;
+	background-color: transparent;
 }
 #number-label {
-font-size: 1.4em;
+	font-size: 1.4em;
 }
-#percentage-factor-label{
-    font-size: 1em;
+#percentage-factor-label {
+	font-size: 1em;
 }
 #printing-files-label {
-
 }
 
 #printing-files-label-title {
-    font-weight: 700;
+	font-weight: 700;
 }
 #printing-files-label-content {
-    font-weight: 400;
+	font-weight: 400;
 }
 #number-label-box {
-    border-radius: 7px;
-    border: 1px solid #C1C1C1;
-    min-width: 7rem;
-    min-height: 2.5rem;
+	border-radius: 7px;
+	border: 1px solid #c1c1c1;
+	min-width: 7rem;
+	min-height: 2.5rem;
 }
 #temperature-label {
-    min-width: 12.5rem;
-    min-height: 3rem;
+	min-width: 12.5rem;
+	min-height: 3rem;
 }
 #temperature-label-box {
-    border-radius: 7px;
-    border: 1px solid #C6C1C1;
+	border-radius: 7px;
+	border: 1px solid #c6c1c1;
 }
 #fan-speed-input-label {
-    border: 1px solid #9E9E9E;
-    min-width: 9rem;
-    min-height: 4rem;
-    border-radius: 7px;
+	border: 1px solid #9e9e9e;
+	min-width: 9rem;
+	min-height: 4rem;
+	border-radius: 7px;
 }
 .spin-entry {
-    border: none;
-    background-color: #000000;
+	border: none;
+	background-color: #000000;
 }
 
 #zoffset-label {
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 #z-axis-label {
-    color: #9A9A9A;
-    font-size: 1.3rem;
-
+	color: #9a9a9a;
+	font-size: 1.3rem;
 }
-#exp-main{
-    background-color: #00747B;
+#exp-main {
+	background-color: #00747b;
 }
 
 #up-down-buttons {
-    background-color: #00477B;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
-    min-height: 4rem;
-    min-width: 3.5rem;
-    
+	background-color: #00477b;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 12px;
+	min-height: 4rem;
+	min-width: 3.5rem;
 }
 
 #up-down-buttons:active {
-    background-color: #ffffff;
-    border-radius: 12px;
-    min-height: 4rem;
-    min-width: 3.5rem;
-    
+	background-color: #ffffff;
+	border-radius: 12px;
+	min-height: 4rem;
+	min-width: 3.5rem;
 }
 
-#move-grid-buttons{
-    background-color: #00477B;
-    border-radius: 12px;
-    min-height: 6rem;
-    min-width: 5rem;
-   
+#move-grid-buttons {
+	background-color: #00477b;
+	border-radius: 12px;
+	min-height: 6rem;
+	min-width: 5rem;
 }
 
 #move-grid-buttons:active {
-    background-color: #ffffff;
-    border-radius: 12px;
-    min-height: 6rem;
-    min-width: 5rem;
-   
+	background-color: #ffffff;
+	border-radius: 12px;
+	min-height: 6rem;
+	min-width: 5rem;
 }
 #home-buttons {
-    background-color: #007B65;
-    border-radius: 12px;
-    min-height: 6rem;
-    min-width: 5rem;
+	background-color: #007b65;
+	border-radius: 12px;
+	min-height: 6rem;
+	min-width: 5rem;
 }
 
 #home-buttons:active {
-    background-color: #ffffff;
-    border-radius: 12px;
-    min-height: 6rem;
-    min-width: 5rem;
+	background-color: #ffffff;
+	border-radius: 12px;
+	min-height: 6rem;
+	min-width: 5rem;
 }
 
 #left-button-box {
-    border-radius: 1em 0 0 1em;
-    padding: .5em;
-    border-top: 1px solid #C1C1C1;
-    border-left: 1px solid #C1C1C1;
-    border-bottom: 1px solid #C1C1C1;
+	border-radius: 1em 0 0 1em;
+	padding: 0.5em;
+	border-top: 1px solid #c1c1c1;
+	border-left: 1px solid #c1c1c1;
+	border-bottom: 1px solid #c1c1c1;
 }
 #up-button-box {
-    border-radius: 1em 1em 0 0;
-    padding: .5em;
-    border-left: 1px solid #C1C1C1;
-    border-right: 1px solid #C1C1C1;
-    border-top: 1px solid #C1C1C1;
+	border-radius: 1em 1em 0 0;
+	padding: 0.5em;
+	border-left: 1px solid #c1c1c1;
+	border-right: 1px solid #c1c1c1;
+	border-top: 1px solid #c1c1c1;
 }
 #home-button-box {
-    padding: .5em;
-    border-left: 1px solid #C1C1C1;
-    border-right: 1px solid #C1C1C1;
+	padding: 0.5em;
+	border-left: 1px solid #c1c1c1;
+	border-right: 1px solid #c1c1c1;
 }
 #down-button-box {
-    border-radius: 0 0 1em 1em;
-    padding: .5em;
-    border-left: 1px solid #C1C1C1;
-    border-right: 1px solid #C1C1C1;
-    border-bottom: 1px solid #C1C1C1;
+	border-radius: 0 0 1em 1em;
+	padding: 0.5em;
+	border-left: 1px solid #c1c1c1;
+	border-right: 1px solid #c1c1c1;
+	border-bottom: 1px solid #c1c1c1;
 }
 #right-button-box {
-    
-    border-radius: 0 1em 1em 0;
-    padding: .5em;
-    border-top: 1px solid #C1C1C1;
-    border-right: 1px solid #C1C1C1;
-    border-bottom: 1px solid #C1C1C1;
+	border-radius: 0 1em 1em 0;
+	padding: 0.5em;
+	border-top: 1px solid #c1c1c1;
+	border-right: 1px solid #c1c1c1;
+	border-bottom: 1px solid #c1c1c1;
 }
 #stepper-button-box {
-    padding: .5em;
-   
+	padding: 0.5em;
 }
 #move-button {
-    border-radius: .5em;
-    border: 1px solid #C1C1C1;
-    min-height: 3.5rem;
+	border-radius: 0.5em;
+	border: 1px solid #c1c1c1;
+	min-height: 3.5rem;
 }
 button.move-button-active {
-    border-radius: .5em;
-    background-color: #00477B;
-    border: 1px solid #00477B;
-    min-height: 3.5rem;
-    
+	border-radius: 0.5em;
+	background-color: #00477b;
+	border: 1px solid #00477b;
+	min-height: 3.5rem;
 }
 
 button.increase-button-active {
-    background-color: #00477B;
-    border: 1px solid #6B6B6B;
-    min-width:7rem;
-    min-height: 3.5rem;
-  
+	background-color: #00477b;
+	border: 1px solid #6b6b6b;
+	min-width: 7rem;
+	min-height: 3.5rem;
 }
-
 
 #extrusion-speed-button {
-    border-radius: .5em;
-    border: 1px solid #C1C1C1;
-    min-height: 3.5rem;
-    padding-right: 1.2em;
-    padding-left: 1.2em;
-    min-width: 3rem;
-   
+	border-radius: 0.5em;
+	border: 1px solid #c1c1c1;
+	min-height: 3.5rem;
+	padding-right: 1.2em;
+	padding-left: 1.2em;
+	min-width: 3rem;
 }
 #extrusion-speed-button:focus {
-    border-radius: .5em;
-    background-color: #00477B;
-    border: 1px solid #00477B;
-    min-height: 3.5rem;
-    padding-right: 1.2em;
-    padding-left: 1.2em;
-    min-width: 3rem;
-    
+	border-radius: 0.5em;
+	background-color: #00477b;
+	border: 1px solid #00477b;
+	min-height: 3.5rem;
+	padding-right: 1.2em;
+	padding-left: 1.2em;
+	min-width: 3rem;
 }
 #move-label-box {
-    min-height: 4em;
+	min-height: 4em;
 }
 #move-label {
-    font-size: 1.3rem;
-    color: #9A9A9A;
+	font-size: 1.3rem;
+	color: #9a9a9a;
 }
 #move-head-label {
-    font-size: 1.3rem;
-    color: #9A9A9A;
-    margin-left: 4px;
-    margin-bottom: 4px;
+	font-size: 1.3rem;
+	color: #9a9a9a;
+	margin-left: 4px;
+	margin-bottom: 4px;
 }
 button#increase-button {
-    
-    border: 1px solid #6B6B6B;
-    min-width:7rem;
-    min-height: 3.5rem;
+	border: 1px solid #6b6b6b;
+	min-width: 7rem;
+	min-height: 3.5rem;
 }
 
 #pre-temperature-button {
-    background-color: #D9D9D9;
-    border: 1px solid #9D9797;
-    border-radius: .4em;
-    min-height: 4.5rem;
-    min-width: 8em;
+	background-color: #d9d9d9;
+	border: 1px solid #9d9797;
+	border-radius: 0.4em;
+	min-height: 4.5rem;
+	min-width: 8em;
 }
 
 #pre-temperature-button:active {
-    background-color: #00477B;
-    border: 1px solid #00477B;
-    border-radius: .4em;
-    min-height: 3.5rem;
-    min-width: 8em;
+	background-color: #00477b;
+	border: 1px solid #00477b;
+	border-radius: 0.4em;
+	min-height: 3.5rem;
+	min-width: 8em;
 }
 
 #pre-temperature-button label {
-    color:#000000
+	color: #000000;
 }
 
 #pre-temperature-button:active label {
-    color:#ffffff
+	color: #ffffff;
 }
 #filament-button {
-    background-color:#D9D9D9;
-    border-radius: 12px;
-    min-height: 50px;
+	background-color: #d9d9d9;
+	border-radius: 12px;
+	min-height: 50px;
 }
-#filament-button label{
-    color: #000000;
-    font-size: 15px;
+#filament-button label {
+	color: #000000;
+	font-size: 15px;
 }
 #selected-extuder-button {
-    background-color: #D9D9D9;
-    border: 1px solid #9D9797;
-    border-radius: 10px;
-    min-height: 4.5rem;
-    min-width: 5rem;
+	background-color: #d9d9d9;
+	border: 1px solid #9d9797;
+	border-radius: 10px;
+	min-height: 4.5rem;
+	min-width: 5rem;
 }
 #selected-extuder-button label {
-    color:#000000
+	color: #000000;
 }
 
 #selected-extuder-button:active {
-    background-color: #00477B;
-    border: 1px solid #00477B;
-    min-width: 5rem;
-    border-radius: 10px;
-    min-height: 4.5rem;
-   
+	background-color: #00477b;
+	border: 1px solid #00477b;
+	min-width: 5rem;
+	border-radius: 10px;
+	min-height: 4.5rem;
 }
 #selected-extuder-button:active label {
-    color:#ffffff
+	color: #ffffff;
 }
 
 #selected-extuder-label {
-    color: #F7BA17;
-    min-width: 12.5rem;
-
+	color: #f7ba17;
+	min-width: 12.5rem;
 }
 
 #selected-extuder-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    padding: .75rem;
-    min-width: 5rem;
-    border-radius: 7px;
-    
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	padding: 0.75rem;
+	min-width: 5rem;
+	border-radius: 7px;
 }
 #z-offset-image {
-    margin-top: 4.1rem;
-    margin-bottom: 4.1rem;
+	margin-top: 4.1rem;
+	margin-bottom: 4.1rem;
 }
 
 #scale-buttons {
-    background-color: transparent;
-    min-height: 2.5rem;
-    padding-right: 30px;
+	background-color: transparent;
+	min-height: 2.5rem;
+	padding-right: 30px;
 }
-
 
 #scale-buttons-left {
-    background-color: transparent;
-    min-height: 2.5rem;
-    padding-left: 30px;
+	background-color: transparent;
+	min-height: 2.5rem;
+	padding-left: 30px;
 }
-
-
-
 
 #speed-factor-button {
-    background-color: transparent;
-    min-height: 3.5rem;
+	background-color: transparent;
+	min-height: 3.5rem;
 }
 #progress-numpad {
-    background-color: transparent;
+	background-color: transparent;
 }
 #up-down-buttons-box {
-    border: 1px solid #FFFFFF;
-    border-radius: 12px;
-    background-color: transparent;
-    padding: .4rem .75rem .4rem .75rem;
+	border: 1px solid #ffffff;
+	border-radius: 12px;
+	background-color: transparent;
+	padding: 0.4rem 0.75rem 0.4rem 0.75rem;
 }
 #counter-input-buttons-box {
-    margin-top: .75rem;
+	margin-top: 0.75rem;
 }
 
 #tab-total-usabe-box {
-    /*  */
+	/*  */
 }
 
 #z-axis-button-box {
-    border: 1px solid #F1F1F1;
-    border-radius: 20px;
-    color:  #000000;
-    padding: .8rem;
+	border: 1px solid #f1f1f1;
+	border-radius: 20px;
+	color: #000000;
+	padding: 0.8rem;
 }
 #z-axis-tab-button-box {
-    border: 1px solid #F1F1F1;
-    border-radius: 20px;
-    color:  #000000;
-    padding: .3rem;
+	border: 1px solid #f1f1f1;
+	border-radius: 20px;
+	color: #000000;
+	padding: 0.3rem;
 }
 #extruder-select-box {
-    padding: .6rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 15px;
+	padding: 0.6rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 15px;
 }
 #home-extruder-select-box {
-    padding: .6rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 10px;
-    min-width: 3rem;
+	padding: 0.6rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 10px;
+	min-width: 3rem;
 }
 
 #home-extruder-select-box-home {
-    padding: .6rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 10px;
-    min-width: 7rem;
+	padding: 0.6rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 10px;
+	min-width: 7rem;
 }
 
 #extruder-extruder-select-box {
-    padding: .6rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 10px;
-    min-width: 4rem;
+	padding: 0.6rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 10px;
+	min-width: 4rem;
 }
 #extruder-select-box:focus {
-    padding: .6rem;
-    background: #B8B9BA;
-    border-radius: 15px;
+	padding: 0.6rem;
+	background: #b8b9ba;
+	border-radius: 15px;
 }
 #filament-change-content-box {
-    padding: 0 2rem 0 2rem;
+	padding: 0 2rem 0 2rem;
 }
-scale.speed-factor-scale trough{
-    background-image: none;
-    min-height: .3em;
-    border-radius: 2rem;
-    border: 1px solid #000000;
-    background-color: #C6C6CC;
+scale.speed-factor-scale trough {
+	background-image: none;
+	min-height: 0.3em;
+	border-radius: 2rem;
+	border: 1px solid #000000;
+	background-color: #c6c6cc;
 }
-scale.speed-factor-scale highlight{
-    background-image: none;
-    border: 1px solid #000000;
-    border-radius: 2rem;
-    min-height: .3em;
-    background-color: #00477B;
-  
+scale.speed-factor-scale highlight {
+	background-image: none;
+	border: 1px solid #000000;
+	border-radius: 2rem;
+	min-height: 0.3em;
+	background-color: #00477b;
 }
-scale.speed-factor-scale slider{
-    background-image: none;
-
+scale.speed-factor-scale slider {
+	background-image: none;
 }
 
-scale.fan-speed trough{
-    min-height: .1em;
-    border-radius: 2rem;
-    min-height: .1em;
+scale.fan-speed trough {
+	min-height: 0.1em;
+	border-radius: 2rem;
+	min-height: 0.1em;
 }
-scale.fan-speed highlight{
-    min-height: .1em;
-    background-color: #00477B;
-    color: #00477B;
-    
-    border-radius:2rem 0 0 2rem;
-}
-scale.fan-speed slider{
+scale.fan-speed highlight {
+	min-height: 0.1em;
+	background-color: #00477b;
+	color: #00477b;
 
+	border-radius: 2rem 0 0 2rem;
+}
+scale.fan-speed slider {
 }
 #box1-css {
-    background-color: #00747B;
-    min-width: 5rem;
-    min-height: 5rem;
+	background-color: #00747b;
+	min-width: 5rem;
+	min-height: 5rem;
 }
 #box2-css {
-    background-color: #ED6500;
-    min-width: 5rem;
-    min-height: 5rem;
+	background-color: #ed6500;
+	min-width: 5rem;
+	min-height: 5rem;
 }
 
 #increase-label {
-    color: #ffffff;
-    font-size: 1.5rem;
+	color: #ffffff;
+	font-size: 1.5rem;
 }
 
 #menu-buttons:active {
- 
-    border-radius: 0px 0px 40px 40px;
-    background-color: #333333;
-    border: none;
+	border-radius: 0px 0px 40px 40px;
+	background-color: #333333;
+	border: none;
 }
 #emergency-button {
-    border-radius: 5px;
-    background-color: #e60c0c;
-    border: none;
-    margin-bottom: 1rem;
-    padding-bottom: .3rem;
+	border-radius: 5px;
+	background-color: #e60c0c;
+	border: none;
+	margin-bottom: 1rem;
+	padding-bottom: 0.3rem;
 }
 
 #emergency-button-diaolog {
-    border-radius: 5px;
-    background-color: #e60c0c;
-    border: none;
-    
-    padding-bottom: .3rem;
-    
+	border-radius: 5px;
+	background-color: #e60c0c;
+	border: none;
+
+	padding-bottom: 0.3rem;
 }
 
 #emergency-button:active {
-    border-radius: 5px;
-    background-color: #ffffff;
-    border: none;
+	border-radius: 5px;
+	background-color: #ffffff;
+	border: none;
 }
 
 #region-combo-button {
- 
-    border-radius: 0px 0px 40px 40px;
-    background-color: #333333;
-    border: none;
+	border-radius: 0px 0px 40px 40px;
+	background-color: #333333;
+	border: none;
 }
 
 #connected-extruder-label {
-    color: #9A9A9A;
-    font-size: 1rem;
+	color: #9a9a9a;
+	font-size: 1rem;
 }
 
-progressbar#progress-bar-print progress{
-    background-image: none;
-    background-color: #00477B;
-    min-height: 1em;
-    border-radius: 15px;
-
+progressbar#progress-bar-print progress {
+	background-image: none;
+	background-color: #00477b;
+	min-height: 1em;
+	border-radius: 15px;
 }
 progressbar#progress-bar-print trough {
-    min-height: 1em;
-    border-radius: 15px;
+	min-height: 1em;
+	border-radius: 15px;
 }
 
 button#pla-abs-button {
-    background: linear-gradient(180deg, #909090 0%, #5F5E5E 100%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    min-width: 4rem;
+	background: linear-gradient(180deg, #909090 0%, #5f5e5e 100%);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	min-width: 4rem;
 }
 
 button#pla-abs-button:active {
-    background-color: #00477B;
-    border-radius: 10px;
-    min-width: 4rem;
+	background-color: #00477b;
+	border-radius: 10px;
+	min-width: 4rem;
 }
 
-button#pla-abs-button label{
-    color: #FFFFFF;
-    
+button#pla-abs-button label {
+	color: #ffffff;
 }
-button#pla-abs-button:active label{
-    color: #9A9A9A;
-    
+button#pla-abs-button:active label {
+	color: #9a9a9a;
 }
 
 /*General Button*/
 button#flat-button-blue {
-    background-color: #00477B;
-    background: #00477B;
-    font-size: 1.5em;
-    border-radius: 5px;
-    min-width: 10rem;
+	background-color: #00477b;
+	background: #00477b;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
 }
 button#flat-button-blue:active {
-    background-color: #ffffff;
-    font-size: 1.5em;
-    border-radius: 5px;
-    min-width: 10rem;
+	background-color: #ffffff;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
 }
 button#flat-button-yellow-skip {
-    background-color: #F7BA17;
-    background: #F7BA17;
-    font-size: 1.5em;
-    border-radius: 5px;
-    min-width: 10rem;
+	background-color: #f7ba17;
+	background: #f7ba17;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
 }
 button#flat-button-yellow-skip:active {
-    background-color: #ffffff;
-    font-size: 1.5em;
-    border-radius: 5px;
-    min-width: 10rem;
+	background-color: #ffffff;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
 }
 button#select-button-blue {
-    background: linear-gradient(180deg, #12B1F6 0%, #134B8E 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    font-size: 1.5em;
-    border-radius: 10px;
-    min-width: 12rem;
+	background: linear-gradient(180deg, #12b1f6 0%, #134b8e 100%);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	font-size: 1.5em;
+	border-radius: 10px;
+	min-width: 12rem;
 }
 button#select-button-blue:active {
-    background: #ffffff;
-    font-size: 1.5em;
-    border-radius: 10px;
-    min-width: 12rem;
+	background: #ffffff;
+	font-size: 1.5em;
+	border-radius: 10px;
+	min-width: 12rem;
 }
 button#select-button-gray {
-    background: linear-gradient(180deg, #9B9DA7 0%, #8F8F8F 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    font-size: 1.5em;
-    border-radius: 10px;
-    min-width: 12rem;
+	background: linear-gradient(180deg, #9b9da7 0%, #8f8f8f 100%);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	font-size: 1.5em;
+	border-radius: 10px;
+	min-width: 12rem;
 }
 button#select-button-gray:active {
-    background: #ffffff;
-    font-size: 1.5em;
-    border-radius: 10px;
-    min-width: 12rem;
+	background: #ffffff;
+	font-size: 1.5em;
+	border-radius: 10px;
+	min-width: 12rem;
 }
 button#flat-button-blue-brand {
-    background-color: #00477B;
-    background: #00477B;
-    font-size: 1em;
-    border-radius: 5px;
-    min-width: 10rem;
+	background-color: #00477b;
+	background: #00477b;
+	font-size: 1em;
+	border-radius: 5px;
+	min-width: 10rem;
 }
 button#flat-button-blue-brand:active {
-    background-color: #FFFFFF
+	background-color: #ffffff;
 }
 button#flat-button-blue-brand label {
-    font-size: 1.1rem;
+	font-size: 1.1rem;
 }
 button#flat-button-green {
-    background-color: #161616;
-    background: #161616;
-    font-size: 1em;
-    color: #37AB56;
-    border-radius: 5px;
-    min-width: 10rem;
+	background-color: #161616;
+	background: #161616;
+	font-size: 1em;
+	color: #37ab56;
+	border-radius: 5px;
+	min-width: 10rem;
 }
 
-button#flat-button-yellow label{
-   
-    color: #F7BA17;
+button#flat-button-yellow label {
+	color: #f7ba17;
 }
 
-button#flat-button-green label{
-   
-    color: #37AB56;
+button#flat-button-green label {
+	color: #37ab56;
 }
 
 button#flat-button-yellow {
-    background-color: #161616;
-    background: #161616;
-    font-size:1em;
-    color: #F7BA17;
-    border-radius: 5px;
-    min-width: 10rem;
+	background-color: #161616;
+	background: #161616;
+	font-size: 1em;
+	color: #f7ba17;
+	border-radius: 5px;
+	min-width: 10rem;
 }
 /*Yazıcı Bağlama*/
 button#flat-button-black {
-    background-color: #000000;
-    background: #000000;
-    font-size:1.5em;
-    border-radius: 10px;
-    padding: .5em;
-    min-width: 12rem;
+	background-color: #000000;
+	background: #000000;
+	font-size: 1.5em;
+	border-radius: 10px;
+	padding: 0.5em;
+	min-width: 12rem;
 }
 button#flat-button-black:focus {
-    background-color: #000000;
-    background: #000000;
-    border: 1px solid #EAEAEA;
-    font-size:1.5em;
-    border-radius: 10px;
-    padding: .5em;
-    min-width: 12rem;
+	background-color: #000000;
+	background: #000000;
+	border: 1px solid #eaeaea;
+	font-size: 1.5em;
+	border-radius: 10px;
+	padding: 0.5em;
+	min-width: 12rem;
 }
 #print-files-button {
-    background-color: #F3F1F1;
-    border-radius: 5px;
-    padding-left: 3rem;
-    padding-right: 3rem;
+	background-color: #f3f1f1;
+	border-radius: 5px;
+	padding-left: 3rem;
+	padding-right: 3rem;
 }
-#print-files-button label{
-    color: #000000;
-    font-size: 1.2rem;
-    font-weight: 500;
+#print-files-button label {
+	color: #000000;
+	font-size: 1.2rem;
+	font-weight: 500;
 }
 
 #print-files-button:active {
-    background-color: #fff;
-    border-radius: 5px;
-    padding-left: 3rem;
-    padding-right: 3rem;
+	background-color: #fff;
+	border-radius: 5px;
+	padding-left: 3rem;
+	padding-right: 3rem;
 }
 
 /*Menu*/
 button#menu-button {
-    color: #FFFFFF;
-    font-size: 30px;
+	color: #ffffff;
+	font-size: 30px;
 }
 button#menu-button:active {
-    color: #FFFFFF;
-    font-size: 30px;
-    border-radius: 40px 33px 0px 0px;
-    background: #181818;
+	color: #ffffff;
+	font-size: 30px;
+	border-radius: 40px 33px 0px 0px;
+	background: #181818;
 }
 
 button#printer-detail-button {
-    background-color: #00477B;
-    border-radius: 8px;
-    min-width: 5rem;
+	background-color: #00477b;
+	border-radius: 8px;
+	min-width: 5rem;
 }
 button#printer-detail-button label {
-    font-size: .9rem;
+	font-size: 0.9rem;
 }
 button#printer-detail-button:active {
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    min-width: 7rem;
+	background-color: #ffffff;
+	border-radius: 8px;
+	min-width: 7rem;
 }
-button#printer-detail-button:active label{
-    color: #000000;
-    font-size: .9rem;
+button#printer-detail-button:active label {
+	color: #000000;
+	font-size: 0.9rem;
 }
-
 
 button#printer-setup-button {
-    background-color: #E87142;
-    border-radius: 8px;
-    min-width: 5rem;
+	background-color: #e87142;
+	border-radius: 8px;
+	min-width: 5rem;
 }
 button#printer-setup-button label {
-    font-size: .9rem;
+	font-size: 0.9rem;
 }
 button#printer-setup-button:active {
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    min-width: 7rem;
+	background-color: #ffffff;
+	border-radius: 8px;
+	min-width: 7rem;
 }
-button#printer-setup-button:active label{
-    color: #000000;
-    font-size: .9rem;
+button#printer-setup-button:active label {
+	color: #000000;
+	font-size: 0.9rem;
 }
-
-
-
 
 #print-file-box {
-    background: #161616;
-    border: 1px solid #4A4A4A;
-    border-radius: 15px;
+	background: #161616;
+	border: 1px solid #4a4a4a;
+	border-radius: 15px;
 }
-#setting-button{
-    background-color: transparent;
-    border-radius: 100px;
-    padding: .2rem;
+#setting-button {
+	background-color: transparent;
+	border-radius: 100px;
+	padding: 0.2rem;
 }
-#setting-button:active{
-    background-color: #FFFFFF;
-    border-radius: 100px;
-    padding: .2rem;
+#setting-button:active {
+	background-color: #ffffff;
+	border-radius: 100px;
+	padding: 0.2rem;
 }
 #file-preview-title-label {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 1em;
-    min-width: 12rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	padding: 1em;
+	min-width: 12rem;
 
-    border-radius: 7px;
+	border-radius: 7px;
 }
 #file-name-title-label {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 1em;
-    min-width: 16.5rem;
-    border-radius: 7px;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	padding: 1em;
+	min-width: 16.5rem;
+	border-radius: 7px;
 }
 #file-print-time-title-label {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 1em;
-    min-width: 9rem;
-    border-radius: 7px;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	padding: 1em;
+	min-width: 9rem;
+	border-radius: 7px;
 }
 #filament-title-label {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-right: .7em;
-    border-radius: 7px;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-right: 0.7em;
+	border-radius: 7px;
 }
 #select-button {
-    background-color: #686868;
-    border-radius: 5px;
-    padding-left: 1em;
-    padding-right: 1em;
+	background-color: #686868;
+	border-radius: 5px;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 #file-delete-button {
-    background-color: #903C3C;
-    border-radius: 5px;
-    padding-left: 1em;
-    padding-right: 1em;
+	background-color: #903c3c;
+	border-radius: 5px;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 #file-home-button {
-    background-color: #412fa3;
-    border-radius: 5px;
-    padding-left: 1em;
-    padding-right: 1em;
+	background-color: #412fa3;
+	border-radius: 5px;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 #file-count-label {
-    margin-right: 1em;
+	margin-right: 1em;
 }
 
 /*PopUp*/
 label#info-popup-label {
-    color: #23A6F0;
-    font-size: 20px; 
+	color: #23a6f0;
+	font-size: 20px;
 }
 /*Home Button*/
 button#flat-icon-button-green {
-    background: #007B65;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 21px;
+	background: #007b65;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 21px;
 }
 button#flat-button-grey {
-    background: #686868;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    color: #070707;
-    font-size: 25px;
+	background: #686868;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	color: #070707;
+	font-size: 25px;
 }
 /*Delete Button*/
 button#delete-button {
-    background: #913C3C;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    color: #070707;
-    font-size: 25px;
+	background: #913c3c;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	color: #070707;
+	font-size: 25px;
 }
 /*Extruder*/
 button#stroked-button-black {
-    border: 1px solid #C1C1C1;
-    border-radius: 19px;
-    background: #161616;
-    color: #9A9A9A;
+	border: 1px solid #c1c1c1;
+	border-radius: 19px;
+	background: #161616;
+	color: #9a9a9a;
 }
 button#stroked-button-black:active {
-    border-radius: 19px;
-    background: #00477B;
-    color: #FFFFFF;
+	border-radius: 19px;
+	background: #00477b;
+	color: #ffffff;
 }
 /*Extruder*/
 button#flat-button-white {
-    background: #D9D9D9;
-    border: 1px solid #9D9797;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    color: #1A1C1E;
-    font-size: 25px;
+	background: #d9d9d9;
+	border: 1px solid #9d9797;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 15px;
+	color: #1a1c1e;
+	font-size: 25px;
 }
-
 
 label#language-label {
-    font-size:18;
-    color:#9A9A9A;
+	font-size: 18;
+	color: #9a9a9a;
 }
-
-
 
 label#init-header-subtext-label {
-    font-size:1em;
-    color:#9A9A9A;
+	font-size: 1em;
+	color: #9a9a9a;
 }
 label#init-header-subtitle-label {
-    font-size:1.2em;
-    color:#FFFFFF;
+	font-size: 1.2em;
+	color: #ffffff;
 }
 label#loading-label {
-    font-size:1.2em;
-    color:#F7BA17;
+	font-size: 1.2em;
+	color: #f7ba17;
 }
 /*Chip Ayarlari*/
 #selection-box {
-    background: #242424;
-    border-radius: 10px;
+	background: #242424;
+	border-radius: 10px;
 }
 label#selection-box-label {
-    font-size: 30px;
-    font-weight: 500;
-    color: #FFFFFF;
+	font-size: 30px;
+	font-weight: 500;
+	color: #ffffff;
 }
 label#selection-box-label {
-    font-size: 30px;
-    font-weight: 500;
-    color: #FFFFFF;
-    background-color: #070707;
+	font-size: 30px;
+	font-weight: 500;
+	color: #ffffff;
+	background-color: #070707;
 }
 /*SD Kart Yazma*/
 #info-box {
-    background: #161616;
-    border-radius: 10px;
+	background: #161616;
+	border-radius: 10px;
 }
 label#info-box-label-success {
-    color: #37AB56;
-    font-size: 30px;
+	color: #37ab56;
+	font-size: 30px;
 }
 label#info-box-label-waiting {
-    color: #F7BA17;
-    font-size: 30px;
+	color: #f7ba17;
+	font-size: 30px;
 }
 label#contract-approval-label {
-    font-size: .75em;
+	font-size: 0.75em;
 }
 #contract-accept-label {
-    font-size: 20;
+	font-size: 20;
 }
 #radio-selection-box {
-    font-size: 2em;
+	font-size: 2em;
 }
 
-.region-entry{
-    font-size: 1em;
-    background-color: #20292F;
-    border: .0em solid #13181C;
-    padding: .0em;
-   
-
+.region-entry {
+	font-size: 1em;
+	background-color: #20292f;
+	border: 0em solid #13181c;
+	padding: 0em;
 }
-.brand-entry{
-    font-size: 1em;
-    background-color: #20292F;
-    border: .0em solid #13181C;
-    padding: .0em;
-    padding-left: 1em;
+.brand-entry {
+	font-size: 1em;
+	background-color: #20292f;
+	border: 0em solid #13181c;
+	padding: 0em;
+	padding-left: 1em;
 }
 .custom-region {
-    padding: 5px;
-    font-size: 25px;
-    background-color: #333333;
-    color: #FFF;
-    border-radius: 15px;
+	padding: 5px;
+	font-size: 25px;
+	background-color: #333333;
+	color: #fff;
+	border-radius: 15px;
 }
 #region-combobox-button {
- 
-    margin: 0px;
-    background-color: #20292F;
-  
+	margin: 0px;
+	background-color: #20292f;
 }
 #region-combobox window.popup {
-    color: royalblue;
-    background: royalblue;
-    font-weight: bold;
-    border: 3px dashed lightgreen;
-    margin-bottom: 100em;
-  }
- 
-  #brand-combobox button.combo {
-    border-radius: 10px;
-    border: 1px solid #5D5D5D;
-    min-width: 13.5rem;
+	color: royalblue;
+	background: royalblue;
+	font-weight: bold;
+	border: 3px dashed lightgreen;
+	margin-bottom: 100em;
+}
 
-  }
+#brand-combobox button.combo {
+	border-radius: 10px;
+	border: 1px solid #5d5d5d;
+	min-width: 13.5rem;
+}
 
-  list#brand {
-    background-color: #000000;
-    border: 1px solid #9D9797;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-   
-    color: #1A1C1E;
-    font-size: 25px;
-    border: 1px;
+list#brand {
+	background-color: #000000;
+	border: 1px solid #9d9797;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+	color: #1a1c1e;
+	font-size: 25px;
+	border: 1px;
 }
 
 list#region {
-    background-color: #333333;
-    border: 1px solid #9D9797;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-   
-    color: #1A1C1E;
-    font-size: 25px;
-    border: 0px;
+	background-color: #333333;
+	border: 1px solid #9d9797;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+	color: #1a1c1e;
+	font-size: 25px;
+	border: 0px;
 }
 
 list#wifi {
-    background-color: #13181c;
-    border: 1px solid #13181c;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    color: #1A1C1E;
-    font-size: 25px;
-    border: 0px;
+	background-color: #13181c;
+	border: 1px solid #13181c;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 15px;
+	color: #1a1c1e;
+	font-size: 25px;
+	border: 0px;
 }
 
 box#wifi {
-    background-color: #333333;
-    border-radius: 7px;
-    padding: .5em;
-    margin: .1em;
+	background-color: #333333;
+	border-radius: 7px;
+	padding: 0.5em;
+	margin: 0.1em;
 }
 
 box#chip {
-    background-color: #333333;
-    border-radius: 8px;
-    padding: 1em;
-    margin: .2em;
-    border: 0px;
+	background-color: #333333;
+	border-radius: 8px;
+	padding: 1em;
+	margin: 0.2em;
+	border: 0px;
 }
 
 entry#device-name {
-    background-color: #333333;
-    color: #f0f0f0;
-    border: 1px solid #9D9797;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+	background-color: #333333;
+	color: #f0f0f0;
+	border: 1px solid #9d9797;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 15px;
 }
 label#wifi-label {
-    
-    color:#f0f0f0;
-    font-size: 1.5rem;
+	color: #f0f0f0;
+	font-size: 1.5rem;
 }
 label#wifi-labell {
-    
-    color:#f0f0f0;
-    font-size: 0.5rem;
+	color: #f0f0f0;
+	font-size: 0.5rem;
 }
 label#chip-label {
-    
-    color:#f0f0f0;
-    font-size: 1.1rem;
+	color: #f0f0f0;
+	font-size: 1.1rem;
 }
 
-
-
-checkbutton#check-button-label label{
-   
-    font-size: 1.1rem;
+checkbutton#check-button-label label {
+	font-size: 1.1rem;
 }
 
 treeview.view#tree-list {
-    background-color: transparent;
-    font-size: 1rem;
+	background-color: transparent;
+	font-size: 1rem;
 }
 #selected-printer-dimension {
-    font-size: 12px;
-    color: #83848C;
-    font-weight: 500;
+	font-size: 12px;
+	color: #83848c;
+	font-weight: 500;
 }
-#selected-printer-name{
-    font-size: 19px;
-    color: #FFFFFF;
-    font-weight: 700;
+#selected-printer-name {
+	font-size: 19px;
+	color: #ffffff;
+	font-weight: 700;
 }
 .thumbnail {
-    background-color: #20292F;
-    margin: .5em;
+	background-color: #20292f;
+	margin: 0.5em;
 }
 
 entry#counter-input {
-    background-color: transparent;
-    color: #8C8888;
-    border: 1px solid #000000;
-  
+	background-color: transparent;
+	color: #8c8888;
+	border: 1px solid #000000;
 }
 #counter-input-box {
-    margin-left: .75rem;
-    min-width: 12rem;
+	margin-left: 0.75rem;
+	min-width: 12rem;
 }
 #counter-up-down-buttons {
-    background-color: transparent;
-
+	background-color: transparent;
 }
 
 #printing-grid-box {
-    margin-right: 2rem;
+	margin-right: 2rem;
 }
 
 #home-tab-box {
-    background-color: #0E0E0E;
-    border-radius: 8px;
-    padding: .6rem;
-    min-width: 51rem;
-    min-height: 17rem;
+	background-color: #0e0e0e;
+	border-radius: 8px;
+	padding: 0.6rem;
+	min-width: 51rem;
+	min-height: 17rem;
 }
 
-#home-tab-box-title{
-   
-    
+#home-tab-box-title {
 }
 
 #home-tab-title-label {
-    background: linear-gradient(180deg, rgba(139, 139, 139, 0.90) 0%, rgba(139, 139, 139, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 9rem;
-    border-radius: 11px 11px 0px 0px;
-    padding: .5rem 0 0 .5rem;
+	background: linear-gradient(
+		180deg,
+		rgba(139, 139, 139, 0.9) 0%,
+		rgba(139, 139, 139, 0) 100%
+	);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 9rem;
+	border-radius: 11px 11px 0px 0px;
+	padding: 0.5rem 0 0 0.5rem;
 }
-#home-tab-title-label label{
-    font-size: 1.2rem;
+#home-tab-title-label label {
+	font-size: 1.2rem;
 }
 
 #home-tab-title-label:checked {
-    background: transparent;
-    background-color: #2B2B2B;
+	background: transparent;
+	background-color: #2b2b2b;
 }
-
 
 window {
-    background-color: #13181C;
-    -gtk-icon-shadow: none;
+	background-color: #13181c;
+	-gtk-icon-shadow: none;
 }
 
-frame { 
-    border: 2px solid #fff;
-    border-radius: 7px;
-    min-height: .5em;
+frame {
+	border: 2px solid #fff;
+	border-radius: 7px;
+	min-height: 0.5em;
 }
 
-frame#chip { 
-    border: 0px;
-    border-radius: 10px
+frame#chip {
+	border: 0px;
+	border-radius: 10px;
 }
 
-frame#extrude { 
-    border-radius: 10px;
-    border: 0px solid #878787;
+frame#extrude {
+	border-radius: 10px;
+	border: 0px solid #878787;
 }
 
-frame.extrude-active { 
-    border: 1px solid #878787;
-    background-color: #9D9999;
-    border-radius: 10px
+frame.extrude-active {
+	border: 1px solid #878787;
+	background-color: #9d9999;
+	border-radius: 10px;
 }
 
 frame#counter-frame {
-    border-radius: 0px;
-    border: none;
+	border-radius: 0px;
+	border: none;
 }
 
 frame#counter-frame label {
-    color: #FFFFFF;
-    font-size: 1.3rem;
+	color: #ffffff;
+	font-size: 1.3rem;
 }
-frame#counter-frame>border {
-    border-radius: 7px;
-    border: 2px solid #FFFFFF;
-    color: white;
+frame#counter-frame > border {
+	border-radius: 7px;
+	border: 2px solid #ffffff;
+	color: white;
 }
 
-label#counter-input-label{
-  
-
+label#counter-input-label {
 }
 #home-multifilament-select-box {
-    padding:.75rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 15px;
+	padding: 0.75rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 15px;
 }
 button {
-    background-image: none;
-    background-color: #13181C;
-    margin: .25em;
-    padding: .2em .5em 0;
-    border-radius: 0;
-    border: 0;
-    -gtk-icon-shadow: none;
+	background-image: none;
+	background-color: #13181c;
+	margin: 0.25em;
+	padding: 0.2em 0.5em 0;
+	border-radius: 0;
+	border: 0;
+	-gtk-icon-shadow: none;
 }
 
-button:active, .button_active {
-    background-color: #304C62;
+button:active,
+.button_active {
+	background-color: #304c62;
 }
 
 button:disabled,
@@ -1603,7 +1591,7 @@ button.color1:disabled,
 button.color2:disabled,
 button.color3:disabled,
 button.color4:disabled {
-    border: 0;
+	border: 0;
 }
 
 button:disabled label,
@@ -1611,1461 +1599,1531 @@ button.color1:disabled label,
 button.color2:disabled label,
 button.color3:disabled label,
 button.color4:disabled label {
-    color: grey;
+	color: grey;
 }
 
 button label {
-    margin-top: .25em;
-    margin-bottom: .5em;
+	margin-top: 0.25em;
+	margin-bottom: 0.5em;
 }
 
 button.color1 {
-    border-bottom: .4em solid #ED6500;
-    margin: .3em;
-    min-height: 3em;
+	border-bottom: 0.4em solid #ed6500;
+	margin: 0.3em;
+	min-height: 3em;
 }
 
 button.color2 {
-    border-bottom: .4em solid #B10080;
-    margin: .3em;
-    min-height: 3em;
+	border-bottom: 0.4em solid #b10080;
+	margin: 0.3em;
+	min-height: 3em;
 }
 
 button.color3 {
-    border-bottom: .4em solid #009384;
-    margin: .3em;
-    min-height: 3em;
+	border-bottom: 0.4em solid #009384;
+	margin: 0.3em;
+	min-height: 3em;
 }
 
 button.color4 {
-    border-bottom: .4em solid #A7E100;
-    margin: .3em;
-    min-height: 3em;
+	border-bottom: 0.4em solid #a7e100;
+	margin: 0.3em;
+	min-height: 3em;
 }
 button.color5 {
-    border-bottom: .4em solid #A7E100;
-    
+	border-bottom: 0.4em solid #a7e100;
 }
 
-
-
 button.status {
-    background-color: #13181C;
+	background-color: #13181c;
 }
 
 button.active {
-    background-color: #20303D;
+	background-color: #20303d;
 }
 
 button.file-list {
-    margin: 0;
+	margin: 0;
 }
 
 button.update {
-    background: #009384;
-    border: .4em solid #009384;
-    border-radius: 0.4em;
-    font-weight: bold;
+	background: #009384;
+	border: 0.4em solid #009384;
+	border-radius: 0.4em;
+	font-weight: bold;
 }
 
 button.invalid {
-    background: #e61e1e;
-    border: .4em solid #e61e1e;
-    border-radius: 0.4em;
-    font-weight: bold;
+	background: #e61e1e;
+	border: 0.4em solid #e61e1e;
+	border-radius: 0.4em;
+	font-weight: bold;
 }
 
 combobox box button {
-    border: .05em solid #cccccc;
-    padding: .5em 1em;
+	border: 0.05em solid #cccccc;
+	padding: 0.5em 1em;
 }
 
 combobox arrow {
-    min-width: 1em;
+	min-width: 1em;
 }
 
-#extruder-switch  {
-    min-width: 4em;
-    min-height: .1em;
-    margin-top: .6em;
-    margin-bottom: .6em;
-    border-radius: 0.5em;
-  
+#extruder-switch {
+	min-width: 4em;
+	min-height: 0.1em;
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+	border-radius: 0.5em;
 }
-#extruder-switch-2  {
-    min-width: 4em;
-    min-height: 2em;
-    border-radius: 0.5em;
-  
+#extruder-switch-2 {
+	min-width: 4em;
+	min-height: 2em;
+	border-radius: 0.5em;
 }
 
 #extruder-switch slider {
-    border: 0;
-    border-radius: 0.2em;
+	border: 0;
+	border-radius: 0.2em;
 }
 #extruder-switch-2 slider {
-    border: 0;
-    border-radius: 0.2em;
+	border: 0;
+	border-radius: 0.2em;
 }
 #extrude-switch-box {
-    min-height: 15rem;
+	min-height: 15rem;
 }
 
 #move-page-common-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.9) 0%, rgba(63, 63, 63, 0) 100%);
-    border-radius: 20px;
-    padding: 1rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 20px;
+	padding: 1rem;
 }
 
-
 entry {
-    font-size: 1em;
-    background-color: #20292F;
-    border: .2em solid #13181C;
-    padding: .25em;
+	font-size: 1em;
+	background-color: #20292f;
+	border: 0.2em solid #13181c;
+	padding: 0.25em;
 }
 
 label {
-    color: white;
+	color: white;
 }
 
-#e1-button  {
-  background-color: transparent;
- 
- 
+#e1-button {
+	background-color: transparent;
 }
 
 #color-button-box {
-    border: 1px solid #505050;
-    border-radius: 10px;
-    padding: .25em;
+	border: 1px solid #505050;
+	border-radius: 10px;
+	padding: 0.25em;
 }
 
-
 menu {
-    background-color: #13181C;
-    border: .1em solid #cccccc;
+	background-color: #13181c;
+	border: 0.1em solid #cccccc;
 }
 
 menuitem {
-    background-color: #13181C;
-    border: .1em solid #cccccc;
-    border-bottom: 0;
-    border-top: 0;
+	background-color: #13181c;
+	border: 0.1em solid #cccccc;
+	border-bottom: 0;
+	border-top: 0;
 }
 
 trough {
-    min-height: 2em;
-    background-color: #404E57;
-    color: white;
-   
+	min-height: 2em;
+	background-color: #404e57;
+	color: white;
 }
 
-trough highlight, trough progress {
-    min-height: 2em;
-    background-color: #3584e4;
-    color: white;
-
+trough highlight,
+trough progress {
+	min-height: 2em;
+	background-color: #3584e4;
+	color: white;
 }
 
 trough progress.left {
-    border: 0px;
+	border: 0px;
 }
 
 scale mark {
-    margin-top: 1em;
-    color: white;
+	margin-top: 1em;
+	color: white;
 }
 
 scale trough slider {
-    min-height: 2em;
-    min-width: 2em;
+	min-height: 2em;
+	min-width: 2em;
 }
 
-scrollbar, scrollbar button, scrollbar trough {
-    border: none;
-    background-color: #13181C;
+scrollbar,
+scrollbar button,
+scrollbar trough {
+	border: none;
+	background-color: #13181c;
 }
 
 scrollbar slider {
-    min-width: .5em;
-    border-radius: .7em;
-    background-color: #404E57;
+	min-width: 0.5em;
+	border-radius: 0.7em;
+	background-color: #404e57;
 }
 
 separator {
-    margin: 1em 2em;
-    background-color: rgba(255, 255, 255, 0.5);
+	margin: 1em 2em;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 .exp-separator {
-    margin: .22em .22em;
-    background-color: #4F4F4F;
+	margin: 0.22em 0.22em;
+	background-color: #4f4f4f;
 }
 
-textview, textview text {
-    background: transparent;
-    font-family: Free Mono;
+textview,
+textview text {
+	background: transparent;
+	font-family: Free Mono;
 }
 
 textview .time {
-    color: grey;
+	color: grey;
 }
 
 trough {
-    margin: .5em .5em;
+	margin: 0.5em 0.5em;
 }
 
 .popup {
-    background-color: black;
+	background-color: black;
 }
 
 .action_bar {
-    /* min-width: 4.5em; */
-    /* min-height: 4.5em; */
+	/* min-width: 4.5em; */
+	/* min-height: 4.5em; */
 }
 
 .title_bar {
-    min-height: .5em;
+	min-height: 0.5em;
 }
 
 .content {
-    margin: 0 .1em;
+	margin: 0 0.1em;
 }
 
 .dialog {
-    border: .1em solid black;
-    padding: 2.5em;
-    background-color: black;
-    margin: 1em;
+	border: 0.1em solid black;
+	padding: 2.5em;
+	background-color: black;
+	margin: 1em;
 }
 
 .dialog button {
-    padding: 1.5em;
-    border-bottom: .4em solid #009384;
-    margin-top: 1em;
+	padding: 1.5em;
+	border-bottom: 0.4em solid #009384;
+	margin-top: 1em;
 }
 
 .dialog button:nth-child(1) {
-    border-bottom-color: green;
+	border-bottom-color: green;
 }
 
 .dialog button:nth-child(2) {
-    border-bottom-color: red;
+	border-bottom-color: red;
 }
 
 .distbutton_active {
-    background-color: #20303D;
+	background-color: #20303d;
 }
 
 .distbutton_top {
-    border: .15em solid white;
-    border-right: 0;
-    border-top-left-radius: .75em;
-    border-bottom-left-radius: .75em;
-    margin-right: 0;
-    min-height: 3em;
+	border: 0.15em solid white;
+	border-right: 0;
+	border-top-left-radius: 0.75em;
+	border-bottom-left-radius: 0.75em;
+	margin-right: 0;
+	min-height: 3em;
 }
 
 .distbutton {
-    border: .15em solid white;
-    border-left: .15em solid #ccc;
-    border-right: 0;
-    margin-left: 0;
-    margin-right: 0;
-    min-height: 3em;
+	border: 0.15em solid white;
+	border-left: 0.15em solid #ccc;
+	border-right: 0;
+	margin-left: 0;
+	margin-right: 0;
+	min-height: 3em;
 }
 
 .distbutton_bottom {
-    border: .15em solid white;
-    border-left: .15em solid #ccc;
-    border-top-right-radius: .7em;
-    border-bottom-right-radius: .7em;
-    margin-left: 0;
-    min-height: 3em;
+	border: 0.15em solid white;
+	border-left: 0.15em solid #ccc;
+	border-top-right-radius: 0.7em;
+	border-bottom-right-radius: 0.7em;
+	margin-left: 0;
+	min-height: 3em;
 }
 
 .fan_slider {
-    margin: 0 1em 0 1em;
-    color: white;
+	margin: 0 1em 0 1em;
+	color: white;
 }
 
 .frame-item {
-    min-height: 4.5em;
-    padding: .2em .3em;
-    border-bottom: 1px solid rgba(255,255,255,0.05)
+	min-height: 4.5em;
+	padding: 0.2em 0.3em;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .heatergraph {
-    min-height: 350px;
+	min-height: 350px;
 }
 
 .heater-grid {
-    margin-right: .1em;
+	margin-right: 0.1em;
 }
 
 .heater-grid label {
-    min-height: 0em;
-    padding: 0;
-    margin: 0;
+	min-height: 0em;
+	padding: 0;
+	margin: 0;
 }
 
-.heater-grid button{
-    margin: .2em;
-    min-height: 2.9em;
-    padding: 0 .5em;
+.heater-grid button {
+	margin: 0.2em;
+	min-height: 2.9em;
+	padding: 0 0.5em;
 }
 
 .heater-grid-temp {
-    min-width: 8em;
+	min-width: 8em;
 }
 
 .keyboard_box {
-    margin-top: 35px;
-    background-color: #595959;
+	margin-top: 35px;
+	background-color: #595959;
 }
 .keyboard-dialog {
-    background-color: #595959;
+	background-color: #595959;
 }
 
 #keypad-button {
-    background-color: red;
+	background-color: red;
 }
 .keyboard_matchbox {
-    margin-top: 42px;
+	margin-top: 42px;
 }
 
 .keyboard_pad {
-    margin: 0.6rem;
-    padding: 0.2em;
-    border-radius: 5px;
-    min-width: 5.7rem;
-   
+	margin: 0.6rem;
+	padding: 0.2em;
+	border-radius: 5px;
+	min-width: 5.7rem;
 }
 
 .keyboard_pad_special {
-    margin: 0.8rem;
-    padding: 0.2em;
-    border-radius: 5px;
-    min-width: 5.7rem;
-   
+	margin: 0.8rem;
+	padding: 0.2em;
+	border-radius: 5px;
+	min-width: 5.7rem;
 }
 
 .message_popup_popover {
-    border: 0;
-    background-color: Transparent;
-    padding: 0;
+	border: 0;
+	background-color: Transparent;
+	padding: 0;
 }
 
 .message_popup {
-    border: .1em solid white;
-    border-radius: 1em;
-    padding: 1em;
-    margin: 0;
+	border: 0.1em solid white;
+	border-radius: 1em;
+	padding: 1em;
+	margin: 0;
 }
 
-.message_popup button{
-    padding: 1em;
+.message_popup button {
+	padding: 1em;
 }
 
-.message_popup_echo, .message_popup_echo button {
-    background-color: #367554;
+.message_popup_echo,
+.message_popup_echo button {
+	background-color: #367554;
 }
 
-.message_popup_warning, .message_popup_warning button {
-    background-color: #f9a825;
+.message_popup_warning,
+.message_popup_warning button {
+	background-color: #f9a825;
 }
 
-.message_popup_error, .message_popup_error button {
-    background-color: #9e2f3a;
+.message_popup_error,
+.message_popup_error button {
+	background-color: #9e2f3a;
 }
 
-.numpad{
-    margin-top: 30px;
+.numpad {
+	margin-top: 30px;
 }
 
 .numpad_tleft {
-    border: .15em solid white;
-    border-bottom: 0;
-    border-right: 0;
-    border-top-left-radius: .7em;
-    margin: .15em 0 0 .15em;
+	border: 0.15em solid white;
+	border-bottom: 0;
+	border-right: 0;
+	border-top-left-radius: 0.7em;
+	margin: 0.15em 0 0 0.15em;
 }
 
 .numpad_top {
-    border: .15em solid white;
-    border-bottom: 0;
-    border-right: 0;
-    margin: .15em 0 0 0;
+	border: 0.15em solid white;
+	border-bottom: 0;
+	border-right: 0;
+	margin: 0.15em 0 0 0;
 }
 
 .numpad_tright {
-    border: .15em solid white;
-    border-bottom: 0;
-    border-top-right-radius: .7em;
-    margin: .15em .15em 0 0;
+	border: 0.15em solid white;
+	border-bottom: 0;
+	border-top-right-radius: 0.7em;
+	margin: 0.15em 0.15em 0 0;
 }
 
 .numpad_left {
-    border: .15em solid white;
-    border-right: 0;
-    border-bottom: 0;
-    margin: 0 0 0 .15em;
+	border: 0.15em solid white;
+	border-right: 0;
+	border-bottom: 0;
+	margin: 0 0 0 0.15em;
 }
 
 .numpad_button {
-    border: .15em solid white;
-    border-right: 0;
-    border-bottom: 0;
-    margin: 0;
+	border: 0.15em solid white;
+	border-right: 0;
+	border-bottom: 0;
+	margin: 0;
 }
 
 .numpad_right {
-    border: .15em solid white;
-    border-bottom: 0;
-    margin: 0 .15em 0 0;
+	border: 0.15em solid white;
+	border-bottom: 0;
+	margin: 0 0.15em 0 0;
 }
 
 .numpad_bleft {
-    border: .15em solid white;
-    border-right: 0;
-    border-bottom-left-radius: .7em;
-    margin: 0 0 .15em .15em;
+	border: 0.15em solid white;
+	border-right: 0;
+	border-bottom-left-radius: 0.7em;
+	margin: 0 0 0.15em 0.15em;
 }
 
 .numpad_bottom {
-    border: .15em solid white;
-    border-right: 0;
-    margin: 0 0 .15em 0;
+	border: 0.15em solid white;
+	border-right: 0;
+	margin: 0 0 0.15em 0;
 }
 
 .numpad_bright {
-    border: .15em solid white;
-    border-bottom-right-radius: .7em;
-    margin: 0 .15em .15em 0;
+	border: 0.15em solid white;
+	border-bottom-right-radius: 0.7em;
+	margin: 0 0.15em 0.15em 0;
 }
 
 .printing-filename {
-    font-size: 1em;
-    font-weight: bold;
-    margin: .25em .25em 0 0;
+	font-size: 1em;
+	font-weight: bold;
+	margin: 0.25em 0.25em 0 0;
 }
 
 .printing-info {
-    margin-right: .25em;
+	margin-right: 0.25em;
 }
 .printing-info button {
-    margin: 0 .1em;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: .5em;
+	margin: 0 0.1em;
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 0.5em;
 }
 
 .printing-info-secondary label {
-    margin-left: .75em;
+	margin-left: 0.75em;
 }
 
 .printing-status {
-    color: #f0f0f0;
-    font-size: .75em;
-    font-style: italic;
-    margin: 0 0 0 0;
+	color: #f0f0f0;
+	font-size: 0.75em;
+	font-style: italic;
+	margin: 0 0 0 0;
 }
 
 .printing-progress-text {
-    font-size: 1.25em;
-    font-weight: bold;
-    color: white;
+	font-size: 1.25em;
+	font-weight: bold;
+	color: white;
 }
 
 .printing-status-label {
-    padding-top: .25em;
-    padding-bottom: .15em;
-    color: #ccc;
-    font-size: 1.25em;
+	padding-top: 0.25em;
+	padding-bottom: 0.15em;
+	color: #ccc;
+	font-size: 1.25em;
 }
 
 .print-filename {
-    font-size: 1.1em;
-    margin-bottom: 0.2em;
-
+	font-size: 1.1em;
+	margin-bottom: 0.2em;
 }
 
 .print-info {
-    font-size: 0.95em;
+	font-size: 0.95em;
 }
 
 .tempbutton_top {
-    border: .15em solid white;
-    border-bottom: 0;
-    border-top-left-radius: .75em;
-    border-top-right-radius: .75em;
-    margin-bottom: 0;
+	border: 0.15em solid white;
+	border-bottom: 0;
+	border-top-left-radius: 0.75em;
+	border-top-right-radius: 0.75em;
+	margin-bottom: 0;
 }
 
 .tempbutton {
-    border: .15em solid white;
-    border-top: .15em solid #ccc;
-    border-bottom: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+	border: 0.15em solid white;
+	border-top: 0.15em solid #ccc;
+	border-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .tempbutton_bottom {
-    border: .15em solid white;
-    border-top: .15em solid #ccc;
-    border-bottom-left-radius: .7em;
-    border-bottom-right-radius: .7em;
-    margin-top: 0;
+	border: 0.15em solid white;
+	border-top: 0.15em solid #ccc;
+	border-bottom-left-radius: 0.7em;
+	border-bottom-right-radius: 0.7em;
+	margin-top: 0;
 }
 
 .updater-item {
-    min-height: 3em;
-    padding: .2em;
+	min-height: 3em;
+	padding: 0.2em;
 }
 
 .message {
-    border: .1em solid #981E1F;
-    font-size: 1em;
-    padding: 2.5em;
-    color: white;
-    background-color: #981E1F;
+	border: 0.1em solid #981e1f;
+	font-size: 1em;
+	padding: 2.5em;
+	color: white;
+	background-color: #981e1f;
 }
 
 .message button {
-    background-color: white;
-    color: black;
-    padding: 2em 2.5em 2em 2.5em;
+	background-color: white;
+	color: black;
+	padding: 2em 2.5em 2em 2.5em;
 }
 
 .system-program-grid {
-    padding: 0.25em;
-    padding-right: .5em;
-    padding-bottom: 0;
+	padding: 0.25em;
+	padding-right: 0.5em;
+	padding-bottom: 0;
 }
 
 .warning {
-    background-color: rgba(30, 204, 39, 0.7);
+	background-color: rgba(30, 204, 39, 0.7);
 }
 
 .error {
-    background-color: rgba(204, 30, 30, 0.7);
+	background-color: rgba(204, 30, 30, 0.7);
 }
 
 popover {
-    background-color: #222;
+	background-color: #222;
 }
 
 popover button {
-    background-color: #222;
+	background-color: #222;
 }
 
-.screensaver, .screensaver button, .screensaver button:hover, .screensaver button:focus, .screensaver button:active {
-    background-color: black;
-    border: 0;
-    margin: 0;
+.screensaver,
+.screensaver button,
+.screensaver button:hover,
+.screensaver button:focus,
+.screensaver button:active {
+	background-color: black;
+	border: 0;
+	margin: 0;
 }
 
-.option_slider_max trough highlight, trough progress {
-    background-color: darkred;
+.option_slider_max trough highlight,
+trough progress {
+	background-color: darkred;
 }
 
 .filament_sensor {
-    border-radius: 3em;
+	border-radius: 3em;
 }
 
 .filament_sensor switch {
-    margin: 0;
+	margin: 0;
 }
 
 .filament_sensor_detected {
-    background-color: darkgreen;
+	background-color: darkgreen;
 }
 
 .filament_sensor_empty {
-    background-color: darkred;
+	background-color: darkred;
 }
 
 /* Yeni CSSler */
 checkbutton check {
-    min-width: 25px;
-    min-height: 25px;
-    background-color: #00747B;
+	min-width: 25px;
+	min-height: 25px;
+	background-color: #00747b;
 }
-
 
 #send-button {
-    background-color: #00477B;
-    border-radius: 4px;
-    min-width: 8rem;
-    min-height: 3.5rem;
+	background-color: #00477b;
+	border-radius: 4px;
+	min-width: 8rem;
+	min-height: 3.5rem;
 }
 #refresh-button {
-background-color: transparent;
-
+	background-color: transparent;
 }
 #refresh-button:active {
-    background-color: #304C62;
-
+	background-color: #304c62;
 }
 button.probe-calibration {
-    border-bottom: .3em solid #BD5B3C;
-    background-color: transparent;
+	border-bottom: 0.3em solid #bd5b3c;
+	background-color: transparent;
 }
-button.probe-calibration label{
- font-size: .8em;
+button.probe-calibration label {
+	font-size: 0.8em;
 }
 button.auto-leveling {
-    border-bottom: .3em solid #62B19E;
-    background-color: transparent;
+	border-bottom: 0.3em solid #62b19e;
+	background-color: transparent;
 }
-button.auto-leveling label{
- font-size: .8em;
+button.auto-leveling label {
+	font-size: 0.8em;
 }
 button.manuel-leveling {
-    border-bottom: .3em solid #955EA8;
-    background-color: transparent;
+	border-bottom: 0.3em solid #955ea8;
+	background-color: transparent;
 }
-button.manuel-leveling label{
- font-size: .8em;
+button.manuel-leveling label {
+	font-size: 0.8em;
 }
 button.network {
-    border-bottom: .3em solid #00477B;
-    background-color: transparent;
+	border-bottom: 0.3em solid #00477b;
+	background-color: transparent;
 }
-button.network label{
- font-size: .8em;
+button.network label {
+	font-size: 0.8em;
 }
 button.input-shaper {
-    border-bottom: .3em solid #007B4F;
-    background-color: transparent;
+	border-bottom: 0.3em solid #007b4f;
+	background-color: transparent;
 }
-button.input-shaper label{
- font-size: .8em;
+button.input-shaper label {
+	font-size: 0.8em;
 }
 button.camera {
-    border-bottom: .3em solid #629A47;
-    background-color: transparent;
+	border-bottom: 0.3em solid #629a47;
+	background-color: transparent;
 }
-button.camera label{
- font-size: .8em;
+button.camera label {
+	font-size: 0.8em;
 }
 button.console {
-    border-bottom: .3em solid #A9862D;
-    background-color: transparent;
+	border-bottom: 0.3em solid #a9862d;
+	background-color: transparent;
 }
-button.console label{
- font-size: .8em;
+button.console label {
+	font-size: 0.8em;
 }
 button.adv-setting {
-    border-bottom: .3em solid #3DA7B6;
-    background-color: transparent;
+	border-bottom: 0.3em solid #3da7b6;
+	background-color: transparent;
 }
-button.adv-setting label{
- font-size: .8em;
+button.adv-setting label {
+	font-size: 0.8em;
 }
 button.movement {
-    border-bottom: .3em solid #9DBFD8;
-    background-color: transparent;
+	border-bottom: 0.3em solid #9dbfd8;
+	background-color: transparent;
 }
-button.movement label{
- font-size: .8em;
+button.movement label {
+	font-size: 0.8em;
 }
 button.macros {
-    border-bottom: .3em solid #703F51;
-    background-color: transparent;
+	border-bottom: 0.3em solid #703f51;
+	background-color: transparent;
 }
-button.macros label{
- font-size: .8em;
+button.macros label {
+	font-size: 0.8em;
 }
 #bottom-menu-box {
-   
 }
 
 #auto-leveling-right-box {
-    min-width: 34rem;
+	min-width: 34rem;
 }
 .numpad-new-label {
-    border: 1px solid #F3F3F3;
-    background-color: #000000;
-    
+	border: 1px solid #f3f3f3;
+	background-color: #000000;
 }
 #numpad-entry-box {
-    
-    border-radius: 10px;
-    min-height: 4rem;
+	border-radius: 10px;
+	min-height: 4rem;
 }
 #movement-setting-label {
-    font-size: 1.75rem;
-    margin-left: 3rem;
+	font-size: 1.75rem;
+	margin-left: 3rem;
 }
 #macro-label {
-    font-size: 2rem;
+	font-size: 2rem;
 }
 #movement-label {
-    font-size: 1.2em;
-    }
+	font-size: 1.2em;
+}
 #auto-leveling-label {
-    font-size: 1.0em;
+	font-size: 1em;
 }
 #probe-calibration-label-box {
-    border-radius: 7px;
-    border: 1.1px solid #878787;
-    min-width: 6rem;
-    padding-top: .75rem;
-    padding-bottom: .75rem;
+	border-radius: 7px;
+	border: 1.1px solid #878787;
+	min-width: 6rem;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
 }
 #percentage-factor-label-box {
-    border-radius: 7px;
-    border: 1.3px solid #FFFFFF;
-    min-width: 5rem;
-    padding: .5rem;
+	border-radius: 7px;
+	border: 1.3px solid #ffffff;
+	min-width: 5rem;
+	padding: 0.5rem;
 }
 #movement-label-box {
-    border-radius: 7px;
-    border: 1.3px solid #9E9E9E;
-    min-width: 11rem;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
+	border-radius: 7px;
+	border: 1.3px solid #9e9e9e;
+	min-width: 11rem;
+	padding-top: 1.2rem;
+	padding-bottom: 1.2rem;
 }
 #square-movement-label-box {
-    border-radius: 7px;
-    border: 1.3px solid #9E9E9E;
-    min-width: 11rem;
-   
+	border-radius: 7px;
+	border: 1.3px solid #9e9e9e;
+	min-width: 11rem;
 }
 #movement-name-box {
-    min-width: 10rem;
+	min-width: 10rem;
 }
 #probe-calibration-start-button-box {
-    min-width: 25rem;
+	min-width: 25rem;
 }
 #auto-leveling-label-box {
-    border: 1.3px solid #FFFFFF;
-    min-width: 7rem;
-    padding-top: 1.75rem;
-    padding-bottom: 1.75rem;
+	border: 1.3px solid #ffffff;
+	min-width: 7rem;
+	padding-top: 1.75rem;
+	padding-bottom: 1.75rem;
 }
 
 box.auto-leveling-label-box-active {
-    background-color: #3D4A54;
+	background-color: #3d4a54;
 }
 box.auto-leveling-label-box-active-white {
-    background-color: #D9D9D9;
+	background-color: #d9d9d9;
 }
 
 #auto-leveling-title-label {
-    font-weight: 600;
+	font-weight: 600;
 }
 #auto-leveling-content-label {
-    font-weight: 400;
-    color: #949292
+	font-weight: 400;
+	color: #949292;
 }
 #manuel-leveling-buttons {
-    background-color: #000000;
-    border: 1px solid #EEEEEE;
-    padding: .3rem 1.1em .1rem 1.5rem;
-    border-radius: 100px;
+	background-color: #000000;
+	border: 1px solid #eeeeee;
+	padding: 0.3rem 1.1em 0.1rem 1.5rem;
+	border-radius: 100px;
 }
 #manuel-leveling-buttons:focus {
-    background-color: #EEEEEE;
-    border: 1px solid #000000;
-    padding: .3rem 1.1em .1rem 1.5rem;
-    border-radius: 100px;
+	background-color: #eeeeee;
+	border: 1px solid #000000;
+	padding: 0.3rem 1.1em 0.1rem 1.5rem;
+	border-radius: 100px;
 }
-#manuel-leveling-buttons label{
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #EEEEEE;
+#manuel-leveling-buttons label {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #eeeeee;
 }
-#manuel-leveling-buttons:focus label{
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #000000;
+#manuel-leveling-buttons:focus label {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #000000;
 }
-#z-calibration-title-box{
-    padding: 1rem;
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    border-radius: .65rem .65rem 0 0;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+#z-calibration-title-box {
+	padding: 1rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 0.65rem 0.65rem 0 0;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-#z-calibration-content-box{
-    padding: .75rem;
-    background-color: #000000;
+#z-calibration-content-box {
+	padding: 0.75rem;
+	background-color: #000000;
 }
 #z-calibration-box {
-    border-radius: .65rem;
-    background-color: #000000;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin: 1.2rem;
+	border-radius: 0.65rem;
+	background-color: #000000;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	margin: 1.2rem;
 }
 #z-calibration-content-label {
-    font-size: 18px;
+	font-size: 18px;
 }
 #manuel-fixed-box {
-    background-color: #000000;
-    border-radius: 10px;
-    padding: 2rem;
+	background-color: #000000;
+	border-radius: 10px;
+	padding: 2rem;
 }
 #wifi-card-boxx {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    padding: 1rem;
-    border-radius: 10px;
-    min-width: 45rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	padding: 1rem;
+	border-radius: 10px;
+	min-width: 45rem;
 }
 
 #wifi-card-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    padding: 1rem;
-    border-radius: 10px;
-    min-width: 60rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	padding: 1rem;
+	border-radius: 10px;
+	min-width: 60rem;
 }
 
-
 #system-setting-card-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    padding: 1rem;
-    border-radius: 10px;
-    min-width: 50rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	padding: 1rem;
+	border-radius: 10px;
+	min-width: 50rem;
 }
 
 #wifi-name-label {
-    font-weight: 500;
-    font-size: 1.5rem;
+	font-weight: 500;
+	font-size: 1.5rem;
 }
 #wifi-status-label {
-    font-size: 1.1rem;
+	font-size: 1.1rem;
 }
 button#change-offset-button {
-    
-    border: 2px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
+	border: 2px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
 }
 button.change-offset-button-active {
-    background-color: #00477B;
-    border: 2px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
+	background-color: #00477b;
+	border: 2px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
 }
 
 button#change-offset-button1 {
-    background-color: #252525;
-    border: 2px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
-    border-radius: .5rem 0 0 .5rem;
+	background-color: #252525;
+	border: 2px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
+	border-radius: 0.5rem 0 0 0.5rem;
 }
 button#change-offset-button1-active {
-    background-color: #000000;
-    border: 2px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
-    border-radius: .5rem 0 0 .5rem;
+	background-color: #000000;
+	border: 2px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
+	border-radius: 0.5rem 0 0 0.5rem;
 }
 button#change-offset-button2 {
-    background-color: #252525;
-    border: 2px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
-    border-radius: 0 .5rem .5rem 0;
+	background-color: #252525;
+	border: 2px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
+	border-radius: 0 0.5rem 0.5rem 0;
 }
 button#change-offset-button2-active {
-    background-color: #000000;
-    border: 2px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
-    border-radius: 0 .5rem .5rem 0;
+	background-color: #000000;
+	border: 2px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
+	border-radius: 0 0.5rem 0.5rem 0;
 }
 button#probe-change-offset-button {
-    
-    border: 1.5px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
+	border: 1.5px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
 }
 button.probe-change-offset-button-active {
-    background-color: #00477B;
-    border: 1.5px solid #6B6B6B;
-    min-width:3rem;
-    min-height: 3.5rem;
+	background-color: #00477b;
+	border: 1.5px solid #6b6b6b;
+	min-width: 3rem;
+	min-height: 3.5rem;
 }
 #probe-zoffset-box {
-   
-    padding: 1rem;
+	padding: 1rem;
 }
 #z-axis-horizontal-button-box {
-    border: 1.3px solid #878787;
-    border-radius: 10px;
-    color:  #000000;
-    padding: .5rem;
+	border: 1.3px solid #878787;
+	border-radius: 10px;
+	color: #000000;
+	padding: 0.5rem;
 }
-scale.slicer-time-scale trough{
-    min-height: .1em;
-    border-radius: 2rem;
-    min-height: .1em;
-    border: 1px solid #E7E7E7;
+scale.slicer-time-scale trough {
+	min-height: 0.1em;
+	border-radius: 2rem;
+	min-height: 0.1em;
+	border: 1px solid #e7e7e7;
 }
-scale.slicer-time-scale highlight{
-    min-height: .1em;
-    background-color: #00477B;
-    color: #00477B;
-    border: 1px solid #E7E7E7;
-    border-radius:2rem 0 0 2rem;
+scale.slicer-time-scale highlight {
+	min-height: 0.1em;
+	background-color: #00477b;
+	color: #00477b;
+	border: 1px solid #e7e7e7;
+	border-radius: 2rem 0 0 2rem;
 }
-scale.slicer-time-scale slider{
-    
+scale.slicer-time-scale slider {
 }
 
-scale.movement-setting trough{
-    min-height: .1em;
-    border-radius: 1rem;
+scale.movement-setting trough {
+	min-height: 0.1em;
+	border-radius: 1rem;
 }
-scale.movement-setting trough highlight{
-    min-height: .1em;
-    background-color: #00477B;
-    color: #00477B;
-    border-radius:1rem 0 0 1rem;
+scale.movement-setting trough highlight {
+	min-height: 0.1em;
+	background-color: #00477b;
+	color: #00477b;
+	border-radius: 1rem 0 0 1rem;
 }
-scale.movement-setting trough slider{
-   
+scale.movement-setting trough slider {
 }
 #save-settings-button {
-    background-color: #00477B;
-    border-radius: 4px;
-    min-width: 7.5rem;
-    min-height: 3.5rem;
+	background-color: #00477b;
+	border-radius: 4px;
+	min-width: 7.5rem;
+	min-height: 3.5rem;
 }
-#save-settings-button label{
-    font-size: 1.1rem;
+#save-settings-button label {
+	font-size: 1.1rem;
 }
 #probe-calibration-start-button {
-    background-color: #00477B;
-    border-radius: 4px;
-    min-width: 7.5rem;
-    min-height: 3.5rem;
+	background-color: #00477b;
+	border-radius: 4px;
+	min-width: 7.5rem;
+	min-height: 3.5rem;
 }
 #probe-calibration-start-button:active {
-    background-color: #ffffff;
-    border-radius: 4px;
-    min-width: 7.5rem;
-    min-height: 3.5rem;
+	background-color: #ffffff;
+	border-radius: 4px;
+	min-width: 7.5rem;
+	min-height: 3.5rem;
 }
 #calibration-stop-button {
-    background-color: #3D4A54;
-    border-radius: 4px;
-    min-width: 7.5rem;
-    min-height: 3.5rem;
+	background-color: #3d4a54;
+	border-radius: 4px;
+	min-width: 7.5rem;
+	min-height: 3.5rem;
 }
 #connection-box {
-    padding-right: .5rem;
+	padding-right: 0.5rem;
 }
 #connection-setting-label {
-    font-size: 1.75rem;
-    font-weight: 400;
+	font-size: 1.75rem;
+	font-weight: 400;
 }
 #ip-label {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: #868686
+	font-size: 1.5rem;
+	font-weight: 400;
+	color: #868686;
 }
 #printer-type-title-label {
-    font-size: 1.75rem;
-    font-weight: 600;
+	font-size: 1.75rem;
+	font-weight: 600;
 }
 #printer-type-content-label {
-    font-size: 1.4rem;
-    color: #868686;
-    font-weight: 400;
+	font-size: 1.4rem;
+	color: #868686;
+	font-weight: 400;
 }
 #sensor-label {
-    font-size: 1.3rem;
-    color: #F7BA17;
-    font-weight: 400;
+	font-size: 1.3rem;
+	color: #f7ba17;
+	font-weight: 400;
 }
 #add-network-button {
-    background-color: #00477B;
-    border-radius: 4px;
-    min-width: 15rem;
-    min-height: 2.5rem;
+	background-color: #00477b;
+	border-radius: 4px;
+	min-width: 15rem;
+	min-height: 2.5rem;
 }
-#add-network-button label{
-    font-size: 1.1rem;
+#add-network-button label {
+	font-size: 1.1rem;
 }
 #disconnect-network-button {
-    background: linear-gradient(180deg, #FA3C3C 0%, #793A3A 100%);
-    border-radius: 5px;
-    min-height: 2.5rem; 
-    min-width: 6.5rem;
-   
+	background: linear-gradient(180deg, #fa3c3c 0%, #793a3a 100%);
+	border-radius: 5px;
+	min-height: 2.5rem;
+	min-width: 6.5rem;
 }
 #disconnect-network-button:active {
-    background: #FFFFFF;
-    border-radius: 5px;
-    min-height: 2.5rem; 
-   
+	background: #ffffff;
+	border-radius: 5px;
+	min-height: 2.5rem;
 }
-#disconnect-network-button label{
-    font-size: .85rem;
+#disconnect-network-button label {
+	font-size: 0.85rem;
 }
 #forgot-network-button {
-    background: linear-gradient(180deg, #D9D9D9 0%, #7D7D7D 100%);
-    border-radius: 5px;
-    min-height: 2.5rem; 
-    min-width: 6.5rem;
-   
+	background: linear-gradient(180deg, #d9d9d9 0%, #7d7d7d 100%);
+	border-radius: 5px;
+	min-height: 2.5rem;
+	min-width: 6.5rem;
 }
 #forgot-network-button:active {
-    background: #FFFFFF;
-    border-radius: 5px;
-    min-height: 2.5rem; 
-   
+	background: #ffffff;
+	border-radius: 5px;
+	min-height: 2.5rem;
 }
-#forgot-network-button label{
-    font-size: .85rem;
+#forgot-network-button label {
+	font-size: 0.85rem;
 }
 #next-step-button {
-    background-color: #00477B;
-    border-radius: 4px;
-    min-width: 12rem;
-    min-height: 2.5rem;
+	background-color: #00477b;
+	border-radius: 4px;
+	min-width: 12rem;
+	min-height: 2.5rem;
 }
-#next-step-button label{
-    font-size: 1rem;
+#next-step-button label {
+	font-size: 1rem;
 }
 #passive-next-step-button {
-    background-color: rgba(77, 74, 74, 0.39);
-    border-radius: 4px;
-    min-width: 12rem;
-    min-height: 2.5rem;
+	background-color: rgba(77, 74, 74, 0.39);
+	border-radius: 4px;
+	min-width: 12rem;
+	min-height: 2.5rem;
 }
-#passive-next-step-button label{
-    font-size: 1rem;
+#passive-next-step-button label {
+	font-size: 1rem;
 }
 #camera-label {
-    color: #999999;
-    font-weight: 500;
-    font-size: 1.7rem;
+	color: #999999;
+	font-weight: 500;
+	font-size: 1.7rem;
 }
 #camera-box {
-    border: 1px solid #737373;
-    border-radius: 7px;
-    padding: 1.7rem;
-    min-width: 18rem;
+	border: 1px solid #737373;
+	border-radius: 7px;
+	padding: 1.7rem;
+	min-width: 18rem;
 }
 #camera-button {
-    background-color: #22282F;
-    border-radius: 7px;
-    min-height: 3.5rem;
-    min-width: 15rem;
+	background-color: #22282f;
+	border-radius: 7px;
+	min-height: 3.5rem;
+	min-width: 15rem;
 }
-#network-input{
-    background-color: #000000;
-    color: #f0f0f0;
-    border: .75px solid #F3F3F3;
-    border-radius: 5px;
+#network-input {
+	background-color: #000000;
+	color: #f0f0f0;
+	border: 0.75px solid #f3f3f3;
+	border-radius: 5px;
 }
 #add-network-dialog-title {
-    font-size: 1.75rem;
+	font-size: 1.75rem;
 }
 #printer-type-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 1rem;
-    min-width: 18rem;
-    padding: 1.2rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 1rem;
+	min-width: 18rem;
+	padding: 1.2rem;
 }
 #printer-type-label {
-    font-size: 1.5rem;
-    font-weight: 600;
+	font-size: 1.5rem;
+	font-weight: 600;
 }
 #probe-calibration-label {
-    padding-left: 1rem;
+	padding-left: 1rem;
 }
 combobox.adv-setting-combo {
-    min-width: 20rem;
+	min-width: 20rem;
 }
 combobox.adv-setting-combo box button {
-    border: .05em solid #cccccc;
-    border-radius: 7px;
-    padding: .5em 5px;
-    background-color: #000000;
+	border: 0.05em solid #cccccc;
+	border-radius: 7px;
+	padding: 0.5em 5px;
+	background-color: #000000;
 }
-combobox.adv-setting-combo window.popup *{
-    background: #000000;
+combobox.adv-setting-combo window.popup * {
+	background: #000000;
 }
 #adv-settings-box {
-    padding: 0 4rem;
-
+	padding: 0 4rem;
 }
 #movement-settings-box {
-    padding: 0 4rem;
-
+	padding: 0 4rem;
 }
 
 #adv-settings-box-with-switch {
-    padding: 1rem 4rem;
+	padding: 1rem 4rem;
 }
 #adv-settings-box-with-button {
-    padding: 1rem 4rem 0 4rem;
+	padding: 1rem 4rem 0 4rem;
 }
-#advanced-setting-button{
-    background-color: #00477B;
-    border-radius: 4px;
-    min-width: 8rem;
-    min-height: 2.5rem;
+#advanced-setting-button {
+	background-color: #00477b;
+	border-radius: 4px;
+	min-width: 8rem;
+	min-height: 2.5rem;
 }
 
-#advanced-setting-button:active{
-    background-color: #fff;
-    border-radius: 4px;
-    min-width: 8rem;
-    min-height: 2.5rem;
+#advanced-setting-button:active {
+	background-color: #fff;
+	border-radius: 4px;
+	min-width: 8rem;
+	min-height: 2.5rem;
 }
 
 #adv-setting-main-box {
-    background-color: #000000;
-    border-radius: 15px;
-    margin: 0 1rem;
-    
+	background-color: #000000;
+	border-radius: 15px;
+	margin: 0 1rem;
 }
 #adv-setting-switch {
-    min-width: 3em;
-    min-height: 1.5em;
-    border-radius: 1em;
+	min-width: 3em;
+	min-height: 1.5em;
+	border-radius: 1em;
 }
 #adv-setting-switch slider {
-    border-radius: 1em;
+	border-radius: 1em;
 }
 .network-dialog {
-    border: .1em solid #FBF7F7;
-    padding: 5rem;
-    background-color: black;
-    margin: 1em;
-    border-radius: 15px;
+	border: 0.1em solid #fbf7f7;
+	padding: 5rem;
+	background-color: black;
+	margin: 1em;
+	border-radius: 15px;
 }
 .network-dialog button {
-    background-color: #00477B;
-    border-radius: 4px;
-    min-width: 7rem;
-    min-height: 2.5rem;
+	background-color: #00477b;
+	border-radius: 4px;
+	min-width: 7rem;
+	min-height: 2.5rem;
 }
-.network-dialog button label{
-    font-size: 1.1rem;
+.network-dialog button label {
+	font-size: 1.1rem;
 }
 .homing-dialog {
-    border: .1em solid #FBF7F7;
-    padding: 5rem;
-    background-color: #FFFFFF;
-    margin: 1em;
-    border-radius: 15px;
+	border: 0.1em solid #fbf7f7;
+	padding: 5rem;
+	background-color: #ffffff;
+	margin: 1em;
+	border-radius: 15px;
 }
 .info-dialog {
-    border: .1em solid black;
-    padding: 2rem;
-    background-color: black;
-    margin: 1em;
-    border-radius: 15px;
+	border: 0.1em solid black;
+	padding: 2rem;
+	background-color: black;
+	margin: 1em;
+	border-radius: 15px;
 }
 .alert-info-dialog {
-    border: 3px solid #23A6F0;
-    padding: 2rem;
-    background-color: #F8FAFF;
-  
-    border-radius: 5px;
+	border: 3px solid #23a6f0;
+	padding: 2rem;
+	background-color: #f8faff;
+
+	border-radius: 5px;
 }
-.alert-info-dialog label{
-    color: #23A6F0;
+.alert-info-dialog label {
+	color: #23a6f0;
 }
 .bin-generate-dialog {
-    border: 3px solid #2d2d2d;
-    /* padding: 2rem; */
-    background-color: #2d2d2d;
-  
-    border-radius: 5px;
+	border: 3px solid #2d2d2d;
+	/* padding: 2rem; */
+	background-color: #2d2d2d;
+
+	border-radius: 5px;
 }
 .new-numpad-dialog {
-    border: .1em solid #CFCDCD;
-    background-color: black;
-    margin: 1em;
-    border-radius: 15px;
+	border: 0.1em solid #cfcdcd;
+	background-color: black;
+	margin: 1em;
+	border-radius: 15px;
 }
 #keypad-dialog {
-    /* margin: 0 3rem 0 3rem; */
+	/* margin: 0 3rem 0 3rem; */
 }
 #keypad-dialog-content {
-    margin: 0 3rem 1rem 3rem;
+	margin: 0 3rem 1rem 3rem;
 }
 #info-dialog-content-box {
-    margin: 2rem;
+	margin: 2rem;
 }
 
 #info-dialog-content-box-brand {
-    padding: .5rem;
-    margin: .5rem;
+	padding: 0.5rem;
+	margin: 0.5rem;
 }
 #info-dialog-title-label {
-    font-weight: 700;
-    font-size: 1.5rem;
+	font-weight: 700;
+	font-size: 1.5rem;
 }
 #info-dialog-brand-label {
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 #info-dialog-content-label {
-    font-size: 1.2rem;
+	font-size: 1.2rem;
 }
 #bin-generate-dialog-content-label {
-    font-size: 1.2rem;
-    color: #F7BA17;
+	font-size: 1.2rem;
+	color: #f7ba17;
 }
 #bin-generate-dialog-content-box {
-   
 }
-.numpad-new{
-    margin-top: 0px;
+.numpad-new {
+	margin-top: 0px;
 }
 .numpad-new-button {
-    border-radius: .4em;
-    background-color: #D9D9D9;
-    
-    
+	border-radius: 0.4em;
+	background-color: #d9d9d9;
 }
-.numpad-new-button label{
-    color: #000000;
-    font-size: 2.2rem;
-    padding: 0 1rem 0 1rem;
+.numpad-new-button label {
+	color: #000000;
+	font-size: 2.2rem;
+	padding: 0 1rem 0 1rem;
 }
 #numpad-delete-button {
-    border-radius: .4em;
-    background-color: #D9D9D9;
+	border-radius: 0.4em;
+	background-color: #d9d9d9;
 }
 #numpad-approve-button {
-    border-radius: .4em;
-    background-color: #00477B;
-} 
+	border-radius: 0.4em;
+	background-color: #00477b;
+}
 #numpad-close-button {
-   
-    background-color: transparent;
+	background-color: transparent;
 }
 #numpad-close-button:active {
-
-    background-color: #2B4A79;
+	background-color: #2b4a79;
+}
+#extruder-filament-select-box {
+	background: #0e0e0e;
+	border-radius: 10px;
+	min-width: 5.2rem;
+}
+frame#filament-extruder {
+	border-radius: 8px;
+	border: 1px solid #878787;
+	min-width: 5.2rem;
+}
+frame.filament-extruder-active {
+	border: 1px solid #878787;
+	background: #878787;
+	border-radius: 8px;
+	min-width: 5.2rem;
 }
 #filament-tab-greeen-button {
-    border-radius: 8px;
-    background: #48A34C;
-    min-width: 2.3rem;
-    min-height: 3.3rem;
+	border-radius: 8px;
+	background: #48a34c;
+	min-width: 2.3rem;
+	min-height: 3.3rem;
 }
 #filament-tab-black-button {
-    border-radius: 8px;
-    min-width: 2.3rem;
-    min-height: 3.3rem;
-    background: #0E0E0E;
+	border-radius: 8px;
+	min-width: 2.3rem;
+	min-height: 3.3rem;
+	background: #0e0e0e;
 }
 #filament-tab-greeen-button-box {
-    border-radius: 10px;
-    border: 1px solid #8E8E8E;
+	border-radius: 10px;
+	border: 1px solid #8e8e8e;
 }
 #load-button {
-    border-radius: 10px;
-    background: linear-gradient(180deg, #818181 0%, #353535 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    min-width: 6rem;
+	border-radius: 10px;
+	background: linear-gradient(180deg, #818181 0%, #353535 100%);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	min-width: 6rem;
 }
 #load-unload-label {
-    padding-left: .5rem;
-    font-size: 1.1rem   ;
+	padding-left: 0.5rem;
+	font-size: 1.1rem;
 }
 #loaded-label {
-    color: #48A34C;
-    font-size: 1rem;
+	color: lightgreen;
+	font-size: 0.9rem;
+	font-weight: bold;
+}
+#unloaded-label {
+	color: #f62d12;
+	font-size: 0.9rem;
 }
 #parked-label {
-    color: #A8A8A8;
-    font-size: 1rem;
+	color: #f7ba17;
+	font-size: 0.9rem;
+	font-weight: bold;
 }
 #home-filament-box-input-label {
-    min-width: 7rem;
-
+	min-width: 7rem;
 }
 #load-unload-button-box {
-    min-height: 2rem;
+	min-height: 2rem;
 }
 #home-tab-filament-cut-button {
-    background: linear-gradient(180deg, #818181 0%, #353535 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    min-height: 2.5rem;
-    min-width: 6rem;
+	background: linear-gradient(180deg, #818181 0%, #353535 100%);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	min-height: 2.5rem;
+	min-width: 6rem;
 }
-#home-tab-filament-cut-button label{
-    font-size: 1.1rem;
+#home-tab-filament-cut-button label {
+	font-size: 1.1rem;
 }
-#system-content-label{
-    padding-left: .6rem;
-    font-size: .8rem;
-    color: #FFFFFF;
+#system-content-label {
+	padding-left: 0.6rem;
+	font-size: 0.8rem;
+	color: #ffffff;
 }
-#system-content-title-label{
-    padding-left: .6rem;
-    font-size: .8rem;
-    color: #FFFFFF;
-    font-weight: 600;
+#system-content-title-label {
+	padding-left: 0.6rem;
+	font-size: 0.8rem;
+	color: #ffffff;
+	font-weight: 600;
 }
 #system-restart-tab-blue-button {
-    border-radius: 7px;
-    background: linear-gradient(180deg, #12B1F6 0%, #134B8E 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 7px;
+	background: linear-gradient(180deg, #12b1f6 0%, #134b8e 100%);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-#system-restart-tab-blue-button label{
-    font-size: 1rem;
+#system-restart-tab-blue-button label {
+	font-size: 1rem;
 }
 #system-restart-tab-blue-button:active {
-    border-radius: 7px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 7px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 #system-restart-tab-red-button {
-    border-radius: 7px;
-    background: linear-gradient(180deg, #F62D12 0%, #B47C6A 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 7px;
+	background: linear-gradient(180deg, #f62d12 0%, #b47c6a 100%);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-#system-restart-tab-red-button label{
-    font-size: 1rem;
+#system-restart-tab-red-button label {
+	font-size: 1rem;
 }
 #system-restart-tab-red-button:active {
-    border-radius: 7px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 7px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 #system-shutdown-tab-grey-button {
-    border-radius: 7px;
-    background: linear-gradient(180deg, #929292 0%, #2D2D2D 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 7px;
+	background: linear-gradient(180deg, #929292 0%, #2d2d2d 100%);
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-#system-shutdown-tab-grey-button label{
-    font-size: 1rem;
+#system-shutdown-tab-grey-button label {
+	font-size: 1rem;
 }
 #system-shutdown-tab-grey-button:active {
-    border-radius: 7px;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 7px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 #directivity-button {
-    background-color: #0E0E0E;
+	background-color: #0e0e0e;
 }
 #directivity-button:active {
-    background-color: #FFFFFF;
-    border-radius: 5px;
+	background-color: #ffffff;
+	border-radius: 5px;
 }
 
 #up-down-tab-buttons {
-    background-color: #00477B;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
-    min-height: 2.8rem;
-    min-width: 2.5rem;
-    
+	background-color: #00477b;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 12px;
+	min-height: 2.8rem;
+	min-width: 2.5rem;
 }
 #up-down-tab-buttons:active {
-    background-color: #ffffff;
-    border-radius: 12px;
-    min-height: 2.8rem;
-    min-width: 2.5rem;
-    
+	background-color: #ffffff;
+	border-radius: 12px;
+	min-height: 2.8rem;
+	min-width: 2.5rem;
 }
-#system-total-times-title-label{
-    color: #FFFFFF;
-    font-size: 1rem;
-    padding-left: 2rem;
-    font-weight: 600;
+#system-total-times-title-label {
+	color: #ffffff;
+	font-size: 1rem;
+	padding-left: 2rem;
+	font-weight: 600;
 }
-#system-total-times-content-label{
-    color: #FFFFFF;
-    font-size: 2rem;
-    padding-left: 2rem;
-    font-weight: 600;
+#system-total-times-content-label {
+	color: #ffffff;
+	font-size: 2rem;
+	padding-left: 2rem;
+	font-weight: 600;
 }
-#system-tab-button-label{
-    padding-left: .5rem;
+#system-tab-button-label {
+	padding-left: 0.5rem;
 }
 .tab-separator {
-    margin: .22em .22em;
-    min-width: 10rem;
-    background-color: #4F4F4F;
+	margin: 0.22em 0.22em;
+	min-width: 10rem;
+	background-color: #4f4f4f;
 }
 
 #zoffset-with-speed-factor-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    border-radius: 10px;
-    padding: .5rem;
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
-    min-width: 535px;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 10px;
+	padding: 0.5rem;
+	margin-left: 1.2rem;
+	margin-right: 1.2rem;
+	min-width: 535px;
 }
-
 
 #prev-next-button {
-    border-radius: 75px;
-    background-color: #000000;
-    padding: .5rem;
+	border-radius: 75px;
+	background-color: #000000;
+	padding: 0.5rem;
 }
 #prev-next-button:active {
-    background-color: #FFFFFF;
-    border-radius: 150px;
+	background-color: #ffffff;
+	border-radius: 150px;
 }
 #selectable-box {
-    background: linear-gradient(180deg, rgba(63, 63, 63, 0.90) 0%, rgba(63, 63, 63, 0.00) 100%);
-    border-radius: 10px;
-    padding: .5rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+	background: linear-gradient(
+		180deg,
+		rgba(63, 63, 63, 0.9) 0%,
+		rgba(63, 63, 63, 0) 100%
+	);
+	border-radius: 10px;
+	padding: 0.5rem;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
 }
 #timezone-box {
-    background-color: #161616;
-    padding: 1.5rem;
-    border-radius: 10px;
-    min-width: 20rem;
+	background-color: #161616;
+	padding: 1.5rem;
+	border-radius: 10px;
+	min-width: 20rem;
 }
 #timezone-select-box {
-    background-color: #00747B;
-    padding: 1.5rem;
-    border: 1px solid #FFF5F5;
-    border-radius: 10px;
-    min-width: 20rem;
+	background-color: #00747b;
+	padding: 1.5rem;
+	border: 1px solid #fff5f5;
+	border-radius: 10px;
+	min-width: 20rem;
 }
 #timezone-label {
-    color: #FFFFFF;
-    font-size: 14px;
+	color: #ffffff;
+	font-size: 14px;
 }
 #time-label {
-    color: #FFFFFF;
-    font-size: 45px;
-    font-weight: 500;
+	color: #ffffff;
+	font-size: 45px;
+	font-weight: 500;
 }
 #current-time-label {
-    color: #FFFFFF;
-    font-size: 20px;
-    font-weight: 400;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: 400;
 }
 
 /* Yeni CSSler */
 
 /* Hardcoded values until creation of dynamic CSS updates */
-.graph_label_hidden {padding-left: .9em;} /* .4em on top of normal button padding */
-.graph_label_extruder {border-left-width: .4em; border-left-style: solid;}
-.graph_label_extruder1 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_extruder2 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_extruder3 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_extruder4 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_heater_bed {border-left-width: .4em; border-left-style: solid;}
-.graph_label_fan_1 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_fan_2 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_fan_3 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_fan_4 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_sensor_1 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_sensor_2 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_sensor_3 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_sensor_4 {border-left-width: .4em; border-left-style: solid;}
-.graph_label_sensor_5 {border-left-width: .4em; border-left-style: solid;}
+.graph_label_hidden {
+	padding-left: 0.9em;
+} /* .4em on top of normal button padding */
+.graph_label_extruder {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_extruder1 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_extruder2 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_extruder3 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_extruder4 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_heater_bed {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_fan_1 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_fan_2 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_fan_3 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_fan_4 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_sensor_1 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_sensor_2 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_sensor_3 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_sensor_4 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}
+.graph_label_sensor_5 {
+	border-left-width: 0.4em;
+	border-left-style: solid;
+}

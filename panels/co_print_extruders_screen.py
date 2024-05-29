@@ -25,34 +25,12 @@ class Singleton(type):
 
 class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
     active_heater = None
-    selectedExtruder = ""
     extruderChanged = False
     temp_extruder_temp = 0
-    extruders = [
-            {'Name': '1', 'Icon': 'ext_1', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '2', 'Icon': 'ext_2', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '3', 'Icon': 'ext_3', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '4', 'Icon': 'ext_4', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '5', 'Icon': 'ext_5', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '6', 'Icon': 'ext_6', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '7', 'Icon': 'ext_7', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '8', 'Icon': 'ext_8', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '9',  'Icon': 'ext_9', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '10', 'Icon': 'ext_10', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '11', 'Icon': 'ext_11', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '12', 'Icon': 'ext_12', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '13', 'Icon': 'ext_13', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '14', 'Icon': 'ext_14', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '15', 'Icon': 'ext_15', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '16', 'Icon': 'ext_16', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '17', 'Icon': 'ext_17', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '18', 'Icon': 'ext_18', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '19', 'Icon': 'ext_19', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
-            {'Name': '20', 'Icon': 'ext_20', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False},
 
-            ]
     def __init__(self, screen, title):
         super().__init__(screen, title)
+        self.extruders = self._printer.extruders
         self.current_time_millis = int(round(time.time() * 1000))
         self.ExtruderMax_temp = 0
         self.distance = 50
@@ -166,7 +144,12 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         return gridBox
 
     def generate_extruder_box(self):
-        self.extruderImage = self._gtk.Image("ext_free", self._screen.width *.07, self._screen.width *.07)
+        if self._printer.selectedExtruder == "":
+            self.extruderImage = self._gtk.Image("ext_free", self._screen.width *.07, self._screen.width *.07)
+        else :
+            for extruder in self.extruders:
+                if extruder['Extrude']==self._printer.selectedExtruder:
+                    self.extruderImage = self._gtk.Image(extruder['Icon'], self._gtk.content_width * .07 , self._gtk.content_height * .07)
         switchWithImageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         switchWithImageBox.set_halign(Gtk.Align.CENTER)
         switchWithImageBox.add(self.extruderImage)
@@ -292,13 +275,12 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
             extruderBox.set_name("extruder-extruder-select-box")
             extruderBox.pack_start(alignment, False, False, 5)
             extruderBox.pack_start(extruder['Image'], False, True, 5)
-            #extruder['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
             eventBox = Gtk.EventBox()
             eventBox.add(extruderBox)
             extruder['EventBox'] = Gtk.Frame(name= "extrude")
             extruder['EventBox'].add(eventBox)
-
-            extruder['EventBox'].connect("button-press-event", self.chanceExtruder, extruder['Extrude'])
+            if extruder['RadioButtonStatus']:
+                extruder['EventBox'].connect("button-press-event", self.chanceExtruder, extruder['Extrude'])
             grid.attach(extruder['EventBox'], count, row, 1, 1)
             count += 1
             if count % 2 == 0:
@@ -338,7 +320,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
                 item['EventBox'].get_style_context().remove_class("extrude-active")
             else:
                 item['EventBox'].get_style_context().add_class("extrude-active")
-                self.connectedExtruder.set_label(extruder)
+                #self.connectedExtruder.set_label(extruder)
                 svg_file = f"styles/z-bolt/images/{self.extruders[i]['Icon']}.png"
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file, self._gtk.content_width * .12 , self._gtk.content_height * .12)
                 self.extruderImage.set_from_pixbuf(pixbuf)
@@ -374,8 +356,8 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
                     self.selectedExtruderLabel.set_label(str(round(extruder_temp,1)) + f"° / {0}°")
         if(self.extruderChanged == False):
             i = 0
-#            for d in (self._printer.get_tools() + self._printer.get_heaters()):
- #               self.add_device(d)
+            for d in (self._printer.get_tools() + self._printer.get_heaters()):
+               self.add_device(d)
 
             self.extruderChanged = True
             for extruder in self._printer.get_tools():

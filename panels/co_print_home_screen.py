@@ -29,7 +29,6 @@ class Singleton(type):
 
 class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
     total_jobs = -1
-    selectedExtruder = ""
     instant_cpu = 0
     instant_mem = 0
     active_heater = None
@@ -42,27 +41,16 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
     total_used = {}
     mcu_version = ''
     filament_usage_array = []
-    extruders = [
-            {'Name': '1', 'Icon': 'ext_1', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '2', 'Icon': 'ext_2', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '3', 'Icon': 'ext_3', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '4', 'Icon': 'ext_4', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '5', 'Icon': 'ext_5', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '6', 'Icon': 'ext_6', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '7', 'Icon': 'ext_7', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            {'Name': '8', 'Icon': 'ext_8', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None},
-            ]
 
     def __init__(self, screen, title):
         super().__init__(screen, title)
+        self.extruders = self._printer.extruders
         self.current_time_millis = int(round(time.time() * 1000))
         self.extruder_temp_target = 0
         self.heater_bed_temp_target = 0
         self.extruder_temp_target_pre = 0
         self.heater_bed_temp_target_pre= 0
-
         self.h = 1
-
         grid = Gtk.Grid(column_homogeneous=True,
                          column_spacing=15,
                          row_spacing=15)
@@ -193,28 +181,19 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         right_box.pack_start(menuGrid, False, True, 0)
 
-
         main_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         main_box.pack_start(left_box, True, True, 0)
         main_box.pack_start(right_box, True, True, 0)
         main_box.set_vexpand(True)
         #main_box.set_valign(Gtk.Align.CENTER)
-
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         page.pack_start(main_box, True, True, 0)
         page.pack_end(menu, False, True, 0)
 
-
         self._screen._ws.send_method("server.history.totals", None, self.finished_history)
-
-       
-        
         self._screen._ws.send_method("printer.info", None, self.finished_printer_info)
         self._screen._ws.send_method("server.files.get_directory", None, self.finished_server_get_directory)
-       
-    
         self._screen._ws.send_method("printer.objects.subscribe", {"objects":{"webhooks":None,"configfile":None,"mcu":None,"gcode_move":None,"print_stats":None,"virtual_sdcard":None,"heaters":None,"heater_bed":None,"fan":None,"gcode_macro LOAD_FILAMENT":None,"gcode_macro UNLOAD_FILAMENT":None,"gcode_macro START_PRINT_PLA":None,"gcode_macro go_screw_1":None,"gcode_macro go_screw_2":None,"gcode_macro go_screw_3":None,"gcode_macro go_screw_4":None,"stepper_enable":None,"motion_report":None,"query_endstops":None,"idle_timeout":None,"system_stats":None,"manual_probe":None,"toolhead":None,"extruder":None}}, self.finished_printer_mcus)
-
 
         self.content.add(page)
 
@@ -367,21 +346,13 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         for d in result['result']['jobs']:
             t = arr2.setdefault(d['status'], [])
             t.append(d)
-        #total_jobs
         self.print_stats = []   
         keysList = list(arr2.keys())    
         for key in keysList:
             print(key + ': ' + str(len(arr2[key])))
             print_stat = {'name': key, 'value': len(arr2[key])}
             self.print_stats.append(print_stat)
-    
         self.tab_box.static_value()
-
-
-      
-
-      
-
 
     def finished_history(self, result, method, params):
         if result['result']['job_totals']['total_jobs'] == self.total_jobs:
@@ -393,9 +364,6 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                                'total_time': result['result']['job_totals']['total_time'],
                                'total_jobs': result['result']['job_totals']['total_jobs']}
             self._screen._ws.send_method("server.history.list", None, self.finished_history_list)
-
-
-       
 
     def on_switch_activated(self, switch, gparam,switchName):
         if switch.get_active():
@@ -417,19 +385,13 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
 
 
     def chanceExtruder(self, eventBox, gparam, extruder):
-        extruder_list = self._printer.get_tools()
-        selected_extruder = ''
-        for temp_extruder in extruder_list:
-            if self._printer.data[temp_extruder]["motion_queue"] != None:
-                selected_extruder = temp_extruder
-        index = next((i for i, item in enumerate(self.extruders) if item['Extrude'] == extruder), -1)
-        oldIndex = next((i for i, item in enumerate(self.extruders) if item['Extrude'] == selected_extruder), -1)
-        self.extruders[oldIndex]['EventBox'].get_style_context().remove_class("extrude-active")
-        self.extruders[index]['EventBox'].get_style_context().add_class("extrude-active")
-        #self.connectedExtruder.set_label(extruder)
-        self._screen._ws.klippy.gcode_script("T" + str(index))
-
-
+        for i, item in enumerate(self.extruders):
+            if item['Extrude'] != extruder:
+                item['EventBox'].get_style_context().remove_class("filament-extruder-active")
+            else:
+                self._printer.selectedExtruder = extruder
+                item['EventBox'].get_style_context().add_class("filament-extruder-active")
+                self._screen._ws.klippy.gcode_script("T" + str(i))
 
     def on_color_set(self, colorbutton):
         color = colorbutton.get_rgba()
@@ -819,20 +781,19 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             if(self.extruderChanged == False):
                 self.extruderChanged = True
                 i= 0
+                for d in (self._printer.get_tools() + self._printer.get_heaters()):
+                    self.add_device(d)
                 for extruder in self._printer.get_tools():
                     if extruder != 'extruder':
-                        svg_file = "styles/z-bolt/images/active.svg"
-                        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(svg_file, self._gtk.content_width * .05 , self._gtk.content_height * .05)
-
-                        self.extruders[i]['RadioButton'].set_from_pixbuf(pixbuf)
-                        if self.extruders[i]['Extrude'] == None:
-                         self.extruders[i]['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
+                        self.extruders[i]['RadioButtonStatus'] = True
+                        if self.extruders[i]['Extrude'] is None:
+                            self.extruders[i]['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
                         self.extruders[i]['Extrude'] = extruder
-                        if self.extruders[i]['Extrude'] != self.selectedExtruder:
-                            self.extruders[i]['EventBox'].get_style_context().remove_class("extrude-active")
+                        if self.extruders[i]['Extrude'] != self._printer.selectedExtruder:
+                            self.extruders[i]['EventBox'].get_style_context().remove_class("filament-extruder-active")
 
                         else:
-                            self.extruders[i]['EventBox'].get_style_context().add_class("extrude-active")
+                            self.extruders[i]['EventBox'].get_style_context().add_class("filament-extruder-active")
                         i += 1
 
                 for x in range(i, 8):
@@ -902,8 +863,6 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                 else:
                      self.extruder.updateValue(1/1, str(round(extruder_temp,1)) + f"° / {self.extruder_temp_target_pre}°")
                      self.tab_box.updateValue(str(round(extruder_temp,1)) + f"° / {self.extruder_temp_target_pre}°")
-
-
 
             if(self.temp_heater_bed_temp != heater_bed_temp):
                 self.temp_heater_bed_temp = heater_bed_temp

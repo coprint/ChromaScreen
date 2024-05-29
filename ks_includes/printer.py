@@ -26,6 +26,30 @@ class Printer:
         self.busy_cb = busy_cb
         self.busy = False
         self.tempstore_size = 1200
+        self.selectedExtruder = ""
+        self.extruders = [
+            {'Name': '1', 'Icon': 'ext_1', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '2', 'Icon': 'ext_2', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '3', 'Icon': 'ext_3', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '4', 'Icon': 'ext_4', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '5', 'Icon': 'ext_5', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '6', 'Icon': 'ext_6', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '7', 'Icon': 'ext_7', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '8', 'Icon': 'ext_8', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '9',  'Icon': 'ext_9', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '10', 'Icon': 'ext_10', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '11', 'Icon': 'ext_11', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '12', 'Icon': 'ext_12', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '13', 'Icon': 'ext_13', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '14', 'Icon': 'ext_14', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '15', 'Icon': 'ext_15', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '16', 'Icon': 'ext_16', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '17', 'Icon': 'ext_17', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '18', 'Icon': 'ext_18', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '19', 'Icon': 'ext_19', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+            {'Name': '20', 'Icon': 'ext_20', 'Image': None, 'Extrude': None, 'EventBox': None, 'RadioButton': None, 'RadioButtonStatus': False, 'FilamentStatus':'Unloaded'},
+
+            ]
 
     def reinit(self, printer_info, data):
         self.config = data['configfile']['config']
