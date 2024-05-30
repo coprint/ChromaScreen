@@ -149,8 +149,8 @@ msgstr "Select the Baud Rate to communicate with the processor you will be using
 msgid "Writing to SD Card"
 msgstr "Writing to SD Card"
 
-msgid "Insert the SD Card of your printer into ChromaPad to change the program of your 3D printer."
-msgstr "Insert the SD Card of your printer into ChromaPad to change the program of your 3D printer."
+msgid "Insert the SD Card of your printer into ChromaScreen to change the program of your 3D printer."
+msgstr "Insert the SD Card of your printer into ChromaScreen to change the program of your 3D printer."
 
 msgid "Please insert the USB drive."
 msgstr "Please insert the USB drive."

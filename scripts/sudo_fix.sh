@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ChromaPad sudo fix. Modified from moonraker-sudo
+# ChromaScreen sudo fix. Modified from moonraker-sudo
 
 # moonraker-sudo (mnrkrsudo)
 # Provides a specified Group that is intended to elevate user privileges
@@ -19,8 +19,8 @@ set -e
 ### Configuration
 
 SUDOERS_DIR='/etc/sudoers.d'
-SUDOERS_FILE='021-sudo-for-chromapad'
-NEW_GROUP='chromapadsudo'
+SUDOERS_FILE='021-sudo-for-chromascreen'
+NEW_GROUP='chromascreensudo'
 
 
 ### Functions
@@ -48,7 +48,7 @@ create_sudoers_file()
 ### /sbin/systemctl "reboot", /sbin/apt "update", .....
 Cmnd_Alias IWLIST = /sbin/iwlist wlan[0-9] scan
 Cmnd_Alias IWCONFIG = /sbin/iwconfig wlan[0-9]
-Cmnd_Alias SYSTEMCTL_KS_RESTART = /bin/systemctl restart ChromaPad
+Cmnd_Alias SYSTEMCTL_KS_RESTART = /bin/systemctl restart ChromaScreen
 
 %GROUPNAME ALL=(ALL) NOPASSWD: IWCONFGI, IWLIST, SYSTEMCTL_KS_RESTART
 #EOF

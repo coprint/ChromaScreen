@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Uninstalling ChromaPad"
+echo "Uninstalling ChromaScreen"
 echo ""
 echo "* Stopping service"
-sudo service ChromaPad stop
+sudo service ChromaScreen stop
 echo "* Removing unit file"
-sudo rm /etc/systemd/system/ChromaPad.service
+sudo rm /etc/systemd/system/ChromaScreen.service
 echo "* Removing enviroment"
-sudo rm -rf ~/.ChromaPad-env
+sudo rm -rf ~/.ChromaScreen-env
 echo "!! Please remove $(dirname `pwd`) manually"
 echo "Done"

@@ -405,10 +405,10 @@ class BasePanel(ScreenPanel):
             self.run_command("git pull")
             
             # Gerekirse bağımlılıkları güncelle
-            requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaPad-requirements.txt")
+            requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
             if os.path.exists(requirements_file):
                 print("Bağımlılıklar güncelleniyor...")
-                self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaPad-requirements.txt")
+                self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
         
             print("Güncelleme tamamlandı.")
             content = _("Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için yeniden başlatmak istiyor musunuz?")  

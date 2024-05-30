@@ -27,7 +27,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
     active_heater = None
     extruderChanged = False
     temp_extruder_temp = 0
-
+    
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.extruders = self._printer.extruders
@@ -227,7 +227,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         self.disableStepperButton = Gtk.Button(_("Disable Stepper"), name ="selected-extuder-button")
         self.disableStepperButton.connect("clicked", self.disable_motors)
 
-        self.connectedExtruder = Gtk.Label("", name="connected-extruder-label")
+        self.connectedExtruder = Gtk.Label(self._printer.selectedExtruder, name="connected-extruder-label")
         connectedExtruderBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         connectedExtruderBox.set_halign(Gtk.Align.START)
         connectedExtruderBox.add(self.connectedExtruder)
@@ -333,11 +333,11 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
                 if self._printer.data[extruder]["motion_queue"] != None:
                     if action == "notify_gcode_response" and data.startswith("// ") and data.endswith("'extruder'"):
                         new_extruder = 'extruder_stepper ' + (data.split()[2].strip("'"))
-                        if self.selectedExtruder != new_extruder:
-                            self.selectedExtruder = new_extruder
+                        if self._printer.selectedExtruder != new_extruder:
+                            self._printer.selectedExtruder = new_extruder
                             self.extruderChanged = False
-                            self.connectedExtruder.set_label(self.selectedExtruder)
-            extrude = self._printer.get_config_section(self.selectedExtruder)
+                            self.connectedExtruder.set_label(self._printer.selectedExtruder)
+            extrude = self._printer.get_config_section(self._printer.selectedExtruder)
             if (extrude):
                 self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])
             extruder_temp = 0
@@ -357,7 +357,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         if(self.extruderChanged == False):
             i = 0
             for d in (self._printer.get_tools() + self._printer.get_heaters()):
-               self.add_device(d)
+                self.add_device(d)
 
             self.extruderChanged = True
             for extruder in self._printer.get_tools():
@@ -369,7 +369,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
                     if self.extruders[i]['Extrude'] is None:
                         self.extruders[i]['EventBox'].connect("button-press-event", self.chanceExtruder, extruder)
                     self.extruders[i]['Extrude'] = extruder
-                    if self.extruders[i]['Extrude'] != self.selectedExtruder:
+                    if self.extruders[i]['Extrude'] != self._printer.selectedExtruder:
                         self.extruders[i]['EventBox'].get_style_context().remove_class("extrude-active")
                     else:
                         self.extruders[i]['EventBox'].get_style_context().add_class("extrude-active")
@@ -459,7 +459,7 @@ class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
         return False
 
     def add_device(self, device):
-        if self.selectedExtruder != "" and self._printer.get_config_section(self.selectedExtruder):
+        if self._printer.selectedExtruder != "" and self._printer.get_config_section(self._printer.selectedExtruder):
             self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])
         temperature = self._printer.get_dev_stat(device, "temperature")
         if temperature is None:

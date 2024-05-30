@@ -2,7 +2,7 @@
 
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 KSPATH=$(sed 's/\/scripts//g' <<< $SCRIPTPATH)
-KSENV="${CHROMAPAD_VENV:-${HOME}/.ChromaPad-env}"
+KSENV="${CHROMASCREEN_VENV:-${HOME}/.ChromaScreen-env}"
 
 XSERVER="xinit xinput x11-xserver-utils xserver-xorg-input-evdev xserver-xorg-input-libinput"
 FBDEV="xserver-xorg-video-fbdev"
@@ -47,14 +47,14 @@ install_packages()
         sudo apt-get -f install
         output=$(dpkg-query -W -f='${db:Status-Abbrev} ${binary:Package}\n' | grep -E ^.[^nci])
         if [ $? -eq 0 ]; then
-            echo_error "Unable to fix broken packages. These must be fixed before ChromaPad can be installed"
+            echo_error "Unable to fix broken packages. These must be fixed before ChromaScreen can be installed"
             exit 1
         fi
     else
         echo_ok "No broken packages"
     fi
 
-    echo_text "Installing ChromaPad dependencies"
+    echo_text "Installing ChromaScreen dependencies"
     sudo apt-get install -y $XSERVER
     if [ $? -eq 0 ]; then
         echo_ok "Installed X"
@@ -111,13 +111,13 @@ create_virtualenv()
     fi
 
     source ${KSENV}/bin/activate
-    pip --disable-pip-version-check install -r ${KSPATH}/scripts/ChromaPad-requirements.txt
+    pip --disable-pip-version-check install -r ${KSPATH}/scripts/ChromaScreen-requirements.txt
     if [ $? -gt 0 ]; then
         echo_error "Error: pip install exited with status code $?"
         echo_text "Trying again with new tools..."
         sudo apt-get install -y build-essential cmake
         pip install --upgrade pip setuptools
-        pip install -r ${KSPATH}/scripts/ChromaPad-requirements.txt
+        pip install -r ${KSPATH}/scripts/ChromaScreen-requirements.txt
         if [ $? -gt 0 ]; then
             echo_error "Unable to install dependencies, aborting install."
             deactivate
@@ -130,9 +130,9 @@ create_virtualenv()
 
 install_systemd_service()
 {
-    echo_text "Installing ChromaPad unit file"
+    echo_text "Installing ChromaScreen unit file"
 
-    SERVICE=$(<$SCRIPTPATH/ChromaPad.service)
+    SERVICE=$(<$SCRIPTPATH/ChromaScreen.service)
     KSPATH_ESC=$(sed "s/\//\\\\\//g" <<< $KSPATH)
     KSENV_ESC=$(sed "s/\//\\\\\//g" <<< $KSENV)
 
@@ -140,10 +140,10 @@ install_systemd_service()
     SERVICE=$(sed "s/KS_ENV/$KSENV_ESC/g" <<< $SERVICE)
     SERVICE=$(sed "s/KS_DIR/$KSPATH_ESC/g" <<< $SERVICE)
 
-    echo "$SERVICE" | sudo tee /etc/systemd/system/ChromaPad.service > /dev/null
-    sudo systemctl unmask ChromaPad.service
+    echo "$SERVICE" | sudo tee /etc/systemd/system/ChromaScreen.service > /dev/null
+    sudo systemctl unmask ChromaScreen.service
     sudo systemctl daemon-reload
-    sudo systemctl enable ChromaPad
+    sudo systemctl enable ChromaScreen
 }
 
 modify_user()
@@ -165,17 +165,17 @@ update_x11()
 
 add_desktop_file()
 {
-    DESKTOP=$(<$SCRIPTPATH/ChromaPad.desktop)
+    DESKTOP=$(<$SCRIPTPATH/ChromaScreen.desktop)
     mkdir -p $HOME/.local/share/applications/
-    echo "$DESKTOP" | tee $HOME/.local/share/applications/ChromaPad.desktop > /dev/null
-    sudo cp $SCRIPTPATH/../styles/icon.svg /usr/share/icons/hicolor/scalable/apps/ChromaPad.svg
+    echo "$DESKTOP" | tee $HOME/.local/share/applications/ChromaScreen.desktop > /dev/null
+    sudo cp $SCRIPTPATH/../styles/icon.svg /usr/share/icons/hicolor/scalable/apps/ChromaScreen.svg
 }
 
-start_ChromaPad()
+start_ChromaScreen()
 {
     echo_text "Starting service..."
-    sudo systemctl stop ChromaPad
-    sudo systemctl start ChromaPad
+    sudo systemctl stop ChromaScreen
+    sudo systemctl start ChromaScreen
 }
 if [ "$EUID" == 0 ]
     then echo_error "Please do not run this script as root"
@@ -186,6 +186,6 @@ create_virtualenv
 modify_user
 install_systemd_service
 update_x11
-echo_ok "ChromaPad was installed"
+echo_ok "ChromaScreen was installed"
 add_desktop_file
-start_ChromaPad
+start_ChromaScreen

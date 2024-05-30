@@ -14,7 +14,7 @@ class BinFileGenerateLoadingDialog(Gtk.Dialog):
         self.set_size_request(0, 0)
         self.set_default_size(400, 0)
 
-        content = Gtk.Label(_("The settings file is being created. During this time.Please wait and do not turn off ChromaPad."), name="info-dialog-content-label")
+        content = Gtk.Label(_("The settings file is being created. During this time.Please wait and do not turn off ChromaScreen."), name="info-dialog-content-label")
         status = Gtk.Label(_("Creating..."), name="bin-generate-dialog-content-label")
        
         content.set_line_wrap(True)

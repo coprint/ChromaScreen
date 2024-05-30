@@ -21,7 +21,7 @@ ALLOWED_SERVICES = (
     "moonraker",
     "moonraker-telegram-bot",
     "klipper",
-    "ChromaPad",
+    "ChromaScreen",
     "sonar",
     "webcamd",
 )

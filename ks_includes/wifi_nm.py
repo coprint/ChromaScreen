@@ -1,5 +1,5 @@
-# Network in ChromaPad is a connection in NetworkManager
-# Interface in ChromaPad is a device in NetworkManager
+# Network in ChromaScreen is a connection in NetworkManager
+# Interface in ChromaScreen is a device in NetworkManager
 
 import contextlib
 import logging

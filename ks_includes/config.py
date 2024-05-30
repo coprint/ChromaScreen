@@ -19,23 +19,23 @@ SCREEN_BLANKING_OPTIONS = [
     14400,  # 4 Hours
 ]
 
-chromapaddir = pathlib.Path(__file__).parent.resolve().parent
+chromascreendir = pathlib.Path(__file__).parent.resolve().parent
 
 
 class ConfigError(Exception):
     pass
 
 
-class ChromaPadConfig:
+class ChromaScreenConfig:
     config = None
-    configfile_name = "ChromaPad.conf"
+    configfile_name = "ChromaScreen.conf"
     do_not_edit_line = "#~# --- Do not edit below this line. This section is auto generated --- #~#"
     do_not_edit_prefix = "#~#"
 
     def __init__(self, configfile, screen=None):
         self.lang_list = None
         self.errors = []
-        self.default_config_path = os.path.join(chromapaddir, "ks_includes", "defaults.conf")
+        self.default_config_path = os.path.join(chromascreendir, "ks_includes", "defaults.conf")
         self.config = configparser.ConfigParser()
         self.config_path = self.get_config_file_location(configfile)
         logging.debug(f"Config path location: {self.config_path}")
@@ -125,11 +125,11 @@ class ChromaPadConfig:
         self._create_configurable_options(screen)
 
     def create_translations(self):
-        lang_path = os.path.join(chromapaddir, "ks_includes", "locales")
+        lang_path = os.path.join(chromascreendir, "ks_includes", "locales")
         self.lang_list = [d for d in os.listdir(lang_path) if not os.path.isfile(os.path.join(lang_path, d))]
         self.lang_list.sort()
         for lng in self.lang_list:
-            self.langs[lng] = gettext.translation('ChromaPad', localedir=lang_path, languages=[lng], fallback=True)
+            self.langs[lng] = gettext.translation('ChromaScreen', localedir=lang_path, languages=[lng], fallback=True)
 
         lang = self.get_main_config().get("language", None)
         logging.debug(f"Selected lang: {lang} OS lang: {locale.getdefaultlocale()[0]}")
@@ -300,7 +300,7 @@ class ChromaPadConfig:
         for lang in self.lang_list:
             lang_opt.append({"name": lang, "value": lang})
 
-        t_path = os.path.join(chromapaddir, 'styles')
+        t_path = os.path.join(chromascreendir, 'styles')
         themes = [d for d in os.listdir(t_path) if (not os.path.isfile(os.path.join(t_path, d)) and d != "z-bolt")]
         themes.sort()
         theme_opt = self.configurable_options[1]['theme']['options']
@@ -392,15 +392,15 @@ class ChromaPadConfig:
         return ["\n".join(user_def), None if saved_def is None else "\n".join(saved_def)]
 
     def get_config_file_location(self, file):
-        # Passed config (-c) by default is ~/ChromaPad.conf
+        # Passed config (-c) by default is ~/ChromaScreen.conf
         logging.info(f"Passed config (-c): {file}")
         if os.path.exists(file):
             return file
 
-        file = os.path.join(chromapaddir, self.configfile_name)
+        file = os.path.join(chromascreendir, self.configfile_name)
         if os.path.exists(file):
             return file
-        file = os.path.join(chromapaddir, self.configfile_name.lower())
+        file = os.path.join(chromascreendir, self.configfile_name.lower())
         if os.path.exists(file):
             return file
 

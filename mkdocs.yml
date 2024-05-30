@@ -1,10 +1,10 @@
-site_name: ChromaPad
-site_url: https://chromapad.readthedocs.io
+site_name: ChromaScreen
+site_url: https://Chromascreen.readthedocs.io
 site_description: >-
-  ChromaPad documentation.
+  ChromaScreen documentation.
 
-repo_name: jordanruthe/ChromaPad/
-repo_url: https://github.com/jordanruthe/ChromaPad/
+repo_name: jordanruthe/ChromaScreen/
+repo_url: https://github.com/jordanruthe/ChromaScreen/
 nav:
     - Home: index.md
     - Setup:
@@ -59,7 +59,7 @@ markdown_extensions:
 extra:
     social:
       - icon: fontawesome/brands/github
-        link: https://github.com/jordanruthe/ChromaPad/
+        link: https://github.com/jordanruthe/ChromaScreen/
       - icon: fontawesome/brands/discord
         link: https://discord.klipper3d.org/
       - icon: fontawesome/brands/python

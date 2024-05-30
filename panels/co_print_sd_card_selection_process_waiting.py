@@ -23,8 +23,8 @@ class CoPrintSdCardSelectionProcessWaiting(ScreenPanel):
         super().__init__(screen, selected_brand_temp)
      
         self.selected_brand = selected_brand_temp
-        self.initHeader = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaPad to change the program of your 3D printer.'), "sdkart")
-        self.initHeaderWriting = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaPad to change the program of your 3D printer.'), "sdkart")
+        self.initHeader = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaScreen to change the program of your 3D printer.'), "sdkart")
+        self.initHeaderWriting = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaScreen to change the program of your 3D printer.'), "sdkart")
 
         self.image = self._gtk.Image("usb-wait", self._gtk.content_width * .4 , self._gtk.content_height * .4)
        

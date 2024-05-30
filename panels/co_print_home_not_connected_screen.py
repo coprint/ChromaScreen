@@ -167,21 +167,17 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
 
         self.IsKlipperNeedUpdate = False
         self.IsMainsailNeedUpdate = False
-        if(self.config_data != None):
+        if(self.config_data != None) and (self.version_info != False) : 
             if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
                 self.IsKlipperNeedUpdate = True
             if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
                 self.IsMainsailNeedUpdate = True
-
         isUpdateReqKlipper = False
         if self.version_info and self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
             isUpdateReqKlipper = True
-        
         isUpdateReqMainsail = False
         if self.version_info and self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
-
-
          #-----chromascreen update-----#
         chromascreenUpdateLabel = Gtk.Label(_("Chromascreen"), name="kipper-label")
         chromascreenUpdateLabel.set_justify(Gtk.Justification.LEFT)
@@ -199,16 +195,11 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
         chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
        
-        
-       
-
         chromascreenUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         chromascreenUpdateBox.set_name("update-box")
         chromascreenUpdateBox.pack_start(chromascreenVersionBox, False, False, 0)
         chromascreenUpdateBox.pack_end(chromascreenUpdateButton, False, False, 0)
         box_array.append(chromascreenUpdateBox)
-
-
         #-----klipper update-----#
         klipperUpdateLabel = Gtk.Label(_("Klipper"), name="kipper-label")
         klipperUpdateLabel.set_justify(Gtk.Justification.LEFT)
@@ -222,7 +213,6 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         klipperVersionLabel.set_justify(Gtk.Justification.LEFT)
         klipperVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         klipperVersionLabelBox.pack_start(klipperVersionLabel, False, False, 0)
-
         if isUpdateReqKlipper:
             klipperUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
             klipperUpdateButton.connect("clicked", self.VersionControl, "klipper")
@@ -230,24 +220,16 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
             klipperVersionBox.pack_start(klipperUpdateLabelBox, False, False, 0)
             klipperVersionBox.pack_start(klipperVersionLabelBox, False, False, 0)
         else:
-
             klipperUpdateButton = Gtk.Button(_('Up-to-date'),name ="up-to-date-button")
             #klipperUpdateButton.connect("clicked", self.klipperUpdateButton)
             klipperVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
             klipperVersionBox.pack_start(klipperUpdateLabelBox, False, False, 0)
             klipperVersionBox.pack_start(klipperVersionLabelBox, False, False, 0)
-        
-
         klipperUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         klipperUpdateBox.set_name("update-box")
         klipperUpdateBox.pack_start(klipperVersionBox, False, False, 0)
         klipperUpdateBox.pack_end(klipperUpdateButton, False, False, 0)
         box_array.append(klipperUpdateBox)
-
-       
-         
-       
-
         #-----mainsail update-----#
         mainsailUpdateLabel = Gtk.Label(_("Mainsail"), name="kipper-label")
         mainsailUpdateLabel.set_justify(Gtk.Justification.LEFT)
@@ -257,13 +239,10 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         label_text_mainsail = ''
         if self.version_info:
             label_text_mainsail = _(self.version_info['mainsail']['version'])
-
-
         mainsailVersionLabel = Gtk.Label(_("Version: ") + label_text_mainsail, name="klipper-version-label")
         mainsailVersionLabel.set_justify(Gtk.Justification.LEFT)
         mainsailVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainsailVersionLabelBox.pack_start(mainsailVersionLabel, False, False, 0)
-
         if isUpdateReqMainsail:
             mainsailUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
             mainsailUpdateButton.connect("clicked", self.VersionControl, "mainsail")
@@ -271,37 +250,24 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
             mainsailVersionBox.pack_start(mainsailUpdateLabelBox, False, False, 0)
             mainsailVersionBox.pack_start(mainsailVersionLabelBox, False, False, 0)
         else:
-
             mainsailUpdateButton = Gtk.Button(_('Up-to-date'),name ="up-to-date-button")
             #klipperUpdateButton.connect("clicked", self.klipperUpdateButton)
             mainsailVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
             mainsailVersionBox.pack_start(mainsailUpdateLabelBox, False, False, 0)
             mainsailVersionBox.pack_start(mainsailVersionLabelBox, False, False, 0)
-      
-
         mainsailUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainsailUpdateBox.set_name("update-box")
         mainsailUpdateBox.pack_start(mainsailVersionBox, False, False, 0)
         mainsailUpdateBox.pack_end(mainsailUpdateButton, False, False, 0)
         box_array.append(mainsailUpdateBox)
-
-       
-
-        
-       
-       
-        
         updateManagerBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         updateManagerBox.set_name("update-manager-box")
         updateManagerBox.pack_start(updateManagerLabelBox, False, False, 0)
-
         for box in box_array:
             updateManagerBox.pack_start(box, False, False, 0)
             separator = Gtk.HSeparator()
             separator.get_style_context().add_class("exp-separator")
             updateManagerBox.pack_start(separator, False, False, 0)
-       
-        
         leftContentBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
         leftContentBox.set_valign(Gtk.Align.START)
         leftContentBox.pack_start(restartButtonsAndLogFilesBox, False, False, 0)
@@ -311,20 +277,15 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         left_box.set_halign(Gtk.Align.START)
         left_box.pack_start(reportBox, False, False, 0)
         left_box.pack_start(leftContentBox, False, False, 0)
-      
-
         #-----RIGHT BOX-----#
-        
         coprintQr = self._gtk.Image("coprint-qr", 120, 120)
         wikiHeaderLabel = Gtk.Label(_("Co Print Wiki"), name="wiki-header-green-label")
-
         wikiContentLabel = Gtk.Label(_("Having trouble installing or starting up? Scan the QR code to get help and detailed information."), name="wiki-content-green-label")
         wikiContentLabel.set_max_width_chars(30)
         wikiContentLabel.set_line_wrap(True)
         wikiContentLabel.set_justify(Gtk.Justification.CENTER)
         wikiContentLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         wikiContentLabelBox.pack_start(wikiContentLabel, False, False, 0)
-
 
         wikiBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         wikiBox.set_halign(Gtk.Align.CENTER)
@@ -333,14 +294,12 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         wikiBox.pack_start(wikiHeaderLabel, False, False, 0)
         wikiBox.pack_start(wikiContentLabelBox, False, False, 0)
 
-
         shutDownButton = self._gtk.Button("power", _("Shut Down"), "not-connected-shut-down", 1)
         shutDownButton.connect("clicked", self.reboot_poweroff, "poweroff")
         shutDownButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         shutDownButtonBox.set_name("main-button-box")
         shutDownButtonBox.pack_start(shutDownButton, False, False, 0)
        
-
         settingButton = self._gtk.Button("network", _("Network"), "not-connected-setting", 1)
         settingButton.connect("clicked", self.network_page, "reboot")
         settingButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -361,7 +320,6 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         right_box.pack_start(wikiBox, False, True, 0)
         right_box.pack_start(rightButtonBox, False, False, 0)
 
-
         main_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=30)
         main_box.pack_start(left_box, True, True, 0)
         main_box.pack_start(right_box, True, True, 0)
@@ -372,15 +330,12 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         page.pack_start(main_box, True, True, 0)
         page.pack_end(menu, False, True, 0)
-
-
         self.content.add(page)
 
     def clean_version(self, version_str):
         # Başlangıçtaki 'v' karakterini kaldır
         if version_str.startswith('v'):
             version_str = version_str[1:]
-        
         # Ana versiyon numarasını ve ek bilgiyi ayrıştır
         if '-' in version_str:
             main_version, build = version_str.split('-')
@@ -388,41 +343,31 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         else:
             main_version = version_str
             build = 0  # Eğer ek bilgi yoksa build 0 olarak kabul edilir
-        
         # Ana versiyon numarasını parçalarına ayır (major, minor, patch)
         major, minor, patch = map(int, main_version.split('.'))
-        
         return major, minor, patch, build
     
     def VersionControl(self, widget, name):
-
         if name == 'ChoromaScreen':
             self._screen.base_panel.update_project()
         else:
             isDialogShow = True
             if name == "klipper" and self.IsKlipperNeedUpdate:
                 isDialogShow = False
-            
             if name == "mainsail" and self.IsMainsailNeedUpdate:
                 isDialogShow = False
-
             if name == "full" and (self.IsMainsailNeedUpdate and self.self.IsKlipperNeedUpdate):
                 isDialogShow = False
-
             if isDialogShow:  
                 content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
                 dialog = AreYouSureDialog( content, self)
                 dialog.get_style_context().add_class("network-dialog")
                 dialog.set_decorated(False)
-
                 response = dialog.run()
-        
                 if response == Gtk.ResponseType.OK:
                     self.update_program(None, name)
                     print('Ok')
                     dialog.destroy()
-                
-
                 elif response == Gtk.ResponseType.CANCEL:
                     print('Cancel')
                     dialog.destroy()
@@ -430,14 +375,12 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
                 self.update_program(None, name)
 
     def log_files(self, widget, type):
-
         page_url = 'co_print_log_files_screen'
         self._screen.show_panel(page_url, page_url, type, 1, False)
 
     def update_program(self, widget, program):
         if self._screen.updating or not self.update_status:
             return
-
         if program in self.update_status['version_info']:
             info = self.update_status['version_info'][program]
             logging.info(f"program: {info}")
@@ -448,17 +391,16 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         msg = _("Updating") if program == "full" else _("Starting update for") + f' {program}...'
         self._screen._websocket_callback("notify_update_response",
                                          {'application': {program}, 'message': msg, 'complete': False})
-
         if program in ['klipper', 'moonraker', 'system', 'full']:
             logging.info(f"Sending machine.update.{program}")
             self._screen._ws.send_method(f"machine.update.{program}")
         else:
             logging.info(f"Sending machine.update.client name: {program}")
             self._screen._ws.send_method("machine.update.client", {"name": program})
-    def on_click_system_restart(self, button):
-        
-        self._screen._ws.klippy.restart()
     
+    def on_click_system_restart(self, button):    
+        self._screen._ws.klippy.restart()
+
     def reboot_poweroff(self, widget, method):
         scroll = self._gtk.ScrolledWindow()
         scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -483,8 +425,7 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
 
     def network_page(self, widget, method):
         self._screen.show_panel("co_print_network_setting_screen", "co_print_network_setting_screen", "Language", 1, False)
-        
-            
+                    
     def reboot_poweroff_confirm(self, dialog, response_id, method):
         self._gtk.remove_dialog(dialog)
         if response_id == Gtk.ResponseType.OK:
@@ -499,7 +440,6 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
                 self._screen._ws.send_method("machine.shutdown")
                 
     def on_click_firmware_restart(self, button):
-        
         self._screen._ws.klippy.restart_firmware()
 
     def on_switch_activated(self, switch, gparam,switchName):
@@ -520,7 +460,6 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         else:
             self.change_bed_temperature(temp)
 
-
     def chanceExtruder(self, eventBox, gparam, extruder):
         index = next((i for i, item in enumerate(self.extruders) if item['Extrude'] == extruder), -1)
         oldIndex = next((i for i, item in enumerate(self.extruders) if item['Extrude'] == self._printer.data["toolhead"]["extruder"]), -1)
@@ -529,15 +468,11 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         self.connectedExtruder.set_label(extruder)
         self._screen._ws.klippy.gcode_script("T" + str(index))
 
-
-
     def on_color_set(self, colorbutton):
         color = colorbutton.get_rgba()
-
         red = int(color.red * 255)
         green = int(color.green * 255)
         blue = int(color.blue * 255)
-
 
     def select_heater(self, widget, device):
         if self.active_heater is None and device in self.devices and self.devices[device]["can_target"]:
@@ -558,36 +493,29 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         if self.validate('heater_bed', temp, max_temp):
             self._screen._ws.klippy.set_bed_temp(temp)
 
-
     def change_extruder_temperature(self,temp):
-
         max_temp = float(self._printer.get_config_section(self._printer.data["toolhead"]["extruder"])['max_temp'])
         if self.validate(self._printer.data["toolhead"]["extruder"], temp, max_temp):
             self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self._printer.data["toolhead"]["extruder"]), temp)
-
 
     def change_bed_temperature_pre(self, target):
         max_temp = float(self._printer.get_config_section('heater_bed')['max_temp'])
         if self.validate('heater_bed', target, max_temp):
             self.heater_bed_temp_target_pre = target
-
         if self.heater_bed_temp_target_pre > 0 :
             self.heatedBedSwitch.set_active(True)
         else :
              self.heatedBedSwitch.set_active(False)
-
         self.change_bed_temperature(self.heater_bed_temp_target_pre)
 
     def change_extruder_temperature_pre(self, target):
         max_temp = float(self._printer.get_config_section(self._printer.data["toolhead"]["extruder"])['max_temp'])
         if self.validate(self._printer.data["toolhead"]["extruder"], target, max_temp):
             self.extruder_temp_target_pre = target
-
         if self.extruder_temp_target_pre > 0 :
             self.extruderSwitch.set_active(True)
         else :
              self.extruderSwitch.set_active(False)
-
         self.change_extruder_temperature(self.extruder_temp_target_pre)
 
 

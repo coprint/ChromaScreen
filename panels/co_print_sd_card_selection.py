@@ -19,7 +19,7 @@ class CoPrintSdCardSelection(ScreenPanel):
         super().__init__(screen, title)
      
        
-        initHeader = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaPad to change the program of your 3D printer.'), "sdkart")
+        initHeader = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaScreen to change the program of your 3D printer.'), "sdkart")
 
         self.image = self._gtk.Image("usbokey", self._gtk.content_width * .25 , self._gtk.content_height * .25)
        

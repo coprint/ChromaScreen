@@ -5,6 +5,7 @@ import time
 
 import gi
 from matplotlib.patches import FancyBboxPatch
+from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.keypad_new import KeyPadNew
 
 gi.require_version("Gtk", "3.0")
@@ -20,6 +21,9 @@ matplotlib.use("GTK3Agg")
 class HomeTab(Gtk.Box):
     def __init__(self, this):
         super().__init__()
+        self.sliderBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        self.sliderBox.set_halign(Gtk.Align.CENTER)
+        self.startIndex = 0
         self.bodyBoxTotal = None
         self.systemTabBox = None
         self.staticTabBox = None

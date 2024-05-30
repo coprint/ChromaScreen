@@ -34,7 +34,6 @@ class Singleton(type):
    
    
 class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
-    selectedExtruder = ""
     extruderChanged = False
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -271,7 +270,7 @@ class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
         self.machine_Box.pack_start(machineSeparatorFirst, True, False, 0)
         self.machine_Box.pack_start(velocity_square_box, True, False, 0)
         self.machine_Box.pack_start(machineSeparatorSecond, True, False, 0)
-        self.machine_Box.pack_start(acceleration_maxAccel_box, True, False, 0)
+        #self.machine_Box.pack_start(acceleration_maxAccel_box, True, False, 0)
         self.machine_Box.set_name("zoffset-box") 
         
         
@@ -452,16 +451,16 @@ class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
 
 
     def change_extruder_temperature_pre(self, target):
-        max_temp = float(self._printer.get_config_section(self.selectedExtruder)['max_temp'])
-        if self.validate(self.selectedExtruder, target, max_temp):
+        max_temp = float(self._printer.get_config_section(self._printer.selectedExtruder)['max_temp'])
+        if self.validate(self._printer.selectedExtruder, target, max_temp):
             self.extruder_temp_target = target
             self.change_extruder_temperature(self.extruder_temp_target)
 
 
     def change_extruder_temperature(self,temp):
-        max_temp = float(self._printer.get_config_section(self.selectedExtruder)['max_temp'])
-        if self.validate(self.selectedExtruder, temp, max_temp):
-            self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self.selectedExtruder), temp)
+        max_temp = float(self._printer.get_config_section(self._printer.selectedExtruder)['max_temp'])
+        if self.validate(self._printer.selectedExtruder, temp, max_temp):
+            self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self._printer.selectedExtruder), temp)
 
 
     def change_bed_temperature_pre(self, target):
@@ -500,10 +499,10 @@ class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
         extruder_list = self._printer.get_tools()
         for extruder in extruder_list:
             if self._printer.data[extruder]["motion_queue"] != None:
-                if self.selectedExtruder != extruder:
-                    self.selectedExtruder = extruder
+                if self._printer.selectedExtruder != extruder:
+                    self._printer.selectedExtruder = extruder
                     self.extruderChanged = False
-                    self.connectedExtruder.set_label(self.selectedExtruder)
+                    self.connectedExtruder.set_label(self._printer.selectedExtruder)
 
         if self._printer.state != 'error' :
             heater_bed_temp = 0
@@ -525,7 +524,7 @@ class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
                 machine_velocity = self._printer.data['toolhead']['max_velocity']
                 square_corner_velocity = self._printer.data['toolhead']['square_corner_velocity']
                 max_accel = self._printer.data['toolhead']['max_accel']
-                max_accel_to_decel = self._printer.data['toolhead']['max_accel_to_decel']
+                #max_accel_to_decel = self._printer.data['toolhead']['max_accel_to_decel']
                 
 
                 if(self.velocityInput.getValue() != int(machine_velocity)):
@@ -536,14 +535,11 @@ class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
                 
                 if(self.acceleration.getValue() != int(max_accel)):
                     self.acceleration.updateValue(int(max_accel))
-                if(self.maxAcceltoDecel.getValue() != int(max_accel_to_decel)):
-                    self.maxAcceltoDecel.updateValue(int(max_accel_to_decel))
+                #if(self.maxAcceltoDecel.getValue() != int(max_accel_to_decel)):
+                #    self.maxAcceltoDecel.updateValue(int(max_accel_to_decel))
 
             if self.isFirst:
                 self.isFirst = False
-               
-            
-            
                 if(self._printer.data['fan']['speed']):
                     if  self.fanSpeed_newValue != self._printer.data['fan']['speed']:
                         self.fanSpeed_newValue = self._printer.data['fan']['speed']

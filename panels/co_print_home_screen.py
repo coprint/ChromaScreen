@@ -41,6 +41,7 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
     total_used = {}
     mcu_version = ''
     filament_usage_array = []
+    mcu_constants = None
 
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -235,8 +236,8 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         #print(result['result']['software_version'])
 
     def finished_server_get_directory(self, result, method, params):
-        
-        print(result['result']['software_version'])
+        if 'software_version' in result['result']:
+            print(result['result']['software_version'])
 
    
 
@@ -251,9 +252,7 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
 
     def finished_system_info(self, result, method, params):
         state = result['result']
-        print(state)
-
-
+        #print(state)
         class HostStats:
             def __init__(self):
                 self.cpuName = None
@@ -273,52 +272,38 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                 self.memUsage = None
                 self.memUsageColor = 'primary'
                 self.tempSensor = {'temperature': 0, 'measured_min_temp': None, 'measured_max_temp': None}
-
         output = HostStats()
-
         if 'system_info' in state:
             version = None
             if  self.printer_version:
                 version = '-'.join(self.printer_version.split('-')[:4])
-
             python_version = None
             if state['system_info'].get('python') and state['system_info']['python'].get('version_string'):
                 first_space = state['system_info']['python']['version_string'].find(' ')
                 python_version = state['system_info']['python']['version_string'][:first_space + 1]
-
             cpu_cores = state['system_info']['cpu_info']['cpu_count'] if state['system_info']['cpu_info'].get('cpu_count') else 1
             #load = round((root_state.get('printer', {}).get('system_stats', {}).get('sysload', 0)) * 100) / 100
             load = 0
             load_percent = round((load / cpu_cores) * 100)
-
-
-
             output.loadProgressColor = 'primary'
             if load_percent > 95:
                 output.loadProgressColor = 'error'
             elif load_percent > 80:
                 output.loadProgressColor = 'warning'
-
-
-           
             memory_format = None
             mem_usage = None
             mem_avail = self.usage_info['system_memory']['available'] * 1024
             mem_total =  self.usage_info['system_memory']['total'] * 1024
-
             if mem_avail > 0 and mem_total > 0:
                 memory_format = f"{self.format_filesize(mem_total - mem_avail)} / {self.format_filesize(mem_total)}"
                 mem_usage = round(((mem_total - mem_avail) / mem_total) * 100)
             elif mem_total:
                 memory_format = self.format_filesize(mem_total)
-
             mem_usage_color = 'primary'
             if mem_usage and mem_usage > 95:
                 mem_usage_color = 'error'
             elif mem_usage and mem_usage > 80:
                 mem_usage_color = 'warning'
-
-         
             output.cpuName = state['system_info']['cpu_info'].get('processor', None)
             output.cpuDesc = state['system_info']['cpu_info'].get('cpu_desc', None)
             output.bits = state['system_info']['cpu_info'].get('bits', None)
@@ -329,7 +314,6 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             output.load = load
             output.loadPercent = min(load_percent, 100)
             output.memoryFormat = memory_format
-            
             output.memUsed = self.format_filesize(mem_total - mem_avail)
             output.memAvail = self.format_filesize(mem_avail)
             output.memTotal = self.format_filesize(mem_total)
@@ -454,20 +438,16 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         max_temp = float(self._printer.get_config_section(self._printer.data["toolhead"]["extruder"])['max_temp'])
         if self.validate(self._printer.data["toolhead"]["extruder"], target, max_temp):
             self.extruder_temp_target_pre = target
-
         if self.extruder_temp_target_pre > 0 :
             self.extruderSwitch.set_active(True)
         else :
              self.extruderSwitch.set_active(False)
-
         self.change_extruder_temperature(self.extruder_temp_target_pre)
-
 
     def filament_cut(self, widget):
         self._screen._ws.klippy.gcode_script(
             "FILAMENT_CUT"  # FILAMENT_CUT
         )
-
 
     def set_temperature(self, widget, setting):
         if len(self.active_heaters) == 0:
@@ -490,7 +470,6 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                 if target is None and setting == "cooldown" and not heater.startswith('temperature_fan '):
                     target = 0
                 else:
-
                     self.heatedBedSwitch.set_active(True)
                     self.extruderSwitch.set_active(True)
                 if heater.startswith('extruder'):
@@ -536,19 +515,14 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         return False
 
     def add_device(self, device):
-
-
         logging.info(f"Adding device: {device}")
-
         temperature = self._printer.get_dev_stat(device, "temperature")
         if temperature is None:
             return False
-
         devname = device.split()[1] if len(device.split()) > 1 else device
         # Support for hiding devices by name
         if devname.startswith("_"):
             return False
-
         if device.startswith("extruder"):
             i = sum(d.startswith('extruder') for d in self.devices)
             image = f"extruder-{i}" if self._printer.extrudercount > 1 else "extruder"
@@ -576,9 +550,7 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             image = "heat-up"
             class_name = f"graph_label_sensor_{self.h}"
             dev_type = "sensor"
-
         rgb = self._gtk.get_temp_color(dev_type)
-
         name = self._gtk.Button(image, devname.capitalize().replace("_", " "), None, self.bts, Gtk.PositionType.LEFT, 1)
         name.set_alignment(0, .5)
         visible = self._config.get_config().getboolean(f"graph {self._screen.connected_printer}", device, fallback=True)
@@ -586,21 +558,15 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             name.get_style_context().add_class(class_name)
         else:
             name.get_style_context().add_class("graph_label_hidden")
-
         can_target = self._printer.device_has_target(device)
-
         if can_target:
-
             name.connect('button-press-event', self.name_pressed, device)
             name.connect('button-release-event', self.name_released, device)
         else:
             name.connect("clicked", self.toggle_visibility, device)
-
-
         temp = self._gtk.Button(label="", lines=1)
         if can_target:
             temp.connect("clicked", self.show_numpad, device)
-
         self.devices[device] = {
             "class": class_name,
             "name": name,
@@ -608,15 +574,10 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             "can_target": can_target,
             "visible": visible
         }
-
         if self.devices[device]["can_target"]:
             self.devices[device]['select'] = self._gtk.Button(label=_("Select"))
             self.devices[device]['select'].connect('clicked', self.select_heater, device)
-
-
-
         return True
-
 
     def name_pressed(self, widget, event, device):
         self.popover_timeout = GLib.timeout_add_seconds(1, self.popover_popup, widget, device)
@@ -633,13 +594,11 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             device = self.popover_device
         self.devices[device]['visible'] ^= True
         logging.info(f"Graph show {self.devices[device]['visible']}: {device}")
-
         section = f"graph {self._screen.connected_printer}"
         if section not in self._config.get_config().sections():
             self._config.get_config().add_section(section)
         self._config.set(section, f"{device}", f"{self.devices[device]['visible']}")
         self._config.save_user_config_options()
-
         self.update_graph_visibility()
         if self.devices[device]['can_target']:
             self.popover_populate_menu()
@@ -650,11 +609,9 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             self.devices[d]['name'].get_style_context().remove_class("button_active")
         self.active_heater = self.popover_device if device is None else device
         self.devices[self.active_heater]['name'].get_style_context().add_class("button_active")
-
         if "keypad" not in self.labels:
             self.labels["keypad"] = Keypad(self._screen, self.change_target_temp, self.hide_numpad)
         self.labels["keypad"].clear()
-
         if self._screen.vertical_mode:
             self.grid.remove_row(1)
             self.grid.attach(self.labels["keypad"], 0, 1, 1, 1)
@@ -662,7 +619,6 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             self.grid.remove_column(1)
             self.grid.attach(self.labels["keypad"], 1, 0, 1, 1)
         self.grid.show_all()
-
         self.labels['popover'].popdown()
 
     def __del__(self):
@@ -673,19 +629,15 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
         self.desiredTemp = 1
         self.extruderChanged = False
 
-
     def format_frequency(self, frequency):
         i = -1
         units = [' kHz', ' MHz', ' GHz']
         while frequency > 1000:
             frequency /= 1000
             i += 1
-
         return f"{max(frequency, 0.1):.0f}{units[i]}"
     count = 0
     def process_update(self, action, data):
-      
-        
         if action == 'notify_proc_stat_update':
             self.usage_info = data
             self.count +=1
@@ -695,13 +647,10 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                 self.count=0
                 self.tab_box.updateCPU(self.instant_cpu)
                 self.tab_box.updateMEM(self.instant_mem)
-               
-        
-           
+
         if action == 'notify_status_update':
-          
             for key in data:
-                if key == 'mcu' or key.startswith('mcu '):
+                if (key == 'mcu' or key.startswith('mcu ') )and self.mcu_constants != None:
                     self.mcus = []
                     mcu = data[key]
                     version_output = (self.mcu_constants[key].get('mcu_version', 'unknown')).split('-')[:4]
@@ -767,9 +716,11 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
             extruder_list = self._printer.get_tools()
             for extruder in extruder_list:
                 if self._printer.data[extruder]["motion_queue"] != None:
-                    if self.selectedExtruder != extruder:
-                        self.selectedExtruder = extruder
-                        self.extruderChanged = False
+                    if action == "notify_gcode_response" and data.startswith("// ") and data.endswith("'extruder'"):
+                        new_extruder = 'extruder_stepper ' + (data.split()[2].strip("'"))
+                        if self._printer.selectedExtruder != new_extruder:
+                            self._printer.selectedExtruder = new_extruder
+                            self.extruderChanged = False
                         #self.connectedExtruder.set_label(self.selectedExtruder)
 
 

@@ -27,7 +27,7 @@ class CoPrintSplashScreenPanel(ScreenPanel):
         
         
         
-        initHeader = InitHeader (self, "", _('The settings file is being created. During this time Please wait and do not turn off ChromaPad.'), "")
+        initHeader = InitHeader (self, "", _('The settings file is being created. During this time Please wait and do not turn off ChromaScreen.'), "")
 
         self.image = self._gtk.Image("usb-wait", self._gtk.content_width * .4 , self._gtk.content_height * .4)
        

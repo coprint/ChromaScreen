@@ -27,7 +27,7 @@ from ks_includes.files import KlippyFiles
 from ks_includes.KlippyGtk import KlippyGtk
 from ks_includes.printer import Printer
 from ks_includes.widgets.keyboard import Keyboard
-from ks_includes.config import ChromaPadConfig
+from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -52,7 +52,7 @@ PRINTER_BASE_STATUS_OBJECTS = [
 ]
 
 
-chromapaddir = pathlib.Path(__file__).parent.resolve()
+chromascreendir = pathlib.Path(__file__).parent.resolve()
 
 
 
@@ -86,7 +86,7 @@ class cd:
     def __exit__(self, etype, value, traceback):
         os.chdir(self.savedPath)
 
-class ChromaPad(Gtk.Window):
+class ChromaScreen(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
     #pc_password = '12345'
     pc_password = 'c317tek'
@@ -116,13 +116,13 @@ class ChromaPad(Gtk.Window):
     klipper_path = f'{computer_name}klipper'
    
     path_read = f'{computer_name}klipper/src/Kconfig'
-    path_brand = f'{computer_name}ChromaPad/scripts/printer_brand_list.json'
-    base_dir = f'{computer_name}ChromaPad'
-    path_config = f'{computer_name}ChromaPad/scripts/config.json'
+    path_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_list.json'
+    base_dir = f'{computer_name}ChromaScreen'
+    path_config = f'{computer_name}ChromaScreen/scripts/config.json'
     selected_wizard_printer = 'Printer1WizardDone'
     selected_printer_index = 1
 
-    path_base_brand = f'{computer_name}ChromaPad/scripts/printer_brand_mcu/'
+    path_base_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_mcu/'
     kconfig = None
     
     log_path = os.path.join(os.path.expanduser("~/"), "printer_data", "logs")
@@ -131,7 +131,7 @@ class ChromaPad(Gtk.Window):
 
     def __init__(self, args, version):
         try:
-            super().__init__(title="ChromaPad")
+            super().__init__(title="ChromaScreen")
         except Exception as e:
             logging.exception(e)
             raise RuntimeError from e
@@ -144,10 +144,10 @@ class ChromaPad(Gtk.Window):
         self.version = version
         self.dialogs = []
         self.confirm = None
-        chromapaddir = pathlib.Path(__file__).parent.resolve()
+        chromascreendir = pathlib.Path(__file__).parent.resolve()
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
        
-        self._config = ChromaPadConfig(configfile, self)
+        self._config = ChromaScreenConfig(configfile, self)
         self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
 
         self.connect("key-press-event", self._key_press_event)
@@ -171,7 +171,7 @@ class ChromaPad(Gtk.Window):
         self.show_cursor = self._config.get_main_config().getboolean("show_cursor", fallback=False)
         self.gtk = KlippyGtk(self)
         self.init_style()
-        self.set_icon_from_file(os.path.join(chromapaddir, "styles", "icon.svg"))
+        self.set_icon_from_file(os.path.join(chromascreendir, "styles", "icon.svg"))
 
         self.base_panel = BasePanel(self, title="Base Panel")
         self.add(self.base_panel.main_grid)
@@ -471,8 +471,8 @@ class ChromaPad(Gtk.Window):
         scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scroll.add(message)
 
-        help_msg = _("Provide ChromaPad.log when asking for help.\n")
-        help_msg += _("ChromaPad will reboot")
+        help_msg = _("Provide ChromaScreen.log when asking for help.\n")
+        help_msg += _("ChromaScreen will reboot")
         help_notice = Gtk.Label(label=help_msg)
         help_notice.set_line_wrap(True)
 
@@ -496,18 +496,18 @@ class ChromaPad(Gtk.Window):
     def restart_ks(self, *args):
         logging.debug(f"Restarting {sys.executable} {' '.join(sys.argv)}")
         os.execv(sys.executable, ['python'] + sys.argv)
-        self._ws.send_method("machine.services.restart", {"service": "ChromaPad"})  # Fallback
+        self._ws.send_method("machine.services.restart", {"service": "ChromaScreen"})  # Fallback
 
     def init_style(self):
         settings = Gtk.Settings.get_default()
         settings.set_property("gtk-theme-name", "Adwaita")
         settings.set_property("gtk-application-prefer-dark-theme", False)
-        css_data = pathlib.Path(os.path.join(chromapaddir, "styles", "base.css")).read_text()
+        css_data = pathlib.Path(os.path.join(chromascreendir, "styles", "base.css")).read_text()
 
-        with open(os.path.join(chromapaddir, "styles", "base.conf")) as f:
+        with open(os.path.join(chromascreendir, "styles", "base.conf")) as f:
             style_options = json.load(f)
         # Load custom theme
-        theme = os.path.join(chromapaddir, "styles", self.theme)
+        theme = os.path.join(chromascreendir, "styles", self.theme)
         theme_style = os.path.join(theme, "style.css")
         theme_style_conf = os.path.join(theme, "style.conf")
 
@@ -826,7 +826,7 @@ class ChromaPad(Gtk.Window):
             if 'message' in data and 'Error' in data['message']:
                 logging.error(f"{action}:{data['message']}")
                 self.show_popup_message(data['message'], 3)
-                if "ChromaPad" in data['message']:
+                if "ChromaScreen" in data['message']:
                     self.restart_ks()
         elif action == "notify_power_changed":
             logging.debug("Power status changed: %s", data)
@@ -892,7 +892,7 @@ class ChromaPad(Gtk.Window):
         if self.confirm is not None:
             self.gtk.remove_dialog(self.confirm)
         self.confirm = self.gtk.Dialog(self, buttons, label, self._confirm_send_action_response, method, params)
-        self.confirm.set_title("ChromaPad")
+        self.confirm.set_title("ChromaScreen")
 
     def _confirm_send_action_response(self, dialog, response_id, method, params):
         self.gtk.remove_dialog(dialog)
@@ -1113,19 +1113,19 @@ def main():
     os.system("xrandr --output HDMI-1 --mode \"1024x600_60.00\" ")
     version = functions.get_software_version()
     
-    parser = argparse.ArgumentParser(description="ChromaPad - A GUI for Klipper")
+    parser = argparse.ArgumentParser(description="ChromaScreen - A GUI for Klipper")
     homedir = os.path.expanduser("~")
 
     parser.add_argument(
-        "-c", "--configfile", default=os.path.join(homedir, "ChromaPad.conf"), metavar='<configfile>',
-        help="Location of ChromaPad configuration file"
+        "-c", "--configfile", default=os.path.join(homedir, "ChromaScreen.conf"), metavar='<configfile>',
+        help="Location of ChromaScreen configuration file"
     )
     logdir = os.path.join(homedir, "printer_data", "logs")
     if not os.path.exists(logdir):
         logdir = "/tmp"
     parser.add_argument(
-        "-l", "--logfile", default=os.path.join(logdir, "ChromaPad.log"), metavar='<logfile>',
-        help="Location of ChromaPad logfile output"
+        "-l", "--logfile", default=os.path.join(logdir, "ChromaScreen.log"), metavar='<logfile>',
+        help="Location of ChromaScreen logfile output"
     )
     args = parser.parse_args()
 
@@ -1136,12 +1136,12 @@ def main():
 
     functions.patch_threading_excepthook()
 
-    logging.info(f"ChromaPad version: {version}")
+    logging.info(f"ChromaScreen version: {version}")
     if not Gtk.init_check(None)[0]:
         logging.critical("Failed to initialize Gtk")
         raise RuntimeError
     try:
-        win = ChromaPad(args, version)
+        win = ChromaScreen(args, version)
     except Exception as e:
         logging.exception("Failed to initialize window")
         raise RuntimeError from e

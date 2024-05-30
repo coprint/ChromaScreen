@@ -1,12 +1,12 @@
-# A wrapper for the popular script for ChromaPad on Android over adb over USB.
+# A wrapper for the popular script for ChromaScreen on Android over adb over USB.
 #
 # Keeps the process alive while the server is active
 # to mimic default X's behaviour and keep the service happy
 
-if  [ -f $PWD/launch_chromapad.sh ]; then
-	exec $PWD/launch_chromapad.sh
-elif [ ! -f $PWD/launch_chromapad.sh ]; then
-	echo "launch_chromapad.sh does not exist"
+if  [ -f $PWD/launch_chromascreen.sh ]; then
+	exec $PWD/launch_chromascreen.sh
+elif [ ! -f $PWD/launch_chromascreen.sh ]; then
+	echo "launch_chromascreen.sh does not exist"
 	exit
 fi
 
