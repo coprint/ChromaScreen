@@ -9,17 +9,13 @@
 </p>
 <p align="center">
 
+<img src="https://github.com/coprint/Wiki/blob/main/images/chscrencs.png?raw=true">
 
+ChromaScreen is a touchscreen GUI that interfaces with [Klipper](https://github.com/kevinOConnor/klipper) via [Moonraker](https://github.com/arksine/moonraker). It can switch between multiple printers to access them from a single location, and it doesn't even need to run on the same host, you can install it on another device and configure the IP address to access the printer.
 ## Documantation
 
 Visit [wiki.coprint3d.com/chromascreen](https://wiki.coprint3d.com/series-2/chromascreen) to get started with ChromaScreen & Detailed informations
 
-
-
-# ChromaScreen
-<img src="https://github.com/coprint/Wiki/blob/main/images/chscrencs.png?raw=true">
-
-ChromaScreen is a touchscreen GUI that interfaces with [Klipper](https://github.com/kevinOConnor/klipper) via [Moonraker](https://github.com/arksine/moonraker). It can switch between multiple printers to access them from a single location, and it doesn't even need to run on the same host, you can install it on another device and configure the IP address to access the printer.
 
 ## Features
 
