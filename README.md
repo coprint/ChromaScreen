@@ -56,7 +56,7 @@ Visit [wiki.coprint3d.com/chromascreen](https://wiki.coprint3d.com/series-2/chro
 Contributions to ChromaScreen are always welcome!
 
 - 📥 Pull requests and 🌟 Stars are always welcome.
-- Read our [contributing guidelines](CONTRIBUTING.md) to get started,
+- Read our [contributing guidelines](https://github.com/coprint/ChromaScreen/blob/main/CONTRIBUTINF.md) to get started,
    or find us on [Discord](https://discord.com/invite/5f8gGDkDgN), we will take the time to guide you.
 
 ### Inspiration
