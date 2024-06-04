@@ -51,6 +51,14 @@ Visit [wiki.coprint3d.com/chromascreen](https://wiki.coprint3d.com/series-2/chro
 - **WebCam Support** _You can monitor your prints with the camera_
 - **Macro Control** _You can set and use macros_
 
+## Contributing
+
+Contributions to ChromaScreen are always welcome!
+
+- 📥 Pull requests and 🌟 Stars are always welcome.
+- Read our [contributing guidelines](CONTRIBUTING.md) to get started,
+   or find us on [Discord](https://discord.com/invite/5f8gGDkDgN), we will take the time to guide you.
+
 ### Inspiration
 ChromaScreen was inspired by [OctoScreen](https://github.com/Z-Bolt/OctoScreen/) and the need for a touchscreen GUI that
 will natively work with [Klipper](https://github.com/kevinOConnor/klipper) and [Moonraker](https://github.com/arksine/moonraker).
