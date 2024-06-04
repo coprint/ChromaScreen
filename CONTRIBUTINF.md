@@ -71,6 +71,6 @@ Before you work on a PR and submit it, please pay attention to the following gui
    - Upon merging, we will squash all commits of the PR into a single commit for a clean history and release changelogs.
 6. Please sign off each commit and your PR. It must contain your real name and a current email address (see example in item 4).
    - The sign-off should follow this pattern: `Signed-off-by: My Name <myemail@example.org>`
-   - The sign-off certifies that you agree with the [developer certificate of origin](https://github.com/coprint/ChromaScreen/blob/develop/.github/DEVELOPER_CERTIFICATE_OF_ORIGIN.md).
+   - The sign-off certifies that you agree with the [developer certificate of origin](https://github.com/coprint/ChromaScreen/blob/main/.github/DEVELOPER_CERTIFICATE_OF_ORIGIN.md).
    - If you provide a translation, a sign-off is not necessarily required.
 7. When opening a pull request, keep `Allow edits and access to secrets by maintainers` **enabled**.
