@@ -28,8 +28,12 @@ class CoPrintPrintingSelectionPort(ScreenPanel):
         self.continueButton = Gtk.Button(_('Continue'),name ="flat-button-blue")
         self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
+        self.refreshButton = Gtk.Button(_('Refresh'),name ="flat-button-blue")
+        self.refreshButton.connect("clicked", self.control_usb)
+        self.refreshButton.set_hexpand(True)
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
+        buttonBox.pack_end(self.refreshButton, False, False, 0)
 
        
 
@@ -102,7 +106,7 @@ class CoPrintPrintingSelectionPort(ScreenPanel):
                     portTwoBox.pack_start(self.portTwo, False, False, 0)
                     self.portBox.add(portTwoBox)
         else:
-            self.portTwo = Gtk.Button('usb-1:0:1',name ="flat-button-black")
+            self.portTwo = Gtk.Button('---',name ="flat-button-black")
             self.portTwo.set_hexpand(True)
             self.portTwo.connect("clicked", self.on_click_select_path, 'usb-1:0:1')
             portTwoBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)

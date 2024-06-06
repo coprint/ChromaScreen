@@ -153,6 +153,7 @@ class CoPrintPrintingBrandSelection(ScreenPanel):
         # Seçilen öğenin değerini Entry kutusuna yazdırma
         selected_value = row.get_child().get_label()
         self.entry.set_text(selected_value)
+        self.current_page = 0
         self.show_current_page(selected_value)
         self.dialog.destroy()
     

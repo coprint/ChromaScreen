@@ -1,27 +1,46 @@
 [
-            {"Brand":"Prusa", "Models": [
-                {"name": "i3 MK3", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "prusa-i3.bin", "folderName": "prusa-i3"},
-                {"name": "Mini", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "prusa-mini.bin", "folderName": "prusa-i3"},
-                {"name": "SL1", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl1.bin", "folderName": "prusa-i3"},
-                {"name": "SL2", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "prusa-sl2.bin", "folderName": "prusa-i3"},
-                {"name": "SL3", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "prusa-sl3.bin", "folderName": "prusa-i3"},
-                {"name": "SL4", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl4.bin", "folderName": "prusa-i3"},
-                {"name": "SL5", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl4.bin", "folderName": "prusa-i3"}
-            ]},
-            {"Brand":"Creality", "Models": [
-                {"name": "Ender 3", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "creality-e3.bin", "folderName": "prusa-i3"},
-                {"name": "CR-10", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "creality-cr10.bin", "folderName": "prusa-i3"},
-                {"name": "CR-6 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
-                {"name": "CR-7 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
-                {"name": "CR-8 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
-                {"name": "CR-9 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"}
-            ]},
-           {"Brand":"Anycubic", "Models": [
-                {"name": "i3 Mega", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "anycubic-i3.bin", "folderName": "prusa-i3"},
-                {"name": "Photon", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "anycubic-photon.bin", "folderName": "prusa-i3"},
-                {"name": "Chiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-chiron.bin", "folderName": "prusa-i3"},
-                {"name": "Dhiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-dhiron.bin", "folderName": "prusa-i3"},
-                {"name": "Ehiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-ehiron.bin", "folderName": "prusa-i3"},
-                {"name": "Fhiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-fhiron.bin", "folderName": "prusa-i3"}
-            ]}   
+    {"Brand":"Prusa", "Models": [
+        {"name": "i3 MK3", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "prusa-i3.bin", "folderName": "prusa-i3"},
+        {"name": "Mini", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "prusa-mini.bin", "folderName": "prusa-i3"},
+        {"name": "SL1", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl1.bin", "folderName": "prusa-i3"},
+        {"name": "SL2", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "prusa-sl2.bin", "folderName": "prusa-i3"},
+        {"name": "SL3", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "prusa-sl3.bin", "folderName": "prusa-i3"},
+        {"name": "SL4", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl4.bin", "folderName": "prusa-i3"},
+        {"name": "SL5", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl4.bin", "folderName": "prusa-i3"}
+    ]},
+    {"Brand":"Creality", "Models": [
+        {"name": "Ender 3", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "creality-e3.bin", "folderName": "prusa-i3"},
+        {"name": "CR-10", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "creality-cr10.bin", "folderName": "prusa-i3"},
+        {"name": "CR-6 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
+        {"name": "CR-7 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
+        {"name": "CR-8 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
+        {"name": "CR-9 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"}
+    ]},
+    {"Brand":"Anycubic", "Models": [
+        {"name": "i3 Mega", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "anycubic-i3.bin", "folderName": "prusa-i3"},
+        {"name": "Photon", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "anycubic-photon.bin", "folderName": "prusa-i3"},
+        {"name": "Chiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-chiron.bin", "folderName": "prusa-i3"},
+        {"name": "Dhiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-dhiron.bin", "folderName": "prusa-i3"},
+        {"name": "Ehiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-ehiron.bin", "folderName": "prusa-i3"},
+        {"name": "Fhiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-fhiron.bin", "folderName": "prusa-i3"},
+        {"name": "Anycubic Vyper", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-vyper-2021", "fileName": "anycubic-vyper-2021.bin", "folderName": "cp-anycubic-vyper-2021"},
+        {"name": "Anycubic Kobra", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra", "fileName": "cp-anycubic-kobra.bin", "folderName": "cp-anycubic-kobra"},
+        {"name": "Anycubic Kobra Neo", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-neo", "fileName": "cp-anycubic-kobra-neo.bin", "folderName": "cp-anycubic-kobra-neo"},
+        {"name": "Anycubic Kobra Max", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-max", "fileName": "cp-anycubic-kobra-max.bin", "folderName": "cp-anycubic-kobra-max"},
+        {"name": "Anycubic Kobra Plus", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-plus-2022", "fileName": "cp-anycubic-kobra-plus-2022.bin", "folderName": "cp-anycubic-kobra-plus-2022"}
+    ]},
+    {"Brand":"Elegoo", "Models": [
+        {"name": "Elegoo Neptune 3", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3", "fileName": "cp-elegoo-neptune3.bin", "folderName": "cp-elegoo-neptune3"},
+        {"name": "Elegoo Neptune 3 Plus", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3-plus", "fileName": "ZNP_ROBIN_NANO.bin", "folderName": "cp-elegoo-neptune3-plus"},
+        {"name": "Elegoo Neptune 3 Max", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3-max", "fileName": "ZNP_ROBIN_NANO.bin", "folderName": "cp-elegoo-neptune3-max"},
+        {"name": "Elegoo Neptune 3 Pro", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3-pro", "fileName": "ZNP_ROBIN_NANO.bin", "folderName": "cp-elegoo-neptune3-pro"},
+        {"name": "Elegoo Neptune 2 2021", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune2", "fileName": "ZNP_ROBIN_NANO.bin", "folderName": "cp-elegoo-neptune2"}
+    ]},
+    {"Brand":"Sovol", "Models": [
+        {"name": "Sovol SV06 Plus", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sovol-sv06-plus", "fileName": "cp-sovol-sv06-plus.bin", "folderName": "cp-sovol-sv06-plus"},
+        {"name": "Sovol SV06", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sovol-sv06", "fileName": "cp-sovol-sv06.bin", "folderName": "cp-sovol-sv06"}
+    ]},
+    {"Brand":"Artillery", "Models": [
+        {"name": "Sidewinder x2", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sidewinderx2", "fileName": "cp-artillery-sidewinder-x2.bin", "folderName": "cp-artillery-sidewinder-x2"}
+    ]} 
 ]

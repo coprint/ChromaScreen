@@ -822,3 +822,18 @@ class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
                 else:
                     self.heatedBed.updateValue(1/1, str(round(heater_bed_temp,1)) + f"° / {self.heater_bed_temp_target_pre}°")
 
+        for x in self._printer.get_filament_sensors():
+            if x in data:
+                if 'enabled' in data[x]:
+                    self.labels[x]['switch'].set_active(data[x]['enabled'])
+                if 'filament_detected' in data[x]:
+                    if self._printer.get_stat(x, "enabled"):
+                        if data[x]['filament_detected']:
+                            logging.info(f"{data[x]['filamanet_detected']}")
+                            #self.labels[x]['box'].get_style_context().remove_class("filament_sensor_empty")
+                            #self.labels[x]['box'].get_style_context().add_class("filament_sensor_detected")
+                        else:
+                            logging.info(f"{data[x]['filament_detected']}")
+                            #self.labels[x]['box'].get_style_context().remove_class("filament_sensor_detected")
+                            #self.labels[x]['box'].get_style_context().add_class("filament_sensor_empty")
+                logging.info(f"{x}: {self._printer.get_stat(x)}")

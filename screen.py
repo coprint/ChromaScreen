@@ -88,8 +88,8 @@ class cd:
 
 class ChromaScreen(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
-    #pc_password = '12345'
-    pc_password = 'c317tek'
+    pc_password = '12345'
+    config_data = []
     is_debug = False
     is_redirect_not_connected = True
 
@@ -121,7 +121,7 @@ class ChromaScreen(Gtk.Window):
     path_config = f'{computer_name}ChromaScreen/scripts/config.json'
     selected_wizard_printer = 'Printer1WizardDone'
     selected_printer_index = 1
-
+    
     path_base_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_mcu/'
     kconfig = None
     
@@ -135,7 +135,6 @@ class ChromaScreen(Gtk.Window):
         except Exception as e:
             logging.exception(e)
             raise RuntimeError from e
-
         self.blanking_time = 600
         self.use_dpms = True
         self.isEnter = False
@@ -192,9 +191,13 @@ class ChromaScreen(Gtk.Window):
             self.dialogs = []
         self.set_screenblanking_timeout(self._config.get_main_config().get('screen_blanking'))
         
-        
-        
-        
+        try:
+            f = open(self.path_config, encoding='utf-8')
+            self.config_data = json.load(f)
+        except Exception as e:
+            logging.exception(e) 
+        if(self.config_data != None):
+            self.pc_password = self.config_data['PcPassWord']
         with cd(self.klipper_path):
             self.kconfig = Kconfig(self.path_read)
         

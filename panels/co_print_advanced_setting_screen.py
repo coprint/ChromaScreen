@@ -240,9 +240,9 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         #Printer connections#
         printerConnectionLabel = Gtk.Label(_("Back to Wizard"))
         settingIcon = self._gtk.Image("ayarlar", self._screen.width *.04, self._screen.width *.04)
-        settingButton = Gtk.Button(name ="setting-button")
-        settingButton.set_image(settingIcon)
-        settingButton.set_always_show_image(True)
+        # settingButton = Gtk.Button(name ="setting-button")
+        # settingButton.set_image(settingIcon)
+        # settingButton.set_always_show_image(True)
         #settingButton.connect("clicked", self.add_network)
 
 
@@ -251,7 +251,7 @@ class CoPrintAdvancedSettingScreen(ScreenPanel):
         printerConnectionBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         printerConnectionBox.set_name("adv-settings-box")
         printerConnectionBox.pack_start(printerConnectionLabel, False, False, 0)
-        printerConnectionBox.pack_end(settingButton, False, False, 0)
+        printerConnectionBox.pack_end(settingIcon, False, False, 0)
 
         printerConnectionEventBox = Gtk.EventBox()
         printerConnectionEventBox.connect("button-press-event", self.change_page)

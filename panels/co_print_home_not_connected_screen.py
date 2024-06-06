@@ -71,7 +71,7 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         systemRestartBox.pack_start(systemRestartLabel, False, False, 0)
         self.systemRestartButton = Gtk.Button(name ="system-restart-"+statusLight+"-button")
         self.systemRestartButton.add(systemRestartBox)
-        self.systemRestartButton.connect("clicked", self.on_click_system_restart)
+        self.systemRestartButton.connect("clicked", self.reboot_poweroff, 'reboot')
         self.systemRestartButton.set_always_show_image (True)
 
         #-----firmware restart button-----#
