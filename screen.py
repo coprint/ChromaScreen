@@ -142,7 +142,7 @@ class ChromaScreen(Gtk.Window):
         self.isEnter = False
         self.apiclient = None
         self.not_connected_log_file = None
-        #self.version = version
+        self.version = version
         self.dialogs = []
         self.confirm = None
         chromascreendir = pathlib.Path(__file__).parent.resolve()
