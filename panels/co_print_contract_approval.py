@@ -59,6 +59,9 @@ class CoPrintContractApproval(ScreenPanel):
         self.backButton = Gtk.Button(name ="back-button")
         self.backButton.add(backButtonBox)
         self.backButton.connect("clicked", self.on_click_back_button, 'co_print_language_select_screen')
+        self.backButton.set_always_show_image (True)       
+        mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        mainBackButtonBox.pack_start(self.backButton, False, False, 0)
         #----------Skip-Button--------        
         skipIcon = self._gtk.Image("forward-arrow", 35, 35)
         skipLabel = Gtk.Label(_("Skip"), name="bottom-menu-label")            
@@ -72,10 +75,6 @@ class CoPrintContractApproval(ScreenPanel):
         self.skipButton.connect("clicked", self.on_click_back_button, "co_print_home_screen")
         self.skipButton.set_always_show_image (True)       
         mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
-        
-        self.backButton.set_always_show_image (True)       
-        mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        mainBackButtonBox.pack_start(self.backButton, False, False, 0)
         
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
      
