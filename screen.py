@@ -863,7 +863,7 @@ class ChromaScreen(Gtk.Window):
             if self.is_redirect_not_connected:
                 if self.printer.state == 'error' or self.printer.state == 'shutdown' or self.printer.state ==  'disconnected':
                     page_url = 'co_print_home_not_connected_screen'
-                    if x != 'co_print_home_not_connected_screen':
+                    if x != 'co_print_home_not_connected_screen' and x != 'co_print_printing_selection_port':
                         self.show_panel(page_url, page_url, "Language", 1, False)
             
             
