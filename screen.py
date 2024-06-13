@@ -371,7 +371,9 @@ class ChromaScreen(Gtk.Window):
 
             #if panel_name not in self.panels:
             try:
-                self.panels[panel_name] = self._load_panel(panel_type, self, title)
+                self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title, **kwargs)
+
+                #self.panels[panel_name] = self._load_panel(panel_type, self, title)
                 if hasattr(self.panels[panel_name], "initialize"):
                     self.panels[panel_name].initialize(**kwargs)
             except Exception as e:
