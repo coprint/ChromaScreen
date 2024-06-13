@@ -144,6 +144,8 @@ class ChromaScreen(Gtk.Window):
         self.version = version
         self.dialogs = []
         self.confirm = None
+        self.panels_reinit = []
+
         chromascreendir = pathlib.Path(__file__).parent.resolve()
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
        
@@ -363,33 +365,40 @@ class ChromaScreen(Gtk.Window):
 
     def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
         try:
-
             if remove == 2:
+                self.panels_reinit = list(self.panels)
                 self._remove_all_panels()
             elif remove == 1:
                 self._remove_current_panel(pop)
 
             #if panel_name not in self.panels:
-            try:
-                self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title, **kwargs)
-
-                #self.panels[panel_name] = self._load_panel(panel_type, self, title)
-                if hasattr(self.panels[panel_name], "initialize"):
-                    self.panels[panel_name].initialize(**kwargs)
-            except Exception as e:
-                if panel_name in self.panels:
-                    del self.panels[panel_name]
-                self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
-                return
+            if panel_name not in self.panels:
+                try:
+                    self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title, **kwargs)
+                except Exception as e:
+                    self.show_error_modal(f"Unable to load panel {panel_name}", f"{e}\n\n{traceback.format_exc()}")
+                    return
+            elif panel_name in self.panels_reinit:
+                logging.info(f"Reinitializing panel {panel_name}")
+                self.panels[panel_name].__init__(self, title, **kwargs)
+                self.panels_reinit.remove(panel_name)
+                #if panel_name in self.panels:
+                #    del self.panels[panel_name]
+                #self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
+                #return
             self._cur_panels.append(panel_name)
-            if hasattr(self.panels[panel_name], "reset_values"):
-                self.panels[panel_name].reset_values()
+            #if hasattr(self.panels[panel_name], "reset_values"):
+            #   self.panels[panel_name].reset_values()
             self.attach_panel(panel_name)
         except Exception as e:
             logging.exception(f"Error attaching panel:\n{e}")
         
 
     def attach_panel(self, panel_name):
+        if panel_name in self.panels_reinit:
+            # this happens when the first panel needs a reinit
+            self.reload_panels()
+            return
         self.base_panel.add_content(self.panels[panel_name])
         logging.debug(f"Current panel hierarchy: {' > '.join(self._cur_panels)}")
         self.base_panel.show_back(len(self._cur_panels) > 1)
