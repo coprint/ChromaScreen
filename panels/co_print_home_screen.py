@@ -16,8 +16,8 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 from datetime import datetime, timedelta
 
-def create_panel(*args):
-    return CoPrintHomeScreen(*args)
+# def create_panel(*args):
+#     return CoPrintHomeScreen(*args)
 
 class Singleton(type):
     _instances = {}
@@ -27,7 +27,7 @@ class Singleton(type):
         return cls._instances[cls]
 
 
-class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
+class Panel(ScreenPanel, metaclass=Singleton):
     total_jobs = -1
     instant_cpu = 0
     instant_mem = 0

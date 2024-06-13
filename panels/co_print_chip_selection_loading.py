@@ -12,12 +12,12 @@ from screen import cd
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintSplashScreenPanel(*args)
+# def create_panel(*args):
+#     return CoPrintSplashScreenPanel(*args)
 
 
-class CoPrintSplashScreenPanel(ScreenPanel):
-
+# class CoPrintSplashScreenPanel(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         

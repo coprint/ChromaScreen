@@ -10,12 +10,12 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintSettingScreen(*args)
+# def create_panel(*args):
+#     return CoPrintSettingScreen(*args)
 
 
-class CoPrintSettingScreen(ScreenPanel):
-
+# class CoPrintSettingScreen(ScreenPanel):
+class Panel(ScreenPanel):
     active_heater = None
     def __init__(self, screen, title):
         super().__init__(screen, title)

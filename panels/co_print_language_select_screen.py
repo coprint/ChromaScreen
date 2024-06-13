@@ -12,13 +12,13 @@ from gi.repository import Gtk, Pango, GLib, Gdk
 
 from ks_includes.screen_panel import ScreenPanel
 import gettext
-def create_panel(*args):
-    return CoPrintSplashScreenPanel(*args)
+# def create_panel(*args):
+#     return CoPrintSplashScreenPanel(*args)
 
 
-class CoPrintSplashScreenPanel(ScreenPanel):
+# class CoPrintSplashScreenPanel(ScreenPanel):
 
-     
+class Panel(ScreenPanel):     
     def __init__(self, screen, title):
         super().__init__(screen, title)
 

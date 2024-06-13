@@ -22,8 +22,8 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintPrintingScreenOld(*args)
+# def create_panel(*args):
+#     return CoPrintPrintingScreenOld(*args)
 
 class Singleton(type):
     _instances = {}
@@ -33,7 +33,7 @@ class Singleton(type):
         return cls._instances[cls]
    
    
-class CoPrintPrintingScreenOld(ScreenPanel, metaclass=Singleton):
+class Panel(ScreenPanel, metaclass=Singleton):
     selectedExtruder = ""
     extruderChanged = False
     def __init__(self, screen, title):

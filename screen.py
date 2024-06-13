@@ -345,21 +345,21 @@ class ChromaScreen(Gtk.Window):
         if not os.path.exists(panel_path):
             logging.error(f"Panel {panel} does not exist")
             raise FileNotFoundError(os.strerror(2), "\n" + panel_path)
+        return import_module(f"panels.{panel}")
+        # self.load_panel[panel] = None
+        # module = import_module(f"panels.{panel}")
 
-        self.load_panel[panel] = None
-        module = import_module(f"panels.{panel}")
-
-        reload(module)
-        if not hasattr(module, "create_panel"):
-            raise ImportError(f"Cannot locate create_panel function for {panel}")
-        self.load_panel[panel] = getattr(module, "create_panel")
+        # reload(module)
+        # if not hasattr(module, "create_panel"):
+        #     raise ImportError(f"Cannot locate create_panel function for {panel}")
+        # self.load_panel[panel] = getattr(module, "create_panel")
 
 
-        try:
-            return self.load_panel[panel](*args)
-        except Exception as e:
-            logging.exception(e)
-            raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
+        # try:
+        #     return self.load_panel[panel](*args)
+        # except Exception as e:
+        #     logging.exception(e)
+        #     raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
 
     def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
         try:
