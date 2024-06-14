@@ -8,6 +8,7 @@
     "Printer6WizardDone": false,
     "Printer7WizardDone": false,
     "Printer8WizardDone": true,
+    "PCPassword":"1234",
     "KlipperVersion": "v0.12.0-173",
     "MainsailVersion": "v0.12.0-173"
 }
