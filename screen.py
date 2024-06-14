@@ -374,13 +374,13 @@ class ChromaScreen(Gtk.Window):
             #if panel_name not in self.panels:
             if panel_name not in self.panels:
                 try:
-                    self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title, **kwargs)
+                    self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title)
                 except Exception as e:
                     self.show_error_modal(f"Unable to load panel {panel_name}", f"{e}\n\n{traceback.format_exc()}")
                     return
             elif panel_name in self.panels_reinit:
                 logging.info(f"Reinitializing panel {panel_name}")
-                self.panels[panel_name].__init__(self, title, **kwargs)
+                self.panels[panel_name].__init__(self, title)
                 self.panels_reinit.remove(panel_name)
                 #if panel_name in self.panels:
                 #    del self.panels[panel_name]

@@ -118,7 +118,7 @@ class Panel(ScreenPanel):
     #     subprocess.run(command, shell=True)
 
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_product_naming", "co_print_product_naming", None, 2)
+        self._screen.show_panel("co_print_product_naming", "co_print_product_naming", None, 1,False)
         
     # def on_combobox_changed(self, combobox):
     #     active_text = combobox.get_active_text()

@@ -82,7 +82,7 @@ class Panel(ScreenPanel):
     def on_click_continue_button(self, continueButton):
         #TODO: buton gtk check boxa dönmeli işaretlenip işaretlenmediği anlaşılmıyor.
         logging.debug(f"contract.approved: 'Accepted'")
-        self._screen.show_panel("co_print_region_selection", "co_print_region_selection", None, 2)
+        self._screen.show_panel("co_print_region_selection", "co_print_region_selection", None, 1,False)
         
     def on_click_back_button(self, button, data):
         
