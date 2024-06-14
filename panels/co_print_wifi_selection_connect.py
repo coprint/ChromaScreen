@@ -11,12 +11,12 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintWifiSelectionConnect(*args)
+# def create_panel(*args):
+#     return CoPrintWifiSelectionConnect(*args)
 
 
-class CoPrintWifiSelectionConnect(ScreenPanel):
-
+# class CoPrintWifiSelectionConnect(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         
@@ -104,7 +104,7 @@ class CoPrintWifiSelectionConnect(ScreenPanel):
 
 
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", None, 2)
+        self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", None, 1,False)
 
         #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
         

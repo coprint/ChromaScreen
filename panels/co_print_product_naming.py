@@ -16,12 +16,12 @@ from gi.repository import Gtk, Pango, GLib, Gdk
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintProductNaming(*args)
+# def create_panel(*args):
+#     return CoPrintProductNaming(*args)
 
 
-class CoPrintProductNaming(ScreenPanel):
-
+# class CoPrintProductNaming(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
@@ -139,7 +139,7 @@ class CoPrintProductNaming(ScreenPanel):
         except Exception as e:
             logging.exception(e) 
 
-        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 2)
+        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 1,False)
         
     def on_click_back_button(self, button, data):
         

@@ -12,12 +12,12 @@ from gi.repository import Gtk, Pango, GLib, Gdk
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintContractApproval(*args)
+# def create_panel(*args):
+#     return CoPrintContractApproval(*args)
 
 
-class CoPrintContractApproval(ScreenPanel):
-
+# class CoPrintContractApproval(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
@@ -94,7 +94,7 @@ class CoPrintContractApproval(ScreenPanel):
     def on_click_continue_button(self, continueButton):
         #TODO: buton gtk check boxa dönmeli işaretlenip işaretlenmediği anlaşılmıyor.
         logging.debug(f"contract.approved: 'Accepted'")
-        self._screen.show_panel("co_print_region_selection", "co_print_region_selection", None, 2)
+        self._screen.show_panel("co_print_region_selection", "co_print_region_selection", None, 1,False)
         
     def on_click_back_button(self, button, data):
         

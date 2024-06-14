@@ -12,13 +12,13 @@ from gi.repository import Gtk, Pango, GLib, Gdk
 
 from ks_includes.screen_panel import ScreenPanel
 import gettext
-def create_panel(*args):
-    return CoPrintSplashScreenPanel(*args)
+# def create_panel(*args):
+#     return CoPrintSplashScreenPanel(*args)
 
 
-class CoPrintSplashScreenPanel(ScreenPanel):
+# class CoPrintSplashScreenPanel(ScreenPanel):
 
-     
+class Panel(ScreenPanel):     
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
@@ -116,7 +116,7 @@ class CoPrintSplashScreenPanel(ScreenPanel):
         self._screen.base_panel.visible_menu(False)
        
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 2)
+        self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 1)
 
     def changeLang(self, lang):
         self._screen.change_language(lang)

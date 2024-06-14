@@ -14,12 +14,12 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintWifiSelectionSelect(*args)
+# def create_panel(*args):
+#     return CoPrintWifiSelectionSelect(*args)
 
 
-class CoPrintWifiSelectionSelect(ScreenPanel):
-
+# class CoPrintWifiSelectionSelect(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
 
@@ -112,7 +112,7 @@ class CoPrintWifiSelectionSelect(ScreenPanel):
         params = {"source": self.source, "dest": f"gcodes/{self.labels['new_name'].get_text()}"}
     def on_click_back_button(self, button):
         
-        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 2)
+        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 1,False)
     
     def execute_command_and_show_output(self):
         try:
@@ -120,7 +120,7 @@ class CoPrintWifiSelectionSelect(ScreenPanel):
             
             if status:
                 self.close_dialog(self.waitDialog)
-                self._screen.show_panel("co_print_wifi_selection_connect", "co_print_wifi_selection_connect", None, 2, True, items=self.selectedMenu, password=self.password)
+                self._screen.show_panel("co_print_wifi_selection_connect", "co_print_wifi_selection_connect", None, 1, True, items=self.selectedMenu, password=self.password)
             else:
                 self.close_dialog(self.waitDialog)
                 self.showMessageBox(_('Connection failed.'))

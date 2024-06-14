@@ -1,0 +1,30 @@
+{
+    "debian": [
+        "libgirepository1.0-dev",
+        "gcc",
+        "libcairo2-dev",
+        "pkg-config",
+        "python3-dev",
+        "gir1.2-gtk-3.0",
+        "fonts-nanum",
+        "fonts-ipafont",
+        "libmpv-dev",
+        "librsvg2-common",
+        "libopenjp2-7",
+        "libdbus-glib-1-dev",
+        "autoconf"
+    ],
+    "arch": [
+        "cairo",
+        "pkgconf",
+        "gobject-introspection",
+        "gtk3",
+        "ttf-nanum",
+        "otf-ipafont",
+        "mpv",
+        "librsvg",
+        "openjpeg2",
+        "dbus-glib",
+        "autoconf"
+    ]
+}
