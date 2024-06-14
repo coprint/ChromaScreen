@@ -48,6 +48,19 @@ class CoPrintPrintingBrandSelection(ScreenPanel):
         self.backButton.set_always_show_image (True)       
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
+        #----------Skip-Button--------        
+        skipIcon = self._gtk.Image("forward-arrow", 35, 35)
+        skipLabel = Gtk.Label(_("Skip"), name="bottom-menu-label")            
+        skipButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        skipButtonBox.set_halign(Gtk.Align.CENTER)
+        skipButtonBox.set_valign(Gtk.Align.CENTER)
+        skipButtonBox.pack_start(skipLabel, False, False, 0)
+        skipButtonBox.pack_start(skipIcon, False, False, 0)
+        self.skipButton = Gtk.Button(name ="back-button")
+        self.skipButton.add(skipButtonBox)
+        self.skipButton.connect("clicked", self.on_click_back_button, "co_print_home_screen")
+        self.skipButton.set_always_show_image (True)       
+        mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
 
         nextIcon = self._gtk.Image("forward-arrow", 45, 45)
         self.nextButton = Gtk.Button(name ="back-button")
@@ -153,6 +166,7 @@ class CoPrintPrintingBrandSelection(ScreenPanel):
         # Seçilen öğenin değerini Entry kutusuna yazdırma
         selected_value = row.get_child().get_label()
         self.entry.set_text(selected_value)
+        self.current_page = 0
         self.show_current_page(selected_value)
         self.dialog.destroy()
     

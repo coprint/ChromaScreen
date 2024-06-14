@@ -11,43 +11,32 @@ from ks_includes.widgets.macros import Macros
 from ks_includes.widgets.systemsetting import SystemSetting
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
 from ks_includes.screen_panel import ScreenPanel
-
 
 def create_panel(*args):
     return CoPrintSystemSettingScreen(*args)
 
-
 class CoPrintSystemSettingScreen(ScreenPanel):
-
-
     def __init__(self, screen, title):
         super().__init__(screen, title)
-        
         menu = BottomMenu(self, False)
-
-
-       
-                
-
         update_resp = self._screen.apiclient.send_request("machine/update/status")
         self.update_status = update_resp['result']
         self.version_info = self.update_status['version_info']
-
         self.version_info['mainsail']['version']
-
         isUpdateReqKlipper = False
         if self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
-            isUpdateReqKlipper = True
-        
+            isUpdateReqKlipper = True        
         isUpdateReqMainsail = False
         if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
+        isUpdateReqMoonraker = False
+        if self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
+            isUpdateReqMainsail = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
-        macrotwo = SystemSetting(self, "ChoromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , True, 'ChoromaScreen')
+        macrotwo = SystemSetting(self, "ChromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , True, 'ChromaScreen')
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
-       
+        macrofour = SystemSetting(self,_("Moonraker") + " "+_("Current") + " (" + self.version_info['moonraker']['version'] +")", ("Update"), isUpdateReqMoonraker, 'moonraker')
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.config_data = None
         try:
@@ -59,19 +48,20 @@ class CoPrintSystemSettingScreen(ScreenPanel):
 
         self.IsKlipperNeedUpdate = False
         self.IsMainsailNeedUpdate = False
+        self.IsMoonrakerNeedUpdate = False
         if(self.config_data != None):
             if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
                 self.IsKlipperNeedUpdate = True
             if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
                 self.IsMainsailNeedUpdate = True
-
+            if(self.clean_version(self.config_data['MoonrakerVersion']) > self.clean_version(self.version_info['moonraker']['remote_version'])):
+                self.IsMoonrakerNeedUpdate = True
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        
         self.macro_flowbox.pack_start(macrotwo, True, True, 10)
         self.macro_flowbox.pack_start(macroone, True, True, 0)
-        
         self.macro_flowbox.pack_start(macrothree, True, True, 0)
-        
+        self.macro_flowbox.pack_start(macrofour, True, True, 0)
+              
         updateButton = self._gtk.Button("download", _("Full Update"), "system-full-update", 1.4)
         updateButton.connect("clicked", self.VersionControl, 'full')
         updateButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -145,16 +135,16 @@ class CoPrintSystemSettingScreen(ScreenPanel):
         isUpdateReqMainsail = False
         if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
+        if self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
+            isUpdateReqMoonraker = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
-        #macrotwo = SystemSetting(self, "Co Print Smart (Current v1.435b)", ("Update"), True)
+        macrotwo = SystemSetting(self, "Co Print Smart (Current v1.435b)", ("Update"), True)
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
-
-
+        macrofour = SystemSetting(self,_("Moonraker") + " "+_("Current") + " (" + self.version_info['moonraker']['version'] +")", ("Update"), isUpdateReqMoonraker, 'moonraker')
+        self.macro_flowbox.pack_start(macrotwo, True, True, 0)
         self.macro_flowbox.pack_start(macroone, True, True, 0)
         self.macro_flowbox.pack_start(macrothree, True, True, 0)
-
-     
-
+        self.macro_flowbox.pack_start(macrofour, True, True, 0)
         self.macro_flowbox_parent.pack_start(self.macro_flowbox, True, True, 0)
         self.content.show_all()
 
@@ -198,7 +188,7 @@ class CoPrintSystemSettingScreen(ScreenPanel):
     
     def VersionControl(self, widget, name):
 
-        if name == 'ChoromaScreen':
+        if name == 'ChromaScreen':
             self._screen.base_panel.update_project()
         else:
             isDialogShow = True
@@ -206,6 +196,9 @@ class CoPrintSystemSettingScreen(ScreenPanel):
                 isDialogShow = False
             
             if name == "mainsail" and self.IsMainsailNeedUpdate:
+                isDialogShow = False
+                
+            if name == "moonraker" and self.IsMoonrakerNeedUpdate:
                 isDialogShow = False
 
             if name == "full" and (self.IsMainsailNeedUpdate and self.self.IsKlipperNeedUpdate):

@@ -71,7 +71,7 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         systemRestartBox.pack_start(systemRestartLabel, False, False, 0)
         self.systemRestartButton = Gtk.Button(name ="system-restart-"+statusLight+"-button")
         self.systemRestartButton.add(systemRestartBox)
-        self.systemRestartButton.connect("clicked", self.on_click_system_restart)
+        self.systemRestartButton.connect("clicked", self.reboot_poweroff, 'reboot')
         self.systemRestartButton.set_always_show_image (True)
 
         #-----firmware restart button-----#
@@ -178,6 +178,9 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         isUpdateReqMainsail = False
         if self.version_info and self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
             isUpdateReqMainsail = True
+        isUpdateReqMoonraker = False
+        if self.version_info and self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
+            isUpdateReqMoonraker = True
          #-----chromascreen update-----#
         chromascreenUpdateLabel = Gtk.Label(_("Chromascreen"), name="kipper-label")
         chromascreenUpdateLabel.set_justify(Gtk.Justification.LEFT)
@@ -190,7 +193,7 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         chromascreenVersionLabelBox.pack_start(chromascreenVersionLabel, False, False, 0)
 
         chromascreenUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
-        chromascreenUpdateButton.connect("clicked", self.VersionControl, "ChoromaScreen")
+        chromascreenUpdateButton.connect("clicked", self.VersionControl, "ChromaScreen")
         chromascreenVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
         chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
@@ -260,6 +263,35 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         mainsailUpdateBox.pack_start(mainsailVersionBox, False, False, 0)
         mainsailUpdateBox.pack_end(mainsailUpdateButton, False, False, 0)
         box_array.append(mainsailUpdateBox)
+        #-----moonraker update-----#
+        moonrakerUpdateLabel = Gtk.Label(_("Moonraker"), name="kipper-label")
+        moonrakerUpdateLabel.set_justify(Gtk.Justification.LEFT)
+        moonrakerUpdateLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        moonrakerUpdateLabelBox.pack_start(moonrakerUpdateLabel, False, False, 0)
+        label_text = ''
+        if self.version_info:
+            label_text = _(self.version_info['moonraker']['version'])
+        moonrakerVersionLabel = Gtk.Label(_("Version: ") + label_text, name="klipper-version-label")
+        moonrakerVersionLabel.set_justify(Gtk.Justification.LEFT)
+        moonrakerVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        moonrakerVersionLabelBox.pack_start(moonrakerVersionLabel, False, False, 0)
+        if isUpdateReqMoonraker:
+            moonrakerUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
+            moonrakerUpdateButton.connect("clicked", self.VersionControl, "klipper")
+            moonrakerVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+            moonrakerVersionBox.pack_start(moonrakerUpdateLabelBox, False, False, 0)
+            moonrakerVersionBox.pack_start(moonrakerVersionLabelBox, False, False, 0)
+        else:
+            moonrakerUpdateButton = Gtk.Button(_('Up-to-date'),name ="up-to-date-button")
+            #klipperUpdateButton.connect("clicked", self.klipperUpdateButton)
+            moonrakerVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+            moonrakerVersionBox.pack_start(moonrakerUpdateLabelBox, False, False, 0)
+            moonrakerVersionBox.pack_start(moonrakerVersionLabelBox, False, False, 0)
+        moonrakerUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        moonrakerUpdateBox.set_name("update-box")
+        moonrakerUpdateBox.pack_start(moonrakerVersionBox, False, False, 0)
+        moonrakerUpdateBox.pack_end(moonrakerUpdateButton, False, False, 0)
+        box_array.append(moonrakerUpdateBox)
         updateManagerBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         updateManagerBox.set_name("update-manager-box")
         updateManagerBox.pack_start(updateManagerLabelBox, False, False, 0)
@@ -348,13 +380,15 @@ class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
         return major, minor, patch, build
     
     def VersionControl(self, widget, name):
-        if name == 'ChoromaScreen':
+        if name == 'ChromaScreen':
             self._screen.base_panel.update_project()
         else:
             isDialogShow = True
             if name == "klipper" and self.IsKlipperNeedUpdate:
                 isDialogShow = False
             if name == "mainsail" and self.IsMainsailNeedUpdate:
+                isDialogShow = False
+            if name == "moonraker" and self.IsMoonrakerNeedUpdate:
                 isDialogShow = False
             if name == "full" and (self.IsMainsailNeedUpdate and self.self.IsKlipperNeedUpdate):
                 isDialogShow = False

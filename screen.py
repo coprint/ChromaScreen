@@ -122,7 +122,7 @@ class ChromaScreen(Gtk.Window):
     path_config = f'{computer_name}ChromaScreen/scripts/config.json'
     selected_wizard_printer = 'Printer1WizardDone'
     selected_printer_index = 1
-
+    
     path_base_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_mcu/'
     kconfig = None
     
@@ -136,7 +136,6 @@ class ChromaScreen(Gtk.Window):
         except Exception as e:
             logging.exception(e)
             raise RuntimeError from e
-
         self.blanking_time = 600
         self.use_dpms = True
         self.isEnter = False
@@ -194,13 +193,13 @@ class ChromaScreen(Gtk.Window):
         self.set_screenblanking_timeout(self._config.get_main_config().get('screen_blanking'))
         
         try:
-            f = open(self._screen.path_config, encoding='utf-8')
-       
+            f = open(self.path_config, encoding='utf-8')
             self.config_data = json.load(f)
-            self.pc_password = self.config_data['PCPassword']
         except Exception as e:
             logging.exception(e) 
-        
+        if(self.config_data != None):
+            self.pc_password = self.config_data['PcPassWord']
+
         with cd(self.klipper_path):
             self.kconfig = Kconfig(self.path_read)
         
@@ -866,7 +865,7 @@ class ChromaScreen(Gtk.Window):
             if self.is_redirect_not_connected:
                 if self.printer.state == 'error' or self.printer.state == 'shutdown' or self.printer.state ==  'disconnected':
                     page_url = 'co_print_home_not_connected_screen'
-                    if x != 'co_print_home_not_connected_screen':
+                    if x != 'co_print_home_not_connected_screen' and x != 'co_print_printing_selection_port':
                         self.show_panel(page_url, page_url, "Language", 1, False)
             
             
