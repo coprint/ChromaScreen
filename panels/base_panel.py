@@ -6,6 +6,7 @@ import subprocess
 import sys
 
 import gi
+import requests
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gtk, Pango
@@ -394,16 +395,33 @@ class BasePanel(ScreenPanel):
         else:
             print(stdout.decode('utf-8'))
 
+    def get_latest_version(self):
+        url = f"https://api.github.com/repos/coprint/ChromaScreen/releases/latest"
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad responses
+        latest_release = response.json()
+        latest_version = latest_release['tag_name']
+        download_url = latest_release['assets'][0]['browser_download_url']
+        logging.info(f"  {latest_version, download_url}")
+        return latest_version, download_url
+    
     def update_project(self):
         try:
            # Proje dizinine git
         
-            os.chdir(self._screen.base_dir)
+            #os.chdir(self._screen.base_dir)
             
             # Git pull komutunu çalıştırarak en son değişiklikleri al
             print("Proje güncelleniyor...")
-            self.run_command("git pull")
-            
+            #self.run_command("git pull")
+            latest_version, download_url = self.get_latest_version()
+            if latest_version > self._screen.version:
+                os.chdir("/tmp/")
+                self.run_command(f"wget {download_url}")
+                self.run_command("unzip ChromaScreen.zip")
+                self.run_command("rsync -av --progress /tmp/ChromaScreen-main ~/ --exclude scripts/config.json ")
+                self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen-main")
+
             # Gerekirse bağımlılıkları güncelle
             requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
             if os.path.exists(requirements_file):
