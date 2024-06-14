@@ -26,6 +26,8 @@ class BrandSelectionDialog(Gtk.Dialog):
             label.set_name("region-label")
             label.set_margin_left(20) 
             label.set_justify(Gtk.Justification.LEFT) 
+            label.set_margin_top(5) 
+            label.set_margin_bottom(5) 
             self.listbox.add(label)
 
         self.listbox.set_activate_on_single_click(True)

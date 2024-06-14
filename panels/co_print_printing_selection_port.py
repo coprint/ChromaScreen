@@ -28,8 +28,12 @@ class Panel(ScreenPanel):
         self.continueButton = Gtk.Button(_('Continue'),name ="flat-button-blue")
         self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
+        self.refreshButton = Gtk.Button(_('Refresh'),name ="flat-button-blue")
+        self.refreshButton.connect("clicked", self.control_usb)
+        self.refreshButton.set_hexpand(True)
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
+        buttonBox.pack_end(self.refreshButton, False, False, 0)
 
        
 
@@ -59,7 +63,19 @@ class Panel(ScreenPanel):
         self.backButton.set_always_show_image (True)       
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
-        
+        #----------Skip-Button--------        
+        skipIcon = self._gtk.Image("forward-arrow", 35, 35)
+        skipLabel = Gtk.Label(_("Skip"), name="bottom-menu-label")            
+        skipButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        skipButtonBox.set_halign(Gtk.Align.CENTER)
+        skipButtonBox.set_valign(Gtk.Align.CENTER)
+        skipButtonBox.pack_start(skipLabel, False, False, 0)
+        skipButtonBox.pack_start(skipIcon, False, False, 0)
+        self.skipButton = Gtk.Button(name ="back-button")
+        self.skipButton.add(skipButtonBox)
+        self.skipButton.connect("clicked", self.on_click_back_button, "co_print_home_screen")
+        self.skipButton.set_always_show_image (True)       
+        mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
 
         self.portBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.portBox.pack_start(portOneBox, False, False, 10)
@@ -102,7 +118,7 @@ class Panel(ScreenPanel):
                     portTwoBox.pack_start(self.portTwo, False, False, 0)
                     self.portBox.add(portTwoBox)
         else:
-            self.portTwo = Gtk.Button('usb-1:0:1',name ="flat-button-black")
+            self.portTwo = Gtk.Button('---',name ="flat-button-black")
             self.portTwo.set_hexpand(True)
             self.portTwo.connect("clicked", self.on_click_select_path, 'usb-1:0:1')
             portTwoBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)

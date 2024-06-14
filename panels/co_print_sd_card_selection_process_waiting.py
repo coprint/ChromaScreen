@@ -65,7 +65,20 @@ class Panel(ScreenPanel):
         self.backButton.set_always_show_image (True)       
         self.mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.mainBackButtonBox.pack_start(self.backButton, False, False, 0)
-        
+        #----------Skip-Button--------        
+        skipIcon = self._gtk.Image("forward-arrow", 35, 35)
+        skipLabel = Gtk.Label(_("Skip"), name="bottom-menu-label")            
+        skipButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        skipButtonBox.set_halign(Gtk.Align.CENTER)
+        skipButtonBox.set_valign(Gtk.Align.CENTER)
+        skipButtonBox.pack_start(skipLabel, False, False, 0)
+        skipButtonBox.pack_start(skipIcon, False, False, 0)
+        self.skipButton = Gtk.Button(name ="back-button")
+        self.skipButton.add(skipButtonBox)
+        self.skipButton.connect("clicked", self.on_click_back_button, "co_print_home_screen")
+        self.skipButton.set_always_show_image (True)       
+        self.mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
+
         self.header = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.header.pack_start(self.initHeader, False, False, 0)
 
@@ -190,7 +203,7 @@ class Panel(ScreenPanel):
 
                
                 
-                self.usbWriteDone()
+                GLib.timeout_add_seconds(15, self.usbWriteDone)
         except Exception as e:
             logging.exception(e)
             raise RuntimeError(f"Unable to write") from e 
@@ -202,7 +215,7 @@ class Panel(ScreenPanel):
         
         self.buttonBox.add(self.writeDone)
         self.content.show_all()
-        GLib.timeout_add_seconds(15, self.on_click_continue_button)
+        GLib.timeout_add_seconds(2, self.on_click_continue_button)
        
     
     
