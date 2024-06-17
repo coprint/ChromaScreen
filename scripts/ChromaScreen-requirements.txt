@@ -19,7 +19,7 @@ dbus-python==1.3.2
 pytz==2023.3
 keyboardlayout==2.0.1
 pygame==2.5.1
-opencv-contrib-python==4.8.0.76
+opencv-contrib-python==4.10.0.82
 kconfiglib==14.1.0
 psutil==5.9.6
 pyudev==0.24.1
