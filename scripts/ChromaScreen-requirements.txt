@@ -21,7 +21,7 @@ keyboardlayout==2.0.1
 pygame==2.5.1
 opencv-contrib-python==4.8.0.76
 kconfiglib==14.1.0
-psutil==5.9.6
+psutil==6.0.0
 pyudev==0.24.1
 matplotlib==3.8.2
 
