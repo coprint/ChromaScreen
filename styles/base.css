@@ -169,7 +169,7 @@ button.not-connected-setting label {
 #main-button-box {
 	background: linear-gradient(180deg, #909090 0%, #5f5e5e 100%);
 	border-radius: 0.5em;
-	padding: 0.4em;
+	padding: 0.1em;
 }
 
 #printing-right-info-box {

@@ -112,7 +112,7 @@ class Panel(ScreenPanel):
         params = {"source": self.source, "dest": f"gcodes/{self.labels['new_name'].get_text()}"}
     def on_click_back_button(self, button):
         
-        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 1,False)
+        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 1, False)
     
     def execute_command_and_show_output(self):
         try:
@@ -120,7 +120,7 @@ class Panel(ScreenPanel):
             
             if status:
                 self.close_dialog(self.waitDialog)
-                self._screen.show_panel("co_print_wifi_selection_connect", "co_print_wifi_selection_connect", None, 1, True, items=self.selectedMenu, password=self.password)
+                self._screen.show_panel("co_print_wifi_selection_connect", "co_print_wifi_selection_connect", None, 1, False, items=self.selectedMenu, password=self.password)
             else:
                 self.close_dialog(self.waitDialog)
                 self.showMessageBox(_('Connection failed.'))

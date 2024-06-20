@@ -180,11 +180,11 @@ class Panel(ScreenPanel, metaclass=Singleton):
         menuGrid.attach(temperatureButton, 1, 2, 1, 1)
 
         right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
-        right_box.pack_start(menuGrid, False, True, 0)
+        right_box.pack_start(menuGrid, True, True, 0)
 
         main_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        main_box.pack_start(left_box, True, True, 0)
-        main_box.pack_start(right_box, True, True, 0)
+        main_box.pack_start(left_box, True, False, 0)
+        main_box.pack_start(right_box, True, False, 0)
         main_box.set_vexpand(True)
         #main_box.set_valign(Gtk.Align.CENTER)
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
