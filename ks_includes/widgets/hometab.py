@@ -553,7 +553,8 @@ class HomeTab(Gtk.Box):
                 else:
                     filamentSensor = self.this._gtk.Image("filament-sensor", 40, 40)
             filamentSensorBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            filamentSensorBox.pack_start(filamentSensor, True, True, 0)
+            if filamentSensor != "" :
+                filamentSensorBox.pack_start(filamentSensor, True, True, 0)
 
             loadUnloadButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
             loadUnloadButtonBox.set_valign(Gtk.Align.CENTER)

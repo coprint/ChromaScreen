@@ -1,7 +1,10 @@
 #!/bin/bash
 
-SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-KSPATH=$(sed 's/\/scripts//g' <<< $SCRIPTPATH)
+SCRIPTPATH="$(
+    cd "$(dirname "$0")" >/dev/null 2>&1
+    pwd -P
+)"
+KSPATH=$(sed 's/\/scripts//g' <<<$SCRIPTPATH)
 KSENV="${CHROMASCREEN_VENV:-${HOME}/.ChromaScreen-env}"
 
 XSERVER="xinit xinput x11-xserver-utils xserver-xorg-input-evdev xserver-xorg-input-libinput"
@@ -20,23 +23,19 @@ Green='\033[0;32m'
 Cyan='\033[0;36m'
 Normal='\033[0m'
 
-echo_text ()
-{
+echo_text() {
     printf "${Normal}$1${Cyan}\n"
 }
 
-echo_error ()
-{
+echo_error() {
     printf "${Red}$1${Normal}\n"
 }
 
-echo_ok ()
-{
+echo_ok() {
     printf "${Green}$1${Normal}\n"
 }
 
-install_packages()
-{
+install_packages() {
     echo_text "Update package data"
     sudo apt-get update
 
@@ -92,22 +91,21 @@ install_packages()
         echo_error "Installation of Misc packages failed ($MISC)"
         exit 1
     fi
-#     ModemManager interferes with klipper comms
-#     on buster it's installed as a dependency of mpv
-#     it doesn't happen on bullseye
+    #     ModemManager interferes with klipper comms
+    #     on buster it's installed as a dependency of mpv
+    #     it doesn't happen on bullseye
     sudo systemctl mask ModemManager.service
 }
 
-create_virtualenv()
-{
+create_virtualenv() {
     echo_text "Creating virtual environment"
     if [ ! -d ${KSENV} ]; then
         virtualenv -p /usr/bin/python3 ${KSENV}
-#         GET_PIP="${HOME}/get-pip.py"
-#         virtualenv --no-pip -p /usr/bin/python3 ${KSENV}
-#         curl https://bootstrap.pypa.io/pip/3.6/get-pip.py -o ${GET_PIP}
-#         ${KSENV}/bin/python ${GET_PIP}
-#         rm ${GET_PIP}
+        #         GET_PIP="${HOME}/get-pip.py"
+        #         virtualenv --no-pip -p /usr/bin/python3 ${KSENV}
+        #         curl https://bootstrap.pypa.io/pip/3.6/get-pip.py -o ${GET_PIP}
+        #         ${KSENV}/bin/python ${GET_PIP}
+        #         rm ${GET_PIP}
     fi
 
     source ${KSENV}/bin/activate
@@ -128,33 +126,30 @@ create_virtualenv()
     echo_ok "Virtual enviroment created"
 }
 
-install_systemd_service()
-{
+install_systemd_service() {
     echo_text "Installing ChromaScreen unit file"
 
     SERVICE=$(<$SCRIPTPATH/ChromaScreen.service)
-    KSPATH_ESC=$(sed "s/\//\\\\\//g" <<< $KSPATH)
-    KSENV_ESC=$(sed "s/\//\\\\\//g" <<< $KSENV)
+    KSPATH_ESC=$(sed "s/\//\\\\\//g" <<<$KSPATH)
+    KSENV_ESC=$(sed "s/\//\\\\\//g" <<<$KSENV)
 
-    SERVICE=$(sed "s/KS_USER/$USER/g" <<< $SERVICE)
-    SERVICE=$(sed "s/KS_ENV/$KSENV_ESC/g" <<< $SERVICE)
-    SERVICE=$(sed "s/KS_DIR/$KSPATH_ESC/g" <<< $SERVICE)
+    SERVICE=$(sed "s/KS_USER/$USER/g" <<<$SERVICE)
+    SERVICE=$(sed "s/KS_ENV/$KSENV_ESC/g" <<<$SERVICE)
+    SERVICE=$(sed "s/KS_DIR/$KSPATH_ESC/g" <<<$SERVICE)
 
-    echo "$SERVICE" | sudo tee /etc/systemd/system/ChromaScreen.service > /dev/null
+    echo "$SERVICE" | sudo tee /etc/systemd/system/ChromaScreen.service >/dev/null
     sudo systemctl unmask ChromaScreen.service
     sudo systemctl daemon-reload
     sudo systemctl enable ChromaScreen
 }
 
-modify_user()
-{
+modify_user() {
     sudo usermod -a -G tty $USER
+    sudo usermod -a -G netdev $USER
 }
 
-update_x11()
-{
-    if [ -e /etc/X11/Xwrapper.config ]
-    then
+update_x11() {
+    if [ -e /etc/X11/Xwrapper.config ]; then
         echo_text "Updating X11 Xwrapper"
         sudo sed -i 's/allowed_users=console/allowed_users=anybody/g' /etc/X11/Xwrapper.config
     else
@@ -163,22 +158,20 @@ update_x11()
     fi
 }
 
-add_desktop_file()
-{
+add_desktop_file() {
     DESKTOP=$(<$SCRIPTPATH/ChromaScreen.desktop)
     mkdir -p $HOME/.local/share/applications/
-    echo "$DESKTOP" | tee $HOME/.local/share/applications/ChromaScreen.desktop > /dev/null
+    echo "$DESKTOP" | tee $HOME/.local/share/applications/ChromaScreen.desktop >/dev/null
     sudo cp $SCRIPTPATH/../styles/icon.svg /usr/share/icons/hicolor/scalable/apps/ChromaScreen.svg
 }
 
-start_ChromaScreen()
-{
+start_ChromaScreen() {
     echo_text "Starting service..."
     sudo systemctl stop ChromaScreen
     sudo systemctl start ChromaScreen
 }
-if [ "$EUID" == 0 ]
-    then echo_error "Please do not run this script as root"
+if [ "$EUID" == 0 ]; then
+    echo_error "Please do not run this script as root"
     exit 1
 fi
 install_packages

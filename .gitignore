@@ -1,7 +1,6 @@
 .idea/
 .vscode/
 .DS_Store
-ChromaScreen.conf
 __pycache__/
 *.py[cod]
 *$py.class

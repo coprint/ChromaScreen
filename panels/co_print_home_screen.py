@@ -42,7 +42,8 @@ class Panel(ScreenPanel, metaclass=Singleton):
     mcu_version = ''
     filament_usage_array = []
     mcu_constants = None
-
+    mcus = []
+    
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.extruders = self._printer.extruders
