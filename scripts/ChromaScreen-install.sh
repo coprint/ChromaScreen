@@ -146,6 +146,7 @@ install_systemd_service() {
 modify_user() {
     sudo usermod -a -G tty $USER
     sudo usermod -a -G netdev $USER
+    sudo adduser "$USER" netdev
 }
 
 update_x11() {

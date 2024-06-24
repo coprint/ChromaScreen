@@ -267,7 +267,8 @@ class Panel(ScreenPanel):
             
             if status:
                 self.close_dialog(self.waitDialog)
-                self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2, True, items=name, password=psw)
+                self.refresh
+                #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2, True, items=name, password=psw)
             else:
                 self.close_dialog(self.waitDialog)
                 self.showMessageBox(_('Connection Failed'))
