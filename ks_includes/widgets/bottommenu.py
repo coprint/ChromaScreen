@@ -58,7 +58,7 @@ class BottomMenu(Gtk.Box):
         printFilesButtonBox.pack_start(printFilesLabel, False, False, 0)
         printFilesButton = Gtk.Button(name ="menu-buttons")
         printFilesButton.add(printFilesButtonBox)
-        printFilesButton.connect("clicked", self.on_click_menu_button, 'co_print_printing_files_screen')
+        printFilesButton.connect("clicked", self.on_click_menu_button, 'co_print_printing_files_screen', False)
         printFilesButton.set_always_show_image (True)
         menuBox.pack_start(printFilesButton, True, True, 0)
             
@@ -119,11 +119,7 @@ class BottomMenu(Gtk.Box):
                                         "Language", 1, False)
             else:
                 self.parent._screen.show_panel(data, data, "Language", 1, False)
-                
+        elif data == 'co_print_printing_files_screen' and  (self.parent._printer.state == 'printing' or self.parent._printer.state == 'paused'):
+            self.parent._screen.show_panel('co_print_printing_screen', 'co_print_printing_screen', "Language", 1, False)
         elif(self.parent._printer.state != 'printing'):
             self.parent._screen.show_panel(data, data, "Language", 1, False)
-
-
-    
-
-    
