@@ -153,7 +153,7 @@ class ChromaScreen(Gtk.Window):
         self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
 
         self.connect("key-press-event", self._key_press_event)
-        self.connect("configure_event", self.update_size)
+        #self.connect("configure_event", self.update_size)
         monitor = Gdk.Display.get_default().get_primary_monitor()
         if monitor is None:
             monitor = Gdk.Display.get_default().get_monitor(0)
@@ -394,8 +394,8 @@ class ChromaScreen(Gtk.Window):
                 #self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
                 #return
             self._cur_panels.append(panel_name)
-            #if hasattr(self.panels[panel_name], "reset_values"):
-            #   self.panels[panel_name].reset_values()
+            if hasattr(self.panels[panel_name], "reset_values"):
+               self.panels[panel_name].reset_values()
             self.attach_panel(panel_name)
         except Exception as e:
             logging.exception(f"Error attaching panel:\n{e}")

@@ -116,7 +116,7 @@ class Panel(ScreenPanel):
         self._screen.base_panel.visible_menu(False)
        
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 1)
+        self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 1, False)
 
     def changeLang(self, lang):
         self._screen.change_language(lang)

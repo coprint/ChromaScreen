@@ -43,6 +43,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
     filament_usage_array = []
     mcu_constants = None
     mcus = []
+    hostInfo = None
     
     def __init__(self, screen, title):
         super().__init__(screen, title)
