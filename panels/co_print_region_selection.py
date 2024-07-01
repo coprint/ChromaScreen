@@ -8,7 +8,7 @@ from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
-from ks_includes.widgets.timezone import Timezone
+#from ks_includes.widgets.timezone import Timezone
 
 # def create_panel(*args):
 #     return CoPrintRegionSelection(*args)
@@ -19,34 +19,43 @@ class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         initHeader = InitHeader (self, _('Select Region'),_('Please select your region to determine your time zone.'),'Bolgesecimi')
-
-
-        
-
-
+        self.time_zone_list=[
+            {'offset':-12,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-11,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-10,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-9,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-8,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-7,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-6,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-5,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-4,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-3,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-2,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':-1,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':0,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':1,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':2,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':3,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':4,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':5,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':6,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':7,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':8,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':9,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':10,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':11,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':12,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':13,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':14,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None},
+            {'offset':15,'timeZoneBox':None,'offset_str':None,'current_time':None,'oset':None}
+            ]
         current_time_utc = datetime.utcnow().replace(tzinfo=pytz.utc)
-        gmt_offsets = range(-12, 15)
-        times_in_timezones = []
-        for offset in gmt_offsets:
-            oset = f"Etc/GMT{'+' if offset <= 0 else ''}{offset*-1}"
-            tz = pytz.FixedOffset(offset * 60)
-            current_time_in_tz = current_time_utc.astimezone(tz)
-            offset_str = f"GMT{'+' if offset >= 0 else ''}{offset}"
-            times_in_timezones.append((offset_str, current_time_in_tz.strftime('%H:%M'), oset))
-
-        timezone_grid = Gtk.Grid()
-        timezone_grid.set_halign(Gtk.Align.CENTER)
-        timezone_grid.set_row_spacing(20)
-        timezone_grid.set_column_spacing(20)
+        for i, item in enumerate(self.time_zone_list):
+            item['oset'] = f"Etc/GMT{'+' if item['offset'] <= 0 else ''}{item['offset']*-1}"
+            tz = pytz.FixedOffset(item['offset'] * 60)
+            item['current_time']=current_time_utc.astimezone(tz).strftime('%H:%M')
+            item['offset_str']=f"GMT{'+' if item['offset'] >= 0 else ''}{item['offset']}"
         
-        for index, (offset, current_time, oset) in enumerate(times_in_timezones):
-            self.time_zone_box = Timezone(self, offset, current_time, oset)
-            row = index // 2
-            col = index % 2
-            timezone_grid.attach(self.time_zone_box, col, row, 1, 1)
-           
-        self.scroll = self._gtk.ScrolledWindow()
-        self.scroll.add(timezone_grid)
         now = datetime.now()        
              
         currentLabel = Gtk.Label("Current: ", name="current-time-label")
@@ -56,16 +65,13 @@ class Panel(ScreenPanel):
         currentTimeBox.pack_start(currentLabel, False, False, 0)
         currentTimeBox.pack_start(self.timeLabel, False, False, 0)
 
-
-
         self.continueButton = Gtk.Button(_('Continue'),name ="flat-button-blue")
         self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
         buttonBox.set_center_widget(self.continueButton)
-   
-        
+           
         backIcon = self._gtk.Image("back-arrow", 35, 35)
         backLabel = Gtk.Label(_("Back"), name="bottom-menu-label")            
         backButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -102,23 +108,58 @@ class Panel(ScreenPanel):
         main.pack_start(mainBackButtonBox, False, False, 0)
         main.pack_start(initHeader, False, False, 0)
         main.pack_start(currentTimeBox, False, False, 13)
-        main.pack_start(self.scroll, False, True, 0)
+        main.pack_start(self.generateTimeZoneGrid(), False, True, 0)
         main.pack_end(buttonBox, False, False, 25)
-        
         
         fixed = Gtk.Overlay()
         fixed.add(image)
         fixed.add_overlay(main)
         self.content.add(fixed)
-
-    def timezone_select(self,a,b,c, d):
+    
+    def timezone_select(self,eventBox, gparam, offset):
+       for i, item in enumerate(self.time_zone_list):
+            if item['offset']!=offset:
+                item['timeZoneBox'].get_style_context().remove_class("timezonebox-active")
+            else:
+                self.set_timezone(item['oset'])
+                self.timeLabel.set_label(item['current_time'])
+                item['timeZoneBox'].get_style_context().add_class("timezonebox-active")
+    # def timezone_select(self,a,b,c, d):
      
-       self.set_timezone(c)
-       self.time_zone_box.get_style_context().add_class("timezone-select-box")
+    #    self.set_timezone(c)
+    #    self.time_zone_box.get_style_context().add_class("timezone-select-box")
           
-       self.timeLabel.set_label(d)
+    #    self.timeLabel.set_label(d)
 
-        
+    def generateTimeZoneGrid(self):
+        timezone_grid = Gtk.Grid()
+        timezone_grid.set_halign(Gtk.Align.CENTER)
+        timezone_grid.set_row_spacing(20)
+        timezone_grid.set_column_spacing(20)
+        for i, item in enumerate(self.time_zone_list):
+            timezoneLabel = Gtk.Label(item['offset_str'] + " Time Zone", name="timezone-label")
+            timezoneLabel.set_justify(Gtk.Justification.LEFT)
+            timeLabel = Gtk.Label(item['current_time'], name="time-label")
+            timezoneLabel.set_justify(Gtk.Justification.RIGHT)
+            timezoneBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+            timezoneBox.set_name("timezone-box")
+            timezoneBox.pack_start(timezoneLabel, False, False, 0)
+            timezoneBox.pack_end(timeLabel, False, False, 0)
+            mainEventBox = Gtk.EventBox()
+            mainEventBox.add(timezoneBox)
+            now = datetime.now()
+            if item['current_time'] == now.strftime('%H:%M'):
+                item['timeZoneBox'] = Gtk.Frame(name= "timezonebox-active")
+            else:
+                item['timeZoneBox'] = Gtk.Frame(name= "timezonebox")
+            item['timeZoneBox'].add(mainEventBox)
+            item['timeZoneBox'].connect("button-press-event", self.timezone_select, item['offset'])
+            row = i // 2
+            col = i % 2
+            timezone_grid.attach(item['timeZoneBox'], col, row, 1, 1)
+        self.scroll = self._gtk.ScrolledWindow()
+        self.scroll.add(timezone_grid)
+        return(self.scroll)
     # def on_country_combo_changed(self, combo):
     #     tree_iter = combo.get_active_iter()
     #     if tree_iter is not None:

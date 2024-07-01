@@ -688,6 +688,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
                         'loadProgressColor': load_progress_color,
                         #'tempSensor': getters.get_mcu_temp_sensor(key),
                     })
+                elif(key=='extruder'):
+                    if 'target' in data[key]:
+                        self.change_extruder_temperature_pre(int(data[key]['target']))
+                elif(key == 'heater_bed'):
+                    if 'target' in data[key]:
+                        self.change_bed_temperature_pre(int(data[key]['target']))
                     
 
         if self._printer.state != 'error' :

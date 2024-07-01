@@ -3046,6 +3046,15 @@ frame.filament-extruder-active {
 	border-radius: 10px;
 	min-width: 20rem;
 }
+frame#timezonebox {
+	border-radius: 10px;
+}
+frame.timezonebox-active {
+	background-color: #00f54e;
+	padding: 0.2rem;
+	border: 0px solid #fff5f5;
+	border-radius: 10px;
+}
 #timezone-label {
 	color: #ffffff;
 	font-size: 14px;
@@ -3056,7 +3065,7 @@ frame.filament-extruder-active {
 	font-weight: 500;
 }
 #current-time-label {
-	color: #ffffff;
+	color: #00f54e;
 	font-size: 20px;
 	font-weight: 400;
 }
