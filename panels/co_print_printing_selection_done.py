@@ -19,7 +19,7 @@ class Panel(ScreenPanel):
         super().__init__(screen, title)
      
        
-        initHeader = InitHeader (self, _('Kurulum Tamamlandı'), _('3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış yapabilirsiniz.'), "")
+        initHeader = InitHeader (self, _('Setup Completed'), _('3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış yapabilirsiniz.'), "")
 
         self.image = self._gtk.Image("setupdone", self._gtk.content_width * .25 , self._gtk.content_height * .25)
        

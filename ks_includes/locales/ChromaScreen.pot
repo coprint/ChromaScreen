@@ -1,0 +1,1415 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-04 09:32+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid " Axis Vibration Detection Complete"
+msgstr ""
+
+msgid " Axis Vibration Detection in Progress"
+msgstr ""
+
+#, python-format
+msgid "%s will be updated to version"
+msgstr ""
+
+msgid "(default)"
+msgstr ""
+
+msgid ""
+"-axis vibration compensation detection has been completed and the status is "
+"normal."
+msgstr ""
+
+msgid "24 Hour Time"
+msgstr ""
+
+msgid ""
+"3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin "
+"değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış "
+"yapabilirsiniz."
+msgstr ""
+
+msgid "A FIRMWARE_RESTART may fix the issue."
+msgstr ""
+
+msgid "ADXL Not Configured"
+msgstr ""
+
+msgid "Abort"
+msgstr ""
+
+msgid "Accel to Decel"
+msgstr ""
+
+msgid "Acceleration"
+msgstr ""
+
+msgid "Acceleration:"
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Add Network"
+msgstr ""
+
+msgid "Add profile"
+msgstr ""
+
+msgid "Adv. Settings"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+#, python-format
+msgid "Apply %.2f offset to Endstop?"
+msgstr ""
+
+#, python-format
+msgid "Apply %s%.2f offset to Probe?"
+msgstr ""
+
+msgid "Are you sure do you want to exclude the object?"
+msgstr ""
+
+msgid "Are you sure you want to run Emergency Stop?"
+msgstr ""
+
+msgid "Are you sure you wish to cancel this print?"
+msgstr ""
+
+msgid "Are you sure you wish to disable motors?"
+msgstr ""
+
+msgid "Are you sure you wish to reboot the system?"
+msgstr ""
+
+msgid "Are you sure you wish to shutdown the system?"
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Auto Leveling"
+msgstr ""
+
+msgid "Auto Scroll"
+msgstr ""
+
+msgid "Auto close notifications"
+msgstr ""
+
+msgid "Auto-calibrate"
+msgstr ""
+
+msgid "Auto-close notifications"
+msgstr ""
+
+msgid "Auto-scroll"
+msgstr ""
+
+msgid "Automatic Table Calibration"
+msgstr ""
+
+msgid "Automatic bed calibration is completed. Please restart the system."
+msgstr ""
+
+msgid "Automatic bed leveling is being performed. Please wait.."
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Back to Wizard"
+msgstr ""
+
+msgid "Bed Level"
+msgstr ""
+
+msgid "Bed Mesh"
+msgstr ""
+
+msgid "Bed screw configuration:"
+msgstr ""
+
+msgid "Bootloader Offset"
+msgstr ""
+
+msgid "Botloader Offset"
+msgstr ""
+
+msgid "Calibrate"
+msgstr ""
+
+msgid "Calibrated"
+msgstr ""
+
+msgid "Calibrating"
+msgstr ""
+
+msgid ""
+"Calibration steps vary depending on your printer's motion mechanism. Please "
+"select the type of your printer."
+msgstr ""
+
+msgid ""
+"Calibration will disconnect from other printers. Please make sure that other "
+"printers are not in operation"
+msgstr ""
+
+msgid "Cam Settings"
+msgstr ""
+
+msgid "Camera"
+msgstr ""
+
+msgid "Can't set above the maximum:"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cancel Print"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Cancelling"
+msgstr ""
+
+msgid "Cannot connect to Moonraker"
+msgstr ""
+
+msgid "Cartesian Type"
+msgstr ""
+
+msgid "Change Offset"
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "Check ADXL Wiring"
+msgstr ""
+
+msgid "Checking for updates, please wait..."
+msgstr ""
+
+msgid "Checking the Sensor Connection"
+msgstr ""
+
+msgid "Chip Settings"
+msgstr ""
+
+msgid "ChromaScreen will reboot"
+msgstr ""
+
+msgid "Chromascreen"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid ""
+"Click the “Start Calibration” button to perform automatic table calibration."
+msgstr ""
+
+msgid "Clock Referance"
+msgstr ""
+
+msgid "Clock Reference"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Co Print Wiki"
+msgstr ""
+
+msgid "Com Interface"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Configuration"
+msgstr ""
+
+msgid "Confirm Emergency Stop"
+msgstr ""
+
+msgid "Confirm emergency stop"
+msgstr ""
+
+msgid "Connect"
+msgstr ""
+
+msgid "Connect Your 3D Printer"
+msgstr ""
+
+msgid "Connect the Sensor"
+msgstr ""
+
+msgid ""
+"Connect the device by entering the information of the network you are using."
+msgstr ""
+
+msgid "Connect your 3D printer to Co Print Smart using a USB cable."
+msgstr ""
+
+msgid "Connected"
+msgstr ""
+
+#, python-format
+msgid "Connecting to %s"
+msgstr ""
+
+msgid "Connection Completed"
+msgstr ""
+
+msgid "Connection Failed"
+msgstr ""
+
+msgid "Connection Settings"
+msgstr ""
+
+msgid "Connection failed."
+msgstr ""
+
+msgid "Console"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Contract Approval"
+msgstr ""
+
+msgid "Cooldown"
+msgstr ""
+
+msgid "Corexy Type"
+msgstr ""
+
+msgid "Country/State"
+msgstr ""
+
+msgid "Creating..."
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "D."
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Delete Directory?"
+msgstr ""
+
+msgid "Delete File?"
+msgstr ""
+
+msgid "Deselect"
+msgstr ""
+
+msgid "Deutsch"
+msgstr ""
+
+msgid "Dimension"
+msgstr ""
+
+msgid "Disable Motors"
+msgstr ""
+
+msgid "Disable Stepper"
+msgstr ""
+
+msgid "Disable XY"
+msgstr ""
+
+msgid "Disconnect"
+msgstr ""
+
+msgid "Distance (mm)"
+msgstr ""
+
+#, python-format
+msgid "Do you want to recover %s?"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Elapsed:"
+msgstr ""
+
+msgid "Enable extra low-level configuration options"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Enter Value"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Estimated Time"
+msgstr ""
+
+msgid "Estimated Time Method"
+msgstr ""
+
+msgid "Estimated time method"
+msgstr ""
+
+msgid "Exclude Object"
+msgstr ""
+
+msgid "Execute"
+msgstr ""
+
+msgid "Extra Large"
+msgstr ""
+
+msgid "Extrude"
+msgstr ""
+
+msgid "Extruder Movement (mm)"
+msgstr ""
+
+msgid "Extrusion +"
+msgstr ""
+
+msgid "Extrusion -"
+msgstr ""
+
+msgid "Extrusion Speed (mm)"
+msgstr ""
+
+msgid "Failed, adjust position first"
+msgstr ""
+
+msgid "Fan"
+msgstr ""
+
+msgid "Fan Speed"
+msgstr ""
+
+msgid "Filament"
+msgstr ""
+
+msgid "Filament Cut"
+msgstr ""
+
+msgid "Filament Used"
+msgstr ""
+
+msgid "Filament total:"
+msgstr ""
+
+msgid "Filament used:"
+msgstr ""
+
+msgid "Filament:"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "File Name"
+msgstr ""
+
+msgid "File Preview"
+msgstr ""
+
+msgid "File:"
+msgstr ""
+
+msgid "Finding ADXL"
+msgstr ""
+
+msgid "Fine Tuning"
+msgstr ""
+
+msgid "Finish"
+msgstr ""
+
+msgid "Firmware Restart"
+msgstr ""
+
+msgid ""
+"First, tighten the tension screws to their maximum value. Then, for the "
+"first step, make a height adjustment using paper."
+msgstr ""
+
+msgid "Flash Chip"
+msgstr ""
+
+msgid "Flow:"
+msgstr ""
+
+msgid "Flowrate:"
+msgstr ""
+
+msgid "Font Size"
+msgstr ""
+
+msgid "Forget Network"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "Full Update"
+msgstr ""
+
+msgid "Fullscreen"
+msgstr ""
+
+msgid "Go Back"
+msgstr ""
+
+msgid "Go Printer"
+msgstr ""
+
+msgid ""
+"Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
+"güncellemek istiyor musunuz?"
+msgstr ""
+
+msgid ""
+"Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için "
+"yeniden başlatmak istiyor musunuz?"
+msgstr ""
+
+msgid ""
+"Having trouble installing or starting up? Scan the QR code to get help and "
+"detailed information."
+msgstr ""
+
+msgid "Heated Bed"
+msgstr ""
+
+msgid "Height:"
+msgstr ""
+
+msgid "Hidden"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Hide sensor in temp"
+msgstr ""
+
+msgid "Hide sensors in Temp."
+msgstr ""
+
+msgid "Hide temp."
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "Home All"
+msgstr ""
+
+msgid "Home X"
+msgstr ""
+
+msgid "Home XY"
+msgstr ""
+
+msgid "Home Y"
+msgstr ""
+
+msgid "Home Z"
+msgstr ""
+
+msgid "Homing"
+msgstr ""
+
+msgid "Host"
+msgstr ""
+
+msgid "Hostname Co Print"
+msgstr ""
+
+msgid "Hostname Noya"
+msgstr ""
+
+msgid "Hot Bed"
+msgstr ""
+
+msgid "I have read and accept the Privacy Policy."
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "Icon Theme"
+msgstr ""
+
+msgid "Init..."
+msgstr ""
+
+msgid "Initializing printer..."
+msgstr ""
+
+msgid "Input Shaper"
+msgstr ""
+
+msgid ""
+"Insert the SD Card of your printer into ChromaScreen to change the program "
+"of your 3D printer."
+msgstr ""
+
+msgid "Interface"
+msgstr ""
+
+msgid "Invalid"
+msgstr ""
+
+msgid "Invalid password"
+msgstr ""
+
+msgid "Invert X"
+msgstr ""
+
+msgid "Invert Y"
+msgstr ""
+
+msgid "Invert Z"
+msgstr ""
+
+msgid "Italian"
+msgstr ""
+
+msgid "Klipper"
+msgstr ""
+
+msgid "Klipper Restart"
+msgstr ""
+
+msgid "Klipper Update"
+msgstr ""
+
+msgid "Klipper bin file has been writen."
+msgstr ""
+
+msgid "Klipper has disconnected"
+msgstr ""
+
+msgid "Klipper has encountered an error."
+msgstr ""
+
+msgid "Klipper has shutdown"
+msgstr ""
+
+msgid "Klipper is attempting to start"
+msgstr ""
+
+msgid "Klipper reports: SHUTDOWN"
+msgstr ""
+
+msgid "Klipper will reboot"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language Settings"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "Layer:"
+msgstr ""
+
+msgid "Left:"
+msgstr ""
+
+msgid "Limits"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Log Files"
+msgstr ""
+
+msgid "Lower Nozzle"
+msgstr ""
+
+msgid "MCU Architecture"
+msgstr ""
+
+msgid "Macro Shortcuts menu"
+msgstr ""
+
+msgid "Macro shortcut on sidebar"
+msgstr ""
+
+msgid "Macros"
+msgstr ""
+
+msgid "Main Menu"
+msgstr ""
+
+msgid "Mainsail"
+msgstr ""
+
+msgid "Manual Leveling"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Max Acceleration"
+msgstr ""
+
+msgid "Max Acceleration to Deceleration"
+msgstr ""
+
+msgid "Max Velocity"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "Measure Both"
+msgstr ""
+
+msgid "Measure X"
+msgstr ""
+
+msgid "Measure Y"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Menu Co Print"
+msgstr ""
+
+msgid "Menu Noya"
+msgstr ""
+
+msgid "Mesh calibrate"
+msgstr ""
+
+msgid "Modified"
+msgstr ""
+
+msgid "Moonraker"
+msgstr ""
+
+msgid "Moonraker: connected"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Move Axis"
+msgstr ""
+
+msgid "Move Distance (mm)"
+msgstr ""
+
+msgid "Movement"
+msgstr ""
+
+msgid "Movement Settings"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Network"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Next Step"
+msgstr ""
+
+msgid "No Camera"
+msgstr ""
+
+msgid "No mesh has been loaded"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Not Connected"
+msgstr ""
+
+msgid ""
+"Not supported for auto-detection, it needs to be configured in klipperscreen."
+"conf"
+msgstr ""
+
+msgid "Nothing selected"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Optional Feature"
+msgstr ""
+
+msgid "Other Printers"
+msgstr ""
+
+#, python-format
+msgid "Outdated by %d"
+msgstr ""
+
+msgid "PSK for"
+msgstr ""
+
+msgid "Package will be updated"
+msgid_plural "Packages will be updated"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Park"
+msgstr ""
+
+msgid "Part Fan"
+msgstr ""
+
+msgid "Password saved"
+msgstr ""
+
+msgid "Pause"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Perform a full upgrade?"
+msgstr ""
+
+msgid "Performing Auto Home"
+msgstr ""
+
+msgid "Pins"
+msgstr ""
+
+msgid "Place the Initial Sensor on your printer's bed using double-sided tape."
+msgstr ""
+
+msgid "Place the Initial Sensor to the head of your printer."
+msgstr ""
+
+msgid "Please Connect the Sensor"
+msgstr ""
+
+msgid "Please Wait"
+msgstr ""
+
+msgid "Please connect a camera using the USB ports for printing monitoring."
+msgstr ""
+
+msgid "Please don’t touch the printer"
+msgstr ""
+
+msgid "Please insert the USB drive."
+msgstr ""
+
+msgid "Please read our agreement and confirm the terms."
+msgstr ""
+
+msgid "Please recompile and flash the micro-controller."
+msgstr ""
+
+msgid ""
+"Please select the architecture, communication frequency, clock speed and "
+"model of the chip you will be using."
+msgstr ""
+
+msgid "Please select your region to determine your time zone."
+msgstr ""
+
+msgid "Please specify a custom name for your device."
+msgstr ""
+
+msgid "Please specify the system language"
+msgstr ""
+
+msgid "Power"
+msgstr ""
+
+msgid "Power On Printer"
+msgstr ""
+
+msgid "Predefined Macros"
+msgstr ""
+
+msgid "Preheat ABS"
+msgstr ""
+
+msgid "Preheat For Extrude"
+msgstr ""
+
+msgid "Preheat PLA"
+msgstr ""
+
+msgid "Pressure Advance:"
+msgstr ""
+
+msgid "Print"
+msgstr ""
+
+msgid "Print Control"
+msgstr ""
+
+msgid "Print Time"
+msgstr ""
+
+msgid "Printer"
+msgstr ""
+
+msgid "Printer Connections"
+msgstr ""
+
+msgid "Printer Select"
+msgstr ""
+
+msgid "Printer Status"
+msgstr ""
+
+msgid "Printer is returning to the starting position, please wait.."
+msgstr ""
+
+msgid "Printing"
+msgstr ""
+
+msgid "Printing Camera"
+msgstr ""
+
+msgid "Printing File"
+msgstr ""
+
+msgid "Printing Time:"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Prob Calibration"
+msgstr ""
+
+msgid "Probe Calibration"
+msgstr ""
+
+msgid "Probe Offset"
+msgstr ""
+
+msgid "Processing, Please Wait.."
+msgstr ""
+
+msgid "Processor Model"
+msgstr ""
+
+msgid "Profile Name:"
+msgstr ""
+
+msgid "Provide ChromaScreen.log when asking for help.\n"
+msgstr ""
+
+msgid "Quad Gantry Level"
+msgstr ""
+
+msgid "Raise Nozzle"
+msgstr ""
+
+msgid "Records"
+msgstr ""
+
+msgid "Recover"
+msgstr ""
+
+msgid "Recover Hard"
+msgstr ""
+
+msgid "Recover Soft"
+msgstr ""
+
+msgid "Reference"
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Rename Your Device"
+msgstr ""
+
+msgid "Rename/Move:"
+msgstr ""
+
+msgid "Restart"
+msgstr ""
+
+msgid "Resume"
+msgstr ""
+
+msgid "Retract"
+msgstr ""
+
+msgid "Retraction"
+msgstr ""
+
+msgid "Retraction Length"
+msgstr ""
+
+msgid "Retraction Speed"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Retrying"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save Config"
+msgstr ""
+
+msgid "Save MESH"
+msgstr ""
+
+msgid "Save Settings"
+msgstr ""
+
+msgid "Save Z"
+msgstr ""
+
+msgid "Save configuration?"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+#, python-format
+msgid "Saved offset: %s"
+msgstr ""
+
+msgid "Screen DPMS"
+msgstr ""
+
+msgid "Screen Power Off Time"
+msgstr ""
+
+msgid "Screen power off time"
+msgstr ""
+
+msgid "Screws Adjust"
+msgstr ""
+
+msgid "Searching for Printer.."
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Select & Go"
+msgstr ""
+
+msgid "Select + - increase value"
+msgstr ""
+
+msgid "Select Baud Rate"
+msgstr ""
+
+msgid ""
+"Select Controlled \n"
+" Extruder"
+msgstr ""
+
+msgid "Select Microcontroller"
+msgstr ""
+
+msgid "Select Region"
+msgstr ""
+
+msgid "Select Your Printer Type"
+msgstr ""
+
+msgid ""
+"Select the Baud Rate to communicate with the processor you will be using."
+msgstr ""
+
+msgid "Select the Chip Model"
+msgstr ""
+
+msgid "Select the MCU located on the board you will be controlling."
+msgstr ""
+
+msgid "Select the MCU model located on the board you will be controlling."
+msgstr ""
+
+msgid ""
+"Select the bootloader offset located on the board you will be controlling."
+msgstr ""
+
+msgid "Select the chip model located on the board you will be controlling."
+msgstr ""
+
+msgid ""
+"Select the clock reference located on the board you will be controlling."
+msgstr ""
+
+msgid ""
+"Select the com interface model located on the board you will be controlling."
+msgstr ""
+
+msgid ""
+"Select the optional features located on the board you will be controlling."
+msgstr ""
+
+msgid "Select the usb ids located on the board you will be controlling."
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Sensor Connected"
+msgstr ""
+
+msgid "Set Temp"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Setup Completed"
+msgstr ""
+
+msgid "Setup Printer"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Show Heater Power"
+msgstr ""
+
+msgid "Show heater power"
+msgstr ""
+
+msgid "Shut Down"
+msgstr ""
+
+msgid "Shutdown"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Skip"
+msgstr ""
+
+msgid "Slicer"
+msgstr ""
+
+msgid "Slicer Time correction (%)"
+msgstr ""
+
+msgid "Slicer time corrections (%)"
+msgstr ""
+
+msgid "Slicer:"
+msgstr ""
+
+msgid "Slow"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+msgid "Spanish"
+msgstr ""
+
+msgid "Speed (mm/s)"
+msgstr ""
+
+msgid "Speed +"
+msgstr ""
+
+msgid "Speed -"
+msgstr ""
+
+msgid "Speed:"
+msgstr ""
+
+msgid "Square Corner Velocity"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "Start Calibration"
+msgstr ""
+
+msgid "Start Print"
+msgstr ""
+
+msgid "Starting WiFi Association"
+msgstr ""
+
+msgid "Starting recovery for"
+msgstr ""
+
+msgid "Starting update for"
+msgstr ""
+
+msgid "Statistic"
+msgstr ""
+
+msgid "Stop Calibrating"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "System Restart"
+msgstr ""
+
+msgid "System Shutdown"
+msgstr ""
+
+msgid "Systems / Update"
+msgstr ""
+
+msgid "Temp (°C)"
+msgstr ""
+
+msgid "Temperature"
+msgstr ""
+
+msgid ""
+"The settings file is being created. During this time Please wait and do not "
+"turn off ChromaScreen."
+msgstr ""
+
+msgid ""
+"The settings file is being created. During this time.Please wait and do not "
+"turn off ChromaScreen."
+msgstr ""
+
+msgid "Title:"
+msgstr ""
+
+msgid "Total Filament Used"
+msgstr ""
+
+msgid "Total Print Time"
+msgstr ""
+
+msgid "Total:"
+msgstr ""
+
+msgid "Turkish"
+msgstr ""
+
+msgid "USB IDS"
+msgstr ""
+
+msgid "USB drive has been inserted."
+msgstr ""
+
+msgid "USB serial number from CHIPID"
+msgstr ""
+
+msgid "Unknown Heater"
+msgstr ""
+
+msgid "Unknown screw position"
+msgstr ""
+
+msgid "Unload"
+msgstr ""
+
+msgid "Unretract Extra Length"
+msgstr ""
+
+msgid "Unretract Speed"
+msgstr ""
+
+msgid "Up To Date"
+msgstr ""
+
+msgid "Up-to-date"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Update Manager"
+msgstr ""
+
+msgid "Updating"
+msgstr ""
+
+msgid "Uploaded"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Velocity"
+msgstr ""
+
+msgid "Version: "
+msgstr ""
+
+msgid "WebRTC is not supported by the backend trying Stream"
+msgstr ""
+
+msgid "Wifi Password"
+msgstr ""
+
+msgid "Wifi SSID"
+msgstr ""
+
+msgid "Writing the SD card."
+msgstr ""
+
+msgid "Writing to SD Card"
+msgstr ""
+
+msgid "X Axis (Head)"
+msgstr ""
+
+msgid ""
+"X, Y, and Z axes are returning back to their home positions. Please wait."
+msgstr ""
+
+msgid "X,Y,Z Hareket Mesafesi (mm)"
+msgstr ""
+
+msgid "XY Move Speed (mm/s)"
+msgstr ""
+
+msgid "XY Speed (mm/s)"
+msgstr ""
+
+msgid "Y Axis (Bed)"
+msgstr ""
+
+msgid "Y Axis Vibration Detection Complete"
+msgstr ""
+
+msgid "Y Axis Vibration Detection in Progress"
+msgstr ""
+
+msgid ""
+"Y-axis vibration compensation detection has been completed and the status is "
+"normal."
+msgstr ""
+
+msgid "You are ready to start the test."
+msgstr ""
+
+msgid "Z Axis"
+msgstr ""
+
+msgid "Z Calibrate"
+msgstr ""
+
+msgid "Z Calibration Steps"
+msgstr ""
+
+msgid "Z Move Speed (mm/s)"
+msgstr ""
+
+msgid "Z Offset"
+msgstr ""
+
+msgid "Z Offset Distance"
+msgstr ""
+
+msgid "Z Speed (mm/s)"
+msgstr ""
+
+msgid "Z Tilt"
+msgstr ""
+
+msgid "Z offset:"
+msgstr ""
+
+msgid "commit"
+msgid_plural "commits"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "dBm"
+msgstr ""
+
+msgid "files listed"
+msgstr ""
+
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "minutes"
+msgstr ""
+
+msgid "mm"
+msgstr ""
+
+msgid "mm/s"
+msgstr ""
+
+msgid "mm/s²"
+msgstr ""
+
+msgid "mm³/s"
+msgstr ""
+
+msgid "selected"
+msgstr ""

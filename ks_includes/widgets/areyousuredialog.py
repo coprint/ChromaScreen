@@ -23,7 +23,7 @@ class AreYouSureDialog(Gtk.Dialog):
         self.set_default_size(300, 100)
         pos = self.get_position()
         self.move(pos[0] + 345, pos[1] + 100)
-        title = Gtk.Label(_("Emin misiniz?"), name="add-network-dialog-title")
+        title = Gtk.Label(_("Are you sure?"), name="add-network-dialog-title")
         self.SSIDentry = Gtk.Entry(name="network-input")
         self.SSIDentry.set_placeholder_text(_("Wifi SSID"))
         self.SSIDentry.connect("touch-event", self.give_name, self.SSIDentry)

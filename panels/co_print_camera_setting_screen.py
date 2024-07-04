@@ -5,6 +5,7 @@ import gi
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
+from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.wificard import WifiCard
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
@@ -23,6 +24,7 @@ class Panel(ScreenPanel):
         super().__init__(screen, title)
         
         menu = BottomMenu(self, False)
+        self.dialog = None
         
         cameraTitle = Gtk.Label(_("Printing Camera"), name="printer-type-title-label")
         cameraTitle.set_justify(Gtk.Justification.CENTER)
@@ -60,7 +62,7 @@ class Panel(ScreenPanel):
         for i, cam in enumerate(self._printer.cameras):
             if not cam["enabled"]:
                 continue
-            logging.info(cam)
+            #logging.info(cam)
             cam[cam["name"]] = self._gtk.Button(
                 image_name="camera", label=cam["name"],
                 scale=self.bts, position=Gtk.PositionType.LEFT, lines=1
@@ -147,7 +149,7 @@ class Panel(ScreenPanel):
         page.pack_start(cameraButtonBox, False, False, 0)
         
         self.content.add(page)
-
+        self.open_info_dialog()
         #GLib.idle_add(self.show_frame, None)
 
 
@@ -250,6 +252,17 @@ class Panel(ScreenPanel):
         self.mpv = None
         self._screen._menu_go_back()
 
-
+    def open_info_dialog(self):
+        if self.dialog == None:
+            self.dialog = InfoDialog(self, "Camera is not ready", False, True)
+            self.dialog.get_style_context().add_class("alert-info-dialog")
         
-    
+            self.dialog.set_decorated(False)
+            self.dialog.set_size_request(0, 0)
+        
+            response = self.dialog.run()
+   
+    def finished(self):
+        
+        self.dialog.response(Gtk.ResponseType.CANCEL)
+        self.dialog.destroy()

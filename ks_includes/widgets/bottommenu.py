@@ -104,7 +104,7 @@ class BottomMenu(Gtk.Box):
         restartServiceButton.add(restartServiceButtonBox)
         restartServiceButton.connect("clicked", this._screen.restart_ks)
         restartServiceButton.set_always_show_image (True)
-        menuBox.pack_start(restartServiceButton, True, False, 0)
+        #menuBox.pack_start(restartServiceButton, True, False, 0)
         
         menuBox.set_hexpand(True)
         self.add(menuBox)
