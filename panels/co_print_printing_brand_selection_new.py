@@ -12,13 +12,13 @@ import json
 from ks_includes.screen_panel import ScreenPanel
 
 
-# def create_panel(*args):
-#     return CoPrintPrintingBrandSelection(*args)
+def create_panel(*args):
+    return CoPrintPrintingBrandSelection(*args)
 
 
-# class CoPrintPrintingBrandSelection(ScreenPanel):
+class CoPrintPrintingBrandSelection(ScreenPanel):
 
-class Panel(ScreenPanel):
+# class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.selected_event_box = None

@@ -8,13 +8,13 @@ from gi.repository import Gtk
 
 from ks_includes.screen_panel import ScreenPanel
 
-# def create_panel(*args):
-#     return CoPrintPrintingSelectionDone(*args)
+def create_panel(*args):
+    return CoPrintPrintingSelectionDone(*args)
 
 
-# class CoPrintPrintingSelectionDone(ScreenPanel):
+class CoPrintPrintingSelectionDone(ScreenPanel):
 
-class Panel(ScreenPanel):
+# class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      

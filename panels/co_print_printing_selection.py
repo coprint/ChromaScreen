@@ -11,13 +11,13 @@ import pyudev
 from ks_includes.screen_panel import ScreenPanel
 
 
-# def create_panel(*args):
-#     return CoPrintPrintingSelection(*args)
+def create_panel(*args):
+    return CoPrintPrintingSelection(*args)
 
 
-# class CoPrintPrintingSelection(ScreenPanel):
+class CoPrintPrintingSelection(ScreenPanel):
 
-class Panel(ScreenPanel):
+# class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      

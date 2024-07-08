@@ -14,8 +14,8 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-# def create_panel(*args):
-#     return CoPrintTemperatureScreen(*args)
+def create_panel(*args):
+    return CoPrintTemperatureScreen(*args)
 
 class Singleton(type):
     _instances = {}
@@ -24,7 +24,8 @@ class Singleton(type):
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
-class Panel(ScreenPanel, metaclass=Singleton):
+class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
+# class Panel(ScreenPanel, metaclass=Singleton):
 
     active_heater = None 
     def __init__(self, screen, title):

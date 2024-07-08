@@ -10,12 +10,12 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 #from ks_includes.widgets.timezone import Timezone
 
-# def create_panel(*args):
-#     return CoPrintRegionSelection(*args)
+def create_panel(*args):
+    return CoPrintRegionSelection(*args)
 
 
-# class CoPrintRegionSelection(ScreenPanel):
-class Panel(ScreenPanel):
+class CoPrintRegionSelection(ScreenPanel):
+# class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         initHeader = InitHeader (self, _('Select Region'),_('Please select your region to determine your time zone.'),'Bolgesecimi')

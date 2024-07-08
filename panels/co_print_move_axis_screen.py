@@ -13,8 +13,8 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 from ks_includes.widgets.keypad import Keypad
 
-# def create_panel(*args):
-#     return CoPrintMoveAxisScreen(*args)
+def create_panel(*args):
+    return CoPrintMoveAxisScreen(*args)
 
 class Singleton(type):
     _instances = {}
@@ -24,7 +24,8 @@ class Singleton(type):
         return cls._instances[cls]
    
 
-class Panel(ScreenPanel, metaclass=Singleton):
+class CoPrintMoveAxisScreen(ScreenPanel, metaclass=Singleton):
+#class Panel(ScreenPanel, metaclass=Singleton):
 
     def __init__(self, screen, title):
         super().__init__(screen, title)
