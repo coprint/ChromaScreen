@@ -43,8 +43,6 @@ class InfoDialog(Gtk.Dialog):
         closeButton.set_always_show_image(True)
         if(isActive):
             closeButton.connect("clicked", lambda x: self.destroy())
-        if(isCamera):
-            closeButton.connect("clicked", lambda x: self.destroyCamera())
         emergencyStopButton = None
         try:
             emergencyStopIcon = this._gtk.Image("emergencyicon", 35, 35)
@@ -69,8 +67,7 @@ class InfoDialog(Gtk.Dialog):
         mainBox.pack_start(content, False, False, 0)
         if(isActive):
             mainBox.pack_start(closeButton, False, False, 0)
-        if(isCamera):
-            mainBox.pack_start(closeButton, False, False, 0)
+        
         
         
         box = self.get_content_area()
@@ -80,6 +77,8 @@ class InfoDialog(Gtk.Dialog):
         box.add(mainBox)
        
         self.show_all()
+        if(isCamera):
+            GLib.timeout_add(50, self.destroyCamera)
     def on_click_emergency_stop(self, button):
         self.destroy()
         self.parent._screen._ws.klippy.emergency_stop()

@@ -10,13 +10,13 @@ from gi.repository import Gtk, Pango, GLib, Gdk
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintMcuComInterface(*args)
+# def create_panel(*args):
+#     return CoPrintMcuComInterface(*args)
 
 
-class CoPrintMcuComInterface(ScreenPanel):
+# class CoPrintMcuComInterface(ScreenPanel):
 
-# class Panel(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      

@@ -374,4 +374,4 @@ class Printer:
 
     def configure_cameras(self, data):
         self.cameras = data
-        logging.debug(f"Cameras: {self.cameras}")
+        # logging.debug(f"Cameras: {self.cameras}")

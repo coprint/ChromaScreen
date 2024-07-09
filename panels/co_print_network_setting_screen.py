@@ -17,13 +17,13 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintNetworkSettingScreen(*args)
+# def create_panel(*args):
+#     return CoPrintNetworkSettingScreen(*args)
 
 
-class CoPrintNetworkSettingScreen(ScreenPanel):
+# class CoPrintNetworkSettingScreen(ScreenPanel):
 
-# class Panel(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         
@@ -267,8 +267,6 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
             
             if status:
                 self.close_dialog(self.waitDialog)
-                self.refresh
-                #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2, True, items=name, password=psw)
             else:
                 self.close_dialog(self.waitDialog)
                 self.showMessageBox(_('Connection Failed'))
@@ -277,8 +275,7 @@ class CoPrintNetworkSettingScreen(ScreenPanel):
             IPAddr = socket.gethostbyname(hostname)
             ip = IPAddr
             self.IpLabel.set_label(_("IP") + ":" + ip)
-           
-           
+            GLib.idle_add(self.refresh, None)
         except subprocess.CalledProcessError as e:
             self.showMessageBox(e.output.decode("utf-8"))
 

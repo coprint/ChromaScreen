@@ -12,8 +12,8 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintConsoleScreen(*args)
+# def create_panel(*args):
+#     return CoPrintConsoleScreen(*args)
 
 COLORS = {
     "command": "#bad8ff",
@@ -22,9 +22,9 @@ COLORS = {
     "time": "grey",
     "warning": "#c9c9c9"
 }
-class CoPrintConsoleScreen(ScreenPanel):
+# class CoPrintConsoleScreen(ScreenPanel):
 
-# class Panel(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.menu = BottomMenu(self, False)

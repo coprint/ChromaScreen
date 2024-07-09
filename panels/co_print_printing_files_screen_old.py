@@ -12,12 +12,12 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintPrintingFilesScreen(*args)
+# def create_panel(*args):
+#     return CoPrintPrintingFilesScreen(*args)
 
 
-class CoPrintPrintingFilesScreen(ScreenPanel):
-# class Panel(ScreenPanel):
+# class CoPrintPrintingFilesScreen(ScreenPanel):
+class Panel(ScreenPanel):
     cur_directory = "gcodes"
     dir_panels = {}
     filelist = {'gcodes': {'directories': [], 'files': []}}

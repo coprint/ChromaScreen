@@ -344,121 +344,68 @@ class ChromaScreen(Gtk.Window):
 
         self._ws.klippy.object_subscription(requested_updates)
 
-    # def _load_panel(self, panel, *args):
-    #    # if panel not in self.load_panel:
-    #     logging.debug(f"Loading panel: {panel}")
-    #     panel_path = os.path.join(os.path.dirname(__file__), 'panels', f"{panel}.py")
-    #     logging.info(f"Panel path: {panel_path}")
-    #     if not os.path.exists(panel_path):
-    #         logging.error(f"Panel {panel} does not exist")
-    #         raise FileNotFoundError(os.strerror(2), "\n" + panel_path)
-    #     return import_module(f"panels.{panel}")
-    #     # self.load_panel[panel] = None
-    #     # module = import_module(f"panels.{panel}")
-
-    #     # reload(module)
-    #     # if not hasattr(module, "create_panel"):
-    #     #     raise ImportError(f"Cannot locate create_panel function for {panel}")
-    #     # self.load_panel[panel] = getattr(module, "create_panel")
-
-
-    #     # try:
-    #     #     return self.load_panel[panel](*args)
-    #     # except Exception as e:
-    #     #     logging.exception(e)
-    #     #     raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
-
-    # def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
-    #     try:
-    #         if remove == 2:
-    #             self.panels_reinit = list(self.panels)
-    #             self._remove_all_panels()
-    #         elif remove == 1:
-    #             self._remove_current_panel(pop)
-
-    #         #if panel_name not in self.panels:
-    #         if panel_name not in self.panels:
-    #             try:
-    #                 self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title)
-    #                 if hasattr(self.panels[panel_name], "initialize"):
-    #                     self.panels[panel_name].initialize(**kwargs)
-    #             except Exception as e:
-    #                 self.show_error_modal(f"Unable to load panel {panel_name}", f"{e}\n\n{traceback.format_exc()}")
-    #                 return
-    #         elif panel_name in self.panels_reinit:
-    #             logging.info(f"Reinitializing panel {panel_name}")
-    #             self.panels[panel_name].__init__(self, title)
-    #             self.panels_reinit.remove(panel_name)
-    #             #if panel_name in self.panels:
-    #             #    del self.panels[panel_name]
-    #             #self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
-    #             #return
-    #         self._cur_panels.append(panel_name)
-    #         if hasattr(self.panels[panel_name], "reset_values"):
-    #            self.panels[panel_name].reset_values()
-    #         self.attach_panel(panel_name)
-    #     except Exception as e:
-    #         logging.exception(f"Error attaching panel:\n{e}")
-        
-
-    # def attach_panel(self, panel_name):
-    #     if panel_name in self.panels_reinit:
-    #         # this happens when the first panel needs a reinit
-    #         self.reload_panels()
-    #         return
-    #     self.base_panel.add_content(self.panels[panel_name])
-    #     logging.debug(f"Current panel hierarchy: {' > '.join(self._cur_panels)}")
-    #     self.base_panel.show_back(len(self._cur_panels) > 1)
-    #     if hasattr(self.panels[panel_name], "process_update"):
-    #         self.add_subscription(panel_name)
-    #         self.process_update("notify_status_update", self.printer.data)
-    #         self.process_update("notify_busy", self.printer.busy)
-    #     if hasattr(self.panels[panel_name], "activate"):
-    #         self.panels[panel_name].activate()
-    #     self.show_all()
-    #     self.base_panel.visible_menu(False)
     def _load_panel(self, panel, *args):
+       # if panel not in self.load_panel:
         logging.debug(f"Loading panel: {panel}")
         panel_path = os.path.join(os.path.dirname(__file__), 'panels', f"{panel}.py")
         logging.info(f"Panel path: {panel_path}")
         if not os.path.exists(panel_path):
             logging.error(f"Panel {panel} does not exist")
             raise FileNotFoundError(os.strerror(2), "\n" + panel_path)
-        self.load_panel[panel] = None
-        module = import_module(f"panels.{panel}")
-        reload(module)
-        if not hasattr(module, "create_panel"):
-            raise ImportError(f"Cannot locate create_panel function for {panel}")
-        self.load_panel[panel] = getattr(module, "create_panel")
-        try:
-            return self.load_panel[panel](*args)
-        except Exception as e:
-            logging.exception(e)
-            raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
-        
+        return import_module(f"panels.{panel}")
+        # self.load_panel[panel] = None
+        # module = import_module(f"panels.{panel}")
+
+        # reload(module)
+        # if not hasattr(module, "create_panel"):
+        #     raise ImportError(f"Cannot locate create_panel function for {panel}")
+        # self.load_panel[panel] = getattr(module, "create_panel")
+
+
+        # try:
+        #     return self.load_panel[panel](*args)
+        # except Exception as e:
+        #     logging.exception(e)
+        #     raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
+
     def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
         try:
             if remove == 2:
+                self.panels_reinit = list(self.panels)
                 self._remove_all_panels()
             elif remove == 1:
                 self._remove_current_panel(pop)
-            try:
-                self.panels[panel_name] = self._load_panel(panel_type, self, title)
-                if hasattr(self.panels[panel_name], "initialize"):
-                    self.panels[panel_name].initialize(**kwargs)
-            except Exception as e:
-                if panel_name in self.panels:
-                    del self.panels[panel_name]
-                self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
-                return
+
+            #if panel_name not in self.panels:
+            if panel_name not in self.panels:
+                try:
+                    self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title)
+                    if hasattr(self.panels[panel_name], "initialize"):
+                        self.panels[panel_name].initialize(**kwargs)
+                except Exception as e:
+                    self.show_error_modal(f"Unable to load panel {panel_name}", f"{e}\n\n{traceback.format_exc()}")
+                    return
+            elif panel_name in self.panels_reinit:
+                logging.info(f"Reinitializing panel {panel_name}")
+                self.panels[panel_name].__init__(self, title)
+                self.panels_reinit.remove(panel_name)
+                #if panel_name in self.panels:
+                #    del self.panels[panel_name]
+                #self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
+                #return
             self._cur_panels.append(panel_name)
             if hasattr(self.panels[panel_name], "reset_values"):
-                self.panels[panel_name].reset_values()
+               self.panels[panel_name].reset_values()
             self.attach_panel(panel_name)
         except Exception as e:
             logging.exception(f"Error attaching panel:\n{e}")
+        
 
     def attach_panel(self, panel_name):
+        if panel_name in self.panels_reinit:
+            # this happens when the first panel needs a reinit
+            self.reload_panels()
+            return
         self.base_panel.add_content(self.panels[panel_name])
         logging.debug(f"Current panel hierarchy: {' > '.join(self._cur_panels)}")
         self.base_panel.show_back(len(self._cur_panels) > 1)
@@ -470,6 +417,59 @@ class ChromaScreen(Gtk.Window):
             self.panels[panel_name].activate()
         self.show_all()
         self.base_panel.visible_menu(False)
+    # def _load_panel(self, panel, *args):
+    #     logging.debug(f"Loading panel: {panel}")
+    #     panel_path = os.path.join(os.path.dirname(__file__), 'panels', f"{panel}.py")
+    #     logging.info(f"Panel path: {panel_path}")
+    #     if not os.path.exists(panel_path):
+    #         logging.error(f"Panel {panel} does not exist")
+    #         raise FileNotFoundError(os.strerror(2), "\n" + panel_path)
+    #     self.load_panel[panel] = None
+    #     module = import_module(f"panels.{panel}")
+    #     reload(module)
+    #     if not hasattr(module, "create_panel"):
+    #         raise ImportError(f"Cannot locate create_panel function for {panel}")
+    #     self.load_panel[panel] = getattr(module, "create_panel")
+    #     try:
+    #         return self.load_panel[panel](*args)
+    #     except Exception as e:
+    #         logging.exception(e)
+    #         raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
+        
+    # def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
+    #     try:
+    #         if remove == 2:
+    #             self._remove_all_panels()
+    #         elif remove == 1:
+    #             self._remove_current_panel(pop)
+    #         try:
+    #             self.panels[panel_name] = self._load_panel(panel_type, self, title)
+    #             if hasattr(self.panels[panel_name], "initialize"):
+    #                 self.panels[panel_name].initialize(**kwargs)
+    #         except Exception as e:
+    #             if panel_name in self.panels:
+    #                 del self.panels[panel_name]
+    #             self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
+    #             return
+    #         self._cur_panels.append(panel_name)
+    #         if hasattr(self.panels[panel_name], "reset_values"):
+    #             self.panels[panel_name].reset_values()
+    #         self.attach_panel(panel_name)
+    #     except Exception as e:
+    #         logging.exception(f"Error attaching panel:\n{e}")
+
+    # def attach_panel(self, panel_name):
+    #     self.base_panel.add_content(self.panels[panel_name])
+    #     logging.debug(f"Current panel hierarchy: {' > '.join(self._cur_panels)}")
+    #     self.base_panel.show_back(len(self._cur_panels) > 1)
+    #     if hasattr(self.panels[panel_name], "process_update"):
+    #         self.add_subscription(panel_name)
+    #         self.process_update("notify_status_update", self.printer.data)
+    #         self.process_update("notify_busy", self.printer.busy)
+    #     if hasattr(self.panels[panel_name], "activate"):
+    #         self.panels[panel_name].activate()
+    #     self.show_all()
+    #     self.base_panel.visible_menu(False)
 
     def close_dialog(self, dialog):
         dialog.response(Gtk.ResponseType.CANCEL)

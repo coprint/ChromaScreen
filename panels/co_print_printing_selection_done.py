@@ -8,13 +8,13 @@ from gi.repository import Gtk
 
 from ks_includes.screen_panel import ScreenPanel
 
-def create_panel(*args):
-    return CoPrintPrintingSelectionDone(*args)
+# def create_panel(*args):
+#     return CoPrintPrintingSelectionDone(*args)
 
 
-class CoPrintPrintingSelectionDone(ScreenPanel):
+# class CoPrintPrintingSelectionDone(ScreenPanel):
 
-# class Panel(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
      
@@ -86,9 +86,11 @@ class CoPrintPrintingSelectionDone(ScreenPanel):
 
         except Exception as e:
             logging.exception(e) 
+        self._screen._ws.klippy.restart_firmware()
         self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
     
     def on_click_skip_button(self, continueButton):
+        self._screen._ws.klippy.restart_firmware()
         self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
         
    

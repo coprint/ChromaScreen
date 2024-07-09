@@ -13,8 +13,8 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
-def create_panel(*args):
-    return CoPrintExtrudersScreen(*args)
+# def create_panel(*args):
+#     return CoPrintExtrudersScreen(*args)
 
 class Singleton(type):
     _instances = {}
@@ -23,8 +23,8 @@ class Singleton(type):
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
-class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
-# class Panel(ScreenPanel, metaclass=Singleton):
+# class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
+class Panel(ScreenPanel, metaclass=Singleton):
     active_heater = None
     extruderChanged = False
     temp_extruder_temp = 0

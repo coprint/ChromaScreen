@@ -12,13 +12,13 @@ import pyudev
 import psutil
 import shutil
 
-def create_panel(*args):
-    return CoPrintSdCardSelectionProcessWaiting(*args)
+# def create_panel(*args):
+#     return CoPrintSdCardSelectionProcessWaiting(*args)
 
 
-class CoPrintSdCardSelectionProcessWaiting(ScreenPanel):
+# class CoPrintSdCardSelectionProcessWaiting(ScreenPanel):
 
-# class Panel(ScreenPanel):
+class Panel(ScreenPanel):
     def __init__(self, screen, selected_brand_temp):
         super().__init__(screen, selected_brand_temp)
      

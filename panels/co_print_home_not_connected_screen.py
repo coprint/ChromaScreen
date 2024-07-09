@@ -17,8 +17,8 @@ from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
 
 
-def create_panel(*args):
-    return CoPrintHomeNotConnectedScreen(*args)
+# def create_panel(*args):
+#     return CoPrintHomeNotConnectedScreen(*args)
 
 class Singleton(type):
     _instances = {}
@@ -28,8 +28,8 @@ class Singleton(type):
         return cls._instances[cls]
 
 
-class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
-# class Panel(ScreenPanel, metaclass=Singleton):
+# class CoPrintHomeNotConnectedScreen(ScreenPanel, metaclass=Singleton):
+class Panel(ScreenPanel, metaclass=Singleton):
 
     def __init__(self, screen, title):
         super().__init__(screen, title)
