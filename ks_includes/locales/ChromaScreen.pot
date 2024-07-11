@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-04 09:32+0300\n"
+"POT-Creation-Date: 2024-07-11 18:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,10 +210,16 @@ msgstr ""
 msgid "Change Offset"
 msgstr ""
 
+msgid "Change Probe"
+msgstr ""
+
 msgid "Channel"
 msgstr ""
 
 msgid "Check ADXL Wiring"
+msgstr ""
+
+msgid "Check Sensor"
 msgstr ""
 
 msgid "Checking for updates, please wait..."
@@ -638,7 +644,7 @@ msgstr ""
 msgid "Klipper is attempting to start"
 msgstr ""
 
-msgid "Klipper reports: SHUTDOWN"
+msgid "Klipper reports: "
 msgstr ""
 
 msgid "Klipper will reboot"
@@ -936,9 +942,6 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr ""
 
-msgid "Prob Calibration"
-msgstr ""
-
 msgid "Probe Calibration"
 msgstr ""
 
@@ -1113,6 +1116,9 @@ msgid "Select the usb ids located on the board you will be controlling."
 msgstr ""
 
 msgid "Send"
+msgstr ""
+
+msgid "Sensor Cannot Connected"
 msgstr ""
 
 msgid "Sensor Connected"
@@ -1353,6 +1359,24 @@ msgstr ""
 msgid "You are ready to start the test."
 msgstr ""
 
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
 msgid "Z Axis"
 msgstr ""
 
@@ -1368,7 +1392,10 @@ msgstr ""
 msgid "Z Offset"
 msgstr ""
 
-msgid "Z Offset Distance"
+msgid "Z Probe"
+msgstr ""
+
+msgid "Z Probe Distance"
 msgstr ""
 
 msgid "Z Speed (mm/s)"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-04 09:32+0300\n"
+"POT-Creation-Date: 2024-07-11 18:17+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -41,9 +41,6 @@ msgid ""
 "değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış "
 "yapabilirsiniz."
 msgstr ""
-"L'installazione della tua stampante 3D è completata. Se non sei sicuro delle "
-"impostazioni della stampante, puoi uscire senza salvarle utilizzando il "
-"pulsante Skip."
 
 msgid "A FIRMWARE_RESTART may fix the issue."
 msgstr "Un RIAVVIO_DEL_FIRMWARE potrebbe risolvere il problema."
@@ -108,7 +105,7 @@ msgid "Are you sure you wish to shutdown the system?"
 msgstr "Sei sicuro di voler spegnere il sistema?"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sei sicuro?"
 
 msgid "Auto"
 msgstr "Auto"
@@ -217,11 +214,17 @@ msgstr "Tipo Cartesiano"
 msgid "Change Offset"
 msgstr "Cambia Offset"
 
+msgid "Change Probe"
+msgstr ""
+
 msgid "Channel"
 msgstr "Canale"
 
 msgid "Check ADXL Wiring"
 msgstr "Controlla Cablaggio ADXL"
+
+msgid "Check Sensor"
+msgstr ""
 
 msgid "Checking for updates, please wait..."
 msgstr "Controllo aggiornamenti in corso, si prega di attendere..."
@@ -393,7 +396,7 @@ msgid "Disable XY"
 msgstr "Disabilita XY"
 
 msgid "Disconnect"
-msgstr ""
+msgstr "Scollegare"
 
 msgid "Distance (mm)"
 msgstr "Distanza (mm)"
@@ -433,7 +436,7 @@ msgid "Exclude Object"
 msgstr "Escludi Oggetto"
 
 msgid "Execute"
-msgstr ""
+msgstr "Eseguire"
 
 msgid "Extra Large"
 msgstr "Extra Large"
@@ -466,7 +469,7 @@ msgid "Filament"
 msgstr "Filamento"
 
 msgid "Filament Cut"
-msgstr ""
+msgstr "Taglio del filamento"
 
 msgid "Filament Used"
 msgstr "Filamento Usato"
@@ -524,7 +527,7 @@ msgid "Font Size"
 msgstr "Dimensione Carattere"
 
 msgid "Forget Network"
-msgstr ""
+msgstr "Dimentica la rete"
 
 msgid "French"
 msgstr "Francese"
@@ -539,21 +542,17 @@ msgid "Go Back"
 msgstr "Torna Indietro"
 
 msgid "Go Printer"
-msgstr ""
+msgstr "Vai alla stampante"
 
 msgid ""
 "Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
 "güncellemek istiyor musunuz?"
 msgstr ""
-"L'operazione di aggiornamento potrebbe non essere compatibile con "
-"ChromaScreen. Vuoi comunque aggiornare?"
 
 msgid ""
 "Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için "
 "yeniden başlatmak istiyor musunuz?"
 msgstr ""
-"L'operazione di aggiornamento è completata. Vuoi riavviare per applicare le "
-"modifiche?"
 
 msgid ""
 "Having trouble installing or starting up? Scan the QR code to get help and "
@@ -626,7 +625,7 @@ msgid "Icon Theme"
 msgstr "Tema Icone"
 
 msgid "Init..."
-msgstr ""
+msgstr "Iniz..."
 
 msgid "Initializing printer..."
 msgstr "Inizializzazione della stampante..."
@@ -686,8 +685,8 @@ msgstr "Klipper si è spento"
 msgid "Klipper is attempting to start"
 msgstr "Klipper sta tentando di avviarsi"
 
-msgid "Klipper reports: SHUTDOWN"
-msgstr "Klipper riporta: ARRESTO"
+msgid "Klipper reports: "
+msgstr ""
 
 msgid "Klipper will reboot"
 msgstr "Klipper si riavvierà"
@@ -822,7 +821,7 @@ msgid "No Camera"
 msgstr "Nessuna Fotocamera"
 
 msgid "No mesh has been loaded"
-msgstr ""
+msgstr "Rete non caricata."
 
 msgid "Normal"
 msgstr "Normale"
@@ -862,7 +861,7 @@ msgstr[0] "Il pacchetto verrà aggiornato"
 msgstr[1] "I pacchetti verranno aggiornati"
 
 msgid "Park"
-msgstr ""
+msgstr "Parco"
 
 msgid "Part Fan"
 msgstr "Ventola del pezzo"
@@ -880,7 +879,7 @@ msgid "Perform a full upgrade?"
 msgstr "Eseguire un aggiornamento completo?"
 
 msgid "Performing Auto Home"
-msgstr ""
+msgstr "Auto Home eseguito"
 
 msgid "Pins"
 msgstr "Pin"
@@ -972,7 +971,7 @@ msgid "Printer Select"
 msgstr "Seleziona Stampante"
 
 msgid "Printer Status"
-msgstr ""
+msgstr "Stato della stampante"
 
 msgid "Printer is returning to the starting position, please wait.."
 msgstr "La stampante sta tornando alla posizione iniziale, attendere prego.."
@@ -987,13 +986,10 @@ msgid "Printing File"
 msgstr "File di Stampa"
 
 msgid "Printing Time:"
-msgstr ""
+msgstr "Tempo di stampa"
 
 msgid "Privacy Policy"
 msgstr "Politica sulla Privacy"
-
-msgid "Prob Calibration"
-msgstr "Calibrazione Prob"
 
 msgid "Probe Calibration"
 msgstr "Calibrazione della Sonda"
@@ -1181,6 +1177,9 @@ msgstr "Seleziona gli ID USB presenti sulla scheda che si controllerà."
 msgid "Send"
 msgstr "Invia"
 
+msgid "Sensor Cannot Connected"
+msgstr ""
+
 msgid "Sensor Connected"
 msgstr "Sensore Connesso"
 
@@ -1194,7 +1193,7 @@ msgid "Setup Completed"
 msgstr "Installazione Completata"
 
 msgid "Setup Printer"
-msgstr ""
+msgstr "Imposta stampante"
 
 msgid "Show"
 msgstr "Mostra"
@@ -1272,7 +1271,7 @@ msgid "Starting update for"
 msgstr "Avvio aggiornamento per"
 
 msgid "Statistic"
-msgstr ""
+msgstr "Statistica"
 
 msgid "Stop Calibrating"
 msgstr "Interrompi Calibrazione"
@@ -1306,15 +1305,17 @@ msgid ""
 "The settings file is being created. During this time.Please wait and do not "
 "turn off ChromaScreen."
 msgstr ""
+"Il file delle impostazioni è in fase di creazione. Durante questo periodo, "
+"per favore attendi e non spegnere ChromaScreen."
 
 msgid "Title:"
-msgstr ""
+msgstr "Titolo:"
 
 msgid "Total Filament Used"
-msgstr ""
+msgstr "Totale filamento utilizzato"
 
 msgid "Total Print Time"
-msgstr ""
+msgstr "Tempo totale di stampa"
 
 msgid "Total:"
 msgstr "Totale:"
@@ -1365,7 +1366,7 @@ msgid "Uploaded"
 msgstr "Caricato"
 
 msgid "Value"
-msgstr ""
+msgstr "Valore"
 
 msgid "Velocity"
 msgstr "Velocità"
@@ -1377,10 +1378,10 @@ msgid "WebRTC is not supported by the backend trying Stream"
 msgstr "WebRTC non è supportato dal backend, provando Stream"
 
 msgid "Wifi Password"
-msgstr ""
+msgstr "Password Wi-Fi"
 
 msgid "Wifi SSID"
-msgstr ""
+msgstr "SSID Wi-Fi"
 
 msgid "Writing the SD card."
 msgstr "Scrivendo la scheda SD."
@@ -1394,9 +1395,11 @@ msgstr "Asse X (Testa)"
 msgid ""
 "X, Y, and Z axes are returning back to their home positions. Please wait."
 msgstr ""
+"Il moto degli assi X, Y e Z sta ritornando alle posizioni di home. Per "
+"favore, attendi."
 
 msgid "X,Y,Z Hareket Mesafesi (mm)"
-msgstr "Distanza di Movimento X,Y,Z (mm)"
+msgstr ""
 
 msgid "XY Move Speed (mm/s)"
 msgstr "Velocità di Movimento XY (mm/s)"
@@ -1423,6 +1426,24 @@ msgstr ""
 msgid "You are ready to start the test."
 msgstr "Sei pronto per iniziare il test."
 
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
 msgid "Z Axis"
 msgstr "Asse Z"
 
@@ -1438,8 +1459,11 @@ msgstr "Velocità di Movimento Z (mm/s)"
 msgid "Z Offset"
 msgstr "Offset Z"
 
-msgid "Z Offset Distance"
-msgstr "Distanza Offset Z"
+msgid "Z Probe"
+msgstr ""
+
+msgid "Z Probe Distance"
+msgstr ""
 
 msgid "Z Speed (mm/s)"
 msgstr "Velocità Z (mm/s)"
@@ -1483,3 +1507,28 @@ msgstr "mm³/s"
 
 msgid "selected"
 msgstr "selezionato"
+
+#~ msgid ""
+#~ "Your 3D printer setup is complete. If you're unsure about printer "
+#~ "settings, you can exit without saving them using the Skip button."
+#~ msgstr ""
+#~ "L'installazione della tua stampante 3D è completata. Se non sei sicuro "
+#~ "delle impostazioni della stampante, puoi uscire senza salvarle "
+#~ "utilizzando il pulsante Skip."
+
+#~ msgid ""
+#~ "Your update process may not be compatible with ChromaScreen. Do you still "
+#~ "want to update?"
+#~ msgstr ""
+#~ "L'operazione di aggiornamento potrebbe non essere compatibile con "
+#~ "ChromaScreen. Vuoi comunque aggiornare?"
+
+#~ msgid ""
+#~ "Your update process has been completed. Do you want to restart for the "
+#~ "changes to take effect?"
+#~ msgstr ""
+#~ "L'operazione di aggiornamento è completata. Vuoi riavviare per applicare "
+#~ "le modifiche?"
+
+#~ msgid "Prob Calibration"
+#~ msgstr "Calibrazione Prob"

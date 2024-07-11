@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-04 09:32+0300\n"
+"POT-Creation-Date: 2024-07-11 18:17+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,9 +21,11 @@ msgstr ""
 msgid " Axis Vibration Detection Complete"
 msgstr " Achsvibrationsdetektion abgeschlossen"
 
+# "Achsen-Vibrationserkennung abgeschlossen"
 msgid " Axis Vibration Detection in Progress"
 msgstr " Achsvibrationsdetektion läuft"
 
+# "Achsen-Vibrationserkennung läuft"
 #, python-format
 msgid "%s will be updated to version"
 msgstr "%s wird auf Version aktualisiert"
@@ -38,6 +40,8 @@ msgstr ""
 "-Achsenvibrationskompensationsdetektion wurde abgeschlossen und der Status "
 "ist normal."
 
+# "Die Erkennung der Achsenschwingungskompensation wurde abgeschlossen und der Status"
+# "ist normal."
 msgid "24 Hour Time"
 msgstr "24-Stunden-Zeit"
 
@@ -110,7 +114,7 @@ msgid "Are you sure you wish to shutdown the system?"
 msgstr "Sind Sie sicher, dass Sie das System herunterfahren möchten?"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sind Sie sicher?"
 
 msgid "Auto"
 msgstr "Automatisch"
@@ -138,7 +142,7 @@ msgstr "Automatische Tischkalibrierung"
 
 msgid "Automatic bed calibration is completed. Please restart the system."
 msgstr ""
-"Die automatische Bettkalibrierung ist abgeschlossen. Bitte starten Sie das "
+"Die automatische Bett kalibrierung ist abgeschlossen. Bitte starten Sie das "
 "System neu."
 
 msgid "Automatic bed leveling is being performed. Please wait.."
@@ -157,6 +161,7 @@ msgstr "Bett-Niveau"
 msgid "Bed Mesh"
 msgstr "Bett-Mesh"
 
+# "Bettgitter"
 msgid "Bed screw configuration:"
 msgstr "Bett-Schraubenkonfiguration:"
 
@@ -219,11 +224,17 @@ msgstr "Kartesischer Typ"
 msgid "Change Offset"
 msgstr "Offset ändern"
 
+msgid "Change Probe"
+msgstr ""
+
 msgid "Channel"
 msgstr "Kanal"
 
 msgid "Check ADXL Wiring"
 msgstr "ADXL-Verkabelung prüfen"
+
+msgid "Check Sensor"
+msgstr ""
 
 msgid "Checking for updates, please wait..."
 msgstr "Auf Updates wird überprüft, bitte warten..."
@@ -368,7 +379,7 @@ msgid "Disable XY"
 msgstr "XY deaktivieren"
 
 msgid "Disconnect"
-msgstr ""
+msgstr "Trennen"
 
 msgid "Distance (mm)"
 msgstr "Entfernung (mm)"
@@ -408,7 +419,7 @@ msgid "Exclude Object"
 msgstr "Objekt ausschließen"
 
 msgid "Execute"
-msgstr ""
+msgstr "Ausführen"
 
 msgid "Extra Large"
 msgstr "Extra Groß"
@@ -441,7 +452,7 @@ msgid "Filament"
 msgstr "Filament"
 
 msgid "Filament Cut"
-msgstr ""
+msgstr "Filament abschneiden"
 
 msgid "Filament Used"
 msgstr "Verwendetes Filament"
@@ -483,6 +494,8 @@ msgid ""
 "First, tighten the tension screws to their maximum value. Then, for the "
 "first step, make a height adjustment using paper."
 msgstr ""
+"Zuerst die Spannschrauben auf ihren maximalen Wert anziehen. Dann für den "
+"ersten Schritteine Höhenverstellung mit Papier vornehmen."
 
 msgid "Flash Chip"
 msgstr "Flash Chip"
@@ -497,7 +510,7 @@ msgid "Font Size"
 msgstr "Schriftgröße"
 
 msgid "Forget Network"
-msgstr ""
+msgstr "Netzwerk vergessen"
 
 msgid "French"
 msgstr "Französisch"
@@ -512,22 +525,20 @@ msgid "Go Back"
 msgstr "Zurück"
 
 msgid "Go Printer"
-msgstr ""
+msgstr "Zum Drucker gehen"
 
 msgid ""
 "Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
 "güncellemek istiyor musunuz?"
 msgstr ""
-"Ihre Update-Aktion könnte mit ChromaScreen nicht kompatibel sein. Möchten "
-"Sie trotzdem aktualisieren?"
 
 msgid ""
 "Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için "
 "yeniden başlatmak istiyor musunuz?"
 msgstr ""
-"Ihr Update wurde abgeschlossen. Möchten Sie das System neu starten, um die "
-"Änderungen wirksam zu machen?"
 
+# "Ihr Update wurde abgeschlossen. Damit die Änderungen wirksam werden"
+# "möchten Sie neustarten?"
 msgid ""
 "Having trouble installing or starting up? Scan the QR code to get help and "
 "detailed information."
@@ -590,19 +601,19 @@ msgid "Hot Bed"
 msgstr "Heizbett"
 
 msgid "I have read and accept the Privacy Policy."
-msgstr ""
+msgstr "Ich habe die Datenschutzbestimmungen gelesen und akzeptiere sie."
 
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 msgid "Icon Theme"
-msgstr ""
+msgstr "Symbol Thema"
 
 msgid "Init..."
-msgstr ""
+msgstr "Initialisierung..."
 
 msgid "Initializing printer..."
-msgstr ""
+msgstr "Drucker wird initialisiert.."
 
 msgid "Input Shaper"
 msgstr "Eingabeformer"
@@ -659,8 +670,8 @@ msgstr "Klipper wurde heruntergefahren"
 msgid "Klipper is attempting to start"
 msgstr "Klipper wird gestartet"
 
-msgid "Klipper reports: SHUTDOWN"
-msgstr "Klipper meldet: HERUNTERFAHREN"
+msgid "Klipper reports: "
+msgstr ""
 
 msgid "Klipper will reboot"
 msgstr "Klipper wird neu starten"
@@ -795,7 +806,7 @@ msgid "No Camera"
 msgstr "Keine Kamera"
 
 msgid "No mesh has been loaded"
-msgstr ""
+msgstr "Es wurde kein Mesh geladen"
 
 msgid "Normal"
 msgstr "Normal"
@@ -835,7 +846,7 @@ msgstr[0] "Paket wird aktualisiert"
 msgstr[1] "Pakete werden aktualisiert"
 
 msgid "Park"
-msgstr ""
+msgstr "Abstellen"
 
 msgid "Part Fan"
 msgstr "Teillüfter"
@@ -853,7 +864,7 @@ msgid "Perform a full upgrade?"
 msgstr "Vollständiges Upgrade durchführen?"
 
 msgid "Performing Auto Home"
-msgstr ""
+msgstr "Durchführen von „Auto Home“ "
 
 msgid "Pins"
 msgstr "Pins"
@@ -878,7 +889,7 @@ msgstr ""
 "an."
 
 msgid "Please don’t touch the printer"
-msgstr ""
+msgstr "Bitte nicht den Drucker berühren."
 
 msgid "Please insert the USB drive."
 msgstr "Bitte USB-Laufwerk einstecken."
@@ -946,7 +957,7 @@ msgid "Printer Select"
 msgstr "Druckerauswahl"
 
 msgid "Printer Status"
-msgstr ""
+msgstr "Druckerstatus"
 
 msgid "Printer is returning to the starting position, please wait.."
 msgstr "Drucker kehrt zur Startposition zurück, bitte warten Sie.."
@@ -961,13 +972,10 @@ msgid "Printing File"
 msgstr "Druckdatei"
 
 msgid "Printing Time:"
-msgstr ""
+msgstr "Druckzeit:"
 
 msgid "Privacy Policy"
 msgstr "Datenschutzrichtlinie"
-
-msgid "Prob Calibration"
-msgstr "Probekalibrierung"
 
 msgid "Probe Calibration"
 msgstr "Sondenkallibrierung"
@@ -1165,6 +1173,9 @@ msgstr ""
 msgid "Send"
 msgstr "Senden"
 
+msgid "Sensor Cannot Connected"
+msgstr ""
+
 msgid "Sensor Connected"
 msgstr "Sensor verbunden"
 
@@ -1178,7 +1189,7 @@ msgid "Setup Completed"
 msgstr "Setup abgeschlossen"
 
 msgid "Setup Printer"
-msgstr ""
+msgstr "Drucker einrichten"
 
 msgid "Show"
 msgstr "Anzeigen"
@@ -1256,7 +1267,7 @@ msgid "Starting update for"
 msgstr "Update wird gestartet für"
 
 msgid "Statistic"
-msgstr ""
+msgstr "Statistik"
 
 msgid "Stop Calibrating"
 msgstr "Kalibrierung beenden"
@@ -1290,15 +1301,17 @@ msgid ""
 "The settings file is being created. During this time.Please wait and do not "
 "turn off ChromaScreen."
 msgstr ""
+"Die Einstellungsdatei wird erstellt. Bitte warten Sie während dieser Zeit "
+"und schalten Sie ChromaScreen nicht aus."
 
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 msgid "Total Filament Used"
-msgstr ""
+msgstr "Insgesamt verwendetes Filament"
 
 msgid "Total Print Time"
-msgstr ""
+msgstr "Gesamte Druckzeit"
 
 msgid "Total:"
 msgstr "Insgesamt:"
@@ -1349,7 +1362,7 @@ msgid "Uploaded"
 msgstr "Hochgeladen"
 
 msgid "Value"
-msgstr ""
+msgstr "Wert"
 
 msgid "Velocity"
 msgstr "Geschwindigkeit"
@@ -1361,10 +1374,10 @@ msgid "WebRTC is not supported by the backend trying Stream"
 msgstr "WebRTC wird vom Backend nicht unterstützt, versuche Stream"
 
 msgid "Wifi Password"
-msgstr ""
+msgstr "Wifi Passwort"
 
 msgid "Wifi SSID"
-msgstr ""
+msgstr "Wifi SSID"
 
 msgid "Writing the SD card."
 msgstr "Schreibe auf die SD-Karte."
@@ -1378,6 +1391,8 @@ msgstr "X-Achse (Kopf)"
 msgid ""
 "X, Y, and Z axes are returning back to their home positions. Please wait."
 msgstr ""
+"X, Y und Z Achsen kehren zurück zu ihren Ausgangspositionen. Bitte warten "
+"Sie."
 
 msgid "X,Y,Z Hareket Mesafesi (mm)"
 msgstr "X,Y,Z Bewegungsabstand (mm)"
@@ -1407,6 +1422,24 @@ msgstr ""
 msgid "You are ready to start the test."
 msgstr "Sie sind bereit, den Test zu starten."
 
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
 msgid "Z Axis"
 msgstr "Z-Achse"
 
@@ -1422,8 +1455,11 @@ msgstr "Z Bewegungsgeschwindigkeit (mm/s)"
 msgid "Z Offset"
 msgstr "Z-Offset"
 
-msgid "Z Offset Distance"
-msgstr "Z-Offset-Abstand"
+msgid "Z Probe"
+msgstr ""
+
+msgid "Z Probe Distance"
+msgstr ""
 
 msgid "Z Speed (mm/s)"
 msgstr "Z-Geschwindigkeit (mm/s)"
@@ -1467,3 +1503,30 @@ msgstr "mm³/s"
 
 msgid "selected"
 msgstr "ausgewählt"
+
+#~ msgid ""
+#~ "Setup for your 3D printer is complete. If you're not sure about the "
+#~ "printer settings, you can exit without saving the settings using the Skip "
+#~ "button."
+#~ msgstr ""
+#~ "Die Einrichtung Ihrer 3D-Drucker ist abgeschlossen. Wenn Sie sich bei "
+#~ "denDruckereinstellungen nicht sicher sind, können Sie ohne Speichern der "
+#~ "Einstellungen mitder Schaltfläche 'Überspringen' beenden."
+
+#~ msgid ""
+#~ "Your update may not be compatible with ChromaScreen. Still Do you want to "
+#~ "update?"
+#~ msgstr ""
+#~ "Ihre Update-Aktion könnte mit ChromaScreen nicht kompatibel sein. Möchten "
+#~ "Sie trotzdem aktualisieren?"
+
+# "Ihr Update ist möglicherweise nicht mit ChromaScreen kompatibel. Möchten Sie dennoch #"aktualisieren?"
+#~ msgid ""
+#~ "Your update has been completed. For the changes to take effectDo you want "
+#~ "to restart?"
+#~ msgstr ""
+#~ "Ihr Update wurde abgeschlossen. Möchten Sie das System neu starten, um "
+#~ "die Änderungen wirksam zu machen?"
+
+#~ msgid "Prob Calibration"
+#~ msgstr "Probekalibrierung"

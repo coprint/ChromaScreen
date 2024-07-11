@@ -90,7 +90,6 @@ class ChromaScreen(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
     pc_password = '1234'
     config_data = []
-    #pc_password = 'c317tek'
     is_debug = False
     is_redirect_not_connected = True
 
@@ -675,7 +674,7 @@ class ChromaScreen(Gtk.Window):
             self.subscriptions.remove(self._cur_panels[-1])
         if pop:
             del self._cur_panels[-1]
-            self.attach_panel(self._cur_panels[-1])
+            #self.attach_panel(self._cur_panels[-1])
 
     def _menu_go_back(self, widget=None, home=False):
         logging.info(f"#### Menu go {'home' if home else 'back'}")
@@ -1184,6 +1183,7 @@ class ChromaScreen(Gtk.Window):
 
     def update_size(self, *args):
         self.width, self.height = self.get_size()
+        logging.debug(f" window size had Changed in page {self._cur_panels[-1]} and the New Width: {self.width} New Height: {self.height}")
         if self.vertical_mode != (self.width < self.height):
             self.reload_panels()
             self.vertical_mode = self.width < self.height

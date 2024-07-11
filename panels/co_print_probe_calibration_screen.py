@@ -40,7 +40,7 @@ class Panel(ScreenPanel):
         startButtonBox.set_halign(Gtk.Align.CENTER)
         startButtonBox.pack_start(self.startButton, False, False, 0)
         
-        probeCalibrationLabel = Gtk.Label(_("Prob Calibration"), name="probe-calibration-label")
+        probeCalibrationLabel = Gtk.Label(_("Probe Calibration"), name="probe-calibration-label")
         probeCalibrationLabel.set_justify(Gtk.Justification.LEFT)
         probeCalibrationBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         probeCalibrationBox.pack_start(probeCalibrationLabel, False, False, 30)

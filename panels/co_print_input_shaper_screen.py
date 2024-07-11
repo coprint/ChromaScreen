@@ -148,7 +148,12 @@ class Panel(ScreenPanel):
         #     self._screen.show_panel(page_url, page_url, "Language", 1, False)    
 
         if action == "notify_gcode_response":
-            print(data)
+            if data.startswith('//') and data.endswith('"ACCELEROMETER_QUERY"'):
+                self.sensor_cannot_connected_page(None, 1)
+            if data.startswith('!!') and 'Invalid' in data :
+                self.sensor_cannot_connected_page(None, 2)
+            if data.startswith('//') and 'accelerometer values' in data :
+                self.sensor_connected_page(None)
 
     def finished_sensor_check(self, result, method, params):
         print(result)
@@ -183,7 +188,7 @@ class Panel(ScreenPanel):
         self.page.pack_start(checkingSensorConnectionBox, True, True, 0)
         self.page.pack_end(self.menu, False, True, 0)
         # self.start_timer_sensor_connection_page()
-        self._screen._ws.klippy.gcode_script("ACCELEROMETER_QUERY", self.finished_sensor_check)
+        self._screen._ws.klippy.gcode_script("ACCELEROMETER_QUERY")
         self.content.show_all()
 
     def start_timer_sensor_connection_page(self):
@@ -210,6 +215,41 @@ class Panel(ScreenPanel):
 
         nextStepButton = Gtk.Button(_('Start Calibration'), name="next-step-button")
         nextStepButton.connect("clicked", self.xaxis_progress_page)
+        nextStepButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        nextStepButtonBox.set_halign(Gtk.Align.CENTER)
+        nextStepButtonBox.pack_start(nextStepButton, False, False, 0)
+
+        checkingSensorConnectionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        checkingSensorConnectionBox.set_halign(Gtk.Align.CENTER)
+        checkingSensorConnectionBox.pack_start(checkmark, False, False, 50)
+        checkingSensorConnectionBox.pack_start(titleLabel, False, False, 0)
+        checkingSensorConnectionBox.pack_start(contentLabel, False, False, 0)
+        checkingSensorConnectionBox.pack_start(nextStepButtonBox, False, False, 50)
+
+        self.page.pack_start(checkingSensorConnectionBox, True, True, 0)
+        self.page.pack_end(self.menu, False, True, 0)
+
+        self.content.show_all()
+        return False
+
+    def sensor_cannot_connected_page(self, widget, pop):
+        logging.info(f"sensor cannot connected page")
+        #self.sensor_timeout_id = None
+        for child in self.page.get_children():
+            self.page.remove(child)
+        checkmark = self._gtk.Image("Cannotmark", self._screen.width * .1, self._screen.width * .1)
+        titleLabel = Gtk.Label(_("Sensor Cannot Connected"), name="printer-type-title-label")
+        message = (_("You aren't ready to start the test.\n Plase connect your sensor or re-confie your Input Shaper.\n Then try again."))
+        if pop == 1:
+            message = (_("You aren't ready to start the test.\n Plase confie your Input Shaper.\n Then try again."))
+        elif pop == 2:
+            message = (_("You aren't ready to start the test.\n Plase re-confie your Input Shaper.\n Then try again."))
+        contentLabel = Gtk.Label(message, name="printer-type-content-label")
+        contentLabel.set_max_width_chars(60)
+        contentLabel.set_line_wrap(True)
+        contentLabel.set_justify(Gtk.Justification.CENTER)
+        nextStepButton = Gtk.Button(_('Check Sensor'), name="next-step-button")
+        nextStepButton.connect("clicked", self.check_sensor_connection_page)
         nextStepButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         nextStepButtonBox.set_halign(Gtk.Align.CENTER)
         nextStepButtonBox.pack_start(nextStepButton, False, False, 0)
@@ -304,9 +344,13 @@ class Panel(ScreenPanel):
         contentLabel = Gtk.Label(
             _(start_label + "-axis vibration compensation detection has been completed and the status is normal."),
             name="printer-type-content-label")
-
-        self.startButton = Gtk.Button(_('Start Calibration'), name="next-step-button")
-        self.startButton.connect("clicked", self.sensor_connection_pagee)
+        self.startButton = ""
+        if self.inputShaperTye == "corexyType":
+            self.startButton = Gtk.Button(_('Complete'), name="next-step-button")
+            self.startButton.connect("clicked", self.save_config)
+        elif self.inputShaperTye == "cartesianType":
+            self.startButton = Gtk.Button(_('Start Calibration'), name="next-step-button")
+            self.startButton.connect("clicked", self.sensor_connection_pagee)
         startButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         startButtonBox.set_halign(Gtk.Align.CENTER)
         startButtonBox.pack_start(self.startButton, False, False, 0)

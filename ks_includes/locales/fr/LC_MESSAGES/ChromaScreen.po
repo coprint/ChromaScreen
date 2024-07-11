@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-04 09:32+0300\n"
+"POT-Creation-Date: 2024-07-11 18:17+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,10 +19,10 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 msgid " Axis Vibration Detection Complete"
-msgstr " Détection complète des vibrations de l'axe"
+msgstr " Détection de Vibration de l'Axe Complète"
 
 msgid " Axis Vibration Detection in Progress"
-msgstr " Détection des vibrations de l'axe en cours"
+msgstr " Détection de Vibration de l'Axe en Cours"
 
 #, python-format
 msgid "%s will be updated to version"
@@ -54,7 +54,7 @@ msgid "ADXL Not Configured"
 msgstr "ADXL non configuré"
 
 msgid "Abort"
-msgstr "Abandonner"
+msgstr "Avorter"
 
 msgid "Accel to Decel"
 msgstr "Accélération à décélération"
@@ -95,7 +95,7 @@ msgid "Are you sure do you want to exclude the object?"
 msgstr "Êtes-vous sûr de vouloir exclure l'objet ?"
 
 msgid "Are you sure you want to run Emergency Stop?"
-msgstr "Êtes-vous sûr de vouloir effectuer un arrêt d'urgence ?"
+msgstr "Êtes-vous sûr de vouloir exécuter l’arrêt d’urgence?"
 
 msgid "Are you sure you wish to cancel this print?"
 msgstr "Êtes-vous sûr de vouloir annuler cette impression ?"
@@ -110,7 +110,7 @@ msgid "Are you sure you wish to shutdown the system?"
 msgstr "Êtes-vous sûr de vouloir éteindre le système ?"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Êtes-vous sûr ?"
 
 msgid "Auto"
 msgstr "Auto"
@@ -122,26 +122,26 @@ msgid "Auto Scroll"
 msgstr "Défilement automatique"
 
 msgid "Auto close notifications"
-msgstr "Fermer automatiquement les notifications"
+msgstr "Notifications automatiquement fermées"
 
 msgid "Auto-calibrate"
-msgstr "Auto-étalonnage"
+msgstr "Auto-étalonner"
 
 msgid "Auto-close notifications"
-msgstr "Fermeture automatique des notifications"
+msgstr "Notifications automatiques de fermeture"
 
 msgid "Auto-scroll"
 msgstr "Défilement automatique"
 
 msgid "Automatic Table Calibration"
-msgstr "Étalonnage automatique de la table"
+msgstr "Table de calibration automatique"
 
 msgid "Automatic bed calibration is completed. Please restart the system."
 msgstr ""
 "Le calibrage automatique du lit est terminé. Veuillez redémarrer le système."
 
 msgid "Automatic bed leveling is being performed. Please wait.."
-msgstr "Le nivellement automatique du lit est en cours. Veuillez patienter.."
+msgstr ""
 
 msgid "Back"
 msgstr "Retour"
@@ -153,7 +153,7 @@ msgid "Bed Level"
 msgstr "Nivellement du lit"
 
 msgid "Bed Mesh"
-msgstr "Maillage du lit"
+msgstr "Grille de lit"
 
 msgid "Bed screw configuration:"
 msgstr "Configuration des vis du lit :"
@@ -162,7 +162,7 @@ msgid "Bootloader Offset"
 msgstr "Décalage du chargeur de démarrage"
 
 msgid "Botloader Offset"
-msgstr "Décalage de Botloader"
+msgstr ""
 
 msgid "Calibrate"
 msgstr "Étalonner"
@@ -171,7 +171,7 @@ msgid "Calibrated"
 msgstr "Étalonné"
 
 msgid "Calibrating"
-msgstr "Étalonnage en cours"
+msgstr "Calibration"
 
 msgid ""
 "Calibration steps vary depending on your printer's motion mechanism. Please "
@@ -206,7 +206,7 @@ msgid "Cancelled"
 msgstr "Annulé"
 
 msgid "Cancelling"
-msgstr "Annulation en cours"
+msgstr "Annulation"
 
 msgid "Cannot connect to Moonraker"
 msgstr "Impossible de se connecter à Moonraker"
@@ -217,14 +217,20 @@ msgstr "Type cartésien"
 msgid "Change Offset"
 msgstr "Modifier le décalage"
 
+msgid "Change Probe"
+msgstr ""
+
 msgid "Channel"
-msgstr "Canal"
+msgstr "Chaîne"
 
 msgid "Check ADXL Wiring"
 msgstr "Vérifier le câblage ADXL"
 
+msgid "Check Sensor"
+msgstr ""
+
 msgid "Checking for updates, please wait..."
-msgstr "Vérification des mises à jour, veuillez patienter..."
+msgstr "Recherche de mises à jour, veuillez patienter..."
 
 msgid "Checking the Sensor Connection"
 msgstr "Vérification de la connexion du capteur"
@@ -303,7 +309,7 @@ msgid "Connection Completed"
 msgstr "Connexion terminée"
 
 msgid "Connection Failed"
-msgstr "Échec de la connexion"
+msgstr "Échec de la connexion."
 
 msgid "Connection Settings"
 msgstr "Paramètres de connexion"
@@ -319,8 +325,9 @@ msgstr "Continuer"
 
 msgid "Contract Approval"
 msgstr ""
-"Nous avons une politique de retour de 14 jours, ce qui signifie que vous "
-"avez 14 jours après réception de votre article pour demander un retour.\n"
+"Approbation du contratNous avons une politique de retour de 14 jours, ce qui "
+"signifie que vous avez 14 jours après réception de votre article pour "
+"demander un retour.\n"
 "Pour pouvoir bénéficier d'un retour, votre article doit être inutilisé et "
 "dans le même état où vous l'avez reçu. Il doit être également dans son "
 "emballage d'origine.\n"
@@ -361,7 +368,7 @@ msgid "Country/State"
 msgstr "Pays/État"
 
 msgid "Creating..."
-msgstr "Création en cours..."
+msgstr "Création..."
 
 msgid "Current"
 msgstr "Actuel"
@@ -397,14 +404,14 @@ msgid "Disable XY"
 msgstr "Désactiver XY"
 
 msgid "Disconnect"
-msgstr ""
+msgstr "Déconnecter"
 
 msgid "Distance (mm)"
 msgstr "Distance (mm)"
 
 #, python-format
 msgid "Do you want to recover %s?"
-msgstr "Souhaitez-vous récupérer %s?"
+msgstr "Voulez-vous récupérer %s?"
 
 msgid "Done"
 msgstr "Terminé"
@@ -419,7 +426,7 @@ msgid "English"
 msgstr "Anglais"
 
 msgid "Enter Value"
-msgstr "Entrer une valeur"
+msgstr "Entrez la valeur"
 
 msgid "Error"
 msgstr "Erreur"
@@ -431,13 +438,13 @@ msgid "Estimated Time Method"
 msgstr "Méthode de calcul du temps estimé"
 
 msgid "Estimated time method"
-msgstr "Méthode de calcul du temps estimé"
+msgstr "Méthode de Temps Estimé"
 
 msgid "Exclude Object"
 msgstr "Exclure l'objet"
 
 msgid "Execute"
-msgstr ""
+msgstr "Exécuter"
 
 msgid "Extra Large"
 msgstr "Très grand"
@@ -470,13 +477,13 @@ msgid "Filament"
 msgstr "Filament"
 
 msgid "Filament Cut"
-msgstr ""
+msgstr "Filament coupé"
 
 msgid "Filament Used"
 msgstr "Filament utilisé"
 
 msgid "Filament total:"
-msgstr "Total filament :"
+msgstr "Total des filaments :"
 
 msgid "Filament used:"
 msgstr "Filament utilisé :"
@@ -500,7 +507,7 @@ msgid "Finding ADXL"
 msgstr "Recherche d'ADXL"
 
 msgid "Fine Tuning"
-msgstr "Ajustement fin"
+msgstr "Réglage fin"
 
 msgid "Finish"
 msgstr "Terminer"
@@ -522,13 +529,13 @@ msgid "Flow:"
 msgstr "Débit :"
 
 msgid "Flowrate:"
-msgstr "Débit volumique :"
+msgstr "Débit:"
 
 msgid "Font Size"
 msgstr "Taille de la police"
 
 msgid "Forget Network"
-msgstr ""
+msgstr "Oubliez le réseau"
 
 msgid "French"
 msgstr "Français"
@@ -543,9 +550,8 @@ msgid "Go Back"
 msgstr "Retour"
 
 msgid "Go Printer"
-msgstr ""
+msgstr "Aller à l'Imprimante"
 
-# #####
 msgid ""
 "Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
 "güncellemek istiyor musunuz?"
@@ -560,6 +566,8 @@ msgid ""
 "Having trouble installing or starting up? Scan the QR code to get help and "
 "detailed information."
 msgstr ""
+"Des difficultés lors de l'installation ou du démarrage ? Scannez le code QR "
+"pour obtenir de l'aide et des informations détaillées."
 
 msgid "Heated Bed"
 msgstr "Plateau chauffant"
@@ -586,7 +594,7 @@ msgid "High"
 msgstr "Élevé"
 
 msgid "Home All"
-msgstr "Home tous"
+msgstr "Accueil Tout"
 
 msgid "Home X"
 msgstr "Home X"
@@ -625,7 +633,7 @@ msgid "Icon Theme"
 msgstr "Thème des icônes"
 
 msgid "Init..."
-msgstr ""
+msgstr "Init.."
 
 msgid "Initializing printer..."
 msgstr "Initialisation de l'imprimante..."
@@ -637,6 +645,8 @@ msgid ""
 "Insert the SD Card of your printer into ChromaScreen to change the program "
 "of your 3D printer."
 msgstr ""
+"Insérez la carte SD de votre imprimante dans ChromaScreen pour changer le "
+"programme de votre imprimante 3D."
 
 msgid "Interface"
 msgstr "Interface"
@@ -669,7 +679,7 @@ msgid "Klipper Update"
 msgstr "Mise à jour de Klipper"
 
 msgid "Klipper bin file has been writen."
-msgstr ""
+msgstr "Le fichier binaire de Klipper a été écrit."
 
 msgid "Klipper has disconnected"
 msgstr "Klipper s'est déconnecté"
@@ -683,8 +693,8 @@ msgstr "Klipper s'est arrêté"
 msgid "Klipper is attempting to start"
 msgstr "Klipper tente de démarrer"
 
-msgid "Klipper reports: SHUTDOWN"
-msgstr "Klipper signale: ARRÊT"
+msgid "Klipper reports: "
+msgstr ""
 
 msgid "Klipper will reboot"
 msgstr "Klipper va redémarrer"
@@ -819,7 +829,7 @@ msgid "No Camera"
 msgstr "Pas de caméra"
 
 msgid "No mesh has been loaded"
-msgstr ""
+msgstr "Aucun maillage n'a été chargé"
 
 msgid "Normal"
 msgstr "Normal"
@@ -859,7 +869,7 @@ msgstr[0] "Le package sera mis à jour"
 msgstr[1] "Les packages seront mis à jour"
 
 msgid "Park"
-msgstr ""
+msgstr "Parquer"
 
 msgid "Part Fan"
 msgstr "Ventilateur de pièce"
@@ -877,7 +887,7 @@ msgid "Perform a full upgrade?"
 msgstr "Effectuer une mise à niveau complète ?"
 
 msgid "Performing Auto Home"
-msgstr ""
+msgstr "Exécution de l'auto-home"
 
 msgid "Pins"
 msgstr "Broches"
@@ -969,7 +979,7 @@ msgid "Printer Select"
 msgstr "Sélection de l'imprimante"
 
 msgid "Printer Status"
-msgstr ""
+msgstr "État de l'imprimante"
 
 msgid "Printer is returning to the starting position, please wait.."
 msgstr "L'imprimante retourne à la position de départ, veuillez patienter..."
@@ -984,13 +994,10 @@ msgid "Printing File"
 msgstr "Fichier d'impression"
 
 msgid "Printing Time:"
-msgstr ""
+msgstr "Temps d'impression"
 
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
-
-msgid "Prob Calibration"
-msgstr "Calibration du prob"
 
 msgid "Probe Calibration"
 msgstr "Calibration de la sonde"
@@ -1108,7 +1115,7 @@ msgid "Select"
 msgstr "Sélectionner"
 
 msgid "Select & Go"
-msgstr "Sélectionner & Lancer"
+msgstr "Sélectionner & Aller"
 
 msgid "Select + - increase value"
 msgstr "Sélectionner + - augmenter la valeur"
@@ -1139,7 +1146,7 @@ msgstr ""
 "utiliserez."
 
 msgid "Select the Chip Model"
-msgstr "Sélectionner le modèle de puce"
+msgstr "Sélectionnez le modèle de puce"
 
 msgid "Select the MCU located on the board you will be controlling."
 msgstr "Sélectionnez le MCU situé sur la carte que vous contrôlerez."
@@ -1180,11 +1187,14 @@ msgstr "Sélectionnez les ids USB situés sur la carte que vous contrôlerez."
 msgid "Send"
 msgstr "Envoyer"
 
+msgid "Sensor Cannot Connected"
+msgstr ""
+
 msgid "Sensor Connected"
 msgstr "Capteur connecté"
 
 msgid "Set Temp"
-msgstr "Définir la température"
+msgstr "Réglez la température"
 
 msgid "Settings"
 msgstr "Paramètres"
@@ -1193,7 +1203,7 @@ msgid "Setup Completed"
 msgstr "Configuration terminée"
 
 msgid "Setup Printer"
-msgstr ""
+msgstr "Configurer l'imprimante"
 
 msgid "Show"
 msgstr "Afficher"
@@ -1214,7 +1224,7 @@ msgid "Size"
 msgstr "Taille"
 
 msgid "Skip"
-msgstr "Passer"
+msgstr "Sauter"
 
 msgid "Slicer"
 msgstr "Trancheur"
@@ -1271,7 +1281,7 @@ msgid "Starting update for"
 msgstr "Démarrage de la mise à jour pour"
 
 msgid "Statistic"
-msgstr ""
+msgstr "Statistique"
 
 msgid "Stop Calibrating"
 msgstr "Arrêter la calibration"
@@ -1305,15 +1315,17 @@ msgid ""
 "The settings file is being created. During this time.Please wait and do not "
 "turn off ChromaScreen."
 msgstr ""
+"Le fichier de paramètres est en cours de création. Pendant ce temps, "
+"veuillez patienter et ne pas éteindre ChromaScreen."
 
 msgid "Title:"
-msgstr ""
+msgstr "Titre:"
 
 msgid "Total Filament Used"
-msgstr ""
+msgstr "Total de filament utilisé"
 
 msgid "Total Print Time"
-msgstr ""
+msgstr "Temps total d'impression"
 
 msgid "Total:"
 msgstr "Total :"
@@ -1352,7 +1364,7 @@ msgid "Up-to-date"
 msgstr "À jour"
 
 msgid "Update"
-msgstr "Mise à jour"
+msgstr "Mettre à jour"
 
 msgid "Update Manager"
 msgstr "Gestionnaire de mise à jour"
@@ -1364,7 +1376,7 @@ msgid "Uploaded"
 msgstr "Téléchargé"
 
 msgid "Value"
-msgstr ""
+msgstr "Valeur"
 
 msgid "Velocity"
 msgstr "Vélocité"
@@ -1377,10 +1389,10 @@ msgstr ""
 "WebRTC n'est pas pris en charge par le backend, en train d'essayer Stream"
 
 msgid "Wifi Password"
-msgstr ""
+msgstr "Mot de passe WiFi"
 
 msgid "Wifi SSID"
-msgstr ""
+msgstr "SSID du WiFi"
 
 msgid "Writing the SD card."
 msgstr "Écriture sur la carte SD."
@@ -1394,9 +1406,11 @@ msgstr "Axe X (Tête)"
 msgid ""
 "X, Y, and Z axes are returning back to their home positions. Please wait."
 msgstr ""
+"Les axes X, Y et Z retournent à leurs positions d'origine. Veuillez "
+"patienter."
 
 msgid "X,Y,Z Hareket Mesafesi (mm)"
-msgstr "X,Y,Z Distance de mouvement (mm)"
+msgstr ""
 
 msgid "XY Move Speed (mm/s)"
 msgstr "Vitesse de déplacement XY (mm/s)"
@@ -1423,6 +1437,24 @@ msgstr ""
 msgid "You are ready to start the test."
 msgstr "Vous êtes prêt à démarrer le test."
 
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
 msgid "Z Axis"
 msgstr "Axe Z"
 
@@ -1438,8 +1470,11 @@ msgstr "Vitesse de déplacement de Z (mm/s)"
 msgid "Z Offset"
 msgstr "Décalage Z"
 
-msgid "Z Offset Distance"
-msgstr "Distance de décalage Z"
+msgid "Z Probe"
+msgstr ""
+
+msgid "Z Probe Distance"
+msgstr ""
 
 msgid "Z Speed (mm/s)"
 msgstr "Vitesse de Z (mm/s)"
@@ -1483,3 +1518,29 @@ msgstr "mm³/s"
 
 msgid "selected"
 msgstr "sélectionné"
+
+#~ msgid ""
+#~ "The setup of your 3D printer is complete. If you are unsure about the "
+#~ "printer settings, you can use the Skip button to exit without saving the "
+#~ "settings."
+#~ msgstr ""
+#~ "La configuration de votre imprimante 3D est terminée. Si vous n'êtes pas "
+#~ "sûr des paramètres de l'imprimante, vous pouvez utiliser le bouton "
+#~ "Ignorer pour quitter sans enregistrer les paramètres."
+
+#~ msgid ""
+#~ "Your update process may not be compatible with ChromaScreen. Do you still "
+#~ "want to update?"
+#~ msgstr ""
+#~ "Votre processus de mise à jour pourrait ne pas être compatible avec "
+#~ "ChromaScreen. Voulez-vous toujours mettre à jour?"
+
+#~ msgid ""
+#~ "Your update process is complete. Would you like to restart for the "
+#~ "changes to take effect?"
+#~ msgstr ""
+#~ "Votre processus de mise à jour est terminé. Souhaitez-vous redémarrer "
+#~ "pour que les changements prennent effet?"
+
+#~ msgid "Prob Calibration"
+#~ msgstr "Calibration du prob"

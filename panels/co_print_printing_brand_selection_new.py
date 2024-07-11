@@ -121,12 +121,12 @@ class Panel(ScreenPanel):
         comboBox.pack_start(eventBox, False, False, 82)
         
 
-        sliderBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
+        sliderBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         sliderBox.pack_start(prevButtonBox, False, False, 0)
         sliderBox.pack_start(self.contentMainBox, False, False, 0)
         sliderBox.pack_start(nextButtonBox, True, True, 0)
 
-        printerSelectButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
+        printerSelectButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         printerSelectButtonBox.set_halign(Gtk.Align.CENTER)
         self.selectButton = Gtk.Button(_('Select & Go'),name ="select-button-blue")
         self.selectButton.connect("clicked", self.on_completed)
@@ -139,7 +139,7 @@ class Panel(ScreenPanel):
         printerSelectButtonBox.pack_start(self.selectButton, False, False, 0)
         printerSelectButtonBox.pack_start(self.otherPrintersButton, False, False, 0)
 
-        pageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
+        pageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         pageBox.set_name("brand-selection-box")
     
         pageBox.set_halign(Gtk.Align.CENTER)

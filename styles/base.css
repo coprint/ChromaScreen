@@ -232,6 +232,16 @@ progressbar#printing-progress trough {
 	font-size: 1.1rem;
 	font-weight: 400;
 }
+#warning-header-blue-label {
+	color: #134b8e;
+	font-size: 1.35rem;
+	font-weight: 600;
+}
+#warning-content-blue-label {
+	color: #134b8e;
+	font-size: 1.1rem;
+	font-weight: 400;
+}
 #warning-header-red-label {
 	color: #ec5f59;
 	font-size: 1.35rem;
@@ -2882,7 +2892,7 @@ frame.filament-extruder-active {
 	font-weight: bold;
 }
 #unloaded-label {
-	color: #f62d12;
+	color: white;
 	font-size: 0.9rem;
 }
 #parked-label {
@@ -2896,16 +2906,29 @@ frame.filament-extruder-active {
 #load-unload-button-box {
 	min-height: 2rem;
 }
-#home-tab-filament-cut-button {
+button#home-tab-filament-cut-button {
 	background: linear-gradient(180deg, #818181 0%, #353535 100%);
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	border-radius: 10px;
 	min-height: 2.5rem;
 	min-width: 6rem;
 }
-#home-tab-filament-cut-button label {
-	font-size: 1.1rem;
+button#home-tab-filament-cut-button:active {
+	background-color: #00477b;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	min-height: 2.5rem;
+	min-width: 6rem;
 }
+button#home-tab-filament-cut-button label {
+	font-size: 1.1rem;
+	color: #ffffff;
+}
+button#home-tab-filament-cut-button:active label {
+	font-size: 1.1rem;
+	color: #9a9a9a;
+}
+
 #system-content-label {
 	padding-left: 0.6rem;
 	font-size: 0.8rem;

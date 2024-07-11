@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-04 09:32+0300\n"
+"POT-Creation-Date: 2024-07-11 18:17+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -44,9 +44,6 @@ msgid ""
 "değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış "
 "yapabilirsiniz."
 msgstr ""
-"3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin "
-"değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış "
-"yapabilirsiniz."
 
 msgid "A FIRMWARE_RESTART may fix the issue."
 msgstr "Yazılım yeniden başlatma sorunu çözebilir."
@@ -218,11 +215,17 @@ msgstr "Kartezian Tür"
 msgid "Change Offset"
 msgstr "Kaydırma Değiştir"
 
+msgid "Change Probe"
+msgstr ""
+
 msgid "Channel"
 msgstr "Kanal"
 
 msgid "Check ADXL Wiring"
 msgstr "ADXL Bağlantısını Kontrol Edin"
+
+msgid "Check Sensor"
+msgstr ""
 
 msgid "Checking for updates, please wait..."
 msgstr "Güncellemeler kontrol ediliyor, lütfen bekleyin..."
@@ -290,7 +293,7 @@ msgstr "Kullandığınız ağın bilgilerini girerek cihazı bağlayın."
 
 # ####
 msgid "Connect your 3D printer to Co Print Smart using a USB cable."
-msgstr "Connect your 3D printer to Co Print Smart using a USB cable."
+msgstr "3D yazıcını Co Print Smart'a USB kabloyu kullanarak bağla"
 
 msgid "Connected"
 msgstr "Bağlandı"
@@ -406,7 +409,7 @@ msgid "Exclude Object"
 msgstr "Nesneyi Hariç Tut"
 
 msgid "Execute"
-msgstr "Uygulamak"
+msgstr "Uygula"
 
 msgid "Extra Large"
 msgstr "Çok Büyük"
@@ -518,15 +521,11 @@ msgid ""
 "Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
 "güncellemek istiyor musunuz?"
 msgstr ""
-"Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
-"güncellemek istediğinize emin misiniz?"
 
 msgid ""
 "Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için "
 "yeniden başlatmak istiyor musunuz?"
 msgstr ""
-"Güncelleme işleminiz tamamlandı. Değişikliklerin geçerli olması için sistemi "
-"yeniden başlatmak istiyor musunuz?"
 
 msgid ""
 "Having trouble installing or starting up? Scan the QR code to get help and "
@@ -659,8 +658,8 @@ msgstr "Klipper kapatıldı"
 msgid "Klipper is attempting to start"
 msgstr "Klipper başlatılmaya çalışılıyor"
 
-msgid "Klipper reports: SHUTDOWN"
-msgstr "Klipper rapor veriyor: SHUTDOWN"
+msgid "Klipper reports: "
+msgstr ""
 
 msgid "Klipper will reboot"
 msgstr "Klipper yeniden başlatılacak"
@@ -714,16 +713,16 @@ msgid "Manual Leveling"
 msgstr "Manuel Düzeltme"
 
 msgid "Max"
-msgstr "Maks"
+msgstr "Maksimum"
 
 msgid "Max Acceleration"
-msgstr "Maks Hızlanma"
+msgstr "Maksimum Hızlanma"
 
 msgid "Max Acceleration to Deceleration"
-msgstr "Maks Hızlanma İndirme"
+msgstr "Maksimum Hızlanma İndirme"
 
 msgid "Max Velocity"
-msgstr "Maks Hız"
+msgstr "Maksimum Hız"
 
 msgid "Maximum"
 msgstr "Maksimum"
@@ -964,9 +963,6 @@ msgstr "Yazdırma Süresi:"
 msgid "Privacy Policy"
 msgstr "Gizlilik Politikası"
 
-msgid "Prob Calibration"
-msgstr "Prob Kalibrasyonu"
-
 msgid "Probe Calibration"
 msgstr "Prob Kalibrasyonu"
 
@@ -1144,6 +1140,9 @@ msgstr "Kontrol edeceğiniz kart üzerindeki USB kimliklerini seçin."
 
 msgid "Send"
 msgstr "Gönder"
+
+msgid "Sensor Cannot Connected"
+msgstr ""
 
 msgid "Sensor Connected"
 msgstr "Sensör Bağlı"
@@ -1387,6 +1386,24 @@ msgstr "Y ekseni titreşim telafi tespiti tamamlandı ve durum normal."
 msgid "You are ready to start the test."
 msgstr "Testi başlatmaya hazırsınız."
 
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
 msgid "Z Axis"
 msgstr "Z Ekseni"
 
@@ -1402,8 +1419,11 @@ msgstr "Z Hareket Hızı (mm/s)"
 msgid "Z Offset"
 msgstr "Z Ofset"
 
-msgid "Z Offset Distance"
-msgstr "Z Ofset Mesafesi"
+msgid "Z Probe"
+msgstr ""
+
+msgid "Z Probe Distance"
+msgstr ""
 
 msgid "Z Speed (mm/s)"
 msgstr "Z Hızı (mm/s)"
@@ -1447,3 +1467,29 @@ msgstr "mm³/s"
 
 msgid "selected"
 msgstr "seçildi"
+
+#~ msgid ""
+#~ "Setup for your 3D printer is complete. If you're not sure about the "
+#~ "printer settings, you can exit without saving the settings using the Skip "
+#~ "button."
+#~ msgstr ""
+#~ "3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin "
+#~ "değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış "
+#~ "yapabilirsiniz."
+
+#~ msgid ""
+#~ "Your update may not be compatible with ChromaScreen. Still Do you want to "
+#~ "update?"
+#~ msgstr ""
+#~ "Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
+#~ "güncellemek istediğinize emin misiniz?"
+
+#~ msgid ""
+#~ "Your update has been completed. For the changes to take effectDo you want "
+#~ "to restart?"
+#~ msgstr ""
+#~ "Güncelleme işleminiz tamamlandı. Değişikliklerin geçerli olması için "
+#~ "sistemi yeniden başlatmak istiyor musunuz?"
+
+#~ msgid "Prob Calibration"
+#~ msgstr "Prob Kalibrasyonu"

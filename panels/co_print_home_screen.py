@@ -215,7 +215,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
 
        
 
-        for i in range(6):
+        for i in range(7):
             tmp_date = start_date + timedelta(days=i)
             output.append([int(tmp_date.timestamp()), 0])
 
@@ -475,8 +475,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
                         elif i == heater:
                             target = self.preheat_options[setting][heater]
                             logging.info(f"heater match {heater}")
-                if target is None and setting == "cooldown" and not heater.startswith('temperature_fan '):
-                    target = 0
+                if setting == "cooldown" :
+                    if target is None and target != 0 and not heater.startswith('temperature_fan ') :
+                        target = 0
                 else:
                     self.heatedBedSwitch.set_active(True)
                     self.extruderSwitch.set_active(True)

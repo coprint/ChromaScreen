@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-04 09:32+0300\n"
+"POT-Creation-Date: 2024-07-11 18:17+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -216,11 +216,17 @@ msgstr "Cartesian Type"
 msgid "Change Offset"
 msgstr "Change Offset"
 
+msgid "Change Probe"
+msgstr "Change Probe"
+
 msgid "Channel"
 msgstr "Channel"
 
 msgid "Check ADXL Wiring"
 msgstr "Check ADXL Wiring"
+
+msgid "Check Sensor"
+msgstr "Check Sensor"
 
 msgid "Checking for updates, please wait..."
 msgstr "Checking for updates, please wait..."
@@ -677,8 +683,8 @@ msgstr "Klipper has shutdown"
 msgid "Klipper is attempting to start"
 msgstr "Klipper is attempting to start"
 
-msgid "Klipper reports: SHUTDOWN"
-msgstr "Klipper reports: SHUTDOWN"
+msgid "Klipper reports: "
+msgstr "Klipper reports: "
 
 msgid "Klipper will reboot"
 msgstr "Klipper will reboot"
@@ -980,9 +986,6 @@ msgstr "Printing Time:"
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
-msgid "Prob Calibration"
-msgstr "Prob Calibration"
-
 msgid "Probe Calibration"
 msgstr "Probe Calibration"
 
@@ -1165,6 +1168,9 @@ msgstr "Select the usb ids located on the board you will be controlling."
 
 msgid "Send"
 msgstr "Send"
+
+msgid "Sensor Cannot Connected"
+msgstr "Sensor Cannot Connected"
 
 msgid "Sensor Connected"
 msgstr "Sensor Connected"
@@ -1411,6 +1417,33 @@ msgstr ""
 msgid "You are ready to start the test."
 msgstr "You are ready to start the test."
 
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+"You aren't ready to start the test.\n"
+" Plase confie your Input Shaper.\n"
+" Then try again."
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+"You aren't ready to start the test.\n"
+" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Then try again."
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Plase re-confie your Input Shaper.\n"
+" Then try again."
+msgstr ""
+"You aren't ready to start the test.\n"
+" Plase re-confie your Input Shaper.\n"
+" Then try again."
+
 msgid "Z Axis"
 msgstr "Z Axis"
 
@@ -1426,8 +1459,11 @@ msgstr "Z Move Speed (mm/s)"
 msgid "Z Offset"
 msgstr "Z Offset"
 
-msgid "Z Offset Distance"
-msgstr "Z Offset Distance"
+msgid "Z Probe"
+msgstr "Z Probe"
+
+msgid "Z Probe Distance"
+msgstr "Z Probe Distance"
 
 msgid "Z Speed (mm/s)"
 msgstr "Z Speed (mm/s)"

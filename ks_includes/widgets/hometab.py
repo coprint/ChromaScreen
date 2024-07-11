@@ -83,11 +83,16 @@ class HomeTab(Gtk.Box):
                 horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
                 connectionstyle = f"angle,angleA=0,angleB={ang}"
                 kw["arrowprops"].update({"connectionstyle": connectionstyle})
-                ax.annotate(_((self.this.print_stats[i]['name'].replace("_", " ")).capitalize()) + ': ' +str(self.this.print_stats[i]['value']), color='w', 
+                if "_" in self.this.print_stats[i]['name'] :
+                    ax.annotate(_((self.this.print_stats[i]['name']).split('_')[1].capitalize()) + ': ' +str(int(self.this.print_stats[i]['value'])), color='w', 
+                            xy=(x, y), xytext=(1.20*np.sign(x), 1.4*y),fontsize=7,
+                            horizontalalignment=horizontalalignment, **kw)
+                else: 
+                    ax.annotate(_((self.this.print_stats[i]['name'].replace("_", " ")).capitalize()) + ': ' +str(int(self.this.print_stats[i]['value'])), color='w', 
                             xy=(x, y), xytext=(1.20*np.sign(x), 1.4*y),fontsize=7,
                             horizontalalignment=horizontalalignment, **kw)
 
-            l = ax.legend(title='Total Job \n' + str(self.this.total_used['total_jobs']), loc='center',facecolor='#0E0E0E', edgecolor='#0E0E0E')
+            l = ax.legend(title='Total Job \n' + str(int(self.this.total_used['total_jobs'])), loc='center',facecolor='#0E0E0E', edgecolor='#0E0E0E')
             ax.get_legend().get_title().set_color('white')
             plt.setp(l.get_title(), multialignment='center')
             for text in texts:
@@ -96,7 +101,7 @@ class HomeTab(Gtk.Box):
             ax.plot()
             canvas = FigureCanvas(fig)  # a Gtk.DrawingArea
             canvas.set_has_window(False)
-            canvas.set_size_request(340, 188)
+            canvas.set_size_request(300, 188)
             fig.set_facecolor('#0E0E0E')
             fig2 = Figure(figsize=(6, 3), dpi=100)
             ax2 = fig2.add_subplot()
@@ -107,7 +112,7 @@ class HomeTab(Gtk.Box):
                 days.append(dt_object.day)
                 counts.append(usage[1])
             colors2 = ['#63ABFD']
-            ax2.bar(days, counts,  color=colors2, width=0.4)
+            ax2.bar(days, counts,  color=colors2, width=0.2)
             ax2.spines['bottom'].set_color('#4F4F4F')
             ax2.spines['top'].set_color('#4F4F4F')
             ax2.spines['right'].set_color('#4F4F4F')
@@ -134,7 +139,7 @@ class HomeTab(Gtk.Box):
             ax2.set(ylim=[0, 100])
             ax2.plot()
             canvas2 = FigureCanvas(fig2)
-            canvas2.set_size_request(330, 188)
+            canvas2.set_size_request(380, 188)
             canvas2.set_has_window(False)
             fig2.set_facecolor('#0E0E0E')
             mon, sec = divmod(self.this.total_used['total_print_time'], 60)
@@ -512,7 +517,7 @@ class HomeTab(Gtk.Box):
             loadButtonBox.set_valign(Gtk.Align.CENTER)
             loadButtonBox.pack_start(downloadIcon, False, False, 0)
             loadButtonBox.pack_start(loadLabel, False, False, 0)
-            self.loadButton = Gtk.Button(name ="load-button")
+            self.loadButton = Gtk.Button(name ="home-tab-filament-cut-button")
             self.loadButton.add(loadButtonBox)
             self.loadButton.connect("clicked", self.load)
             self.loadButton.set_always_show_image (True)
@@ -529,7 +534,7 @@ class HomeTab(Gtk.Box):
             unloadButtonBox.set_valign(Gtk.Align.CENTER)
             unloadButtonBox.pack_start(unLoadIcon, False, False, 0)
             unloadButtonBox.pack_start(unloadLabel, False, False, 0)
-            self.unloadButton = Gtk.Button(name ="load-button")
+            self.unloadButton = Gtk.Button(name ="home-tab-filament-cut-button")
             self.unloadButton.add(unloadButtonBox)
             self.unloadButton.connect("clicked", self.unload)
             self.unloadButton.set_always_show_image (True)

@@ -149,7 +149,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self.extruderImage = self._gtk.Image("ext_free", self._screen.width *.07, self._screen.width *.07)
         else :
             for extruder in self.extruders:
-                if extruder['Extrude']==self._printer.selectedExtruder:
+                if extruder['Extrude'] == self._printer.selectedExtruder:
                     self.extruderImage = self._gtk.Image(extruder['Icon'], self._gtk.content_width * .07 , self._gtk.content_height * .07)
         switchWithImageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         switchWithImageBox.set_halign(Gtk.Align.CENTER)
@@ -282,6 +282,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
             extruder['EventBox'].add(eventBox)
             if extruder['RadioButtonStatus']:
                 extruder['EventBox'].connect("button-press-event", self.chanceExtruder, extruder['Extrude'])
+            if extruder['Extrude'] != self._printer.selectedExtruder:
+                extruder['EventBox'].get_style_context().remove_class("extrude-active")
+            else:
+                extruder['EventBox'].get_style_context().add_class("extrude-active")
             grid.attach(extruder['EventBox'], count, row, 1, 1)
             count += 1
             if count % 2 == 0:

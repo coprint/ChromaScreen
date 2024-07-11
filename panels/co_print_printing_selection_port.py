@@ -77,8 +77,8 @@ class Panel(ScreenPanel):
         self.skipButton.set_always_show_image (True)       
         mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
 
-        self.portBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        self.portBox.pack_start(portOneBox, False, False, 10)
+        self.portBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        self.portBox.pack_start(portOneBox, False, False, 0)
         # self.portBox.pack_start(portTwoBox, False, False, 5)
 
 
@@ -105,8 +105,8 @@ class Panel(ScreenPanel):
         for child in self.portBox.get_children():
             self.portBox.remove(child)
         grid = Gtk.Grid(column_homogeneous=True,
-                         column_spacing=10,
-                         row_spacing=10)
+                         column_spacing=0,
+                         row_spacing=0)
         if string != '':
             row = 0
             count = 0
@@ -129,7 +129,6 @@ class Panel(ScreenPanel):
             gridBox = Gtk.Box()
             gridBox.set_halign(Gtk.Align.CENTER)
             gridBox.add(grid)
-    
             
             self.scroll = self._gtk.ScrolledWindow()
             self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
@@ -139,7 +138,7 @@ class Panel(ScreenPanel):
         
         
             self.scroll.add(gridBox)
-            self.portBox.add(self.scroll)
+            self.portBox.pack_start(self.scroll,False,False,0)
         else:
             self.portTwo = Gtk.Button('---',name ="flat-button-black")
             self.portTwo.set_hexpand(True)
