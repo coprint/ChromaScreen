@@ -1,28 +1,33 @@
 [
     {"Brand":"Prusa", "Models": [
-        {"name": "i3 MK3", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "prusa-i3.bin", "folderName": "prusa-i3"},
-        {"name": "Mini", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "prusa-mini.bin", "folderName": "prusa-i3"},
-        {"name": "SL1", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl1.bin", "folderName": "prusa-i3"},
-        {"name": "SL2", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "prusa-sl2.bin", "folderName": "prusa-i3"},
-        {"name": "SL3", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "prusa-sl3.bin", "folderName": "prusa-i3"},
-        {"name": "SL4", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl4.bin", "folderName": "prusa-i3"},
-        {"name": "SL5", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "prusa-sl4.bin", "folderName": "prusa-i3"}
+        {"name": "i3 MK3", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "prusa-i3.bin", "folderName": "prusa-i3"}
+
     ]},
     {"Brand":"Creality", "Models": [
         {"name": "Ender 3", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "creality-e3.bin", "folderName": "prusa-i3"},
         {"name": "CR-10", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "creality-cr10.bin", "folderName": "prusa-i3"},
         {"name": "CR-6 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
-        {"name": "CR-7 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
-        {"name": "CR-8 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"},
-        {"name": "CR-9 SE", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "creality-cr6.bin", "folderName": "prusa-i3"}
+        {"name": "Ender 3v2 2020", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3-v2-2020", "fileName": "creality-ender3-v2-2020.bin", "folderName": "creality-ender3-v2-2020"},
+        {"name": "Ender 3 Pro", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3pro-2020", "fileName": "cp-creality-ender3pro-2020.bin", "folderName": "cp-creality-ender3pro-2020"},
+        {"name": "Ender 3v2 Neo", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3-v2-neo-2022", "fileName": "cp-creality-ender3-v2-neo-2022.bin", "folderName": "cp-creality-ender3-v2-neo-2022"},
+        {"name": "Ender 3 Max", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3max-2021", "fileName": "cp-creality-ender3max-2021.bin", "folderName": "cp-creality-ender3max-2021"},
+        {"name": "CR-6 SE 2020", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr6se-2020", "fileName": "cp-creality-cr6se-2020.bin", "folderName": "cp-creality-cr6se-2020"},
+        {"name": "CR-6 SE 2021", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr6se-2020", "fileName": "cp-creality-cr6se-2021.bin", "folderName": "cp-creality-cr6se-2021"},
+        {"name": "CR-6 MAX", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr6-max", "fileName": "cp-creality-cr6-max.bin", "folderName": "cp-creality-cr6-max"},
+        {"name": "CR-10 Smart Pro 2022", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr10-smart-pro-2022", "fileName": "cp-creality-cr10-smart-pro-2022.bin", "folderName": "cp-creality-cr10-smart-pro-2022"},
+        {"name": "Ender 2 Pro 2021", "dimension": "235mm x 235mm x 300mm", "image": "img-cp-creality-ender2pro-hc32-2022", "fileName": "cp-creality-ender2pro-2021.bin", "folderName": "cp-creality-ender2pro-2021"},
+        {"name": "Ender 2 Pro 2022", "dimension": "235mm x 235mm x 300mm", "image": "img-cp-creality-ender2pro-hc32-2022", "fileName": "cp-creality-ender2pro-hc32-2022.bin", "folderName": "cp-creality-ender2pro-hc32-2022"},
+        {"name": "Ender 3 S1 2021 (103)", "dimension": "220mm x 220mm x 250mm", "image": "cp-creality-ender3-s1-2021-401", "fileName": "cp-creality-ender3-s1-2021-103.bin", "folderName": "cp-creality-ender3-s1-2021-103"},
+        {"name": "Ender 3 S1 2021 (401)", "dimension": "235mm x 235mm x 300mm", "image": "cp-creality-ender3-s1-2021-401", "fileName": "cp-creality-ender3-s1-2021-401.bin", "folderName": "cp-creality-ender3-s1-2021-401"},
+        {"name": "Ender 3 S1 Plus 2022", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender3-s1plus-2022", "fileName": "cp-creality-ender3-s1-2021-401.bin", "folderName": "cp-creality-ender3-s1plus-2022"},
+        {"name": "Ender 5 S1", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender5-s1-2023", "fileName": "cp-creality-ender5-s1-2023.bin", "folderName": "cp-creality-ender5-s1-2023"},
+        {"name": "Ender 5 Pro", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender5pro-2020", "fileName": "cp-creality-ender5pro-2020.bin", "folderName": "cp-creality-ender5pro-2020"},
+        {"name": "Ender 6", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender6-2020", "fileName": "cp-creality-ender6-2020.bin", "folderName": "cp-creality-ender6-2020"},
+        {"name": "CR10 Smart", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr10-smart", "fileName": "cp-creality-cr10-smart.bin", "folderName": "cp-creality-cr10-smart"},
+        {"name": "Creality V.4.2.7 Board", "dimension": "Motherboard", "image": "cp-img-creality-v4.2.7", "fileName": "cp-creality-v4.2.7.bin", "folderName": "cp-creality-v4.2.7"},
+        {"name": "Creality V.4.2.10 Board", "dimension": "Motherboard", "image": "cp-img-creality-v4.2.10", "fileName": "cp-creality-v4.2.10.bin", "folderName": "cp-creality-v4.2.10"}
     ]},
     {"Brand":"Anycubic", "Models": [
-        {"name": "i3 Mega", "dimension": "235mm x 235mm x 300mm", "image": "printer2", "fileName": "anycubic-i3.bin", "folderName": "prusa-i3"},
-        {"name": "Photon", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "anycubic-photon.bin", "folderName": "prusa-i3"},
-        {"name": "Chiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-chiron.bin", "folderName": "prusa-i3"},
-        {"name": "Dhiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-dhiron.bin", "folderName": "prusa-i3"},
-        {"name": "Ehiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-ehiron.bin", "folderName": "prusa-i3"},
-        {"name": "Fhiron", "dimension": "235mm x 235mm x 300mm", "image": "corexyPrinter", "fileName": "anycubic-fhiron.bin", "folderName": "prusa-i3"},
         {"name": "Anycubic Vyper", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-vyper-2021", "fileName": "anycubic-vyper-2021.bin", "folderName": "cp-anycubic-vyper-2021"},
         {"name": "Anycubic Kobra", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra", "fileName": "cp-anycubic-kobra.bin", "folderName": "cp-anycubic-kobra"},
         {"name": "Anycubic Kobra Neo", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-neo", "fileName": "cp-anycubic-kobra-neo.bin", "folderName": "cp-anycubic-kobra-neo"},

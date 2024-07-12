@@ -70,7 +70,7 @@ class PrintFile(Gtk.Box):
         self.main = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.main.set_name("print-file-box")
         self.main.set_hexpand(True)
-        self.main.set_vexpand(True)
+        self.main.set_vexpand(False)
         self.main.pack_start(self.selectCheck, False, False, 5)
         self.main.pack_start(self.thumbnail, False, False, 0)
         self.main.pack_start(contentBox, False, False, 20)

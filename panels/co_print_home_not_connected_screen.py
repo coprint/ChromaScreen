@@ -43,13 +43,14 @@ class Panel(ScreenPanel, metaclass=Singleton):
         statusLight = 'yellow'
         if self._printer.state == 'error':
             statusLight = 'red'
+        elif self._printer.state == 'startup':
+            statusLight = 'blue'
         reportHeaderBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         warningYellowIcon = self._gtk.Image("warning-"+statusLight, 35, 35)
-        warningHeaderLabel = Gtk.Label(_("Klipper reports: SHUTDOWN"), name="warning-header-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-header-red-label #
+        warningHeaderLabel = Gtk.Label(_("Klipper reports: "+ (self._printer.state).upper()), name="warning-header-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-header-red-label #
         reportHeaderBox.pack_start(warningYellowIcon, False, False, 0)
         reportHeaderBox.pack_start(warningHeaderLabel, False, False, 0)
-
-        warningContentLabel = Gtk.Label(self._printer.state_message, name="warning-content-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-content-red-label #
+        warningContentLabel = Gtk.Label((self._printer.state_message).replace('\n', ' '), name="warning-content-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-content-red-label #
         warningContentLabel.set_max_width_chars(65)
         warningContentLabel.set_line_wrap(True)
         warningContentLabel.set_justify(Gtk.Justification.LEFT)
@@ -394,7 +395,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             if name == "full" and (self.IsMainsailNeedUpdate and self.self.IsKlipperNeedUpdate):
                 isDialogShow = False
             if isDialogShow:  
-                content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
+                content = _("Your update may not be compatible with ChromaScreen. Still Do you want to update?")  
                 dialog = AreYouSureDialog( content, self)
                 dialog.get_style_context().add_class("network-dialog")
                 dialog.set_decorated(False)

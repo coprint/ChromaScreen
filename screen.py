@@ -90,7 +90,6 @@ class ChromaScreen(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
     pc_password = '1234'
     config_data = []
-    #pc_password = 'c317tek'
     is_debug = False
     is_redirect_not_connected = True
 
@@ -153,7 +152,7 @@ class ChromaScreen(Gtk.Window):
         self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
 
         self.connect("key-press-event", self._key_press_event)
-        self.connect("configure_event", self.update_size)
+        #self.connect("configure_event", self.update_size)
         monitor = Gdk.Display.get_default().get_primary_monitor()
         if monitor is None:
             monitor = Gdk.Display.get_default().get_monitor(0)
@@ -380,6 +379,8 @@ class ChromaScreen(Gtk.Window):
             if panel_name not in self.panels:
                 try:
                     self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title)
+                    if hasattr(self.panels[panel_name], "initialize"):
+                        self.panels[panel_name].initialize(**kwargs)
                 except Exception as e:
                     self.show_error_modal(f"Unable to load panel {panel_name}", f"{e}\n\n{traceback.format_exc()}")
                     return
@@ -392,8 +393,8 @@ class ChromaScreen(Gtk.Window):
                 #self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
                 #return
             self._cur_panels.append(panel_name)
-            #if hasattr(self.panels[panel_name], "reset_values"):
-            #   self.panels[panel_name].reset_values()
+            if hasattr(self.panels[panel_name], "reset_values"):
+               self.panels[panel_name].reset_values()
             self.attach_panel(panel_name)
         except Exception as e:
             logging.exception(f"Error attaching panel:\n{e}")
@@ -415,6 +416,60 @@ class ChromaScreen(Gtk.Window):
             self.panels[panel_name].activate()
         self.show_all()
         self.base_panel.visible_menu(False)
+    # def _load_panel(self, panel, *args):
+    #     logging.debug(f"Loading panel: {panel}")
+    #     panel_path = os.path.join(os.path.dirname(__file__), 'panels', f"{panel}.py")
+    #     logging.info(f"Panel path: {panel_path}")
+    #     if not os.path.exists(panel_path):
+    #         logging.error(f"Panel {panel} does not exist")
+    #         raise FileNotFoundError(os.strerror(2), "\n" + panel_path)
+    #     self.load_panel[panel] = None
+    #     module = import_module(f"panels.{panel}")
+    #     reload(module)
+    #     if not hasattr(module, "create_panel"):
+    #         raise ImportError(f"Cannot locate create_panel function for {panel}")
+    #     self.load_panel[panel] = getattr(module, "create_panel")
+    #     try:
+    #         return self.load_panel[panel](*args)
+    #     except Exception as e:
+    #         logging.exception(e)
+    #         raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
+        
+    # def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
+    #     try:
+    #         if remove == 2:
+    #             self._remove_all_panels()
+    #         elif remove == 1:
+    #             self._remove_current_panel(pop)
+    #         try:
+    #             self.panels[panel_name] = self._load_panel(panel_type, self, title)
+    #             if hasattr(self.panels[panel_name], "initialize"):
+    #                 self.panels[panel_name].initialize(**kwargs)
+    #         except Exception as e:
+    #             if panel_name in self.panels:
+    #                 del self.panels[panel_name]
+    #             self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
+    #             return
+    #         self._cur_panels.append(panel_name)
+    #         if hasattr(self.panels[panel_name], "reset_values"):
+    #             self.panels[panel_name].reset_values()
+    #         self.attach_panel(panel_name)
+    #     except Exception as e:
+    #         logging.exception(f"Error attaching panel:\n{e}")
+
+    # def attach_panel(self, panel_name):
+    #     self.base_panel.add_content(self.panels[panel_name])
+    #     logging.debug(f"Current panel hierarchy: {' > '.join(self._cur_panels)}")
+    #     self.base_panel.show_back(len(self._cur_panels) > 1)
+    #     if hasattr(self.panels[panel_name], "process_update"):
+    #         self.add_subscription(panel_name)
+    #         self.process_update("notify_status_update", self.printer.data)
+    #         self.process_update("notify_busy", self.printer.busy)
+    #     if hasattr(self.panels[panel_name], "activate"):
+    #         self.panels[panel_name].activate()
+    #     self.show_all()
+    #     self.base_panel.visible_menu(False)
+
     def close_dialog(self, dialog):
         dialog.response(Gtk.ResponseType.CANCEL)
         dialog.destroy()
@@ -593,6 +648,7 @@ class ChromaScreen(Gtk.Window):
     def _remove_all_panels(self):
         self.subscriptions = []
         self._cur_panels = []
+        self.panels = {}
         for _ in self.base_panel.content.get_children():
             self.base_panel.content.remove(_)
         for panel in list(self.panels):
@@ -618,7 +674,7 @@ class ChromaScreen(Gtk.Window):
             self.subscriptions.remove(self._cur_panels[-1])
         if pop:
             del self._cur_panels[-1]
-            self.attach_panel(self._cur_panels[-1])
+            #self.attach_panel(self._cur_panels[-1])
 
     def _menu_go_back(self, widget=None, home=False):
         logging.info(f"#### Menu go {'home' if home else 'back'}")
@@ -811,7 +867,10 @@ class ChromaScreen(Gtk.Window):
         self._config.install_language(lang)
         self.lang_ltr = set_text_direction(lang)
         self._config._create_configurable_options(self)
-        self.reload_panels()
+        self._config.set('main', 'language', lang)
+        self._config.save_user_config_options()
+        self.restart_ks()
+        #self.reload_panels()
 
     def reload_panels(self, *args):
         if "printer_select" in self._cur_panels:
@@ -876,7 +935,7 @@ class ChromaScreen(Gtk.Window):
             if self.is_redirect_not_connected:
                 if self.printer.state == 'error' or self.printer.state == 'shutdown' or self.printer.state ==  'disconnected':
                     page_url = 'co_print_home_not_connected_screen'
-                    if x != 'co_print_home_not_connected_screen' and x != 'co_print_printing_selection_port':
+                    if x != 'co_print_home_not_connected_screen':
                         self.show_panel(page_url, page_url, "Language", 1, False)
             
             
@@ -923,11 +982,18 @@ class ChromaScreen(Gtk.Window):
 
     def printer_initializing(self, msg, remove=False):
         self.close_popup_message()
-        
-        if 'co_print_splash_screen' not in self.panels or remove:
-            self.show_panel('co_print_splash_screen', "co_print_splash_screen",  self.isEnter, 2)
-        self.panels['co_print_splash_screen'].update_text(msg)
-        self.isEnter = True
+        list = ['co_print_language_select_screen', 'co_print_contract_approval', 'co_print_region_selection', 'co_print_product_naming', 'co_print_wifi_selection', 'co_print_wifi_selection_select', 'co_print_wifi_selection_connect', 'co_print_printing_brand_selection_new', 'co_print_chip_selection', 'co_print_sd_card_selection_process_waiting','co_print_mcu_selection','co_print_mcu_model_selection','co_print_mcu_com_interface','co_print_mcu_bootloader_ofset','co_print_mcu_clock_reference', 'co_print_baud_rate_selection', 'co_print_mcu_flash_chip', 'co_print_mcu_clock_speed', 'co_print_mcu_applicaiton_address', 'co_print_mcu_usb_ids', 'co_print_mcu_optional_feature', 'co_print_chip_selection_loading','co_print_sd_card_selection', 'co_print_printing_selection', 'co_print_printing_selection_port', 'co_print_printing_selection_done']
+        if len(self._cur_panels) > 0 :
+            if self._cur_panels[-1] not in list:
+                if 'co_print_splash_screen' not in self.panels or remove:
+                    self.show_panel('co_print_splash_screen', "co_print_splash_screen",  self.isEnter, 2)
+                self.panels['co_print_splash_screen'].update_text(msg)
+                self.isEnter = True
+        else:
+            if 'co_print_splash_screen' not in self.panels or remove:
+                self.show_panel('co_print_splash_screen', "co_print_splash_screen",  self.isEnter, 2)
+            self.panels['co_print_splash_screen'].update_text(msg)
+            self.isEnter = True
 
     def search_power_devices(self, devices):
         found_devices = []
@@ -1117,6 +1183,7 @@ class ChromaScreen(Gtk.Window):
 
     def update_size(self, *args):
         self.width, self.height = self.get_size()
+        logging.debug(f" window size had Changed in page {self._cur_panels[-1]} and the New Width: {self.width} New Height: {self.height}")
         if self.vertical_mode != (self.width < self.height):
             self.reload_panels()
             self.vertical_mode = self.width < self.height

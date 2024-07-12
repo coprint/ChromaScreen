@@ -27,7 +27,7 @@ class Panel(ScreenPanel):
         self.labels['probeImage'] = self._gtk.Image("probcalibre", self._screen.width / 2.25, self._screen.height / 1.80)
         # self.labels['probeImage'].get_style_context().add_class("thumbnail")
         
-        zOffsetDistanceLabel = Gtk.Label(_("Z Offset Distance") + ":", name="zoffset-distance-label")
+        zOffsetDistanceLabel = Gtk.Label(_("Z Probe Distance") + ":", name="zoffset-distance-label")
         distanceLabel = Gtk.Label("4.325" + _("mm"), name="distance-label")
         zOffsetLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         zOffsetLabelBox.set_halign(Gtk.Align.CENTER)
@@ -40,7 +40,7 @@ class Panel(ScreenPanel):
         startButtonBox.set_halign(Gtk.Align.CENTER)
         startButtonBox.pack_start(self.startButton, False, False, 0)
         
-        probeCalibrationLabel = Gtk.Label(_("Prob Calibration"), name="probe-calibration-label")
+        probeCalibrationLabel = Gtk.Label(_("Probe Calibration"), name="probe-calibration-label")
         probeCalibrationLabel.set_justify(Gtk.Justification.LEFT)
         probeCalibrationBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         probeCalibrationBox.pack_start(probeCalibrationLabel, False, False, 30)
@@ -86,7 +86,7 @@ class Panel(ScreenPanel):
         changeOffsetButtonBox.pack_start(self.buttons[f"{1}"], True, True, 0)
         changeOffsetButtonBox.pack_start(self.buttons[f"{2}"], True, True, 0)
         
-        changeOffsetLabel = Gtk.Label(_("Change Offset"), name="probe-calibration-label")
+        changeOffsetLabel = Gtk.Label(_("Change Probe"), name="probe-calibration-label")
         changeOffsetLabel.set_justify(Gtk.Justification.LEFT)
         changeOffsetLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         changeOffsetLabelBox.pack_start(changeOffsetLabel, False, False, 0)
@@ -99,7 +99,7 @@ class Panel(ScreenPanel):
         
         zAxis = zAxisHorizontalCalibration(self, True)
         
-        zOffsetLabel = Gtk.Label(_("Z Offset"))
+        zOffsetLabel = Gtk.Label(_("Z Probe"))
         
         self.zoffset = Gtk.Label("0", name="number-label")
         numberLabelBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -116,7 +116,7 @@ class Panel(ScreenPanel):
         zOffsetBox.pack_start(zOffsetLabel, False, False, 40)
         zOffsetBox.pack_start(numberLabelBox, False, False, 0)
         
-        self.okButton = Gtk.Button(_('Ok'),name ="probe-calibration-start-button")
+        self.okButton = Gtk.Button(_('Save'),name ="probe-calibration-start-button")
         self.okButton.connect("clicked", self.accept)
         
         okButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)

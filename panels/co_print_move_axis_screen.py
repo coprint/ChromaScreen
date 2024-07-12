@@ -24,6 +24,7 @@ class Singleton(type):
         return cls._instances[cls]
    
 
+# class CoPrintMoveAxisScreen(ScreenPanel, metaclass=Singleton):
 class Panel(ScreenPanel, metaclass=Singleton):
 
     def __init__(self, screen, title):

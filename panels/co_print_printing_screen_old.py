@@ -33,6 +33,7 @@ class Singleton(type):
         return cls._instances[cls]
    
    
+# class CoPrintPrintingScreenOld(ScreenPanel, metaclass=Singleton):   
 class Panel(ScreenPanel, metaclass=Singleton):
     selectedExtruder = ""
     extruderChanged = False

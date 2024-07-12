@@ -26,7 +26,7 @@ class Singleton(type):
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
-
+# class CoPrintHomeScreen(ScreenPanel, metaclass=Singleton):
 class Panel(ScreenPanel, metaclass=Singleton):
     total_jobs = -1
     instant_cpu = 0
@@ -42,7 +42,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
     mcu_version = ''
     filament_usage_array = []
     mcu_constants = None
-
+    mcus = []
+    hostInfo = None
+    
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.extruders = self._printer.extruders
@@ -180,11 +182,11 @@ class Panel(ScreenPanel, metaclass=Singleton):
         menuGrid.attach(temperatureButton, 1, 2, 1, 1)
 
         right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
-        right_box.pack_start(menuGrid, False, True, 0)
+        right_box.pack_start(menuGrid, True, True, 0)
 
         main_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        main_box.pack_start(left_box, True, True, 0)
-        main_box.pack_start(right_box, True, True, 0)
+        main_box.pack_start(left_box, True, False, 0)
+        main_box.pack_start(right_box, True, False, 0)
         main_box.set_vexpand(True)
         #main_box.set_valign(Gtk.Align.CENTER)
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -213,7 +215,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
 
        
 
-        for i in range(6):
+        for i in range(7):
             tmp_date = start_date + timedelta(days=i)
             output.append([int(tmp_date.timestamp()), 0])
 
@@ -473,8 +475,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
                         elif i == heater:
                             target = self.preheat_options[setting][heater]
                             logging.info(f"heater match {heater}")
-                if target is None and setting == "cooldown" and not heater.startswith('temperature_fan '):
-                    target = 0
+                if setting == "cooldown" :
+                    if target is None and target != 0 and not heater.startswith('temperature_fan ') :
+                        target = 0
                 else:
                     self.heatedBedSwitch.set_active(True)
                     self.extruderSwitch.set_active(True)
@@ -686,6 +689,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
                         'loadProgressColor': load_progress_color,
                         #'tempSensor': getters.get_mcu_temp_sensor(key),
                     })
+                elif(key=='extruder'):
+                    if 'target' in data[key]:
+                        self.change_extruder_temperature_pre(int(data[key]['target']))
+                elif(key == 'heater_bed'):
+                    if 'target' in data[key]:
+                        self.change_bed_temperature_pre(int(data[key]['target']))
                     
 
         if self._printer.state != 'error' :

@@ -19,7 +19,7 @@ class Panel(ScreenPanel):
         super().__init__(screen, title)
      
        
-        initHeader = InitHeader (self, _('Kurulum Tamamlandı'), _('3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış yapabilirsiniz.'), "")
+        initHeader = InitHeader (self, _('Setup Completed'), _("Setup for your 3D printer is complete. If you're not sure about the printer settings,you can exit without saving the settings using the Skip button"), "")
 
         self.image = self._gtk.Image("setupdone", self._gtk.content_width * .25 , self._gtk.content_height * .25)
        
@@ -86,9 +86,11 @@ class Panel(ScreenPanel):
 
         except Exception as e:
             logging.exception(e) 
+        self._screen._ws.klippy.restart_firmware()
         self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
     
     def on_click_skip_button(self, continueButton):
+        self._screen._ws.klippy.restart_firmware()
         self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
         
    

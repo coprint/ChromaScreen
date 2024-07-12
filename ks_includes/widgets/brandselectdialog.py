@@ -12,7 +12,7 @@ class BrandSelectionDialog(Gtk.Dialog):
         #     Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OK, Gtk.ResponseType.OK
         # )
         self.set_size_request(0, 0)
-        self.set_default_size(300,320)
+        self.set_default_size(300,300)
         pos = self.get_position()
         # Move dialog to the desired location
         self.move(pos[0] + 128, pos[1] + 190)

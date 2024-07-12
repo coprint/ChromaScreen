@@ -24,6 +24,7 @@ class Singleton(type):
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
+# class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
 class Panel(ScreenPanel, metaclass=Singleton):
 
     active_heater = None 
@@ -541,7 +542,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             else:
                 if(self.isDisable == False):
                     self.extruderLabel.set_label(str(-1) + f"° / {self.extruder_temp_target}°")
-            if hasattr(data, "fan") and self.fan_spped != data['fan']['speed']:
+            if 'fan' in data and self.fan_spped != data['fan']['speed']:
                 self.fan_spped = data['fan']['speed'] 
                 self.scale.set_value(self.fan_spped*100)
                 #self.fanSpeed_widget.updateValue(self.fan_spped*100, str(int(self.fan_spped*100)))

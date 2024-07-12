@@ -267,7 +267,6 @@ class Panel(ScreenPanel):
             
             if status:
                 self.close_dialog(self.waitDialog)
-                self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2, True, items=name, password=psw)
             else:
                 self.close_dialog(self.waitDialog)
                 self.showMessageBox(_('Connection Failed'))
@@ -276,8 +275,7 @@ class Panel(ScreenPanel):
             IPAddr = socket.gethostbyname(hostname)
             ip = IPAddr
             self.IpLabel.set_label(_("IP") + ":" + ip)
-           
-           
+            GLib.idle_add(self.refresh, None)
         except subprocess.CalledProcessError as e:
             self.showMessageBox(e.output.decode("utf-8"))
 

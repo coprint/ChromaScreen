@@ -1,0 +1,1525 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-12 10:32+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+msgid " Axis Vibration Detection Complete"
+msgstr " Détection de Vibration de l'Axe Complète"
+
+msgid " Axis Vibration Detection in Progress"
+msgstr " Détection de Vibration de l'Axe en Cours"
+
+#, python-format
+msgid "%s will be updated to version"
+msgstr "%s sera mis à jour vers la version"
+
+msgid "(default)"
+msgstr "(par défaut)"
+
+msgid ""
+"-axis vibration compensation detection has been completed and the status is "
+"normal."
+msgstr ""
+"La détection de compensation des vibrations de l'axe a été effectuée et le "
+"statut est normal."
+
+msgid "24 Hour Time"
+msgstr "Heure 24 heures"
+
+msgid "A FIRMWARE_RESTART may fix the issue."
+msgstr "Un redémarrage du micrologiciel peut résoudre le problème."
+
+msgid "ADXL Not Configured"
+msgstr "ADXL non configuré"
+
+msgid "Abort"
+msgstr "Avorter"
+
+msgid "Accel to Decel"
+msgstr "Accélération à décélération"
+
+msgid "Acceleration"
+msgstr "Accélération"
+
+msgid "Acceleration:"
+msgstr "Accélération :"
+
+msgid "Accept"
+msgstr "Accepter"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Add Network"
+msgstr "Ajouter un réseau"
+
+msgid "Add profile"
+msgstr "Ajouter un profil"
+
+msgid "Adv. Settings"
+msgstr "Paramètres avancés"
+
+msgid "Apply"
+msgstr "Appliquer"
+
+#, python-format
+msgid "Apply %.2f offset to Endstop?"
+msgstr "Appliquer un décalage de %.2f à l'arrêt d'extrémité ?"
+
+#, python-format
+msgid "Apply %s%.2f offset to Probe?"
+msgstr "Appliquer un décalage de %s%.2f à la sonde ?"
+
+msgid "Are you sure do you want to exclude the object?"
+msgstr "Êtes-vous sûr de vouloir exclure l'objet ?"
+
+msgid "Are you sure you want to run Emergency Stop?"
+msgstr "Êtes-vous sûr de vouloir exécuter l’arrêt d’urgence?"
+
+msgid "Are you sure you wish to cancel this print?"
+msgstr "Êtes-vous sûr de vouloir annuler cette impression ?"
+
+msgid "Are you sure you wish to disable motors?"
+msgstr "Êtes-vous sûr de vouloir désactiver les moteurs ?"
+
+msgid "Are you sure you wish to reboot the system?"
+msgstr "Êtes-vous sûr de vouloir redémarrer le système ?"
+
+msgid "Are you sure you wish to shutdown the system?"
+msgstr "Êtes-vous sûr de vouloir éteindre le système ?"
+
+msgid "Are you sure?"
+msgstr "Êtes-vous sûr ?"
+
+msgid "Auto"
+msgstr "Auto"
+
+msgid "Auto Leveling"
+msgstr "Nivellement automatique"
+
+msgid "Auto Scroll"
+msgstr "Défilement automatique"
+
+msgid "Auto close notifications"
+msgstr "Notifications automatiquement fermées"
+
+msgid "Auto-calibrate"
+msgstr "Auto-étalonner"
+
+msgid "Auto-close notifications"
+msgstr "Notifications automatiques de fermeture"
+
+msgid "Auto-scroll"
+msgstr "Défilement automatique"
+
+msgid "Automatic Table Calibration"
+msgstr "Table de calibration automatique"
+
+msgid "Automatic bed calibration is completed. Please restart the system."
+msgstr ""
+"Le calibrage automatique du lit est terminé. Veuillez redémarrer le système."
+
+msgid "Automatic bed leveling is being performed. Please wait.."
+msgstr ""
+
+msgid "Back"
+msgstr "Retour"
+
+msgid "Back to Wizard"
+msgstr "Retour à l'assistant"
+
+msgid "Bed Level"
+msgstr "Nivellement du lit"
+
+msgid "Bed Mesh"
+msgstr "Grille de lit"
+
+msgid "Bed screw configuration:"
+msgstr "Configuration des vis du lit :"
+
+msgid "Bootloader Offset"
+msgstr "Décalage du chargeur de démarrage"
+
+msgid "Botloader Offset"
+msgstr ""
+
+msgid "Calibrate"
+msgstr "Étalonner"
+
+msgid "Calibrated"
+msgstr "Étalonné"
+
+msgid "Calibrating"
+msgstr "Calibration"
+
+msgid ""
+"Calibration steps vary depending on your printer's motion mechanism. Please "
+"select the type of your printer."
+msgstr ""
+"Les étapes de calibration varient en fonction du mécanisme de mouvement de "
+"votre imprimante. Veuillez sélectionner le type de votre imprimante."
+
+msgid ""
+"Calibration will disconnect from other printers. Please make sure that other "
+"printers are not in operation"
+msgstr ""
+"La calibration se déconnectera des autres imprimantes. Assurez-vous que les "
+"autres imprimantes ne sont pas en cours d'utilisation."
+
+msgid "Cam Settings"
+msgstr "Paramètres de la caméra"
+
+msgid "Camera"
+msgstr "Caméra"
+
+msgid "Can't set above the maximum:"
+msgstr "Impossible de dépasser le maximum :"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Cancel Print"
+msgstr "Annuler l'impression"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "Cancelling"
+msgstr "Annulation"
+
+msgid "Cannot connect to Moonraker"
+msgstr "Impossible de se connecter à Moonraker"
+
+msgid "Cartesian Type"
+msgstr "Type cartésien"
+
+msgid "Change Offset"
+msgstr "Modifier le décalage"
+
+msgid "Change Probe"
+msgstr ""
+
+msgid "Channel"
+msgstr "Chaîne"
+
+msgid "Check ADXL Wiring"
+msgstr "Vérifier le câblage ADXL"
+
+msgid "Check Sensor"
+msgstr ""
+
+msgid "Checking for updates, please wait..."
+msgstr "Recherche de mises à jour, veuillez patienter..."
+
+msgid "Checking the Sensor Connection"
+msgstr "Vérification de la connexion du capteur"
+
+msgid "Chip Settings"
+msgstr "Paramètres du chipset"
+
+msgid "ChromaScreen will reboot"
+msgstr "ChromaScreen va redémarrer"
+
+msgid "Chromascreen"
+msgstr "Chromascreen"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid ""
+"Click the “Start Calibration” button to perform automatic table calibration."
+msgstr ""
+"Cliquez sur le bouton \"Démarrer le calibrage\" pour effectuer un étalonnage "
+"automatique de la table."
+
+msgid "Clock Referance"
+msgstr "Référence d'horloge"
+
+msgid "Clock Reference"
+msgstr "Référence d'horloge"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Co Print Wiki"
+msgstr "Wiki Co Print"
+
+msgid "Com Interface"
+msgstr "Interface Com"
+
+msgid "Complete"
+msgstr "Terminé"
+
+msgid "Configuration"
+msgstr "Configuration"
+
+msgid "Confirm Emergency Stop"
+msgstr "Confirmer l'arrêt d'urgence"
+
+msgid "Confirm emergency stop"
+msgstr "Confirmer l'arrêt d'urgence"
+
+msgid "Connect"
+msgstr "Connecter"
+
+msgid "Connect Your 3D Printer"
+msgstr "Connectez votre imprimante 3D"
+
+msgid "Connect the Sensor"
+msgstr "Connectez le capteur"
+
+msgid ""
+"Connect the device by entering the information of the network you are using."
+msgstr ""
+"Connectez l'appareil en entrant les informations du réseau que vous utilisez."
+
+msgid "Connect your 3D printer to Co Print Smart using a USB cable."
+msgstr ""
+"Connectez votre imprimante 3D à Co Print Smart à l'aide d'un câble USB."
+
+msgid "Connected"
+msgstr "Connecté"
+
+#, python-format
+msgid "Connecting to %s"
+msgstr "Connexion à %s"
+
+msgid "Connection Completed"
+msgstr "Connexion terminée"
+
+msgid "Connection Failed"
+msgstr "Échec de la connexion."
+
+msgid "Connection Settings"
+msgstr "Paramètres de connexion"
+
+msgid "Connection failed."
+msgstr "Échec de la connexion."
+
+msgid "Console"
+msgstr "Console"
+
+msgid "Continue"
+msgstr "Continuer"
+
+msgid "Contract Approval"
+msgstr ""
+"Approbation du contratNous avons une politique de retour de 14 jours, ce qui "
+"signifie que vous avez 14 jours après réception de votre article pour "
+"demander un retour.\n"
+"Pour pouvoir bénéficier d'un retour, votre article doit être inutilisé et "
+"dans le même état où vous l'avez reçu. Il doit être également dans son "
+"emballage d'origine.\n"
+"Vous aurez également besoin du reçu ou de la preuve d'achat. Pour démarrer "
+"un retour, vous pouvez nous contacter à l'adresse coprint3d@gmail.com. "
+"Veuillez noter que les retours doivent être envoyés à l'adresse qui sera "
+"envoyée.\n"
+"Si votre retour est accepté, nous vous enverrons une étiquette de retour "
+"d'expédition, ainsi que des instructions sur la manière et l'endroit où "
+"envoyer votre colis. Les articles renvoyés à nos soins sans avoir auparavant "
+"demandé un retour ne seront pas acceptés. Vous pouvez toujours nous "
+"contacter pour toute question relative à un retour à l'adresse "
+"coprint3d@gmail.com.\n"
+"Dommages et problèmesVeuillez inspecter votre commande à la réception et "
+"nous contacter immédiatement si l'article est défectueux, endommagé ou si "
+"vous avez reçu le mauvais article, afin que nous puissions évaluer le "
+"problème et le résoudre.\n"
+"Malheureusement, nous ne pouvons pas accepter les retours sur les articles "
+"en promotion ou les cartes cadeaux.\n"
+"ÉchangesLa manière la plus rapide d'obtenir ce que vous voulez est de "
+"retourner l'article que vous avez, et une fois le retour accepté, de passer "
+"une nouvelle commande pour l'article souhaité.\n"
+"Période de rétractation de 14 jours de l'Union européenneNonobstant ce qui "
+"précède, si la marchandise est expédiée vers l'Union européenne, vous avez "
+"le droit d'annuler ou de retourner votre commande dans les 14 jours, pour "
+"n'importe quelle raison et sans justification. Comme mentionné ci-dessus, "
+"votre article doit être dans le même état que vous l'avez reçu, non porté ou "
+"non utilisé, avec des étiquettes, et dans son emballage d'origine avec "
+"ouverture. Vous aurez également besoin du reçu ou de la preuve d'achat"
+
+msgid "Cooldown"
+msgstr "Temps de refroidissement"
+
+msgid "Corexy Type"
+msgstr "Type Corexy"
+
+msgid "Country/State"
+msgstr "Pays/État"
+
+msgid "Creating..."
+msgstr "Création..."
+
+msgid "Current"
+msgstr "Actuel"
+
+msgid "D."
+msgstr "D."
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Delete Directory?"
+msgstr "Supprimer le répertoire ?"
+
+msgid "Delete File?"
+msgstr "Supprimer le fichier ?"
+
+msgid "Deselect"
+msgstr "Désélectionner"
+
+msgid "Deutsch"
+msgstr "Allemand"
+
+msgid "Dimension"
+msgstr "Dimension"
+
+msgid "Disable Motors"
+msgstr "Désactiver les moteurs"
+
+msgid "Disable Stepper"
+msgstr "Désactiver le pas à pas"
+
+msgid "Disable XY"
+msgstr "Désactiver XY"
+
+msgid "Disconnect"
+msgstr "Déconnecter"
+
+msgid "Distance (mm)"
+msgstr "Distance (mm)"
+
+#, python-format
+msgid "Do you want to recover %s?"
+msgstr "Voulez-vous récupérer %s?"
+
+msgid "Done"
+msgstr "Terminé"
+
+msgid "Elapsed:"
+msgstr "Écoulé :"
+
+msgid "Enable extra low-level configuration options"
+msgstr "Activer les options de configuration de bas niveau supplémentaires"
+
+msgid "English"
+msgstr "Anglais"
+
+msgid "Enter Value"
+msgstr "Entrez la valeur"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Estimated Time"
+msgstr "Temps estimé"
+
+msgid "Estimated Time Method"
+msgstr "Méthode de calcul du temps estimé"
+
+msgid "Estimated time method"
+msgstr "Méthode de Temps Estimé"
+
+msgid "Exclude Object"
+msgstr "Exclure l'objet"
+
+msgid "Execute"
+msgstr "Exécuter"
+
+msgid "Extra Large"
+msgstr "Très grand"
+
+msgid "Extrude"
+msgstr "Extruder"
+
+msgid "Extruder Movement (mm)"
+msgstr "Mouvement de l'extrudeur (mm)"
+
+msgid "Extrusion +"
+msgstr "Extrusion +"
+
+msgid "Extrusion -"
+msgstr "Extrusion -"
+
+msgid "Extrusion Speed (mm)"
+msgstr "Vitesse d'extrusion (mm)"
+
+msgid "Failed, adjust position first"
+msgstr "Échec, ajustez d'abord la position"
+
+msgid "Fan"
+msgstr "Ventilateur"
+
+msgid "Fan Speed"
+msgstr "Vitesse du ventilateur"
+
+msgid "Filament"
+msgstr "Filament"
+
+msgid "Filament Cut"
+msgstr "Filament coupé"
+
+msgid "Filament Used"
+msgstr "Filament utilisé"
+
+msgid "Filament total:"
+msgstr "Total des filaments :"
+
+msgid "Filament used:"
+msgstr "Filament utilisé :"
+
+msgid "Filament:"
+msgstr "Filament :"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "File Name"
+msgstr "Nom du fichier"
+
+msgid "File Preview"
+msgstr "Aperçu du fichier"
+
+msgid "File:"
+msgstr "Fichier :"
+
+msgid "Finding ADXL"
+msgstr "Recherche d'ADXL"
+
+msgid "Fine Tuning"
+msgstr "Réglage fin"
+
+msgid "Finish"
+msgstr "Terminer"
+
+msgid "Firmware Restart"
+msgstr "Redémarrage du firmware"
+
+msgid ""
+"First, tighten the tension screws to their maximum value. Then, for the "
+"first step, make a height adjustment using paper."
+msgstr ""
+"Tout d'abord, serrez les vis de tension au maximum. Ensuite, pour la "
+"première étape, effectuez un ajustement de hauteur à l'aide de papier."
+
+msgid "Flash Chip"
+msgstr "Puce Flash"
+
+msgid "Flow:"
+msgstr "Débit :"
+
+msgid "Flowrate:"
+msgstr "Débit:"
+
+msgid "Font Size"
+msgstr "Taille de la police"
+
+msgid "Forget Network"
+msgstr "Oubliez le réseau"
+
+msgid "French"
+msgstr "Français"
+
+msgid "Full Update"
+msgstr "Mise à jour complète"
+
+msgid "Fullscreen"
+msgstr "Plein écran"
+
+msgid "Go Back"
+msgstr "Retour"
+
+msgid "Go Printer"
+msgstr "Aller à l'Imprimante"
+
+msgid ""
+"Having trouble installing or starting up? Scan the QR code to get help and "
+"detailed information."
+msgstr ""
+"Des difficultés lors de l'installation ou du démarrage ? Scannez le code QR "
+"pour obtenir de l'aide et des informations détaillées."
+
+msgid "Heated Bed"
+msgstr "Plateau chauffant"
+
+msgid "Height:"
+msgstr "Hauteur :"
+
+msgid "Hidden"
+msgstr "Caché"
+
+msgid "Hide"
+msgstr "Masquer"
+
+msgid "Hide sensor in temp"
+msgstr "Masquer le capteur en température"
+
+msgid "Hide sensors in Temp."
+msgstr "Masquer les capteurs en température."
+
+msgid "Hide temp."
+msgstr "Masquer la temp."
+
+msgid "High"
+msgstr "Élevé"
+
+msgid "Home All"
+msgstr "Accueil Tout"
+
+msgid "Home X"
+msgstr "Home X"
+
+msgid "Home XY"
+msgstr "Home XY"
+
+msgid "Home Y"
+msgstr "Home Y"
+
+msgid "Home Z"
+msgstr "Home Z"
+
+msgid "Homing"
+msgstr "Home"
+
+msgid "Host"
+msgstr "Hôte"
+
+msgid "Hostname Co Print"
+msgstr "Nom d'hôte Co Print"
+
+msgid "Hostname Noya"
+msgstr "Nom d'hôte Noya"
+
+msgid "Hot Bed"
+msgstr "Lit chaud"
+
+msgid "I have read and accept the Privacy Policy."
+msgstr "J'ai lu et j'accepte la Politique de confidentialité."
+
+msgid "IP"
+msgstr "IP"
+
+msgid "Icon Theme"
+msgstr "Thème des icônes"
+
+msgid "Init..."
+msgstr "Init.."
+
+msgid "Initializing printer..."
+msgstr "Initialisation de l'imprimante..."
+
+msgid "Input Shaper"
+msgstr "Input Shaper"
+
+msgid ""
+"Insert the SD Card of your printer into ChromaScreen to change the program "
+"of your 3D printer."
+msgstr ""
+"Insérez la carte SD de votre imprimante dans ChromaScreen pour changer le "
+"programme de votre imprimante 3D."
+
+msgid "Interface"
+msgstr "Interface"
+
+msgid "Invalid"
+msgstr "Invalide"
+
+msgid "Invalid password"
+msgstr "Mot de passe invalide"
+
+msgid "Invert X"
+msgstr "Inverser X"
+
+msgid "Invert Y"
+msgstr "Inverser Y"
+
+msgid "Invert Z"
+msgstr "Inverser Z"
+
+msgid "Italian"
+msgstr "Italien"
+
+msgid "Klipper"
+msgstr "Klipper"
+
+msgid "Klipper Restart"
+msgstr "Redémarrage de Klipper"
+
+msgid "Klipper Update"
+msgstr "Mise à jour de Klipper"
+
+msgid "Klipper bin file has been writen."
+msgstr "Le fichier binaire de Klipper a été écrit."
+
+msgid "Klipper has disconnected"
+msgstr "Klipper s'est déconnecté"
+
+msgid "Klipper has encountered an error."
+msgstr "Klipper a rencontré une erreur."
+
+msgid "Klipper has shutdown"
+msgstr "Klipper s'est arrêté"
+
+msgid "Klipper is attempting to start"
+msgstr "Klipper tente de démarrer"
+
+msgid "Klipper reports: "
+msgstr ""
+
+msgid "Klipper will reboot"
+msgstr "Klipper va redémarrer"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Language Settings"
+msgstr "Paramètres de langue"
+
+msgid "Large"
+msgstr "Grand"
+
+msgid "Layer:"
+msgstr "Couche :"
+
+msgid "Left:"
+msgstr "Gauche :"
+
+msgid "Limits"
+msgstr "Limites"
+
+msgid "Load"
+msgstr "Charger"
+
+msgid "Log Files"
+msgstr "Fichiers de journal"
+
+msgid "Lower Nozzle"
+msgstr "Buse inférieure"
+
+msgid "MCU Architecture"
+msgstr "Architecture MCU"
+
+msgid "Macro Shortcuts menu"
+msgstr "Menu des raccourcis macro"
+
+msgid "Macro shortcut on sidebar"
+msgstr "Raccourci macro dans la barre latérale"
+
+msgid "Macros"
+msgstr "Macros"
+
+msgid "Main Menu"
+msgstr "Menu principal"
+
+msgid "Mainsail"
+msgstr "Mainsail"
+
+msgid "Manual Leveling"
+msgstr "Nivellement manuel"
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Max Acceleration"
+msgstr "Accélération maximale"
+
+msgid "Max Acceleration to Deceleration"
+msgstr "Accélération maximale à décélération"
+
+msgid "Max Velocity"
+msgstr "Vitesse maximale"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "Measure Both"
+msgstr "Mesurer les deux"
+
+msgid "Measure X"
+msgstr "Mesurer X"
+
+msgid "Measure Y"
+msgstr "Mesurer Y"
+
+msgid "Medium"
+msgstr "Moyen"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Menu Co Print"
+msgstr "Menu Co Print"
+
+msgid "Menu Noya"
+msgstr "Menu Noya"
+
+msgid "Mesh calibrate"
+msgstr "Calibrer le maillage"
+
+msgid "Modified"
+msgstr "Modifié"
+
+msgid "Moonraker"
+msgstr "Moonraker"
+
+msgid "Moonraker: connected"
+msgstr "Moonraker : connecté"
+
+msgid "Move"
+msgstr "Déplacer"
+
+msgid "Move Axis"
+msgstr "Déplacer l'axe"
+
+msgid "Move Distance (mm)"
+msgstr "Distance de déplacement (mm)"
+
+msgid "Movement"
+msgstr "Mouvement"
+
+msgid "Movement Settings"
+msgstr "Paramètres de mouvement"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Network"
+msgstr "Réseau"
+
+msgid "Never"
+msgstr "Jamais"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Next Step"
+msgstr "Étape suivante"
+
+msgid "No Camera"
+msgstr "Pas de caméra"
+
+msgid "No mesh has been loaded"
+msgstr "Aucun maillage n'a été chargé"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Not Connected"
+msgstr "Non connecté"
+
+msgid ""
+"Not supported for auto-detection, it needs to be configured in klipperscreen."
+"conf"
+msgstr ""
+"Non pris en charge pour la détection automatique, il doit être configuré "
+"dans klipperscreen.conf"
+
+msgid "Nothing selected"
+msgstr "Rien sélectionné"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Optional Feature"
+msgstr "Fonctionnalité optionnelle"
+
+msgid "Other Printers"
+msgstr "Autres imprimantes"
+
+#, python-format
+msgid "Outdated by %d"
+msgstr "Obsolète de %d"
+
+msgid "PSK for"
+msgstr "PSK pour"
+
+msgid "Package will be updated"
+msgid_plural "Packages will be updated"
+msgstr[0] "Le package sera mis à jour"
+msgstr[1] "Les packages seront mis à jour"
+
+msgid "Park"
+msgstr "Parquer"
+
+msgid "Part Fan"
+msgstr "Ventilateur de pièce"
+
+msgid "Password saved"
+msgstr "Mot de passe enregistré"
+
+msgid "Pause"
+msgstr "Pause"
+
+msgid "Paused"
+msgstr "En pause"
+
+msgid "Perform a full upgrade?"
+msgstr "Effectuer une mise à niveau complète ?"
+
+msgid "Performing Auto Home"
+msgstr "Exécution de l'auto-home"
+
+msgid "Pins"
+msgstr "Broches"
+
+msgid "Place the Initial Sensor on your printer's bed using double-sided tape."
+msgstr ""
+"Placez le capteur initial sur le lit de votre imprimante à l'aide de ruban "
+"adhésif double face."
+
+msgid "Place the Initial Sensor to the head of your printer."
+msgstr "Placez le capteur initial sur la tête de votre imprimante."
+
+msgid "Please Connect the Sensor"
+msgstr "Veuillez connecter le capteur"
+
+msgid "Please Wait"
+msgstr "Veuillez patienter"
+
+msgid "Please connect a camera using the USB ports for printing monitoring."
+msgstr ""
+"Veuillez connecter une caméra aux ports USB pour surveiller l'impression."
+
+msgid "Please don’t touch the printer"
+msgstr "Veuillez ne pas toucher l'imprimante"
+
+msgid "Please insert the USB drive."
+msgstr "Veuillez insérer le lecteur USB."
+
+msgid "Please read our agreement and confirm the terms."
+msgstr "Veuillez lire notre accord et confirmer les termes."
+
+msgid "Please recompile and flash the micro-controller."
+msgstr "Veuillez recompiler et flasher le microcontrôleur."
+
+msgid ""
+"Please select the architecture, communication frequency, clock speed and "
+"model of the chip you will be using."
+msgstr ""
+"Veuillez sélectionner l'architecture, la fréquence de communication, la "
+"vitesse d'horloge et le modèle de la puce que vous allez utiliser."
+
+msgid "Please select your region to determine your time zone."
+msgstr ""
+"Veuillez sélectionner votre région pour déterminer votre fuseau horaire."
+
+msgid "Please specify a custom name for your device."
+msgstr "Veuillez spécifier un nom personnalisé pour votre appareil."
+
+msgid "Please specify the system language"
+msgstr "Veuillez définir la langue du système"
+
+msgid "Power"
+msgstr "Alimentation"
+
+msgid "Power On Printer"
+msgstr "Allumer l'imprimante"
+
+msgid "Predefined Macros"
+msgstr "Macros prédéfinies"
+
+msgid "Preheat ABS"
+msgstr "Préchauffer l'ABS"
+
+msgid "Preheat For Extrude"
+msgstr "Préchauffer pour extruder"
+
+msgid "Preheat PLA"
+msgstr "Préchauffer le PLA"
+
+msgid "Pressure Advance:"
+msgstr "Avance de pression :"
+
+msgid "Print"
+msgstr "Imprimer"
+
+msgid "Print Control"
+msgstr "Contrôle d'impression"
+
+msgid "Print Time"
+msgstr "Temps d'impression"
+
+msgid "Printer"
+msgstr "Imprimante"
+
+msgid "Printer Connections"
+msgstr "Connexions de l'imprimante"
+
+msgid "Printer Select"
+msgstr "Sélection de l'imprimante"
+
+msgid "Printer Status"
+msgstr "État de l'imprimante"
+
+msgid "Printer is returning to the starting position, please wait.."
+msgstr "L'imprimante retourne à la position de départ, veuillez patienter..."
+
+msgid "Printing"
+msgstr "Impression en cours"
+
+msgid "Printing Camera"
+msgstr "Caméra d'impression"
+
+msgid "Printing File"
+msgstr "Fichier d'impression"
+
+msgid "Printing Time:"
+msgstr "Temps d'impression"
+
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+msgid "Probe Calibration"
+msgstr "Calibration de la sonde"
+
+msgid "Probe Offset"
+msgstr "Décalage de la sonde"
+
+msgid "Processing, Please Wait.."
+msgstr "Traitement en cours, veuillez patienter..."
+
+msgid "Processor Model"
+msgstr "Modèle de processeur"
+
+msgid "Profile Name:"
+msgstr "Nom du profil :"
+
+msgid "Provide ChromaScreen.log when asking for help.\n"
+msgstr "Fournissez ChromaScreen.log lorsque vous demandez de l'aide.\n"
+
+msgid "Quad Gantry Level"
+msgstr "Nivellement quad-bâti"
+
+msgid "Raise Nozzle"
+msgstr "Élever la buse"
+
+msgid "Records"
+msgstr "Enregistrements"
+
+msgid "Recover"
+msgstr "Récupérer"
+
+msgid "Recover Hard"
+msgstr "Récupérer en mode dur"
+
+msgid "Recover Soft"
+msgstr "Récupérer en mode doux"
+
+msgid "Reference"
+msgstr "Référence"
+
+msgid "Refresh"
+msgstr "Actualiser"
+
+msgid "Rename Your Device"
+msgstr "Renommer votre appareil"
+
+msgid "Rename/Move:"
+msgstr "Renommer/Déplacer :"
+
+msgid "Restart"
+msgstr "Redémarrer"
+
+msgid "Resume"
+msgstr "Reprendre"
+
+msgid "Retract"
+msgstr "Rétracter"
+
+msgid "Retraction"
+msgstr "Rétraction"
+
+msgid "Retraction Length"
+msgstr "Longueur de rétraction"
+
+msgid "Retraction Speed"
+msgstr "Vitesse de rétraction"
+
+msgid "Retry"
+msgstr "Réessayer"
+
+msgid "Retrying"
+msgstr "Réessai en cours"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Save Config"
+msgstr "Enregistrer la configuration"
+
+msgid "Save MESH"
+msgstr "Enregistrer MESH"
+
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+msgid "Save Z"
+msgstr "Enregistrer Z"
+
+msgid "Save configuration?"
+msgstr "Enregistrer la configuration ?"
+
+msgid "Saved"
+msgstr "Enregistré"
+
+#, python-format
+msgid "Saved offset: %s"
+msgstr "Décalage enregistré : %s"
+
+msgid "Screen DPMS"
+msgstr "Économie d'écran DPMS"
+
+msgid "Screen Power Off Time"
+msgstr "Temps d'extinction de l'écran"
+
+msgid "Screen power off time"
+msgstr "Temps d'extinction de l'écran"
+
+msgid "Screws Adjust"
+msgstr "Réglage des vis"
+
+msgid "Searching for Printer.."
+msgstr "Recherche d'imprimante..."
+
+msgid "Select"
+msgstr "Sélectionner"
+
+msgid "Select & Go"
+msgstr "Sélectionner & Aller"
+
+msgid "Select + - increase value"
+msgstr "Sélectionner + - augmenter la valeur"
+
+msgid "Select Baud Rate"
+msgstr "Sélectionner le débit en bauds"
+
+msgid ""
+"Select Controlled \n"
+" Extruder"
+msgstr ""
+"Sélectionner le\n"
+" Extruder contrôlé"
+
+msgid "Select Microcontroller"
+msgstr "Sélectionner le microcontrôleur"
+
+msgid "Select Region"
+msgstr "Sélectionner la région"
+
+msgid "Select Your Printer Type"
+msgstr "Sélectionner le type d'imprimante"
+
+msgid ""
+"Select the Baud Rate to communicate with the processor you will be using."
+msgstr ""
+"Sélectionnez le débit en bauds pour communiquer avec le processeur que vous "
+"utiliserez."
+
+msgid "Select the Chip Model"
+msgstr "Sélectionnez le modèle de puce"
+
+msgid "Select the MCU located on the board you will be controlling."
+msgstr "Sélectionnez le MCU situé sur la carte que vous contrôlerez."
+
+msgid "Select the MCU model located on the board you will be controlling."
+msgstr "Sélectionnez le modèle de MCU situé sur la carte que vous contrôlerez."
+
+msgid ""
+"Select the bootloader offset located on the board you will be controlling."
+msgstr ""
+"Sélectionnez le décalage du chargeur d'amorçage situé sur la carte que vous "
+"contrôlerez."
+
+msgid "Select the chip model located on the board you will be controlling."
+msgstr ""
+"Sélectionnez le modèle de puce situé sur la carte que vous contrôlerez."
+
+msgid ""
+"Select the clock reference located on the board you will be controlling."
+msgstr ""
+"Sélectionnez la référence d'horloge située sur la carte que vous contrôlerez."
+
+msgid ""
+"Select the com interface model located on the board you will be controlling."
+msgstr ""
+"Sélectionnez le modèle d'interface com situé sur la carte que vous "
+"contrôlerez."
+
+msgid ""
+"Select the optional features located on the board you will be controlling."
+msgstr ""
+"Sélectionnez les fonctionnalités optionnelles situées sur la carte que vous "
+"contrôlerez."
+
+msgid "Select the usb ids located on the board you will be controlling."
+msgstr "Sélectionnez les ids USB situés sur la carte que vous contrôlerez."
+
+msgid "Send"
+msgstr "Envoyer"
+
+msgid "Sensor Cannot Connect"
+msgstr ""
+
+msgid "Sensor Connected"
+msgstr "Capteur connecté"
+
+msgid "Set Temp"
+msgstr "Réglez la température"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Setup Completed"
+msgstr "Configuration terminée"
+
+msgid "Setup Printer"
+msgstr "Configurer l'imprimante"
+
+msgid ""
+"Setup for your 3D printer is complete. If you're not sure about the printer "
+"settings,you can exit without saving the settings using the Skip button"
+msgstr ""
+"La configuration de votre imprimante 3D est terminée. Si vous n'êtes pas sûr "
+"des paramètres de l'imprimante, vous pouvez utiliser le bouton Ignorer pour "
+"quitter sans enregistrer les paramètres."
+
+msgid "Show"
+msgstr "Afficher"
+
+msgid "Show Heater Power"
+msgstr "Afficher la puissance du chauffage"
+
+msgid "Show heater power"
+msgstr "Afficher la puissance du chauffage"
+
+msgid "Shut Down"
+msgstr "Éteindre"
+
+msgid "Shutdown"
+msgstr "Arrêt"
+
+msgid "Size"
+msgstr "Taille"
+
+msgid "Skip"
+msgstr "Sauter"
+
+msgid "Slicer"
+msgstr "Trancheur"
+
+msgid "Slicer Time correction (%)"
+msgstr "Correction du temps de trancheuse (%)"
+
+msgid "Slicer time corrections (%)"
+msgstr "Corrections du temps de trancheuse (%)"
+
+msgid "Slicer:"
+msgstr "Trancheur :"
+
+msgid "Slow"
+msgstr "Lent"
+
+msgid "Small"
+msgstr "Petit"
+
+msgid "Spanish"
+msgstr "Espagnol"
+
+msgid "Speed (mm/s)"
+msgstr "Vitesse (mm/s)"
+
+msgid "Speed +"
+msgstr "Vitesse +"
+
+msgid "Speed -"
+msgstr "Vitesse -"
+
+msgid "Speed:"
+msgstr "Vitesse :"
+
+msgid "Square Corner Velocity"
+msgstr "Vélocité de coin carré"
+
+msgid "Start"
+msgstr "Démarrer"
+
+msgid "Start Calibration"
+msgstr "Démarrer la calibration"
+
+msgid "Start Print"
+msgstr "Démarrer l'impression"
+
+msgid "Starting WiFi Association"
+msgstr "Démarrage de l'association WiFi"
+
+msgid "Starting recovery for"
+msgstr "Démarrage de la récupération pour"
+
+msgid "Starting update for"
+msgstr "Démarrage de la mise à jour pour"
+
+msgid "Statistic"
+msgstr "Statistique"
+
+msgid "Stop Calibrating"
+msgstr "Arrêter la calibration"
+
+msgid "System"
+msgstr "Système"
+
+msgid "System Restart"
+msgstr "Redémarrage du système"
+
+msgid "System Shutdown"
+msgstr "Arrêt du système"
+
+msgid "Systems / Update"
+msgstr "Systèmes / Mise à jour"
+
+msgid "Temp (°C)"
+msgstr "Temp (°C)"
+
+msgid "Temperature"
+msgstr "Température"
+
+msgid ""
+"The settings file is being created. During this time Please wait and do not "
+"turn off ChromaScreen."
+msgstr ""
+"Le fichier de paramètres est en cours de création. Pendant ce temps, "
+"veuillez patienter et ne pas éteindre ChromaScreen."
+
+msgid ""
+"The settings file is being created. During this time.Please wait and do not "
+"turn off ChromaScreen."
+msgstr ""
+"Le fichier de paramètres est en cours de création. Pendant ce temps, "
+"veuillez patienter et ne pas éteindre ChromaScreen."
+
+msgid "Title:"
+msgstr "Titre:"
+
+msgid "Total Filament Used"
+msgstr "Total de filament utilisé"
+
+msgid "Total Print Time"
+msgstr "Temps total d'impression"
+
+msgid "Total:"
+msgstr "Total :"
+
+msgid "Turkish"
+msgstr "Turc"
+
+msgid "USB IDS"
+msgstr "IDS USB"
+
+msgid "USB drive has been inserted."
+msgstr "Le lecteur USB a été inséré."
+
+msgid "USB serial number from CHIPID"
+msgstr "Numéro de série USB à partir de CHIPID"
+
+msgid "Unknown Heater"
+msgstr "Chauffage inconnu"
+
+msgid "Unknown screw position"
+msgstr "Position de vis inconnue"
+
+msgid "Unload"
+msgstr "Décharger"
+
+msgid "Unretract Extra Length"
+msgstr "Longueur supplémentaire de dérétraction"
+
+msgid "Unretract Speed"
+msgstr "Vitesse de dérétraction"
+
+msgid "Up To Date"
+msgstr "À jour"
+
+msgid "Up-to-date"
+msgstr "À jour"
+
+msgid "Update"
+msgstr "Mettre à jour"
+
+msgid "Update Manager"
+msgstr "Gestionnaire de mise à jour"
+
+msgid "Updating"
+msgstr "Mise à jour en cours"
+
+msgid "Uploaded"
+msgstr "Téléchargé"
+
+msgid "Value"
+msgstr "Valeur"
+
+msgid "Velocity"
+msgstr "Vélocité"
+
+msgid "Version: "
+msgstr "Version : "
+
+msgid "WebRTC is not supported by the backend trying Stream"
+msgstr ""
+"WebRTC n'est pas pris en charge par le backend, en train d'essayer Stream"
+
+msgid "Wifi Password"
+msgstr "Mot de passe WiFi"
+
+msgid "Wifi SSID"
+msgstr "SSID du WiFi"
+
+msgid "Writing the SD card."
+msgstr "Écriture sur la carte SD."
+
+msgid "Writing to SD Card"
+msgstr "Écriture sur la carte SD"
+
+msgid "X Axis (Head)"
+msgstr "Axe X (Tête)"
+
+msgid ""
+"X, Y, and Z axes are returning back to their home positions. Please wait."
+msgstr ""
+"Les axes X, Y et Z retournent à leurs positions d'origine. Veuillez "
+"patienter."
+
+msgid "X,Y,Z Hareket Mesafesi (mm)"
+msgstr ""
+
+msgid "XY Move Speed (mm/s)"
+msgstr "Vitesse de déplacement XY (mm/s)"
+
+msgid "XY Speed (mm/s)"
+msgstr "Vitesse XY (mm/s)"
+
+msgid "Y Axis (Bed)"
+msgstr "Axe Y (Plateau)"
+
+msgid "Y Axis Vibration Detection Complete"
+msgstr "Détection complète des vibrations de l'axe Y"
+
+msgid "Y Axis Vibration Detection in Progress"
+msgstr "Détection des vibrations de l'axe Y en cours"
+
+msgid ""
+"Y-axis vibration compensation detection has been completed and the status is "
+"normal."
+msgstr ""
+"La détection de compensation des vibrations de l'axe Y est terminée et le "
+"statut est normal."
+
+msgid "You are ready to start the test."
+msgstr "Vous êtes prêt à démarrer le test."
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Please config your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Please connect your sensor or re-config your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Please re-config your Input Shaper.\n"
+" Then try again."
+msgstr ""
+
+msgid ""
+"Your update has been completed. For the changes to take effect Do you want "
+"to restart?"
+msgstr ""
+
+msgid ""
+"Your update may not be compatible with ChromaScreen. Still Do you want to "
+"update?"
+msgstr ""
+
+msgid "Z Axis"
+msgstr "Axe Z"
+
+msgid "Z Calibrate"
+msgstr "Calibrer Z"
+
+msgid "Z Calibration Steps"
+msgstr "Étapes de calibration de Z"
+
+msgid "Z Move Speed (mm/s)"
+msgstr "Vitesse de déplacement de Z (mm/s)"
+
+msgid "Z Offset"
+msgstr "Décalage Z"
+
+msgid "Z Probe"
+msgstr ""
+
+msgid "Z Probe Distance"
+msgstr ""
+
+msgid "Z Speed (mm/s)"
+msgstr "Vitesse de Z (mm/s)"
+
+msgid "Z Tilt"
+msgstr "Inclinaison de Z"
+
+msgid "Z offset:"
+msgstr "Décalage de Z :"
+
+msgid "commit"
+msgid_plural "commits"
+msgstr[0] "commit"
+msgstr[1] "commits"
+
+msgid "dBm"
+msgstr "dBm"
+
+msgid "files listed"
+msgstr "fichiers listés"
+
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "heure"
+msgstr[1] "heures"
+
+msgid "minutes"
+msgstr "minutes"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "mm/s"
+msgstr "mm/s"
+
+msgid "mm/s²"
+msgstr "mm/s²"
+
+msgid "mm³/s"
+msgstr "mm³/s"
+
+msgid "selected"
+msgstr "sélectionné"
+
+#~ msgid "Prob Calibration"
+#~ msgstr "Calibration du prob"

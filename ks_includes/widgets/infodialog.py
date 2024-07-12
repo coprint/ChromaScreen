@@ -4,7 +4,7 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib, GdkPixbuf
 
 class InfoDialog(Gtk.Dialog):
-    def __init__(self,this, _content, isActive= True):
+    def __init__(self,this, _content, isActive= True, isCamera=False):
         super().__init__(title="Info Dialog",parent=None ,flags=0)
         self.parent = this
         self.set_size_request(0, 0)
@@ -69,6 +69,7 @@ class InfoDialog(Gtk.Dialog):
             mainBox.pack_start(closeButton, False, False, 0)
         
         
+        
         box = self.get_content_area()
         box.set_halign(Gtk.Align.CENTER)
         box.set_valign(Gtk.Align.CENTER)
@@ -76,8 +77,12 @@ class InfoDialog(Gtk.Dialog):
         box.add(mainBox)
        
         self.show_all()
+        if(isCamera):
+            GLib.timeout_add(50, self.destroyCamera)
     def on_click_emergency_stop(self, button):
         self.destroy()
         self.parent._screen._ws.klippy.emergency_stop()
-        
-   
+    
+    def destroyCamera(self):
+        self.destroy()
+        self.parent._screen.show_panel("co_print_setting_screen", "co_print_setting_screen",  None, 2, False)

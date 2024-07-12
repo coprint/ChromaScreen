@@ -29,10 +29,10 @@ class Panel(ScreenPanel):
         languages = [
             {'Lang':'en' ,'Name': _('English'), 'Icon': 'English', 'Button': Gtk.RadioButton()},
             {'Lang':'fr' ,'Name': _('French'), 'Icon': 'France', 'Button': Gtk.RadioButton()},
-            {'Lang':'ge' ,'Name': _("Deutsch"), 'Icon': 'Germany', 'Button': Gtk.RadioButton()},
+            {'Lang':'de' ,'Name': _("Deutsch"), 'Icon': 'Germany', 'Button': Gtk.RadioButton()},
             {'Lang':'tr' ,'Name': _("Turkish"), 'Icon': 'Turkey', 'Button': Gtk.RadioButton()},
             {'Lang':'it' ,'Name': _('Italian'), 'Icon': 'Italy', 'Button': Gtk.RadioButton()},
-            {'Lang':'sp' ,'Name': _('Spanish'), 'Icon': 'Spain', 'Button': Gtk.RadioButton()},
+            {'Lang':'es' ,'Name': _('Spanish'), 'Icon': 'Spain', 'Button': Gtk.RadioButton()},
             
             ]
         
@@ -44,7 +44,7 @@ class Panel(ScreenPanel):
         self.labels['actions'].set_size_request(self._gtk.content_width, -1)
 
        
-        initHeader = InitHeader (self, _('Language Settings'), _('Lütfen sistem dilini belirleyiniz'), "Geography")
+        initHeader = InitHeader (self, _('Language Settings'), _('Please specify the system language'), "Geography")
 
         '''diller'''
         grid = Gtk.Grid(column_homogeneous=True,
@@ -116,7 +116,7 @@ class Panel(ScreenPanel):
         self._screen.base_panel.visible_menu(False)
        
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 1)
+        self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 1, False)
 
     def changeLang(self, lang):
         self._screen.change_language(lang)
@@ -124,18 +124,18 @@ class Panel(ScreenPanel):
             'en': 'en_US.UTF-8',
             'tr': 'tr_TR.UTF-8',
             'fr': 'fr_FR.UTF-8',
-            'ge': 'de_DE.UTF-8',
+            'de': 'de_DE.UTF-8',
             'it': 'it_IT.UTF-8',
-            'sp': 'es_ES.UTF-8',
+            'es': 'es_ES.UTF-8',
         }
 
         language_map = {
             'en': 'en_US',
             'tr': 'tr_TR',
             'fr': 'fr_FR',
-            'ge': 'de_DE',
+            'de': 'de_DE',
             'it': 'it_IT',
-            'sp': 'es_ES',
+            'es': 'es_ES',
         }
 
         locale_code = lang_map.get(lang, 'en_US.UTF-8')

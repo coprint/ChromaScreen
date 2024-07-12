@@ -10,8 +10,8 @@ from gi.repository import Gtk, Pango, GLib, Gdk
 from ks_includes.screen_panel import ScreenPanel
 
 
-# # def create_panel(*args):
-# #     return CoPrintMcuClockSpeed(*args)
+# def create_panel(*args):
+#     return CoPrintMcuClockSpeed(*args)
 
 
 # class CoPrintMcuClockSpeed(ScreenPanel):

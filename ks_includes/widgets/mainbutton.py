@@ -36,27 +36,37 @@ class MainButton(Gtk.Box):
             buttonBox.add(Button)
             self.add(buttonBox)
         
-        
-        
     def on_click_menu_button(self, button, data):
-     
-
-        if(data == 'co_print_printing_screen' and self.parent._printer.state != 'printing'):
+        if self.parent._printer.state == 'printing' :
+            if data == 'co_print_setting_screen' or data == 'co_print_camera_setting_screen' or data == 'co_print_network_setting_screen':
+                self.parent._screen.show_panel(data, data, "Language", 1, False)
+                #data = data
+            elif data == 'co_print_printing_files_screen' or data == 'co_print_printing_screen':
+                self.parent._screen.show_panel(data, data, "Language", 1, False)
+            else:
+                return True
+        elif self.parent._printer.state == 'paused' and data == 'co_print_printing_files_screen':
+            data = 'co_print_printing_screen'
+            self.parent._screen.show_panel(data, data, "Language", 1, False)
+        elif self.parent._printer.state != 'printing' and self.parent._printer.state != 'paused' and data == 'co_print_printing_screen':
             data = 'co_print_printing_files_screen'
-       
-            
-        self.parent._screen.show_panel(data, data, "Language", 1, False)
+            self.parent._screen.show_panel(data, data, "Language", 1, False)
+        else:
+            self.parent._screen.show_panel(data, data, "Language", 1, False)
+        
+    # def on_click_menu_button(self, button, data):
+    #     if(data == 'co_print_printing_screen' and self.parent._printer.state != 'printing'):
+    #         data = 'co_print_printing_files_screen'
+    #     self.parent._screen.show_panel(data, data, "Language", 1, False)
 
     def open_info_dialog(self, widget):
-        self.dialog = InfoDialog(self.parent, ("Printer is returning to the starting position, please wait.."), False)
-        self.dialog.get_style_context().add_class("alert-info-dialog")
-        self.home()
-        self.dialog.set_decorated(False)
-        self.dialog.set_size_request(0, 0)
-      
-     
-
-        response = self.dialog.run()
+        if (self.parent._printer.state != 'printing' and self.parent._printer.state != 'paused') :
+            self.dialog = InfoDialog(self.parent, ("Printer is returning to the starting position, please wait.."), False)
+            self.dialog.get_style_context().add_class("alert-info-dialog")
+            self.home()
+            self.dialog.set_decorated(False)
+            self.dialog.set_size_request(0, 0)
+            response = self.dialog.run()
  
        
         

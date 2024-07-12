@@ -28,6 +28,7 @@ class Singleton(type):
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
    
+# class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
 class Panel(ScreenPanel, metaclass=Singleton):
     extruderChanged = False
     def __init__(self, screen, title):
@@ -112,11 +113,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.button_pause_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.button_pause_box.set_name("pause-cancel-button-box")
-        self.button_pause_box.add(self.buttons['pause'])
-        
+        if self._printer.state == 'printing':
+            self.button_pause_box.add(self.buttons['pause'])
+        elif self._printer.state == 'paused':
+            self.button_pause_box.add(self.buttons['pause'])
         self.button_pause_box.hide()
-
-      
+        
         button_cancel_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         button_cancel_box.set_name("pause-cancel-button-box")
         button_cancel_box.add(self.buttons['cancel'])
@@ -199,10 +201,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
         separator = Gtk.HSeparator()
         separatorsecond = Gtk.HSeparator()
         self.extrusionFactor_widget = PercentageFactor(self, "extrudericon", ("Extrusion Factor"),200, 1, 'extrusionFactor')
-        self.extrusionFactor_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.extrusionFactor_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         self.extrusionFactor_box.set_name("zoffset-box")
         self.extrusionFactor_box.pack_start(self.extrusionFactor_widget, True, False, 0)
-        self.extrusionFactor_box.pack_start(separator, True, False, 0)
+        self.extrusionFactor_box.pack_start(separator, True, False, 10)
         self.extrusionFactor_box.pack_start(pressure_smooth_box, True, False, 0)
         #extrusionFactor_box.pack_start(separatorsecond, True, False, 0)
         #extrusionFactor_box.pack_start(filament_extrusion_box, True, False, 0)
@@ -319,8 +321,8 @@ class Panel(ScreenPanel, metaclass=Singleton):
         fixed.set_valign(Gtk.Align.START)
         fixed.set_halign(Gtk.Align.START)
         fixed.put(right_box, 5, 0)
-        fixed.put(prevButtonBox, 0, 300)
-        fixed.put(nextButtonBox, 540, 300)
+        fixed.put(prevButtonBox, 0, 350)
+        fixed.put(nextButtonBox, 540, 350)
         main_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         main_box.pack_start(left_box, False, False, 0)
         main_box.pack_start(fixed, False, False, 0)
@@ -411,7 +413,20 @@ class Panel(ScreenPanel, metaclass=Singleton):
         # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
         #     page_url = 'co_print_home_not_connected_screen'
         #     self._screen.show_panel(page_url, page_url, "Language", 1, False)
-
+        if action == 'notify_status_update' and 'print_stats' in data :
+            if 'state'in data['print_stats']:
+                if data['print_stats']['state'] == 'paused' :
+                    self.enable_button("resume", "cancel")
+                    for child in self.button_pause_box.get_children():
+                        self.button_pause_box.remove(child)
+                    self.button_pause_box.add(self.buttons['resume'])
+                    self.buttons['resume'].show()
+                elif data['print_stats']['state'] == 'printing':
+                    self.enable_button( "pause", "cancel")
+                    for child in self.button_pause_box.get_children():
+                        self.button_pause_box.remove(child)
+                    self.button_pause_box.add(self.buttons['pause'])
+                    self.buttons['pause'].show()
         self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])
         self.HeaterBedMax_temp = float(self._printer.get_config_section('heater_bed')['max_temp'])
         extruder_list = self._printer.get_tools()
@@ -662,9 +677,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
         for child in self.button_pause_box.get_children():
             self.button_pause_box.remove(child)
         self.button_pause_box.add(self.buttons['resume'])
-        self.button_pause_box.show()
+        #self.button_pause_box.show()
+        self.buttons['resume'].show()
         print('pause')
-        self.content.show_all()  
+        #self.content.show_all()  
         return True
 
     def resumePrint(self, widget):

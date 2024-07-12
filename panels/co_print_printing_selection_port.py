@@ -77,8 +77,8 @@ class Panel(ScreenPanel):
         self.skipButton.set_always_show_image (True)       
         mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
 
-        self.portBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        self.portBox.pack_start(portOneBox, False, False, 10)
+        self.portBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        self.portBox.pack_start(portOneBox, False, False, 0)
         # self.portBox.pack_start(portTwoBox, False, False, 5)
 
 
@@ -104,8 +104,12 @@ class Panel(ScreenPanel):
         usb_parts = []
         for child in self.portBox.get_children():
             self.portBox.remove(child)
-
+        grid = Gtk.Grid(column_homogeneous=True,
+                         column_spacing=0,
+                         row_spacing=0)
         if string != '':
+            row = 0
+            count = 0
             for part in array:
                 parts = part.split('usb-')
                 if len(parts) > 1:
@@ -116,7 +120,25 @@ class Panel(ScreenPanel):
                     self.portTwo.connect("clicked", self.on_click_select_path, part)
                     portTwoBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
                     portTwoBox.pack_start(self.portTwo, False, False, 0)
-                    self.portBox.add(portTwoBox)
+                    #self.portBox.add(portTwoBox)
+                    grid.attach(portTwoBox,count,row,1,1)
+                    count += 1
+                    if count % 1 == 0:
+                        count = 0
+                        row += 1
+            gridBox = Gtk.Box()
+            gridBox.set_halign(Gtk.Align.CENTER)
+            gridBox.add(grid)
+            
+            self.scroll = self._gtk.ScrolledWindow()
+            self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+            self.scroll.set_min_content_height(self._screen.height * .3)
+            self.scroll.set_kinetic_scrolling(True)
+            self.scroll.get_overlay_scrolling()
+        
+        
+            self.scroll.add(gridBox)
+            self.portBox.pack_start(self.scroll,False,False,0)
         else:
             self.portTwo = Gtk.Button('---',name ="flat-button-black")
             self.portTwo.set_hexpand(True)

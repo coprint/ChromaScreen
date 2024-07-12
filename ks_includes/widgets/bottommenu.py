@@ -21,6 +21,7 @@ class BottomMenu(Gtk.Box):
         printersIcon = this._gtk.Image("printerchange", 35, 35)
         configureIcon = this._gtk.Image("configure", 35, 35)
         emergencyStopIcon = this._gtk.Image("emergencyicon", 35, 35)
+        refreshIcon = this._gtk.Image("update", 35, 35)
         backIcon = this._gtk.Image("back-arrow", 35, 35)
         
         # if _backButtonActive:
@@ -57,10 +58,9 @@ class BottomMenu(Gtk.Box):
         printFilesButtonBox.pack_start(printFilesLabel, False, False, 0)
         printFilesButton = Gtk.Button(name ="menu-buttons")
         printFilesButton.add(printFilesButtonBox)
-        printFilesButton.connect("clicked", self.on_click_menu_button, 'co_print_printing_files_screen')
+        printFilesButton.connect("clicked", self.on_click_menu_button, 'co_print_printing_files_screen', False)
         printFilesButton.set_always_show_image (True)
         menuBox.pack_start(printFilesButton, True, True, 0)
-            
             
         pintersLabel = Gtk.Label(("Printers"), name="bottom-menu-label")            
         pintersButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -85,42 +85,41 @@ class BottomMenu(Gtk.Box):
         configureButton.connect("clicked", self.on_click_menu_button, 'co_print_setting_screen', False)
         configureButton.set_always_show_image (True)
         menuBox.pack_start(configureButton, True, True, 0)
-
         
         emergencyStopButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         emergencyStopButtonBox.set_halign(Gtk.Align.CENTER)
         emergencyStopButtonBox.set_valign(Gtk.Align.CENTER)
         emergencyStopButtonBox.pack_start(emergencyStopIcon, False, False, 0)
-
         emergencyStopButton = Gtk.Button(name ="emergency-button")
         emergencyStopButton.add(emergencyStopButtonBox)
         emergencyStopButton.connect("clicked", self.on_click_emergency_stop)
         emergencyStopButton.set_always_show_image (True)
         menuBox.pack_start(emergencyStopButton, True, False, 0)
         
-      
+        restartServiceButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        restartServiceButtonBox.set_halign(Gtk.Align.CENTER)
+        restartServiceButtonBox.set_valign(Gtk.Align.CENTER)
+        restartServiceButtonBox.pack_start(refreshIcon, False, False, 0)
+        restartServiceButton = Gtk.Button(name ="emergency-button")
+        restartServiceButton.add(restartServiceButtonBox)
+        restartServiceButton.connect("clicked", this._screen.restart_ks)
+        restartServiceButton.set_always_show_image (True)
+        #menuBox.pack_start(restartServiceButton, True, False, 0)
         
         menuBox.set_hexpand(True)
-
-       
         self.add(menuBox)
 
     def on_click_emergency_stop(self, button):
-        
         self.parent._screen._ws.klippy.emergency_stop()
-    def on_click_menu_button(self, button, data, active_page = True):
 
+    def on_click_menu_button(self, button, data, active_page = True):
         if  active_page:
             if self.parent._printer.state == 'error' or self.parent._printer.state == 'shutdown' or self.parent._printer.state == 'disconnected':
                 self.parent._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen",
                                         "Language", 1, False)
             else:
                 self.parent._screen.show_panel(data, data, "Language", 1, False)
-                
+        elif data == 'co_print_printing_files_screen' and  (self.parent._printer.state == 'printing' or self.parent._printer.state == 'paused'):
+            self.parent._screen.show_panel('co_print_printing_screen', 'co_print_printing_screen', "Language", 1, False)
         elif(self.parent._printer.state != 'printing'):
             self.parent._screen.show_panel(data, data, "Language", 1, False)
-
-
-    
-
-    

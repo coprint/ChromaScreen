@@ -1,0 +1,1488 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-12 10:32+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+msgid " Axis Vibration Detection Complete"
+msgstr " Eksen Titreşim Tespiti Tamamlandı"
+
+msgid " Axis Vibration Detection in Progress"
+msgstr " Eksen Titreşim Tespiti Devam Ediyor"
+
+#, python-format
+msgid "%s will be updated to version"
+msgstr "%s sürümüne güncellenecek"
+
+msgid "(default)"
+msgstr "(varsayılan)"
+
+msgid ""
+"-axis vibration compensation detection has been completed and the status is "
+"normal."
+msgstr "-eksen titreşim telafi tespiti tamamlandı ve durumu normal."
+
+msgid "24 Hour Time"
+msgstr "24 Saatlik Zaman"
+
+msgid "A FIRMWARE_RESTART may fix the issue."
+msgstr "Yazılım yeniden başlatma sorunu çözebilir."
+
+msgid "ADXL Not Configured"
+msgstr "ADXL Yapılandırılmamış"
+
+msgid "Abort"
+msgstr "İptal"
+
+msgid "Accel to Decel"
+msgstr "Hızlanma - Yavaşlama"
+
+msgid "Acceleration"
+msgstr "Hızlanma"
+
+msgid "Acceleration:"
+msgstr "Hızlanma:"
+
+msgid "Accept"
+msgstr "Kabul et"
+
+msgid "Actions"
+msgstr "Eylemler"
+
+msgid "Add Network"
+msgstr "Ağ Ekle"
+
+msgid "Add profile"
+msgstr "Profil Ekle"
+
+msgid "Adv. Settings"
+msgstr "Gelişmiş Ayarlar"
+
+msgid "Apply"
+msgstr "Uygula"
+
+#, python-format
+msgid "Apply %.2f offset to Endstop?"
+msgstr "%.2f offsetini Endstop'a uygulamak istiyor musunuz?"
+
+#, python-format
+msgid "Apply %s%.2f offset to Probe?"
+msgstr "%s%.2f offsetini Proba uygulamak istiyor musunuz?"
+
+msgid "Are you sure do you want to exclude the object?"
+msgstr "Bu nesneyi hariç tutmak istediğinizden emin misiniz?"
+
+msgid "Are you sure you want to run Emergency Stop?"
+msgstr "Acil Durdurma'yı çalıştırmak istediğinizden emin misiniz?"
+
+msgid "Are you sure you wish to cancel this print?"
+msgstr "Bu baskıyı iptal etmek istediğinizden emin misiniz?"
+
+msgid "Are you sure you wish to disable motors?"
+msgstr "Motorları devre dışı bırakmak istediğinizden emin misiniz?"
+
+msgid "Are you sure you wish to reboot the system?"
+msgstr "Sistemi yeniden başlatmak istediğinizden emin misiniz?"
+
+msgid "Are you sure you wish to shutdown the system?"
+msgstr "Sistemi kapatmak istediğinizden emin misiniz?"
+
+msgid "Are you sure?"
+msgstr "Emin misin?"
+
+msgid "Auto"
+msgstr "Otomatik"
+
+msgid "Auto Leveling"
+msgstr "Otomatik Düzeltme"
+
+msgid "Auto Scroll"
+msgstr "Otomatik Kaydırma"
+
+msgid "Auto close notifications"
+msgstr "Bildirimleri otomatik kapat"
+
+msgid "Auto-calibrate"
+msgstr "Otomatik kalibre et"
+
+msgid "Auto-close notifications"
+msgstr "Bildirimleri otomatik kapat"
+
+msgid "Auto-scroll"
+msgstr "Otomatik kaydırma"
+
+msgid "Automatic Table Calibration"
+msgstr "Otomatik Tablo Kalibrasyonu"
+
+msgid "Automatic bed calibration is completed. Please restart the system."
+msgstr ""
+"Otomatik yatak kalibrasyonu tamamlandı. Lütfen sistemi yeniden başlatın."
+
+msgid "Automatic bed leveling is being performed. Please wait.."
+msgstr "Otomatik yatak düzeltme işlemi yapılıyor. Lütfen bekleyin.."
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Back to Wizard"
+msgstr "Sihirbaza Geri Dön"
+
+msgid "Bed Level"
+msgstr "Yatak Düzeyi"
+
+msgid "Bed Mesh"
+msgstr "Yatak Ağı"
+
+msgid "Bed screw configuration:"
+msgstr "Yatak vida konfigürasyonu:"
+
+msgid "Bootloader Offset"
+msgstr "Önyükleyici Kaydırma"
+
+msgid "Botloader Offset"
+msgstr "Botloader Kaydırma"
+
+msgid "Calibrate"
+msgstr "Kalibre et"
+
+msgid "Calibrated"
+msgstr "Kalibre edildi"
+
+msgid "Calibrating"
+msgstr "Kalibre ediliyor"
+
+msgid ""
+"Calibration steps vary depending on your printer's motion mechanism. Please "
+"select the type of your printer."
+msgstr ""
+"Kalibrasyon adımları yazıcınızın hareket mekanizmasına göre değişir. Lütfen "
+"yazıcınızın türünü seçin."
+
+msgid ""
+"Calibration will disconnect from other printers. Please make sure that other "
+"printers are not in operation"
+msgstr ""
+"Kalibrasyon diğer yazıcılardan ayrılacaktır. Lütfen diğer yazıcıların "
+"çalışmadığından emin olun"
+
+msgid "Cam Settings"
+msgstr "Kamera Ayarları"
+
+msgid "Camera"
+msgstr "Kamera"
+
+msgid "Can't set above the maximum:"
+msgstr "Maksimumdan yüksek ayarlanamaz:"
+
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Cancel Print"
+msgstr "Baskıyı İptal Et"
+
+msgid "Cancelled"
+msgstr "İptal edildi"
+
+msgid "Cancelling"
+msgstr "İptal ediliyor"
+
+msgid "Cannot connect to Moonraker"
+msgstr "Moonraker'a bağlanılamıyor"
+
+msgid "Cartesian Type"
+msgstr "Kartezian Tür"
+
+msgid "Change Offset"
+msgstr "Kaydırma Değiştir"
+
+msgid "Change Probe"
+msgstr "Probu Değiştir"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Check ADXL Wiring"
+msgstr "ADXL Bağlantısını Kontrol Edin"
+
+msgid "Check Sensor"
+msgstr "Sensörü Kontrol Edin"
+
+msgid "Checking for updates, please wait..."
+msgstr "Güncellemeler kontrol ediliyor, lütfen bekleyin..."
+
+msgid "Checking the Sensor Connection"
+msgstr "Sensör Bağlantısı Kontrol Ediliyor"
+
+msgid "Chip Settings"
+msgstr "Çip Ayarları"
+
+msgid "ChromaScreen will reboot"
+msgstr "ChromaScreen yeniden başlatılacak"
+
+msgid "Chromascreen"
+msgstr "Chromascreen"
+
+msgid "Clear"
+msgstr "Temizle"
+
+msgid ""
+"Click the “Start Calibration” button to perform automatic table calibration."
+msgstr ""
+"Otomatik tablo kalibrasyonu yapmak için “Kalibrasyonu Başlat” düğmesine "
+"tıklayın."
+
+msgid "Clock Referance"
+msgstr "Saat Referansı"
+
+msgid "Clock Reference"
+msgstr "Saat Referansı"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Co Print Wiki"
+msgstr "Co Print Wiki"
+
+msgid "Com Interface"
+msgstr "Com Arayüzü"
+
+msgid "Complete"
+msgstr "Tamamlandı"
+
+msgid "Configuration"
+msgstr "Yapılandırma"
+
+msgid "Confirm Emergency Stop"
+msgstr "Acil Durdurmayı Onayla"
+
+msgid "Confirm emergency stop"
+msgstr "Acil durdurmayı onayla"
+
+msgid "Connect"
+msgstr "Bağlan"
+
+msgid "Connect Your 3D Printer"
+msgstr "3D Yazıcınızı Bağlayın"
+
+msgid "Connect the Sensor"
+msgstr "Sensörü Bağlayın"
+
+msgid ""
+"Connect the device by entering the information of the network you are using."
+msgstr "Kullandığınız ağın bilgilerini girerek cihazı bağlayın."
+
+# ####
+msgid "Connect your 3D printer to Co Print Smart using a USB cable."
+msgstr "3D yazıcını Co Print Smart'a USB kabloyu kullanarak bağla"
+
+msgid "Connected"
+msgstr "Bağlandı"
+
+#, python-format
+msgid "Connecting to %s"
+msgstr "%s'e bağlanılıyor"
+
+msgid "Connection Completed"
+msgstr "Bağlantı Tamamlandı"
+
+msgid "Connection Failed"
+msgstr "Bağlantı Başarısız Oldu"
+
+msgid "Connection Settings"
+msgstr "Bağlantı Ayarları"
+
+msgid "Connection failed."
+msgstr "Bağlantı başarısız oldu."
+
+msgid "Console"
+msgstr "Konsol"
+
+msgid "Continue"
+msgstr "Devam"
+
+msgid "Contract Approval"
+msgstr "Sözleşme Onayı"
+
+msgid "Cooldown"
+msgstr "Soğuma"
+
+msgid "Corexy Type"
+msgstr "Corexy Türü"
+
+msgid "Country/State"
+msgstr "Ülke/İl"
+
+msgid "Creating..."
+msgstr "Oluşturuluyor..."
+
+msgid "Current"
+msgstr "Mevcut"
+
+msgid "D."
+msgstr "D."
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Delete Directory?"
+msgstr "Dizin Silinsin mi?"
+
+msgid "Delete File?"
+msgstr "Dosya Silinsin mi?"
+
+msgid "Deselect"
+msgstr "Seçimi Kaldır"
+
+msgid "Deutsch"
+msgstr "Almanca"
+
+msgid "Dimension"
+msgstr "Boyut"
+
+msgid "Disable Motors"
+msgstr "Motorları Devre Dışı Bırak"
+
+msgid "Disable Stepper"
+msgstr "Step Motorunu Devre Dışı Bırak"
+
+msgid "Disable XY"
+msgstr "XY'yi Devre Dışı Bırak"
+
+msgid "Disconnect"
+msgstr "Bağlantıyı kes"
+
+msgid "Distance (mm)"
+msgstr "Mesafe (mm)"
+
+#, python-format
+msgid "Do you want to recover %s?"
+msgstr "%s'i kurtarmak istiyor musunuz?"
+
+msgid "Done"
+msgstr "Tamamlandı"
+
+msgid "Elapsed:"
+msgstr "Geçen süre:"
+
+msgid "Enable extra low-level configuration options"
+msgstr "Ekstra düşük seviye yapılandırma seçeneklerini etkinleştir"
+
+msgid "English"
+msgstr "İngilizce"
+
+msgid "Enter Value"
+msgstr "Değer Girin"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Estimated Time"
+msgstr "Tahmini Süre"
+
+msgid "Estimated Time Method"
+msgstr "Tahmini Süre Yöntemi"
+
+msgid "Estimated time method"
+msgstr "Tahmini süre yöntemi"
+
+msgid "Exclude Object"
+msgstr "Nesneyi Hariç Tut"
+
+msgid "Execute"
+msgstr "Uygula"
+
+msgid "Extra Large"
+msgstr "Çok Büyük"
+
+msgid "Extrude"
+msgstr "Ekstrüzyon"
+
+msgid "Extruder Movement (mm)"
+msgstr "Ekstruder Hareketi (mm)"
+
+msgid "Extrusion +"
+msgstr "Ekstrüzyon +"
+
+msgid "Extrusion -"
+msgstr "Ekstrüzyon -"
+
+msgid "Extrusion Speed (mm)"
+msgstr "Ekstrüzyon Hızı (mm)"
+
+msgid "Failed, adjust position first"
+msgstr "Başarısız oldu, önce pozisyonu ayarlayın"
+
+msgid "Fan"
+msgstr "Fan"
+
+msgid "Fan Speed"
+msgstr "Fan Hızı"
+
+msgid "Filament"
+msgstr "Filament"
+
+msgid "Filament Cut"
+msgstr "Filament Kesme"
+
+msgid "Filament Used"
+msgstr "Kullanılan Filament"
+
+msgid "Filament total:"
+msgstr "Toplam Filament:"
+
+msgid "Filament used:"
+msgstr "Kullanılan Filament:"
+
+msgid "Filament:"
+msgstr "Filament:"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "File Name"
+msgstr "Dosya Adı"
+
+msgid "File Preview"
+msgstr "Dosya Önizlemesi"
+
+msgid "File:"
+msgstr "Dosya:"
+
+msgid "Finding ADXL"
+msgstr "ADXL Bulunuyor"
+
+msgid "Fine Tuning"
+msgstr "İnce Ayarlama"
+
+msgid "Finish"
+msgstr "Bitir"
+
+msgid "Firmware Restart"
+msgstr "Firmware Yeniden Başlatma"
+
+msgid ""
+"First, tighten the tension screws to their maximum value. Then, for the "
+"first step, make a height adjustment using paper."
+msgstr ""
+"Öncelikle gerilim vidalarını maksimum değerine sıkın. Sonra ilk adım olarak, "
+"kağıt kullanarak yükseklik ayarı yapın."
+
+msgid "Flash Chip"
+msgstr "Chip'i Flashla"
+
+msgid "Flow:"
+msgstr "Akış:"
+
+msgid "Flowrate:"
+msgstr "Akış Hızı:"
+
+msgid "Font Size"
+msgstr "Yazı Tipi Boyutu"
+
+msgid "Forget Network"
+msgstr "Ağı Unut"
+
+msgid "French"
+msgstr "Fransızca"
+
+msgid "Full Update"
+msgstr "Tam Güncelleme"
+
+msgid "Fullscreen"
+msgstr "Tam Ekran"
+
+msgid "Go Back"
+msgstr "Geri Git"
+
+msgid "Go Printer"
+msgstr "Yazıcıya Git"
+
+msgid ""
+"Having trouble installing or starting up? Scan the QR code to get help and "
+"detailed information."
+msgstr ""
+"Kurulum veya başlatma sırasında sorun mu yaşıyorsunuz? Yardım ve detaylı "
+"bilgi almak için QR kodunu tarayın."
+
+msgid "Heated Bed"
+msgstr "Isıtmalı Yatak"
+
+msgid "Height:"
+msgstr "Yükseklik:"
+
+msgid "Hidden"
+msgstr "Gizli"
+
+msgid "Hide"
+msgstr "Gizle"
+
+msgid "Hide sensor in temp"
+msgstr "Sıcaklıkta sensörü gizle"
+
+msgid "Hide sensors in Temp."
+msgstr "Sıcaklıkta sensörleri gizle"
+
+msgid "Hide temp."
+msgstr "Sıcaklığı gizle"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "Home All"
+msgstr "Tümünü Ana Konumuna Getir"
+
+msgid "Home X"
+msgstr "X'e Ana Konumuna Getir"
+
+msgid "Home XY"
+msgstr "XY'ye Ana Konumuna Getir"
+
+msgid "Home Y"
+msgstr "Y'yi Ana Konumuna Getir"
+
+msgid "Home Z"
+msgstr "Z'yi Ana Konumuna Getir"
+
+msgid "Homing"
+msgstr "Homing"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Hostname Co Print"
+msgstr "Hostname Co Print"
+
+msgid "Hostname Noya"
+msgstr "Hostname Noya"
+
+msgid "Hot Bed"
+msgstr "Isıtmalı Yatak"
+
+msgid "I have read and accept the Privacy Policy."
+msgstr "Gizlilik Politikasını okudum ve kabul ediyorum."
+
+msgid "IP"
+msgstr "IP"
+
+msgid "Icon Theme"
+msgstr "Simge Teması"
+
+msgid "Init..."
+msgstr "Başlat..."
+
+msgid "Initializing printer..."
+msgstr "Yazıcı başlatılıyor..."
+
+msgid "Input Shaper"
+msgstr "Input Shaper"
+
+msgid ""
+"Insert the SD Card of your printer into ChromaScreen to change the program "
+"of your 3D printer."
+msgstr ""
+"3D yazıcınızın programını değiştirmek için yazıcınızın SD Kartını "
+"ChromaScreen'e takın."
+
+msgid "Interface"
+msgstr "Arayüz"
+
+msgid "Invalid"
+msgstr "Geçersiz"
+
+msgid "Invalid password"
+msgstr "Geçersiz şifre"
+
+msgid "Invert X"
+msgstr "X'i Ters Çevir"
+
+msgid "Invert Y"
+msgstr "Y'yi Ters Çevir"
+
+msgid "Invert Z"
+msgstr "Z'yi Ters Çevir"
+
+msgid "Italian"
+msgstr "İtalyanca"
+
+msgid "Klipper"
+msgstr "Klipper"
+
+msgid "Klipper Restart"
+msgstr "Klipper Yeniden Başlatma"
+
+msgid "Klipper Update"
+msgstr "Klipper Güncelleme"
+
+msgid "Klipper bin file has been writen."
+msgstr "Klipper bin dosyası yazıldı."
+
+msgid "Klipper has disconnected"
+msgstr "Klipper bağlantısı kesildi"
+
+msgid "Klipper has encountered an error."
+msgstr "Klipper bir hata ile karşılaştı."
+
+msgid "Klipper has shutdown"
+msgstr "Klipper kapatıldı"
+
+msgid "Klipper is attempting to start"
+msgstr "Klipper başlatılmaya çalışılıyor"
+
+msgid "Klipper reports: "
+msgstr "Klipper reports: "
+
+msgid "Klipper will reboot"
+msgstr "Klipper yeniden başlatılacak"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Language Settings"
+msgstr "Dil Ayarları"
+
+msgid "Large"
+msgstr "Büyük"
+
+msgid "Layer:"
+msgstr "Katman:"
+
+msgid "Left:"
+msgstr "Sol:"
+
+msgid "Limits"
+msgstr "Limitler"
+
+msgid "Load"
+msgstr "Yükle"
+
+msgid "Log Files"
+msgstr "Log Dosyaları"
+
+msgid "Lower Nozzle"
+msgstr "Alt Nozül"
+
+msgid "MCU Architecture"
+msgstr "MCU Mimarisi"
+
+msgid "Macro Shortcuts menu"
+msgstr "Makro Kısayollar menüsü"
+
+msgid "Macro shortcut on sidebar"
+msgstr "Kenar Çubuğunda Makro Kısayolu"
+
+msgid "Macros"
+msgstr "Makrolar"
+
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+msgid "Mainsail"
+msgstr "Mainsail"
+
+msgid "Manual Leveling"
+msgstr "Manuel Düzeltme"
+
+msgid "Max"
+msgstr "Maksimum"
+
+msgid "Max Acceleration"
+msgstr "Maksimum Hızlanma"
+
+msgid "Max Acceleration to Deceleration"
+msgstr "Maksimum Hızlanma İndirme"
+
+msgid "Max Velocity"
+msgstr "Maksimum Hız"
+
+msgid "Maximum"
+msgstr "Maksimum"
+
+msgid "Measure Both"
+msgstr "Her İkisini Ölç"
+
+msgid "Measure X"
+msgstr "X'i Ölç"
+
+msgid "Measure Y"
+msgstr "Y'yi Ölç"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Menu Co Print"
+msgstr "Menü Co Print"
+
+msgid "Menu Noya"
+msgstr "Menü Noya"
+
+msgid "Mesh calibrate"
+msgstr "Mesh kalibrasyonu"
+
+msgid "Modified"
+msgstr "Değiştirildi"
+
+msgid "Moonraker"
+msgstr "Moonraker"
+
+msgid "Moonraker: connected"
+msgstr "Moonraker: bağlı"
+
+msgid "Move"
+msgstr "Hareket Et"
+
+msgid "Move Axis"
+msgstr "Eksenleri Hareket Ettir"
+
+msgid "Move Distance (mm)"
+msgstr "Mesafe Taşı (mm)"
+
+msgid "Movement"
+msgstr "Hareket"
+
+msgid "Movement Settings"
+msgstr "Hareket Ayarları"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Network"
+msgstr "Ağ"
+
+msgid "Never"
+msgstr "Asla"
+
+msgid "New"
+msgstr "Yeni"
+
+msgid "Next Step"
+msgstr "Sonraki Adım"
+
+msgid "No Camera"
+msgstr "Kamera Yok"
+
+msgid "No mesh has been loaded"
+msgstr "Hiçbir ağ(Mesh) yüklenmedi"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Not Connected"
+msgstr "Bağlı Değil"
+
+msgid ""
+"Not supported for auto-detection, it needs to be configured in klipperscreen."
+"conf"
+msgstr ""
+"Otomatik algılama için desteklenmiyor, klipperscreen.conf dosyasında "
+"yapılandırılması gerekiyor."
+
+msgid "Nothing selected"
+msgstr "Hiçbir şey seçilmedi"
+
+msgid "Ok"
+msgstr "Tamam"
+
+msgid "Optional Feature"
+msgstr "İsteğe Bağlı Özellik"
+
+msgid "Other Printers"
+msgstr "Diğer Yazıcılar"
+
+#, python-format
+msgid "Outdated by %d"
+msgstr "%d sürümüne göre güncel değil"
+
+msgid "PSK for"
+msgstr "PSK için"
+
+msgid "Package will be updated"
+msgid_plural "Packages will be updated"
+msgstr[0] "Paket güncellenecek"
+msgstr[1] "Paketler güncellenecek"
+
+msgid "Park"
+msgstr "Park"
+
+msgid "Part Fan"
+msgstr "Parça Fanı"
+
+msgid "Password saved"
+msgstr "Şifre kaydedildi"
+
+msgid "Pause"
+msgstr "Duraklat"
+
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+msgid "Perform a full upgrade?"
+msgstr "Tam bir güncelleme yapmak istiyor musunuz?"
+
+msgid "Performing Auto Home"
+msgstr "Otomatik Home Gerçekleştirme"
+
+msgid "Pins"
+msgstr "Pinler"
+
+msgid "Place the Initial Sensor on your printer's bed using double-sided tape."
+msgstr ""
+"Başlangıç Sensörünü yazıcınızın yatağına çift taraflı bant kullanarak "
+"yerleştirin."
+
+msgid "Place the Initial Sensor to the head of your printer."
+msgstr "Başlangıç Sensörünü yazıcınızın kafasına yerleştirin."
+
+msgid "Please Connect the Sensor"
+msgstr "Lütfen Sensörü Bağlayın"
+
+msgid "Please Wait"
+msgstr "Lütfen Bekleyin"
+
+msgid "Please connect a camera using the USB ports for printing monitoring."
+msgstr ""
+"Yazdırma izleme için USB bağlantı noktalarını kullanarak bir kamera bağlayın."
+
+msgid "Please don’t touch the printer"
+msgstr "Lütfen yazıcıya dokunmayın"
+
+msgid "Please insert the USB drive."
+msgstr "Lütfen USB sürücüyü takın."
+
+msgid "Please read our agreement and confirm the terms."
+msgstr "Lütfen anlaşmamızı okuyun ve şartları onaylayın."
+
+msgid "Please recompile and flash the micro-controller."
+msgstr "Lütfen mikro denetleyiciyi yeniden derleyin ve flashlayın."
+
+msgid ""
+"Please select the architecture, communication frequency, clock speed and "
+"model of the chip you will be using."
+msgstr ""
+"Lütfen kullanacağınız çipin mimarisini, iletişim frekansını, saat hızını ve "
+"modelini seçin."
+
+msgid "Please select your region to determine your time zone."
+msgstr "Zaman diliminizi belirlemek için lütfen bölgenizi seçin."
+
+msgid "Please specify a custom name for your device."
+msgstr "Lütfen cihazınız için özel bir ad belirtin."
+
+msgid "Please specify the system language"
+msgstr "Lütfen sistem dilini belirleyiniz"
+
+msgid "Power"
+msgstr "Güç"
+
+msgid "Power On Printer"
+msgstr "Yazıcıyı Aç"
+
+msgid "Predefined Macros"
+msgstr "Önceden Tanımlanmış Makrolar"
+
+msgid "Preheat ABS"
+msgstr "ABS Önceden Isıtma"
+
+msgid "Preheat For Extrude"
+msgstr "Ekstrüzyon için Önceden Isıtma"
+
+msgid "Preheat PLA"
+msgstr "PLA Önceden Isıtma"
+
+msgid "Pressure Advance:"
+msgstr "Basınç İleriye Doğru:"
+
+msgid "Print"
+msgstr "Yazdır"
+
+msgid "Print Control"
+msgstr "Yazdırma Kontrolü"
+
+msgid "Print Time"
+msgstr "Baskı Süresi"
+
+msgid "Printer"
+msgstr "Yazıcı"
+
+msgid "Printer Connections"
+msgstr "Yazıcı Bağlantıları"
+
+msgid "Printer Select"
+msgstr "Yazıcı Seç"
+
+msgid "Printer Status"
+msgstr "Yazıcı Durumu"
+
+msgid "Printer is returning to the starting position, please wait.."
+msgstr "Yazıcı başlangıç konumuna dönüyor, lütfen bekleyin.."
+
+msgid "Printing"
+msgstr "Yazdırılıyor"
+
+msgid "Printing Camera"
+msgstr "Kamera ile Yazdırma"
+
+msgid "Printing File"
+msgstr "Dosya Yazdırma"
+
+msgid "Printing Time:"
+msgstr "Yazdırma Süresi:"
+
+msgid "Privacy Policy"
+msgstr "Gizlilik Politikası"
+
+msgid "Probe Calibration"
+msgstr "Prob Kalibrasyonu"
+
+msgid "Probe Offset"
+msgstr "Prob Offset"
+
+msgid "Processing, Please Wait.."
+msgstr "İşleniyor, Lütfen Bekleyin.."
+
+msgid "Processor Model"
+msgstr "İşlemci Modeli"
+
+msgid "Profile Name:"
+msgstr "Profil Adı:"
+
+msgid "Provide ChromaScreen.log when asking for help.\n"
+msgstr "Yardım istediğinizde ChromaScreen.log'u sağlayın.\n"
+
+msgid "Quad Gantry Level"
+msgstr "Dört Ayak Seviye"
+
+msgid "Raise Nozzle"
+msgstr "Nozülü Yükselt"
+
+msgid "Records"
+msgstr "Kayıtlar"
+
+msgid "Recover"
+msgstr "Kurtar"
+
+msgid "Recover Hard"
+msgstr "Sert Kurtarma"
+
+msgid "Recover Soft"
+msgstr "Yumuşak Kurtarma"
+
+msgid "Reference"
+msgstr "Referans"
+
+msgid "Refresh"
+msgstr "Yenile"
+
+msgid "Rename Your Device"
+msgstr "Cihazınızın Adını Değiştirin"
+
+msgid "Rename/Move:"
+msgstr "Yeniden Adlandır/Taşı:"
+
+msgid "Restart"
+msgstr "Yeniden Başlat"
+
+msgid "Resume"
+msgstr "Devam Et"
+
+msgid "Retract"
+msgstr "Geriyi Çek"
+
+msgid "Retraction"
+msgstr "Geriyi Alma"
+
+msgid "Retraction Length"
+msgstr "Geriyi Alma Uzunluğu"
+
+msgid "Retraction Speed"
+msgstr "Geriyi Alma Hızı"
+
+msgid "Retry"
+msgstr "Tekrar Dene"
+
+msgid "Retrying"
+msgstr "Tekrar Deneniyor"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Save Config"
+msgstr "Yapılandırmayı Kaydet"
+
+msgid "Save MESH"
+msgstr "MESH Kaydet"
+
+msgid "Save Settings"
+msgstr "Ayarları Kaydet"
+
+msgid "Save Z"
+msgstr "Z'yi Kaydet"
+
+msgid "Save configuration?"
+msgstr "Yapılandırmayı kaydetmek istiyor musunuz?"
+
+msgid "Saved"
+msgstr "Kaydedildi"
+
+#, python-format
+msgid "Saved offset: %s"
+msgstr "Kaydedilen ofset: %s"
+
+msgid "Screen DPMS"
+msgstr "Ekran DPMS"
+
+msgid "Screen Power Off Time"
+msgstr "Ekran Kapatma Zamanı"
+
+msgid "Screen power off time"
+msgstr "Ekran kapatma zamanı"
+
+msgid "Screws Adjust"
+msgstr "Vidaları Ayarla"
+
+msgid "Searching for Printer.."
+msgstr "Yazıcı aranıyor.."
+
+msgid "Select"
+msgstr "Seç"
+
+msgid "Select & Go"
+msgstr "Seç & Git"
+
+msgid "Select + - increase value"
+msgstr "+ - Değer artırma seçin"
+
+msgid "Select Baud Rate"
+msgstr "Baud Oranı Seç"
+
+msgid ""
+"Select Controlled \n"
+" Extruder"
+msgstr ""
+"Kontrol Edilen \n"
+"Ekstrüzyon"
+
+msgid "Select Microcontroller"
+msgstr "Mikrodenetleyici Seç"
+
+msgid "Select Region"
+msgstr "Bölge Seç"
+
+msgid "Select Your Printer Type"
+msgstr "Yazıcı Türünüzü Seçin"
+
+msgid ""
+"Select the Baud Rate to communicate with the processor you will be using."
+msgstr "Kullanacağınız işlemci ile iletişim kurmak için Baud Oranını seçin."
+
+msgid "Select the Chip Model"
+msgstr "Çip Modelini Seçin"
+
+msgid "Select the MCU located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki MCU'yu seçin."
+
+msgid "Select the MCU model located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki MCU modelini seçin."
+
+msgid ""
+"Select the bootloader offset located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki bootloader ofsetini seçin."
+
+msgid "Select the chip model located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki çip modelini seçin."
+
+msgid ""
+"Select the clock reference located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki saat referansını seçin."
+
+msgid ""
+"Select the com interface model located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki com arayüz modelini seçin."
+
+msgid ""
+"Select the optional features located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki isteğe bağlı özellikleri seçin."
+
+msgid "Select the usb ids located on the board you will be controlling."
+msgstr "Kontrol edeceğiniz kart üzerindeki USB kimliklerini seçin."
+
+msgid "Send"
+msgstr "Gönder"
+
+msgid "Sensor Cannot Connect"
+msgstr "Sensör Bağlanamıyor"
+
+msgid "Sensor Connected"
+msgstr "Sensör Bağlı"
+
+msgid "Set Temp"
+msgstr "Sıcaklık Ayarla"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Setup Completed"
+msgstr "Kurulum Tamamlandı"
+
+msgid "Setup Printer"
+msgstr "Yazıcı Kurulumu"
+
+msgid ""
+"Setup for your 3D printer is complete. If you're not sure about the printer "
+"settings,you can exit without saving the settings using the Skip button"
+msgstr ""
+"3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin "
+"değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış "
+"yapabilirsiniz."
+
+msgid "Show"
+msgstr "Göster"
+
+msgid "Show Heater Power"
+msgstr "Isıtıcı Gücünü Göster"
+
+msgid "Show heater power"
+msgstr "Isıtıcı gücünü göster"
+
+msgid "Shut Down"
+msgstr "Kapat"
+
+msgid "Shutdown"
+msgstr "Kapatma"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Skip"
+msgstr "Atla"
+
+msgid "Slicer"
+msgstr "Slicer"
+
+msgid "Slicer Time correction (%)"
+msgstr "Slicer Zaman düzeltmesi (%)"
+
+msgid "Slicer time corrections (%)"
+msgstr "Slicer zaman düzeltmeleri (%)"
+
+msgid "Slicer:"
+msgstr "Slicer:"
+
+msgid "Slow"
+msgstr "Yavaş"
+
+msgid "Small"
+msgstr "Küçük"
+
+msgid "Spanish"
+msgstr "İspanyolca"
+
+msgid "Speed (mm/s)"
+msgstr "Hız (mm/s)"
+
+msgid "Speed +"
+msgstr "Hız +"
+
+msgid "Speed -"
+msgstr "Hız -"
+
+msgid "Speed:"
+msgstr "Hız:"
+
+msgid "Square Corner Velocity"
+msgstr "Kare Köşe Hızı"
+
+msgid "Start"
+msgstr "Başlat"
+
+msgid "Start Calibration"
+msgstr "Kalibrasyonu Başlat"
+
+msgid "Start Print"
+msgstr "Baskıyı Başlat"
+
+msgid "Starting WiFi Association"
+msgstr "WiFi İlişkilendirme Başlatılıyor"
+
+msgid "Starting recovery for"
+msgstr "Kurtarma başlatılıyor"
+
+msgid "Starting update for"
+msgstr "Güncelleme başlatılıyor"
+
+msgid "Statistic"
+msgstr "İstatistik"
+
+msgid "Stop Calibrating"
+msgstr "Kalibrasyonu Durdur"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "System Restart"
+msgstr "Sistem Yeniden Başlatma"
+
+msgid "System Shutdown"
+msgstr "Sistem Kapatma"
+
+msgid "Systems / Update"
+msgstr "Sistemler / Güncelleme"
+
+msgid "Temp (°C)"
+msgstr "Sıcaklık (°C)"
+
+msgid "Temperature"
+msgstr "Sıcaklık"
+
+msgid ""
+"The settings file is being created. During this time Please wait and do not "
+"turn off ChromaScreen."
+msgstr ""
+"Ayarlar dosyası oluşturuluyor. Bu süre zarfında lütfen bekleyin ve "
+"ChromaScreen'i kapatmayın."
+
+msgid ""
+"The settings file is being created. During this time.Please wait and do not "
+"turn off ChromaScreen."
+msgstr ""
+"Ayarlar dosyası oluşturuluyor. Bu süre zarfında. Lütfen bekleyin ve "
+"ChromaScreen'i kapatmayın."
+
+msgid "Title:"
+msgstr "Başlık:"
+
+msgid "Total Filament Used"
+msgstr "Kullanılan Toplam Filament"
+
+msgid "Total Print Time"
+msgstr "Toplam Yazdırma Süresi"
+
+msgid "Total:"
+msgstr "Toplam:"
+
+msgid "Turkish"
+msgstr "Türkçe"
+
+msgid "USB IDS"
+msgstr "USB IDS"
+
+msgid "USB drive has been inserted."
+msgstr "USB sürücü takıldı."
+
+msgid "USB serial number from CHIPID"
+msgstr "CHIPID'den USB seri numarası"
+
+msgid "Unknown Heater"
+msgstr "Bilinmeyen Isıtıcı"
+
+msgid "Unknown screw position"
+msgstr "Bilinmeyen vida pozisyonu"
+
+msgid "Unload"
+msgstr "Boşalt"
+
+msgid "Unretract Extra Length"
+msgstr "Ekstra Uzun Geri Çekme"
+
+msgid "Unretract Speed"
+msgstr "Geri Çekme Hızı"
+
+msgid "Up To Date"
+msgstr "Güncel"
+
+msgid "Up-to-date"
+msgstr "Güncel"
+
+msgid "Update"
+msgstr "Güncelle"
+
+msgid "Update Manager"
+msgstr "Güncelleme Yöneticisi"
+
+msgid "Updating"
+msgstr "Güncelleniyor"
+
+msgid "Uploaded"
+msgstr "Yüklendi"
+
+msgid "Value"
+msgstr "Değer"
+
+msgid "Velocity"
+msgstr "Hız"
+
+msgid "Version: "
+msgstr "Sürüm: "
+
+msgid "WebRTC is not supported by the backend trying Stream"
+msgstr "WebRTC, arka uç tarafından desteklenmiyor, akış denemesi"
+
+msgid "Wifi Password"
+msgstr "Wifi Password"
+
+msgid "Wifi SSID"
+msgstr "Wifi SSID"
+
+msgid "Writing the SD card."
+msgstr "SD kart yazılıyor."
+
+msgid "Writing to SD Card"
+msgstr "SD Karta Yazılıyor"
+
+msgid "X Axis (Head)"
+msgstr "X Ekseni (Kafa)"
+
+msgid ""
+"X, Y, and Z axes are returning back to their home positions. Please wait."
+msgstr "X, Y ve Z eksenleri ana konumlarına geri dönüyor. Lütfen bekleyin."
+
+msgid "X,Y,Z Hareket Mesafesi (mm)"
+msgstr "X,Y,Z Hareket Mesafesi (mm)"
+
+msgid "XY Move Speed (mm/s)"
+msgstr "XY Hareket Hızı (mm/s)"
+
+msgid "XY Speed (mm/s)"
+msgstr "XY Hızı (mm/s)"
+
+msgid "Y Axis (Bed)"
+msgstr "Y Ekseni (Yatak)"
+
+msgid "Y Axis Vibration Detection Complete"
+msgstr "Y Ekseni Titreşim Tespiti Tamamlandı"
+
+msgid "Y Axis Vibration Detection in Progress"
+msgstr "Y Ekseni Titreşim Tespiti Devam Ediyor"
+
+msgid ""
+"Y-axis vibration compensation detection has been completed and the status is "
+"normal."
+msgstr "Y ekseni titreşim telafi tespiti tamamlandı ve durum normal."
+
+msgid "You are ready to start the test."
+msgstr "Testi başlatmaya hazırsınız."
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Please config your Input Shaper.\n"
+" Then try again."
+msgstr ""
+"Testi başlatmaya hazır değilsiniz.\n"
+" Lütfen Giriş Şekillendiricinizi yapılandırın.\n"
+"Sonra tekrar dene."
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Please connect your sensor or re-config your Input Shaper.\n"
+" Then try again."
+msgstr ""
+"Testi başlatmaya hazır değilsiniz.\n"
+" Lütfen sensörünüzü bağlayın veya Giriş Şekillendiricinizi yeniden "
+"yapılandırın.\n"
+"Sonra tekrar dene."
+
+msgid ""
+"You aren't ready to start the test.\n"
+" Please re-config your Input Shaper.\n"
+" Then try again."
+msgstr ""
+"Testi başlatmaya hazır değilsiniz.\n"
+" Lütfen Giriş Şekillendiricinizi yeniden yapılandırın.\n"
+"Sonra tekrar dene."
+
+msgid ""
+"Your update has been completed. For the changes to take effect Do you want "
+"to restart?"
+msgstr ""
+"Güncelleme işleminiz tamamlandı. Değişikliklerin geçerli olması için sistemi "
+"yeniden başlatmak istiyor musunuz?"
+
+msgid ""
+"Your update may not be compatible with ChromaScreen. Still Do you want to "
+"update?"
+msgstr ""
+"Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
+"güncellemek istediğinize emin misiniz?"
+
+msgid "Z Axis"
+msgstr "Z Ekseni"
+
+msgid "Z Calibrate"
+msgstr "Z Kalibrasyonu"
+
+msgid "Z Calibration Steps"
+msgstr "Z Kalibrasyon Adımları"
+
+msgid "Z Move Speed (mm/s)"
+msgstr "Z Hareket Hızı (mm/s)"
+
+msgid "Z Offset"
+msgstr "Z Ofset"
+
+msgid "Z Probe"
+msgstr "Z Probe"
+
+msgid "Z Probe Distance"
+msgstr "Z Probe Mesafesi"
+
+msgid "Z Speed (mm/s)"
+msgstr "Z Hızı (mm/s)"
+
+msgid "Z Tilt"
+msgstr "Z Eğimi"
+
+msgid "Z offset:"
+msgstr "Z ofset:"
+
+msgid "commit"
+msgid_plural "commits"
+msgstr[0] "commit"
+msgstr[1] "commit"
+
+msgid "dBm"
+msgstr "dBm"
+
+msgid "files listed"
+msgstr "listelenen dosyalar"
+
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "saat"
+msgstr[1] "saat"
+
+msgid "minutes"
+msgstr "dakika"
+
+msgid "mm"
+msgstr "mm"
+
+msgid "mm/s"
+msgstr "mm/s"
+
+msgid "mm/s²"
+msgstr "mm/s²"
+
+msgid "mm³/s"
+msgstr "mm³/s"
+
+msgid "selected"
+msgstr "seçildi"
+
+#~ msgid "Prob Calibration"
+#~ msgstr "Prob Kalibrasyonu"

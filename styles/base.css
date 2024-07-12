@@ -169,7 +169,7 @@ button.not-connected-setting label {
 #main-button-box {
 	background: linear-gradient(180deg, #909090 0%, #5f5e5e 100%);
 	border-radius: 0.5em;
-	padding: 0.4em;
+	padding: 0.1em;
 }
 
 #printing-right-info-box {
@@ -229,6 +229,16 @@ progressbar#printing-progress trough {
 }
 #warning-content-yellow-label {
 	color: #f4aa0b;
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+#warning-header-blue-label {
+	color: #134b8e;
+	font-size: 1.35rem;
+	font-weight: 600;
+}
+#warning-content-blue-label {
+	color: #134b8e;
 	font-size: 1.1rem;
 	font-weight: 400;
 }
@@ -2882,7 +2892,7 @@ frame.filament-extruder-active {
 	font-weight: bold;
 }
 #unloaded-label {
-	color: #f62d12;
+	color: white;
 	font-size: 0.9rem;
 }
 #parked-label {
@@ -2896,16 +2906,29 @@ frame.filament-extruder-active {
 #load-unload-button-box {
 	min-height: 2rem;
 }
-#home-tab-filament-cut-button {
+button#home-tab-filament-cut-button {
 	background: linear-gradient(180deg, #818181 0%, #353535 100%);
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	border-radius: 10px;
 	min-height: 2.5rem;
 	min-width: 6rem;
 }
-#home-tab-filament-cut-button label {
-	font-size: 1.1rem;
+button#home-tab-filament-cut-button:active {
+	background-color: #00477b;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	min-height: 2.5rem;
+	min-width: 6rem;
 }
+button#home-tab-filament-cut-button label {
+	font-size: 1.1rem;
+	color: #ffffff;
+}
+button#home-tab-filament-cut-button:active label {
+	font-size: 1.1rem;
+	color: #9a9a9a;
+}
+
 #system-content-label {
 	padding-left: 0.6rem;
 	font-size: 0.8rem;
@@ -3046,6 +3069,15 @@ frame.filament-extruder-active {
 	border-radius: 10px;
 	min-width: 20rem;
 }
+frame#timezonebox {
+	border-radius: 10px;
+}
+frame.timezonebox-active {
+	background-color: #00f54e;
+	padding: 0.2rem;
+	border: 0px solid #fff5f5;
+	border-radius: 10px;
+}
 #timezone-label {
 	color: #ffffff;
 	font-size: 14px;
@@ -3056,7 +3088,7 @@ frame.filament-extruder-active {
 	font-weight: 500;
 }
 #current-time-label {
-	color: #ffffff;
+	color: #00f54e;
 	font-size: 20px;
 	font-weight: 400;
 }
