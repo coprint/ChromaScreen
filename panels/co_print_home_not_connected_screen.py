@@ -88,10 +88,25 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.firmwareRestartButton.add(firmwareRestartBox)
         self.firmwareRestartButton.connect("clicked", self.on_click_firmware_restart)
         self.firmwareRestartButton.set_always_show_image (True)
-
+        
+        #-----printer power button-----#
+        printerPowerIcon = self._gtk.Image("shutdown", 35, 35)
+        printerPowerLabel = Gtk.Label(_("Printer Power ON"), name="bottom-menu-label")            
+        printerPowerBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+        printerPowerBox.set_halign(Gtk.Align.CENTER)
+        printerPowerBox.set_valign(Gtk.Align.CENTER)
+        printerPowerBox.pack_start(printerPowerIcon, False, False, 0)
+        printerPowerBox.pack_start(printerPowerLabel, False, False, 0)
+        self.printerPowerButton = Gtk.Button(name ="system-restart-"+statusLight+"-button") #kırmızısı için name şu class ile değişilecek: system-restart-red-button #
+        self.printerPowerButton.add(printerPowerBox)
+        self.printerPowerButton.connect("clicked", self.on_click_printer_Power)
+        self.printerPowerButton.set_always_show_image (True)
+        
         restartBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)     
         restartBox.pack_start(self.systemRestartButton, False, False, 0)
         restartBox.pack_start(self.firmwareRestartButton, False, False, 0)
+        if self._printer.get_power_devices():
+         restartBox.pack_start(self.printerPowerButton, False, False, 0)
 
         #-----log files-----#
         
@@ -477,6 +492,11 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 
     def on_click_firmware_restart(self, button):
         self._screen._ws.klippy.restart_firmware()
+
+    def on_click_printer_Power(self, button):
+        self.devices = {}
+        devices = self._printer.get_power_devices()
+        self._screen._ws.klippy.power_device_on(devices[0])
 
     def on_switch_activated(self, switch, gparam,switchName):
         if switch.get_active():
