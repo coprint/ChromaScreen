@@ -31,7 +31,7 @@ from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-version = "0.9.5"
+version = "0.9.6"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
     'configfile',
@@ -869,7 +869,7 @@ class ChromaScreen(Gtk.Window):
         self._config._create_configurable_options(self)
         self._config.set('main', 'language', lang)
         self._config.save_user_config_options()
-        self.restart_ks()
+        #self.restart_ks()
         #self.reload_panels()
 
     def reload_panels(self, *args):
@@ -933,7 +933,7 @@ class ChromaScreen(Gtk.Window):
         for x in self.subscriptions:
            
             if self.is_redirect_not_connected:
-                if self.printer.state == 'error' or self.printer.state == 'shutdown' or self.printer.state ==  'disconnected':
+                if self.printer.state == 'error' or self.printer.state == 'shutdown' or self.printer.state ==  'disconnected' or self.printer.state == 'startup':
                     page_url = 'co_print_home_not_connected_screen'
                     if x != 'co_print_home_not_connected_screen':
                         self.show_panel(page_url, page_url, "Language", 1, False)
