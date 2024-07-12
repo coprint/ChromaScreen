@@ -419,8 +419,8 @@ class BasePanel(ScreenPanel):
                 os.chdir("/tmp/")
                 self.run_command(f"wget {download_url}")
                 self.run_command("unzip ChromaScreen.zip")
-                self.run_command("rsync -av --progress /tmp/ChromaScreen-main ~/ --exclude scripts/config.json ")
-                self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen-main")
+                self.run_command("rsync -av --progress /tmp/ChromaScreen ~/ --exclude scripts/config.json ")
+                self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen")
 
             # Gerekirse bağımlılıkları güncelle
             requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
