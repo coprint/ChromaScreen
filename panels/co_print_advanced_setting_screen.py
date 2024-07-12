@@ -2,6 +2,7 @@ import logging
 import os
 import subprocess
 import time
+from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 import contextlib
@@ -32,7 +33,7 @@ class Panel(ScreenPanel):
                         { "name":"7200", "value":"7200" }, { "name":"14400", "value":"14400" }
          
         ]
-        languages = [
+        self.languages = [
             {'Lang':'en' ,'Name': _('English'), 'Icon': 'English', 'Button': Gtk.RadioButton()},
             {'Lang':'fr' ,'Name': _('French'), 'Icon': 'France', 'Button': Gtk.RadioButton()},
             {'Lang':'de' ,'Name': _("Deutsch"), 'Icon': 'Germany', 'Button': Gtk.RadioButton()},
@@ -182,8 +183,8 @@ class Panel(ScreenPanel):
         language_store = Gtk.ListStore(str, str)
         
         current_lang_index= 0
-        self.current_lang =  self._config.current_lang
-        for index, language in enumerate(languages):
+        self.current_lang = self._config.current_lang
+        for index, language in enumerate(self.languages):
             if language["Lang"] == self.current_lang:
                 current_lang_index = index
             language_store.append([language["Name"],language["Lang"]])
@@ -397,7 +398,7 @@ class Panel(ScreenPanel):
             model = combo.get_model()
             value = model[tree_iter][1]
             if self.current_lang != value:
-                self.changeLang(value)
+                self.open_info_dialog(value)
                 logging.debug(f"[]changed to {value}")
             
     def set_timezone(self, timezone):
@@ -444,17 +445,26 @@ class Panel(ScreenPanel):
         p = os.system('echo %s|sudo -S %s' % (sudoPassword, command3))
       
 
-    def open_info_dialog(self):
-        if self.dialog == None:
-            self.dialog = InfoDialog(self, "Değişikleriniz Başarıyla Tamamlandı", True)
-            self.dialog.get_style_context().add_class("alert-info-dialog")
+    def open_info_dialog(self,value):
+        lang = ""
+        for index, language in enumerate(self.languages):
+            if value == language['Lang']:
+                lang = language['Name']
+        content = _("The language will change to " + lang)  
+        dialog = AreYouSureDialog( content, self)
+        dialog.get_style_context().add_class("network-dialog")
+        dialog.set_decorated(False)
+
+        response = dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.changeLang(value)
+            self._screen.restart_ks()
+            print('Ok')
+            dialog.destroy()
         
-            self.dialog.set_decorated(False)
-            self.dialog.set_size_request(0, 0)
-        
-            response = self.dialog.run()
-   
-    def finished(self):
-        self.dialog.response(Gtk.ResponseType.CANCEL)
-        self.dialog.destroy()
+
+        elif response == Gtk.ResponseType.CANCEL:
+            print('Cancel')
+            dialog.destroy()
     

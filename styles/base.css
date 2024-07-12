@@ -259,6 +259,12 @@ progressbar#printing-progress trough {
 	border-radius: 10px;
 	padding: 1rem;
 }
+#report-box-blue {
+	background: #2c2116;
+	border: 1.5px solid #f4aa0b;
+	border-radius: 10px;
+	padding: 1rem;
+}
 #report-box-red {
 	background: #2c1b1b;
 	border: 1.5px solid #ec5f59;
