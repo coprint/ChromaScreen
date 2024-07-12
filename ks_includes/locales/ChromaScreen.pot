@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-11 18:17+0300\n"
+"POT-Creation-Date: 2024-07-12 10:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,12 +37,6 @@ msgid ""
 msgstr ""
 
 msgid "24 Hour Time"
-msgstr ""
-
-msgid ""
-"3 Boyutlu yazıcınızın kurulumu tamamlandı. Eğer yazıcı ayarlarından emin "
-"değilseniz Skip butonunu kullanarak ayarları kaydetmeden çıkış "
-"yapabilirsiniz."
 msgstr ""
 
 msgid "A FIRMWARE_RESTART may fix the issue."
@@ -505,16 +499,6 @@ msgid "Go Back"
 msgstr ""
 
 msgid "Go Printer"
-msgstr ""
-
-msgid ""
-"Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de "
-"güncellemek istiyor musunuz?"
-msgstr ""
-
-msgid ""
-"Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için "
-"yeniden başlatmak istiyor musunuz?"
 msgstr ""
 
 msgid ""
@@ -1118,7 +1102,7 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-msgid "Sensor Cannot Connected"
+msgid "Sensor Cannot Connect"
 msgstr ""
 
 msgid "Sensor Connected"
@@ -1134,6 +1118,11 @@ msgid "Setup Completed"
 msgstr ""
 
 msgid "Setup Printer"
+msgstr ""
+
+msgid ""
+"Setup for your 3D printer is complete. If you're not sure about the printer "
+"settings,you can exit without saving the settings using the Skip button"
 msgstr ""
 
 msgid "Show"
@@ -1361,20 +1350,30 @@ msgstr ""
 
 msgid ""
 "You aren't ready to start the test.\n"
-" Plase confie your Input Shaper.\n"
+" Please config your Input Shaper.\n"
 " Then try again."
 msgstr ""
 
 msgid ""
 "You aren't ready to start the test.\n"
-" Plase connect your sensor or re-confie your Input Shaper.\n"
+" Please connect your sensor or re-config your Input Shaper.\n"
 " Then try again."
 msgstr ""
 
 msgid ""
 "You aren't ready to start the test.\n"
-" Plase re-confie your Input Shaper.\n"
+" Please re-config your Input Shaper.\n"
 " Then try again."
+msgstr ""
+
+msgid ""
+"Your update has been completed. For the changes to take effect Do you want "
+"to restart?"
+msgstr ""
+
+msgid ""
+"Your update may not be compatible with ChromaScreen. Still Do you want to "
+"update?"
 msgstr ""
 
 msgid "Z Axis"

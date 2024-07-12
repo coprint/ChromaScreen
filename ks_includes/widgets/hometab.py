@@ -107,9 +107,12 @@ class HomeTab(Gtk.Box):
             ax2 = fig2.add_subplot()
             days = []
             counts = []
+            max_filament = 10
             for usage in self.this.filament_usage_array:
                 dt_object = datetime.fromtimestamp(usage[0])
                 days.append(dt_object.day)
+                if usage[1] > max_filament:
+                    max_filament = usage[1]
                 counts.append(usage[1])
             colors2 = ['#63ABFD']
             ax2.bar(days, counts,  color=colors2, width=0.2)
@@ -136,7 +139,7 @@ class HomeTab(Gtk.Box):
                 ax2.add_patch(patch)
             ax2.grid(zorder=-1, color = '#4F4F4F', linewidth = 0.5)
             ax2.set_facecolor("#0E0E0E")
-            ax2.set(ylim=[0, 100])
+            ax2.set(ylim=[0, max_filament])
             ax2.plot()
             canvas2 = FigureCanvas(fig2)
             canvas2.set_size_request(380, 188)
@@ -501,8 +504,8 @@ class HomeTab(Gtk.Box):
             fixed.set_valign(Gtk.Align.START)
             fixed.set_halign(Gtk.Align.START)
             fixed.put(greenButtonBox, 58, 10)
-            fixed.put(prevButtonBox, 0, 38)
-            fixed.put(nextButtonBox, 372, 38)
+            fixed.put(prevButtonBox, 0, 20)
+            fixed.put(nextButtonBox, 372, 20)
             # greenButtonBox.pack_start(oneButtonBoxWithLabel, False, False, 0)
             # greenButtonBox.pack_start(twoButtonBoxWithLabel, False, False, 0)
             # greenButtonBox.pack_start(threeButtonBoxWithLabel, False, False, 0)
@@ -547,26 +550,26 @@ class HomeTab(Gtk.Box):
             filamentImageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
             filamentImageBox.pack_start(filamentImage, False, False, 0)
        
-            filamentSensor = ""
-            detectedFilament = False
-            for x in self.this._printer.get_filament_sensors():
-                if self.this._printer.get_stat(x, "enabled"):
-                    if self.this._printer.data[x]['filament_detected']:
-                        detectedFilament = True
-                if detectedFilament:
-                    filamentSensor = self.this._gtk.Image("active-filament-sensor", 40, 40)
-                else:
-                    filamentSensor = self.this._gtk.Image("filament-sensor", 40, 40)
-            filamentSensorBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            if filamentSensor != "" :
-                filamentSensorBox.pack_start(filamentSensor, True, True, 0)
+            # filamentSensor = ""
+            # detectedFilament = False
+            # for x in self.this._printer.get_filament_sensors():
+            #     if self.this._printer.get_stat(x, "enabled"):
+            #         if self.this._printer.data[x]['filament_detected']:
+            #             detectedFilament = True
+            #     if detectedFilament:
+            #         filamentSensor = self.this._gtk.Image("active-filament-sensor", 40, 40)
+            #     else:
+            #         filamentSensor = self.this._gtk.Image("filament-sensor", 40, 40)
+            # filamentSensorBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+            # if filamentSensor != "" :
+            #     filamentSensorBox.pack_start(filamentSensor, True, True, 0)
 
             loadUnloadButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
             loadUnloadButtonBox.set_valign(Gtk.Align.CENTER)
             loadUnloadButtonBox.set_halign(Gtk.Align.CENTER)
             loadUnloadButtonBox.pack_start(loadButtonBox, False, False, 0)
             loadUnloadButtonBox.pack_start(filamentImageBox, False, False, 0)
-            loadUnloadButtonBox.pack_start(filamentSensorBox, False, False, 0)
+            #loadUnloadButtonBox.pack_start(filamentSensorBox, False, False, 0)
             loadUnloadButtonBox.pack_start(unloadButtonBox, False, False, 0)
             #----input box----#
             numPadIconExtruder = self.this._gtk.Image("calculator", self.this._screen.width *.03, self.this._screen.width *.03)
@@ -712,7 +715,7 @@ class HomeTab(Gtk.Box):
             extruderBox.set_name("extruder-filament-select-box ")
             extruderBox.set_halign(Gtk.Align.CENTER)
             extruderBox.set_valign(Gtk.Align.CENTER)
-            extruderBox.pack_start(alignment, False, True, 5)
+            #extruderBox.pack_start(alignment, False, True, 5)
             extruderBox.pack_start(extruder['Image'], False, True, 5)
             eventBox = Gtk.EventBox()
             eventBox.add(extruderBox)
@@ -735,47 +738,49 @@ class HomeTab(Gtk.Box):
         return self.sliderBox or  True
 
     def load(self,widget):
-        detectedFilament = False
-        for x in self.this._printer.get_filament_sensors():
-            if x in self.this._printer.data:
-                 if 'filament_detected' in self.this._printer.data[x]:
-                    if self.this._printer.data[x]['filament_detected']:
-                        logging.info(f"{x}")
-                        detectedFilament = True
-        if detectedFilament:
-            self.this._screen.show_popup_message("there is Loaded Filament")
-        else:
-            self.this._screen._ws.klippy.gcode_script(KlippyGcodes.LOAD_FILAMENT)
-            for i, item in enumerate(self.this.extruders):
-                if item['Extrude'] == self.this._printer.selectedExtruder :
-                    item['FilamentStatus'] = 'Loaded'
-            self.generateBoxs()
+        self.this._screen._ws.klippy.gcode_script(KlippyGcodes.LOAD_FILAMENT)
+        # detectedFilament = False
+        # for x in self.this._printer.get_filament_sensors():
+        #     if x in self.this._printer.data:
+        #          if 'filament_detected' in self.this._printer.data[x]:
+        #             if self.this._printer.data[x]['filament_detected']:
+        #                 logging.info(f"{x}")
+        #                 detectedFilament = True
+        # if detectedFilament:
+        #     self.this._screen.show_popup_message("there is Loaded Filament")
+        # else:
+        #     self.this._screen._ws.klippy.gcode_script(KlippyGcodes.LOAD_FILAMENT)
+        #     for i, item in enumerate(self.this.extruders):
+        #         if item['Extrude'] == self.this._printer.selectedExtruder :
+        #             item['FilamentStatus'] = 'Loaded'
+        #     self.generateBoxs()
 
     def unload(self,widget):
-        detectedFilament = False
-        for x in self.this._printer.get_filament_sensors():
-            if x in self.this._printer.data:
-                 if 'filament_detected' in self.this._printer.data[x]:
-                    if self.this._printer.data[x]['filament_detected']:
-                        detectedFilament = True
-        if detectedFilament:
-            for i, item in enumerate(self.this.extruders):
-                if item['Extrude'] == self.this._printer.selectedExtruder :
-                    #if item['FilamentStatus'] == 'Loaded':
-                    self.this._screen._ws.klippy.gcode_script(KlippyGcodes.PARK_FILAMENT)
-                    item['FilamentStatus'] = 'Parked'
-                else:
-                    if item['FilamentStatus'] == 'Loaded':
-                        self.this._screen.show_popup_message("the {item['Extrude']} is Loaded")
-        else:
-            self.this._screen._ws.klippy.gcode_script(KlippyGcodes.PARK_FILAMENT)
-            for i, item in enumerate(self.this.extruders):
-                if item['Extrude'] == self.this._printer.selectedExtruder :
-                    item['FilamentStatus'] = 'Parked'
-                else:
-                    if  item['FilamentStatus'] == 'Loaded':
-                        item['FilamentStatus'] = 'Parked'
-        self.generateBoxs()
+        self.this._screen._ws.klippy.gcode_script(KlippyGcodes.PARK_FILAMENT)
+        # detectedFilament = False
+        # for x in self.this._printer.get_filament_sensors():
+        #     if x in self.this._printer.data:
+        #          if 'filament_detected' in self.this._printer.data[x]:
+        #             if self.this._printer.data[x]['filament_detected']:
+        #                 detectedFilament = True
+        # if detectedFilament:
+        #     for i, item in enumerate(self.this.extruders):
+        #         if item['Extrude'] == self.this._printer.selectedExtruder :
+        #             #if item['FilamentStatus'] == 'Loaded':
+        #             self.this._screen._ws.klippy.gcode_script(KlippyGcodes.PARK_FILAMENT)
+        #             item['FilamentStatus'] = 'Parked'
+        #         else:
+        #             if item['FilamentStatus'] == 'Loaded':
+        #                 self.this._screen.show_popup_message("the {item['Extrude']} is Loaded")
+        # else:
+        #     self.this._screen._ws.klippy.gcode_script(KlippyGcodes.PARK_FILAMENT)
+        #     for i, item in enumerate(self.this.extruders):
+        #         if item['Extrude'] == self.this._printer.selectedExtruder :
+        #             item['FilamentStatus'] = 'Parked'
+        #         else:
+        #             if  item['FilamentStatus'] == 'Loaded':
+        #                 item['FilamentStatus'] = 'Parked'
+        # self.generateBoxs()
 
     def reboot_poweroff(self, widget, method):
         scroll = self.this._gtk.ScrolledWindow()

@@ -395,7 +395,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             if name == "full" and (self.IsMainsailNeedUpdate and self.self.IsKlipperNeedUpdate):
                 isDialogShow = False
             if isDialogShow:  
-                content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
+                content = _("Your update may not be compatible with ChromaScreen. Still Do you want to update?")  
                 dialog = AreYouSureDialog( content, self)
                 dialog.get_style_context().add_class("network-dialog")
                 dialog.set_decorated(False)

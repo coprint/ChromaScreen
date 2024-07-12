@@ -238,12 +238,12 @@ class Panel(ScreenPanel):
         for child in self.page.get_children():
             self.page.remove(child)
         checkmark = self._gtk.Image("Cannotmark", self._screen.width * .1, self._screen.width * .1)
-        titleLabel = Gtk.Label(_("Sensor Cannot Connected"), name="printer-type-title-label")
-        message = (_("You aren't ready to start the test.\n Plase connect your sensor or re-confie your Input Shaper.\n Then try again."))
+        titleLabel = Gtk.Label(_("Sensor Cannot Connect"), name="printer-type-title-label")
+        message = (_("You aren't ready to start the test.\n Please connect your sensor or re-config your Input Shaper.\n Then try again."))
         if pop == 1:
-            message = (_("You aren't ready to start the test.\n Plase confie your Input Shaper.\n Then try again."))
+            message = (_("You aren't ready to start the test.\n Please config your Input Shaper.\n Then try again."))
         elif pop == 2:
-            message = (_("You aren't ready to start the test.\n Plase re-confie your Input Shaper.\n Then try again."))
+            message = (_("You aren't ready to start the test.\n Please re-config your Input Shaper.\n Then try again."))
         contentLabel = Gtk.Label(message, name="printer-type-content-label")
         contentLabel.set_max_width_chars(60)
         contentLabel.set_line_wrap(True)

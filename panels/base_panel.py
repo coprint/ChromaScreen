@@ -429,7 +429,7 @@ class BasePanel(ScreenPanel):
                 self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
         
             print("Güncelleme tamamlandı.")
-            content = _("Güncelleme işleminiz tamamlanmıştır. Değişikliklerin geçerli olması için yeniden başlatmak istiyor musunuz?")  
+            content = _("Your update has been completed. For the changes to take effect Do you want to restart?")  
             dialog = AreYouSureDialog( content, self)
             dialog.get_style_context().add_class("network-dialog")
             dialog.set_decorated(False)

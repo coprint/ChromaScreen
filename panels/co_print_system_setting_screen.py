@@ -209,7 +209,7 @@ class Panel(ScreenPanel):
                 isDialogShow = False
 
             if isDialogShow:  
-                content = _("Güncelleme işleminiz ChromaScreen ile uyumlu olmayabilir. Yine de güncellemek istiyor musunuz?")  
+                content = _("Your update may not be compatible with ChromaScreen. Still Do you want to update?")  
                 dialog = AreYouSureDialog( content, self)
                 dialog.get_style_context().add_class("network-dialog")
                 dialog.set_decorated(False)
