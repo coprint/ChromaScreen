@@ -1,13 +1,13 @@
-jinja2==3.1.4;python_version>="3.6"
-requests==2.32.3;python_version>="3.8"
-sdbus==0.11.1;python_version>="3.8"
-sdbus_networkmanager==2.0.0;python_version>="3.8"
+jinja2==3.1.4
+requests==2.32.3
+sdbus==0.12.0
+sdbus_networkmanager==2.0.0
 
 # libmpv-dev 0.33 is required for 1.0
 python-mpv==0.5.2;python_version<"3.10"
 python-mpv==1.0.6;python_version>="3.10"
 
-backports.zoneinfo;python_version<"3.9"
+# backports.zoneinfo;python_version<"3.9"
 
 PyGObject==3.48.1;python_version>="3.8"
 pycairo==1.26.0;python_version>="3.8"
@@ -16,12 +16,12 @@ websocket-client==1.8.0;python_version>="3.8"
 netifaces==0.11.0
 six==1.16.0
 dbus-python==1.3.2
-pytz==2023.3
+pytz==2024.1
 keyboardlayout==2.0.1
 pygame==2.5.1
-opencv-contrib-python==4.8.0.76
+# opencv-contrib-python==4.8.0.76
 kconfiglib==14.1.0
 psutil==5.9.6
 pyudev==0.24.1
-matplotlib==3.8.2
+matplotlib==3.9.1
 

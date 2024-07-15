@@ -292,6 +292,9 @@ class Panel(ScreenPanel):
     
     def on_completed(self, continueButton):
         if self.selected_model:
-            self._screen.show_panel("co_print_sd_card_selection_process_waiting", "co_print_sd_card_selection_process_waiting", self.selected_model, 2)
+            if self.selected_model['processor'] == 'Atmega':
+                self._screen.show_panel("co_print_printers_qr", "co_print_printers_qr", self.selected_model, 2)
+            else:
+                self._screen.show_panel("co_print_sd_card_selection_process_waiting", "co_print_sd_card_selection_process_waiting", self.selected_model, 2)
         
    
