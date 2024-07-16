@@ -10,7 +10,7 @@ from gi.repository import Gtk, GLib
 class InitHeader(Gtk.Box):
   
 
-    def __init__(self, this, _subTitle, _subText, _imageName=None):
+    def __init__(self, this, _subTitle, _subText=None, _imageName=None):
         super().__init__(orientation=Gtk.Orientation.VERTICAL)
 
         

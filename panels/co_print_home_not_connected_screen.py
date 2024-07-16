@@ -166,7 +166,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self.config_data = json.load(f)
         except Exception as e:
             logging.exception(e) 
-
+        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
         self.IsKlipperNeedUpdate = False
         self.IsMainsailNeedUpdate = False
         if(self.config_data != None) and (self.version_info != False) : 
@@ -193,13 +193,17 @@ class Panel(ScreenPanel, metaclass=Singleton):
         chromascreenVersionLabel.set_justify(Gtk.Justification.LEFT)
         chromascreenVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         chromascreenVersionLabelBox.pack_start(chromascreenVersionLabel, False, False, 0)
-
-        chromascreenUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
-        chromascreenUpdateButton.connect("clicked", self.VersionControl, "ChromaScreen")
-        chromascreenVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
-        chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
-       
+        if self.ChromaScreenNeedUpdate:
+            chromascreenUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
+            chromascreenUpdateButton.connect("clicked", self.VersionControl, "ChromaScreen")
+            chromascreenVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+            chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
+            chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
+        else:
+            chromascreenUpdateButton = Gtk.Button(_('Up-to-date'),name ="up-to-date-button")
+            chromascreenVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+            chromascreenVersionBox.pack_start(chromascreenUpdateLabelBox, False, False, 0)
+            chromascreenVersionBox.pack_start(chromascreenVersionLabelBox, False, False, 0)
         chromascreenUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         chromascreenUpdateBox.set_name("update-box")
         chromascreenUpdateBox.pack_start(chromascreenVersionBox, False, False, 0)

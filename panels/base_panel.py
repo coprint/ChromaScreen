@@ -394,7 +394,11 @@ class BasePanel(ScreenPanel):
            
         else:
             print(stdout.decode('utf-8'))
-
+    def need_update(self):
+        latest_version, download_url = self.get_latest_version()
+        if latest_version > self._screen.version:
+            return True
+        return False
     def get_latest_version(self):
         url = f"https://api.github.com/repos/coprint/ChromaScreen/releases/latest"
         response = requests.get(url)
