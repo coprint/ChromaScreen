@@ -418,21 +418,9 @@ class BasePanel(ScreenPanel):
             # Git pull komutunu çalıştırarak en son değişiklikleri al
             print("Proje güncelleniyor...")
             #self.run_command("git pull")
-            latest_version, download_url = self.get_latest_version()
-            if latest_version > self._screen.version:
-                os.chdir("/tmp/")
-                self.run_command(f"wget {download_url}")
-                self.run_command("unzip ChromaScreen.zip")
-                self.run_command("rsync -av --progress /tmp/ChromaScreen ~/ --exclude scripts/config.json ")
-                self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen")
-
-            # Gerekirse bağımlılıkları güncelle
-            requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
-            if os.path.exists(requirements_file):
-                print("Bağımlılıklar güncelleniyor...")
-                self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
+            
         
-            print("Güncelleme tamamlandı.")
+            
             content = _("Your update has been completed. For the changes to take effect Do you want to restart?")  
             dialog = AreYouSureDialog( content, self)
             dialog.get_style_context().add_class("network-dialog")
@@ -441,6 +429,20 @@ class BasePanel(ScreenPanel):
             response = dialog.run()
     
             if response == Gtk.ResponseType.OK:
+                latest_version, download_url = self.get_latest_version()
+                if latest_version > self._screen.version:
+                    os.chdir("/tmp/")
+                    self.run_command(f"wget {download_url}")
+                    self.run_command("unzip ChromaScreen.zip")
+                    self.run_command("rsync -av --progress /tmp/ChromaScreen ~/ --exclude scripts/config.json ")
+                    self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen")
+
+                # Gerekirse bağımlılıkları güncelle
+                requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
+                if os.path.exists(requirements_file):
+                    print("Bağımlılıklar güncelleniyor...")
+                self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
+                print("Güncelleme tamamlandı.")
                 self._screen.restart_ks()
                 print('Ok')
                 dialog.destroy()
