@@ -288,8 +288,8 @@ progressbar#printing-progress trough {
 	font-weight: 400;
 }
 #wiki-white-box {
-	background: #4a4a4a;
-	border: 1.5px solid #ffffff;
+	background: #252525;
+	border: 0.5px solid #8a8a8a;
 	border-radius: 10px;
 	padding: 1rem;
 }
@@ -298,9 +298,14 @@ progressbar#printing-progress trough {
 	font-size: 1.35rem;
 	font-weight: 600;
 }
+#wiki-head-white-label {
+	color: #ffffff;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
 #wiki-content-white-label {
 	color: #9a9a9a;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	font-weight: 400;
 }
 #system-restart-yellow-button {
