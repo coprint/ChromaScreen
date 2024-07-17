@@ -218,6 +218,7 @@ class BasePanel(ScreenPanel):
             with contextlib.suppress(KeyError):
                 if data['complete']:
                     logging.info("Update complete")
+                    self._screen.restart_ks()
                     if self.update_dialog is not None:
                         try:
                             self.update_dialog.set_response_sensitive(Gtk.ResponseType.OK, True)
