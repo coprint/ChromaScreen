@@ -152,14 +152,14 @@ class ChromaScreen(Gtk.Window):
         self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
 
         self.connect("key-press-event", self._key_press_event)
-        #self.connect("configure_event", self.update_size)
+        self.connect("configure_event", self.update_size)
         monitor = Gdk.Display.get_default().get_primary_monitor()
         if monitor is None:
             monitor = Gdk.Display.get_default().get_monitor(0)
         if monitor is None:
             raise RuntimeError("Couldn't get default monitor")
-        self.width = 1024
-        self.height = 600
+        self.width = 800
+        self.height = 480
         self.set_default_size(self.width, self.height)
         self.set_resizable(True)
 
