@@ -279,7 +279,7 @@ class Panel(ScreenPanel):
     
     
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, False)
         
     def on_tree_selection_changed(selection):
         model, treeiter = selection.get_selected()
@@ -292,6 +292,9 @@ class Panel(ScreenPanel):
     
     def on_completed(self, continueButton):
         if self.selected_model:
-            self._screen.show_panel("co_print_sd_card_selection_process_waiting", "co_print_sd_card_selection_process_waiting", self.selected_model, 2)
+            if self.selected_model['processor'] == 'Atmega':
+                self._screen.show_panel("co_print_printers_qr", "co_print_printers_qr", self.selected_model, 1, False)
+            else:
+                self._screen.show_panel("co_print_sd_card_selection_process_waiting", "co_print_sd_card_selection_process_waiting", self.selected_model, 1, False)
         
    

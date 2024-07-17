@@ -28,6 +28,7 @@ class Panel(ScreenPanel):
         self.update_status = update_resp['result']
         self.version_info = self.update_status['version_info']
         self.version_info['mainsail']['version']
+        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
         isUpdateReqKlipper = False
         if self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
             isUpdateReqKlipper = True        
@@ -38,7 +39,7 @@ class Panel(ScreenPanel):
         if self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
             isUpdateReqMainsail = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
-        macrotwo = SystemSetting(self, "ChromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , True, 'ChromaScreen')
+        macrotwo = SystemSetting(self, "ChromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , self.ChromaScreenNeedUpdate, 'ChromaScreen')
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
         macrofour = SystemSetting(self,_("Moonraker") + " "+_("Current") + " (" + self.version_info['moonraker']['version'] +")", ("Update"), isUpdateReqMoonraker, 'moonraker')
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
