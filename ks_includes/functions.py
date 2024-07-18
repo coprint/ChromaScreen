@@ -11,6 +11,7 @@ from queue import SimpleQueue as Queue
 
 import ctypes
 import struct
+from urllib import request
 
 dpms_loaded = False
 try:
@@ -98,7 +99,12 @@ def get_software_version():
     except OSError:
         logging.exception("Error runing git describe")
     return "?"
-
+def internet_on():
+    try:
+        request.urlopen('https://github.com/coprint/ChromaScreen/releases', timeout=1)
+        return True
+    except request.URLError as err: 
+        return False
 
 def patch_threading_excepthook():
     """Installs our exception handler into the threading modules Thread object

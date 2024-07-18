@@ -627,6 +627,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         else:
             self.grid.remove_column(1)
             self.grid.attach(self.labels["keypad"], 1, 0, 1, 1)
+        logging.info(f"Showing numpad for")
         self.grid.show_all()
         self.labels['popover'].popdown()
 

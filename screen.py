@@ -31,7 +31,7 @@ from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-version = "0.9.6"
+version = "0.9.7"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
     'configfile',
@@ -673,6 +673,7 @@ class ChromaScreen(Gtk.Window):
         if self._cur_panels[-1] in self.subscriptions:
             self.subscriptions.remove(self._cur_panels[-1])
         if pop:
+            self.panels.pop(self._cur_panels[-1])
             del self._cur_panels[-1]
             #self.attach_panel(self._cur_panels[-1])
 

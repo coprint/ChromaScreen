@@ -22,10 +22,10 @@ class ProgressBar(Gtk.Box):
         self.scale_progress.set_hexpand(True)
         
         numPadIcon = this._gtk.Image("calculator", this._screen.width *.03, this._screen.width *.03)
-        numPadButton = Gtk.Button(name ="progress-numpad")
-        numPadButton.connect("clicked", self.open_numpad)
-        numPadButton.set_image(numPadIcon)
-        numPadButton.set_always_show_image(True)
+        # numPadButton = Gtk.Button(name ="progress-numpad")
+        # numPadButton.connect("clicked", self.open_numpad)
+        # numPadButton.set_image(numPadIcon)
+        # numPadButton.set_always_show_image(True)
         
         extruder_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         extruder_box.set_hexpand(True)
@@ -33,17 +33,24 @@ class ProgressBar(Gtk.Box):
         extruder_box.add(this._gtk.Image(_image, 30, 30))
         extruder_box.add(self.label)
         extruder_box.add(self.scale_progress)
-        extruder_box.add(numPadButton)
+        extruder_box.add(numPadIcon)
+        extruder_event_box = Gtk.EventBox()
+        extruder_event_box.connect("button-press-event", self.open_numpad)
+        extruder_event_box.add(extruder_box)
+        # printerConnectionEventBox = Gtk.EventBox()
+        # printerConnectionEventBox.connect("button-press-event", self.change_page)
+        # printerConnectionEventBox.add(printerConnectionBox)
+        self.add(extruder_event_box)
         
        
-        self.add(extruder_box)
+        # self.add(extruder_box)
 
     
     def updateValue(self, value, label):
         self.scale_progress.set_fraction(value)
         self.label.set_text(label)
 
-    def open_numpad(self, widget):
+    def open_numpad(self, widget, event):
         
         dialog = KeyPadNew(self.progress)
         dialog.get_style_context().add_class("new-numpad-dialog")

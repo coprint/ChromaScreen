@@ -260,8 +260,8 @@ progressbar#printing-progress trough {
 	padding: 1rem;
 }
 #report-box-blue {
-	background: #2c2116;
-	border: 1.5px solid #f4aa0b;
+	background: #1a1730;
+	border: 1.5px solid #134b8e;
 	border-radius: 10px;
 	padding: 1rem;
 }
@@ -322,7 +322,20 @@ progressbar#printing-progress trough {
 	background: #ffffff;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
+#system-restart-blue-button {
+	border-radius: 5px;
+	border: 1px solid #134b8e;
+	background: #14142e;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+#system-restart-blue-button label {
+	font-size: 1rem;
+}
+#system-restart-blue-button:active {
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
 #system-restart-red-button {
 	border-radius: 5px;
 	border: 1px solid #ec5f59;

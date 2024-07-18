@@ -37,7 +37,7 @@ class Panel(ScreenPanel):
             isUpdateReqMainsail = True
         isUpdateReqMoonraker = False
         if self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
-            isUpdateReqMainsail = True
+            isUpdateReqMoonraker = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
         macrotwo = SystemSetting(self, "ChromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , self.ChromaScreenNeedUpdate, 'ChromaScreen')
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')

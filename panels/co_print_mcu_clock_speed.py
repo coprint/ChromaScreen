@@ -78,7 +78,7 @@ class Panel(ScreenPanel):
             f.add(eventBox)
             grid.attach(f, count, row, 1, 1)
             count += 1
-            if count % 1 is 0:
+            if count % 1 == 0:
                 count = 0
                 row += 1
 
@@ -142,10 +142,10 @@ class Panel(ScreenPanel):
     def radioButtonSelected(self, button, selected):
        
         self._screen._changeKconfig(selected.name)
-        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, True)
        
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 2)
+        self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, True)
         
    
 
@@ -227,4 +227,4 @@ class Panel(ScreenPanel):
 
     def on_click_back_button(self, button, data):
         
-        self._screen.show_panel(data, data, "Language", 1, False)
+        self._screen.show_panel(data, data, "Language", 1, True)

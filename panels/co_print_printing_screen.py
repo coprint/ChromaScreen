@@ -154,41 +154,39 @@ class Panel(ScreenPanel, metaclass=Singleton):
     
        
 
-        self.buttonss = {"0.01": Gtk.Button("0.01", name ="change-offset-button"),
-                        "0.1": Gtk.Button("0.1", name ="change-offset-button"),
-                        "0.5": Gtk.Button("0.5", name ="change-offset-button"),
-                        "1": Gtk.Button("1", name ="change-offset-button"),
-                        "2": Gtk.Button("2", name ="change-offset-button")
+        self.buttonss = {"0.005": Gtk.Button("0.005", name ="change-offset-button"),
+                        "0.01": Gtk.Button("0.01", name ="change-offset-button"),
+                        "0.025": Gtk.Button("0.025", name ="change-offset-button"),
+                        "0.05": Gtk.Button("0.05", name ="change-offset-button"),
         }
 
-        self.OffsetConstant = 0.5
+        self.OffsetConstant = 0.01
+        self.buttonss[f"{0.005}"].connect("clicked", self.chanceOffset, 0.005)
         self.buttonss[f"{0.01}"].connect("clicked", self.chanceOffset, 0.01)
-        self.buttonss[f"{0.1}"].connect("clicked", self.chanceOffset, 0.1)
-        self.buttonss[f"{0.5}"].connect("clicked", self.chanceOffset, 0.5)
-        self.buttonss[f"{1}"].connect("clicked", self.chanceOffset, 1)
-        self.buttonss[f"{2}"].connect("clicked", self.chanceOffset, 2)
+        self.buttonss[f"{0.025}"].connect("clicked", self.chanceOffset, 0.025)
+        self.buttonss[f"{0.05}"].connect("clicked", self.chanceOffset, 0.05)
         
-        self.buttonss[f"{0.5}"].get_style_context().add_class("change-offset-button-active")
+        self.buttonss[f"{0.01}"].get_style_context().add_class("change-offset-button-active")
         
+        changeOffsetButtonBox.pack_start(self.buttonss[f"{0.005}"], True, True, 0)
         changeOffsetButtonBox.pack_start(self.buttonss[f"{0.01}"], True, True, 0)
-        changeOffsetButtonBox.pack_start(self.buttonss[f"{0.1}"], True, True, 0)
-        changeOffsetButtonBox.pack_start(self.buttonss[f"{0.5}"], True, True, 0)
-        changeOffsetButtonBox.pack_start(self.buttonss[f"{1}"], True, True, 0)
-        changeOffsetButtonBox.pack_start(self.buttonss[f"{2}"], True, True, 0)
+        changeOffsetButtonBox.pack_start(self.buttonss[f"{0.025}"], True, True, 0)
+        changeOffsetButtonBox.pack_start(self.buttonss[f"{0.05}"], True, True, 0)
         
         changeOffsetLabel = Gtk.Label(_("Change Offset"), name="probe-calibration-label")
         changeOffsetLabel.set_justify(Gtk.Justification.LEFT)
         changeOffsetLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         changeOffsetLabelBox.pack_start(changeOffsetLabel, False, False, 0)
-        
         changeOffsetBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         changeOffsetBox.pack_start(changeOffsetLabelBox, False, False, 0)
         changeOffsetBox.pack_end(changeOffsetButtonBox, False, False, 0)
         self.zoffset_box.pack_start(changeOffsetBox, False, False, 0)
-        
+        self.separatorFirst = Gtk.HSeparator()
         self.speedFactor_widget = PercentageFactor(self, "hiz", ("Speed Factor"),900, 1, 'speedFactor')
         self.speedFactor_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         self.speedFactor_box.set_name("zoffset-box")
+        self.speedFactor_box.set_valign(Gtk.Align.CENTER)
+        self.speedFactor_box.set_halign(Gtk.Align.CENTER)
         self.speedFactor_box.pack_start(self.speedFactor_widget, True, False, 0)
         self.speedFactor_widget.updateValue(100,'')
         self.pressureAdvanceInput = CounterInputFloat(self, ("s"), ("Pressure Advance"), self.pressure_advance, "SET_PRESSURE_ADVANCE EXTRUDER=extruder ADVANCE=", 0.001)
@@ -196,23 +194,25 @@ class Panel(ScreenPanel, metaclass=Singleton):
         pressure_smooth_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         pressure_smooth_box.set_valign(Gtk.Align.CENTER)
         pressure_smooth_box.pack_start(self.pressureAdvanceInput, True, True, 0)
+
         pressure_smooth_box.pack_end(self.smoothTimeInput, True, True, 0)
         
         separator = Gtk.HSeparator()
         separatorsecond = Gtk.HSeparator()
         self.extrusionFactor_widget = PercentageFactor(self, "extrudericon", ("Extrusion Factor"),200, 1, 'extrusionFactor')
-        self.extrusionFactor_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
+        self.extrusionFactor_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.extrusionFactor_box.set_name("zoffset-box")
         self.extrusionFactor_box.pack_start(self.extrusionFactor_widget, True, False, 0)
-        self.extrusionFactor_box.pack_start(separator, True, False, 10)
-        self.extrusionFactor_box.pack_start(pressure_smooth_box, True, False, 0)
+        self.extrusionFactor_box.pack_start(separator, True, False, 0)
+        #self.extrusionFactor_box.pack_start(pressure_smooth_box, True, False, 0)
         #extrusionFactor_box.pack_start(separatorsecond, True, False, 0)
         #extrusionFactor_box.pack_start(filament_extrusion_box, True, False, 0)
         
         self.fanSpeed_widget = PercentageFactor(self, "fanayari", ("Fan Speed"),100,0, 'fan')
         self.fanSpeed_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         self.fanSpeed_box.set_name("zoffset-box")
-        self.fanSpeed_box.pack_start(self.fanSpeed_widget, True, False, 0)
+        #self.fanSpeed_box.pack_start(self.fanSpeed_widget, True, False, 0)
+        self.extrusionFactor_box.pack_start(self.fanSpeed_box, True, False, 0)
         
         machineLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         machineImage = self._gtk.Image("motor", self._screen.width *.03, self._screen.width *.03)
@@ -340,21 +340,23 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 self.selectableBox.remove(child)
         if self.startIndex == 1:
             self.selectableBox.pack_start(self.zoffset_box, False, False, 0)
+            self.selectableBox.pack_start(self.separatorFirst, True, False, 10)
             self.selectableBox.pack_start(self.speedFactor_box, False, False, 0)
         if self.startIndex == 2:
             self.selectableBox.pack_start(self.extrusionFactor_box, False, False, 0)
+            #self.selectableBox.pack_start(self.fanSpeed_box, False, False, 0)  
             #self.selectableBox.pack_start(self.fanSpeed_box, False, False, 0)
-        if self.startIndex == 3:
+        #if self.startIndex == 3:
             #self.selectableBox.pack_start(self.extrusionFactor_box, False, False, 0)
-            self.selectableBox.pack_start(self.machine_Box, False, False, 0)
-        if self.startIndex == 4:
-           self.selectableBox.pack_start(self.fanSpeed_box, False, False, 0)    
+            #self.selectableBox.pack_start(self.machine_Box, False, False, 0)
+        #if self.startIndex == 4:
+           #self.selectableBox.pack_start(self.fanSpeed_box, False, False, 0)    
         self.content.show_all()
 
     def show_next_page(self, widget):
         self.startIndex = self.startIndex +1
-        if self.startIndex > 4:
-            self.startIndex =4
+        if self.startIndex > 2:
+            self.startIndex = 2
         self.generateGrid()       
 
     def show_prev_page(self, widget):

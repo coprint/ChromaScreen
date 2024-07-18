@@ -78,7 +78,7 @@ class Panel(ScreenPanel):
             f.add(eventBox)
             grid.attach(f, count, row, 1, 1)
             count += 1
-            if count % 2 is 0:
+            if count % 2 == 0:
                 count = 0
                 row += 1
 

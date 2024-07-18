@@ -116,9 +116,9 @@ class BottomMenu(Gtk.Box):
         if  active_page:
             if self.parent._printer.state == 'error' or self.parent._printer.state == 'shutdown' or self.parent._printer.state == 'disconnected':
                 self.parent._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen",
-                                        "Language", 1, False)
+                                        "Language", 1, True)
             else:
-                self.parent._screen.show_panel(data, data, "Language", 1, False)
+                self.parent._screen.show_panel(data, data, "Language", 1, True)
         elif data == 'co_print_printing_files_screen' and  (self.parent._printer.state == 'printing' or self.parent._printer.state == 'paused'):
             self.parent._screen.show_panel('co_print_printing_screen', 'co_print_printing_screen', "Language", 1, False)
         elif(self.parent._printer.state != 'printing'):

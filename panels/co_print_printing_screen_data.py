@@ -123,6 +123,6 @@ class Panel(ScreenPanel):
         return True
     
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_printing_selection", "co_print_printing_selection", None, 2)
+        self._screen.show_panel("co_print_printing_selection", "co_print_printing_selection", None, 1, True)
         
    
