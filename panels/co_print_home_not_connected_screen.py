@@ -167,10 +167,8 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self.config_data = json.load(f)
         except Exception as e:
             logging.exception(e) 
-        if internet_on():
-            self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
-        else:
-            self.ChromaScreenNeedUpdate = False
+        
+        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
         self.IsKlipperNeedUpdate = False
         self.IsMainsailNeedUpdate = False
         if(self.config_data != None) and (self.version_info != False) : 

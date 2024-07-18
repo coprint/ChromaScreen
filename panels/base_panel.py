@@ -7,6 +7,7 @@ import sys
 
 import gi
 import requests
+from ks_includes.functions import internet_on
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gtk, Pango
@@ -396,11 +397,13 @@ class BasePanel(ScreenPanel):
         else:
             print(stdout.decode('utf-8'))
     def need_update(self):
-        latest_version, download_url = self.get_latest_version()
-        if latest_version > self._screen.version:
-            return True
+        if internet_on():
+            latest_version, download_url = self.get_latest_version()
+            if latest_version > self._screen.version:
+                return True
         return False
     def get_latest_version(self):
+        
         url = f"https://api.github.com/repos/coprint/ChromaScreen/releases/latest"
         response = requests.get(url)
         response.raise_for_status()  # Raise an error for bad responses
