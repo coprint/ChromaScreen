@@ -288,11 +288,11 @@ class Panel(ScreenPanel):
             
     def on_click_back_button(self, button, data):
         
-        self._screen.show_panel(data, data, "Language", 1, False)
+        self._screen.show_panel(data, data, "Language", 1, True)
     
     def on_completed(self, continueButton):
         if self.selected_model:
-            if self.selected_model['processor'] == 'Atmage':
+            if self.selected_model['processor'] == 'Atmega':
                 self._screen.show_panel("co_print_printers_qr", "co_print_printers_qr", self.selected_model, 1, False)
             else:
                 self._screen.show_panel("co_print_sd_card_selection_process_waiting", "co_print_sd_card_selection_process_waiting", self.selected_model, 1, False)

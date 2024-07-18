@@ -673,6 +673,7 @@ class ChromaScreen(Gtk.Window):
         if self._cur_panels[-1] in self.subscriptions:
             self.subscriptions.remove(self._cur_panels[-1])
         if pop:
+            self.panels.pop(self._cur_panels[-1])
             del self._cur_panels[-1]
             #self.attach_panel(self._cur_panels[-1])
 

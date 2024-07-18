@@ -7,6 +7,7 @@ from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 import contextlib
+from ks_includes.functions import internet_on
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.keypad import Keypad
@@ -166,7 +167,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self.config_data = json.load(f)
         except Exception as e:
             logging.exception(e) 
-        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
+        if internet_on():
+            self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
+        else:
+            self.ChromaScreenNeedUpdate = False
         self.IsKlipperNeedUpdate = False
         self.IsMainsailNeedUpdate = False
         if(self.config_data != None) and (self.version_info != False) : 

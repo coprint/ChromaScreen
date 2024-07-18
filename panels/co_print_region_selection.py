@@ -199,7 +199,7 @@ class Panel(ScreenPanel):
     
     def on_click_back_button(self, button, data):
         
-        self._screen.show_panel(data, data, "Language", 1, False)
+        self._screen.show_panel(data, data, "Language", 1, True)
 
     def set_timezone(self, timezone):
         try:

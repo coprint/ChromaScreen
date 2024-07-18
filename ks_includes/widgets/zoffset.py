@@ -64,7 +64,7 @@ class zOffset(Gtk.Box):
         main.set_hexpand(True)
         main.set_valign(Gtk.Align.START)
         #main.set_size_request(this._screen.width *.5, -1)
-        main.pack_start(labelBox, True, True, 0)
+        main.pack_start(labelBox, False, True, 0)
         main.pack_end(inputBox, False, True, 0)
         
        

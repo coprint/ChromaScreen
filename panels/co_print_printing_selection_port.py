@@ -160,12 +160,12 @@ class Panel(ScreenPanel):
     
     
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_printing_selection_done", "co_print_printing_selection_done", None, 2)
+        self._screen.show_panel("co_print_printing_selection_done", "co_print_printing_selection_done", None, 1, True)
         
    
     def on_click_back_button(self, button, data):
         
-        self._screen.show_panel(data, data, "Language", 1, False)
+        self._screen.show_panel(data, data, "Language", 1, True)
     
     def update_mcu_serial(self, new_serial):
         # Dosyayı oku ve satırları bir liste olarak al

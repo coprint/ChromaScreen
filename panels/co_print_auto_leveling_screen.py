@@ -193,7 +193,7 @@ class Panel(ScreenPanel):
                     print(len(self.z_cal_values))
 
                     self.count_grid += 1
-                    if self.count_grid % 5 is 0:
+                    if self.count_grid % 5 == 0:
                         self.count_grid = 0
                         self.row_grid += 1
                    # if self.row_grid < 5:
@@ -215,7 +215,7 @@ class Panel(ScreenPanel):
             self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().remove_class(
                 "auto-leveling-label-box-active")
             self.count_grid += 1
-            if self.count_grid % 5 is 0:
+            if self.count_grid % 5 == 0:
                 self.count_grid = 0
                 self.row_grid += 1
 
@@ -267,7 +267,7 @@ class Panel(ScreenPanel):
             self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().remove_class(
                 "auto-leveling-label-box-active")
             self.count_grid += 1
-            if self.count_grid % 5 is 0:
+            if self.count_grid % 5 == 0:
                 self.count_grid = 0
                 self.row_grid += 1
 

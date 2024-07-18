@@ -1,3 +1,4 @@
+import logging
 import os
 import gi
 from gi.repository import Gtk 
@@ -152,7 +153,8 @@ class Panel(ScreenPanel):
                 self.configFiles = True
             else:
                 self.configFiles = False
-
+    def new_values(self, printer_data):
+        logging.info(f"new_values: {printer_data}")
     def upload_config_files(self, button):
         if self.selected_printer:
             sudoPassword = self._screen.pc_password
