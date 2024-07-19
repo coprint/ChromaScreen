@@ -416,7 +416,7 @@ class Panel(ScreenPanel):
     
     def change_page(self,a,b,pageName):
         
-        self._screen.show_panel(pageName, pageName, None, 2)
+        self._screen.show_panel(pageName, pageName, None, 1, True)
 
     def getConf(self):
         path = self._screen.klipper_path
