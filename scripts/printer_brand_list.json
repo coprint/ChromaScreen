@@ -67,8 +67,8 @@
     ]},
     {"Brand":"Two Trees", "Models": [
         {"name": "Bluer Plus", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-twotrees-bluer-plus", "fileName": "cp-twotrees-bluer-plus.bin", "folderName": "cp-twotrees-bluer-plus", "processor": ""} ,
-        {"name": "Sapphire Plus SP5 v1.1 2021", "dimension": "220mm x 220mm x 250mm", "image": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "fileName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021.bin", "folderName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "processor": ""},
-        {"name": "Sapphire Pro SP3 2020", "dimension": "220mm x 220mm x 250mm", "image": "cp-twotrees-sapphire-pro-sp-3-2020", "fileName": "cp-twotrees-sapphire-pro-sp-3-2020.bin", "folderName": "cp-twotrees-sapphire-pro-sp-3-2020", "processor": ""}
+        {"name": "Sapphire Plus SP5 v1.1", "dimension": "220mm x 220mm x 250mm", "image": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "fileName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021.bin", "folderName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "processor": ""},
+        {"name": "Sapphire Pro SP3", "dimension": "220mm x 220mm x 250mm", "image": "cp-twotrees-sapphire-pro-sp-3-2020", "fileName": "cp-twotrees-sapphire-pro-sp-3-2020.bin", "folderName": "cp-twotrees-sapphire-pro-sp-3-2020", "processor": ""}
     ]},
     {"Brand":"Flsun", "Models": [
         {"name": "Super Racer", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-flsun-super-racer", "fileName": "cp-flsun-super-racer.bin", "folderName": "cp-flsun-super-racer", "processor": ""}

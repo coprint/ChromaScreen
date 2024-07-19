@@ -154,6 +154,8 @@ class Panel(ScreenPanel):
         if lang != self.current_lang: 
             self.new_lang = lang
             self.lang_changed = True
+        else:
+            self.lang_changed = False
     
     def eventBoxLanguage(self, button, gparam, lang):
             for language in self.languages:
