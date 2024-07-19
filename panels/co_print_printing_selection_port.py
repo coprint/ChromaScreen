@@ -133,6 +133,7 @@ class Panel(ScreenPanel):
             self.scroll = self._gtk.ScrolledWindow()
             self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
             self.scroll.set_min_content_height(self._screen.height * .3)
+            self.scroll.set_max_content_height(self._screen.height * .4)
             self.scroll.set_kinetic_scrolling(True)
             self.scroll.get_overlay_scrolling()
         

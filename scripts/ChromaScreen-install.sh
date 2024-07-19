@@ -11,7 +11,7 @@ XSERVER="xinit xinput x11-xserver-utils xserver-xorg-input-evdev xserver-xorg-in
 FBDEV="xserver-xorg-video-fbdev"
 PYTHON="python3-virtualenv virtualenv python3-distutils"
 PYGOBJECT="libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0"
-MISC="librsvg2-common libopenjp2-7 libatlas-base-dev wireless-tools libdbus-glib-1-dev autoconf"
+MISC="librsvg2-common libopenjp2-7 libatlas-base-dev wireless-tools libdbus-glib-1-dev autoconf libudev-dev"
 OPTIONAL="xserver-xorg-legacy fonts-nanum fonts-ipafont libmpv-dev zip unzip git"
 
 # moonraker will check this list when updating

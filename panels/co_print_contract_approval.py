@@ -74,7 +74,7 @@ class Panel(ScreenPanel):
         self.skipButton.add(skipButtonBox)
         self.skipButton.connect("clicked", self.on_click_back_button, "co_print_home_screen")
         self.skipButton.set_always_show_image (True)       
-        mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
+        #mainBackButtonBox.pack_end(self.skipButton, False, False, 0)
         
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
      

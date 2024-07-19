@@ -1,7 +1,12 @@
 import logging
 import os
+import socket
 import gi
 import subprocess
+
+import numpy as np
+from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
+from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.wificard import WifiCard
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
@@ -131,13 +136,87 @@ class Panel(ScreenPanel):
        
 
 
+    def add_network(self, widget, name):
+        
+        dialog = AddNetworkDialog( name, self)
+        dialog.get_style_context().add_class("network-dialog")
+        dialog.set_decorated(False)
+
+        response = dialog.run()
+ 
+        if response == Gtk.ResponseType.OK:
+            dialog.destroy()
+            psw = dialog.psw
+            ssid = dialog.ssid
+            command = ["nmcli", "device", "wifi", "connect", ssid, "password", psw]
+            #self.execute_command_and_show_output(command, ssid, psw)
+
+
+            GLib.idle_add(self.execute_command_and_show_output, command, ssid, psw)  
+            self.waitDialog = InfoDialog(self, _("Please Wait"), True)
+            self.waitDialog.get_style_context().add_class("alert-info-dialog")
+
+            self.waitDialog.set_decorated(False)
+            self.waitDialog.set_size_request(0, 0)
+            response = self.waitDialog.run()
+
+
+            
+        elif response == Gtk.ResponseType.CANCEL:
+            subprocess.Popen(["pkill", "onboard"])
+            dialog.destroy()
     
+    def execute_command_and_show_output(self, command, name, psw):
+        try:
+            status = self.connect_to(name, psw)
+            
+            if status:
+                self.close_dialog(self.waitDialog)
+            else:
+                self.close_dialog(self.waitDialog)
+                self.showMessageBox(_('Connection Failed'))
+
+            hostname = socket.gethostname()
+            IPAddr = socket.gethostbyname(hostname)
+            ip = IPAddr
+            #self.IpLabel.set_label(_("IP") + ":" + ip)
+            GLib.idle_add(self.refresh, None)
+        except subprocess.CalledProcessError as e:
+            self.showMessageBox(e.output.decode("utf-8"))
+
+    def showMessageBox(self, message):
+        self.dialog = InfoDialog(self, message, True)
+        self.dialog.get_style_context().add_class("alert-info-dialog")
+
+        self.dialog.set_decorated(False)
+        self.dialog.set_size_request(0, 0)
+        timer_duration = 3000
+        GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
+        response = self.dialog.run()
+    
+    def connect_to(self, ssid: str, password: str):
+        wifi_list_string = subprocess.check_output(['nmcli', '-f', 'NAME', 'con', 'show']).decode()
+        wifi_list = wifi_list_string.split("\n")
+        is_saved = np.any([ssid in i.strip() for i in wifi_list])
+
+        if is_saved:
+            subprocess.call(['nmcli', 'c', 'up', 'id', ssid])
+        else:
+            subprocess.call(['nmcli', 'd', 'wifi', 'connect', ssid, 'password', password])
+        connected_wifi_list = self.what_wifi()
+        return self.is_connected_to(ssid, connected_wifi_list)
+    
+    def close_dialog(self, dialog):
+        dialog.response(Gtk.ResponseType.CANCEL)
+        dialog.destroy()  
+    def wifiChanged(self,widget , event, name):
+        self.add_network(None, name)
     
 
-    def wifiChanged(self,widget , event, name):
+    # def wifiChanged(self,widget , event, name):
       
-       self.selectedWifiIndex = name
-       self._screen.show_panel("co_print_wifi_selection_select", "co_print_wifi_selection_select", None, 1, False, items=self.selectedWifiIndex)
+    #    self.selectedWifiIndex = name
+    #    self._screen.show_panel("co_print_wifi_selection_select", "co_print_wifi_selection_select", None, 1, False, items=self.selectedWifiIndex)
 
     def on_click_continue_button(self, continueButton):
         # if self.selectedWifiIndex is not None:

@@ -48,17 +48,16 @@ class Panel(ScreenPanel):
         row = 0
         count = 0
         #group =  [x for x in languages if x['Lang'] == i18n.get('locale')][0]['Button']
-        group =  self.languages[0]['Button']
-       
+        self.group =  self.languages[0]['Button']
+        self.new_lang = None
         self.current_lang =  self._config.current_lang
         for language in self.languages:
             
             languageImage = self._gtk.Image(language['Icon'], self._gtk.content_width * .05 , self._gtk.content_height * .05)
             languageName = Gtk.Label(language['Name'],name ="language-label")
-            language['Button'] = Gtk.RadioButton.new_with_label_from_widget(group,"")
-            language['Button'].set_active(False)
+            language['Button'] = Gtk.RadioButton.new_with_label_from_widget(self.group,"")
+            
             if self.current_lang == language['Lang']:
-                language['Button'] = Gtk.RadioButton.new_with_label_from_widget(None,"")
                 language['Button'].set_active(True)
             language['Button'].connect("toggled",self.radioButtonSelected, language['Lang'])
             
@@ -111,9 +110,10 @@ class Panel(ScreenPanel):
        
     def on_click_continue_button(self, continueButton):
         if self.lang_changed:
+            self.changeLang(self.new_lang)
             self._screen.restart_ks()
         else:
-            self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 1, False)
+            self._screen.show_panel("co_print_contract_approval", "co_print_contract_approval", None, 1, True)
 
     def changeLang(self, lang):
         if lang != self.current_lang:
@@ -152,14 +152,15 @@ class Panel(ScreenPanel):
 
     def radioButtonSelected(self, button, lang):
         if lang != self.current_lang: 
-            self.changeLang(lang)
+            self.new_lang = lang
+            self.lang_changed = True
     
     def eventBoxLanguage(self, button, gparam, lang):
-        if lang != self.current_lang:
             for language in self.languages:
-                if lang == language['Lang']:
+                if lang != language['Lang']:
+                    language['Button'].set_active(False)
+                else:
                     language['Button'].set_active(True)
-        
 
 
     def _resolve_radio(self, master_radio):

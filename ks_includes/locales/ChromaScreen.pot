@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 10:32+0300\n"
+"POT-Creation-Date: 2024-07-19 11:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,11 @@ msgid "Add profile"
 msgstr ""
 
 msgid "Adv. Settings"
+msgstr ""
+
+msgid ""
+"After completing the steps, connect the printer to ChromaPad by clicking "
+"Next Step."
 msgstr ""
 
 msgid "Apply"
@@ -1023,6 +1028,9 @@ msgstr ""
 msgid "Saved offset: %s"
 msgstr ""
 
+msgid "Scan the QR Code"
+msgstr ""
+
 msgid "Screen DPMS"
 msgstr ""
 
@@ -1224,6 +1232,15 @@ msgstr ""
 msgid "Temperature"
 msgstr ""
 
+msgid "The Config Files have been uploaded"
+msgstr ""
+
+msgid "The language will change to "
+msgstr ""
+
+msgid "The printer's firmware has been changed"
+msgstr ""
+
 msgid ""
 "The settings file is being created. During this time Please wait and do not "
 "turn off ChromaScreen."
@@ -1232,6 +1249,11 @@ msgstr ""
 msgid ""
 "The settings file is being created. During this time.Please wait and do not "
 "turn off ChromaScreen."
+msgstr ""
+
+msgid ""
+"This printer is an Atmega-based processor printer. You can access the steps "
+"required to write the '.Hex' files to the printer by scanning the QR Code."
 msgstr ""
 
 msgid "Title:"
@@ -1286,6 +1308,9 @@ msgid "Update Manager"
 msgstr ""
 
 msgid "Updating"
+msgstr ""
+
+msgid "Upload Conf files"
 msgstr ""
 
 msgid "Uploaded"

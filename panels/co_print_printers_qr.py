@@ -4,6 +4,7 @@ import gi
 from gi.repository import Gtk 
 from ks_includes.screen_panel import ScreenPanel
 from ks_includes.widgets.initheader import InitHeader
+from ks_includes.widgets.infodialog import InfoDialog
 
 class Panel(ScreenPanel):
     def __init__(self, screen, printer_data):
@@ -162,12 +163,23 @@ class Panel(ScreenPanel):
             destination_data_folder =  os.path.join(os.path.expanduser("~/"), "printer_"+str(self._screen.selected_printer_index)+"_data", "config")
             command_data = 'cp -a '+ source_folder + ' ' +destination_data_folder
             pp = os.system('echo %s|sudo -S %s' % (sudoPassword, command_data))
+            self.open_info_dialog()
             self.configFilesCheck.set_active(True)
             self.on_toggled(self.configFilesCheck, "configFiles")
+        
+    def open_info_dialog(self):
+        
+            self.dialog = InfoDialog(self, "Config Files have been uploaded", True, False)
+            self.dialog.get_style_context().add_class("alert-info-dialog")
+        
+            self.dialog.set_decorated(False)
+            self.dialog.set_size_request(0, 0)
+        
+            response = self.dialog.run()
 
     def on_click_continue_button(self, continueButton):
         if self.firmware and self.configFiles:
-            self._screen.show_panel("co_print_printing_selection_port", "co_print_printing_selection_port", None, 1, False)
+            self._screen.show_panel("co_print_printing_selection", "co_print_printing_selection", None, 1, False)
 
     def on_click_back_button(self, button, data):
-        self._screen.show_panel(data, data, "Language", 1, False)
+        self._screen.show_panel(data, data, "Language", 1, True)

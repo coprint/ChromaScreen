@@ -39,7 +39,7 @@ class Panel(ScreenPanel):
         backButtonBox.pack_start(backLabel, False, False, 0)
         self.backButton = Gtk.Button(name ="back-button")
         self.backButton.add(backButtonBox)
-        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_chip_selection')
+        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_printing_brand_selection_new')
         self.backButton.set_always_show_image (True)       
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
@@ -91,7 +91,7 @@ class Panel(ScreenPanel):
 
         # except Exception as e:
         #     logging.exception(e) 
-        self._screen.show_panel("co_print_printing_selection", "co_print_printing_selection", None, 2)
+        self._screen.show_panel("co_print_printing_selection", "co_print_printing_selection", None, 1, True)
         
    
     def on_click_back_button(self, button, data):
