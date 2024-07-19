@@ -112,7 +112,7 @@ class Panel(ScreenPanel):
         params = {"source": self.source, "dest": f"gcodes/{self.labels['new_name'].get_text()}"}
     def on_click_back_button(self, button):
         
-        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 1, False)
+        self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 1, True)
     
     def execute_command_and_show_output(self):
         try:

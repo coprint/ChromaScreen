@@ -19,8 +19,8 @@ class zOffset(Gtk.Box):
         label = Gtk.Label(("Z Offset"), name="zoffset-label")
         labelBox.pack_start(image, True, False, 10)
         labelBox.pack_start(label, True, False, 0)
-        labelBox.set_valign(Gtk.Align.START)
-        labelBox.set_halign(Gtk.Align.START)
+        labelBox.set_valign(Gtk.Align.CENTER)
+        labelBox.set_halign(Gtk.Align.CENTER)
         
         
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)

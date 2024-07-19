@@ -47,7 +47,7 @@ class Panel(ScreenPanel):
         backButtonBox.pack_start(backLabel, False, False, 0)
         self.backButton = Gtk.Button(name ="back-button")
         self.backButton.add(backButtonBox)
-        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_sd_card_selection_process_waiting')
+        self.backButton.connect("clicked", self.on_click_back_button, 'co_print_printing_brand_selection_new')
         self.backButton.set_always_show_image (True)       
         mainBackButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         mainBackButtonBox.pack_start(self.backButton, False, False, 0)
@@ -74,8 +74,8 @@ class Panel(ScreenPanel):
         
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
-       
-        GLib.idle_add(self.control_usb, None)
+        GLib.timeout_add_seconds(3, self.control_usb,None)
+        #GLib.idle_add(self.control_usb, None)
 
    
     def control_usb(self, args):
@@ -101,7 +101,7 @@ class Panel(ScreenPanel):
     
     
     def on_click_continue_button(self):
-        self._screen.show_panel("co_print_printing_selection_port", "co_print_printing_selection_port", None, 2)
+        self._screen.show_panel("co_print_printing_selection_port", "co_print_printing_selection_port", None, 1, True)
         
     def on_click_back_button(self, button, data):
         

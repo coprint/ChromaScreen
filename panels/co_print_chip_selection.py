@@ -406,7 +406,7 @@ class Panel(ScreenPanel):
         response = self.waitDialog.run()
 
     def on_click_continue_button(self, continueButton):
-        self._screen.show_panel("co_print_chip_selection_loading", "co_print_chip_selection_loading", None, 2)   
+        self._screen.show_panel("co_print_chip_selection_loading", "co_print_chip_selection_loading", None, 1, True)   
        
         
 
