@@ -31,7 +31,7 @@ from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-version = "0.9.7"
+version = "0.9.9"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
     'configfile',
