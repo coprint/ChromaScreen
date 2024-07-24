@@ -138,7 +138,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         logFilesBox.pack_start(logFilesButtonBox, False, False, 0)
 
         restartButtonsAndLogFilesBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
-        restartButtonsAndLogFilesBox.pack_start(self.generateRestartButtons(self.statusLight), False, False, 0)
+        restartButtonsAndLogFilesBox.pack_start(self.restartBox, False, False, 0)
         #restartButtonsAndLogFilesBox.pack_start(logFilesBox, False, False, 0)
 
 
