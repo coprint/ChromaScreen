@@ -13,7 +13,8 @@ class zOffset(Gtk.Box):
     def __init__(self, this):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL)
         
-        self.printer = this
+        self.this = this
+        self.current_value = float(self.this._printer.data["gcode_move"]["homing_origin"][2])
         labelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         image = this._gtk.Image("zoffset", 35, 35)
         label = Gtk.Label(("Z Offset"), name="zoffset-label")
@@ -73,30 +74,28 @@ class zOffset(Gtk.Box):
     def on_button_clicked(self, widget, value):
             # Mevcut değeri alın
             #current_value = float(self.entry.get_text())
-            current_value = float(self.printer._printer.data["gcode_move"]["homing_origin"][2])
+            self.current_value = float(self.this._printer.data["gcode_move"]["homing_origin"][2])
             # Yeni değeri hesaplayın
 
-            if(self.printer.OffsetConstant):
-                if value >0:
-                    new_value = current_value + self.printer.OffsetConstant 
-                    increment = self.printer.OffsetConstant
+            if(self.this.OffsetConstant):
+                if value > 0:
+                    new_value = self.current_value + self.this.OffsetConstant 
+                    increment = self.this.OffsetConstant
                 else:
-                    new_value = current_value - self.printer.OffsetConstant 
-                    increment = self.printer.OffsetConstant
+                    new_value = self.current_value - self.this.OffsetConstant 
+                    increment = self.this.OffsetConstant
             else:
-                new_value = current_value + value
+                new_value = self.current_value + value
                 increment = value
             direction = '-'
             if value > 0:
                  direction = '+'
                 
-            self.printer._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z_ADJUST={direction}{abs(increment)} MOVE=1")
-            
-            
-            # Yeni değeri entry'ye ayarlayın
+            self.this._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z_ADJUST={direction}{abs(self.this.OffsetConstant)} MOVE=1")
+            self.current_value = new_value
             self.entry.set_text('{:.2f}'.format(new_value))
     def updateValue(self, value):
-        current_value = value
-        self.entry.set_text('{:.2f}'.format(current_value))
+        self.current_value = value
+        self.entry.set_text('{:.2f}'.format(self.current_value))
 
     

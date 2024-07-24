@@ -2314,6 +2314,7 @@ button.macros label {
 	font-size: 0.8em;
 }
 #bottom-menu-box {
+	padding-bottom: 5px;
 }
 
 #auto-leveling-right-box {

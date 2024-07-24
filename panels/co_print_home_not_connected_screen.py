@@ -37,31 +37,32 @@ class Panel(ScreenPanel, metaclass=Singleton):
         box_array = []
         self.current_time_millis = int(round(time.time() * 1000))
         menu = BottomMenu(self, False)
-
+        self.state = self._printer.state
+        self.state_message = self._printer.state_message
         #-----LEFT BOX-----#
 
         #-----warning report-----#
-        statusLight = 'yellow'
+        self.statusLight = 'yellow'
         if self._printer.state == 'error':
-            statusLight = 'red'
+            self.statusLight = 'red'
         elif self._printer.state == 'startup':
-            statusLight = 'blue'
+            self.statusLight = 'blue'
         reportHeaderBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        warningYellowIcon = self._gtk.Image("warning-"+statusLight, 35, 35)
-        warningHeaderLabel = Gtk.Label(_("Klipper reports: "+ (self._printer.state).upper()), name="warning-header-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-header-red-label #
+        warningYellowIcon = self._gtk.Image("warning-"+self.statusLight, 35, 35)
+        warningHeaderLabel = Gtk.Label(_("Klipper reports: "+ (self._printer.state).upper()), name="warning-header-"+self.statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-header-red-label #
         reportHeaderBox.pack_start(warningYellowIcon, False, False, 0)
         reportHeaderBox.pack_start(warningHeaderLabel, False, False, 0)
-        warningContentLabel = Gtk.Label((self._printer.state_message).replace('\n', ' '), name="warning-content-"+statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-content-red-label #
+        warningContentLabel = Gtk.Label((self._printer.state_message).replace('\n', ' '), name="warning-content-"+self.statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-content-red-label #
         warningContentLabel.set_max_width_chars(65)
         warningContentLabel.set_line_wrap(True)
         warningContentLabel.set_justify(Gtk.Justification.LEFT)
         waringContentBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         waringContentBox.pack_start(warningContentLabel, False, False, 0)
 
-        reportBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        reportBox.set_name("report-box-" + statusLight)
-        reportBox.pack_start(reportHeaderBox, False, False, 0)
-        reportBox.pack_start(waringContentBox, False, False, 0)
+        self.reportBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.reportBox.set_name("report-box-" + self.statusLight)
+        self.reportBox.pack_start(reportHeaderBox, False, False, 0)
+        self.reportBox.pack_start(waringContentBox, False, False, 0)
 
         
         #-----system restart button-----#
@@ -72,7 +73,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         systemRestartBox.set_valign(Gtk.Align.CENTER)
         systemRestartBox.pack_start(systemRestartIcon, False, False, 0)
         systemRestartBox.pack_start(systemRestartLabel, False, False, 0)
-        self.systemRestartButton = Gtk.Button(name ="system-restart-"+statusLight+"-button")
+        self.systemRestartButton = Gtk.Button(name ="system-restart-"+self.statusLight+"-button")
         self.systemRestartButton.add(systemRestartBox)
         self.systemRestartButton.connect("clicked", self.reboot_poweroff, 'reboot')
         self.systemRestartButton.set_always_show_image (True)
@@ -85,14 +86,14 @@ class Panel(ScreenPanel, metaclass=Singleton):
         firmwareRestartBox.set_valign(Gtk.Align.CENTER)
         firmwareRestartBox.pack_start(firmwareRestartIcon, False, False, 0)
         firmwareRestartBox.pack_start(firmwareRestartLabel, False, False, 0)
-        self.firmwareRestartButton = Gtk.Button(name ="system-restart-"+statusLight+"-button") #kırmızısı için name şu class ile değişilecek: system-restart-red-button #
+        self.firmwareRestartButton = Gtk.Button(name ="system-restart-"+self.statusLight+"-button") #kırmızısı için name şu class ile değişilecek: system-restart-red-button #
         self.firmwareRestartButton.add(firmwareRestartBox)
         self.firmwareRestartButton.connect("clicked", self.on_click_firmware_restart)
         self.firmwareRestartButton.set_always_show_image (True)
 
-        restartBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)     
-        restartBox.pack_start(self.systemRestartButton, False, False, 0)
-        restartBox.pack_start(self.firmwareRestartButton, False, False, 0)
+        self.restartBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)     
+        self.restartBox.pack_start(self.systemRestartButton, False, False, 0)
+        self.restartBox.pack_start(self.firmwareRestartButton, False, False, 0)
 
         #-----log files-----#
         
@@ -137,7 +138,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         logFilesBox.pack_start(logFilesButtonBox, False, False, 0)
 
         restartButtonsAndLogFilesBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
-        restartButtonsAndLogFilesBox.pack_start(restartBox, False, False, 0)
+        restartButtonsAndLogFilesBox.pack_start(self.generateRestartButtons(self.statusLight), False, False, 0)
         #restartButtonsAndLogFilesBox.pack_start(logFilesBox, False, False, 0)
 
 
@@ -315,7 +316,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
        
         left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         left_box.set_halign(Gtk.Align.START)
-        left_box.pack_start(reportBox, False, False, 0)
+        left_box.pack_start(self.reportBox, False, False, 0)
         left_box.pack_start(leftContentBox, False, False, 0)
         #-----RIGHT BOX-----#
         coprintQr = self._gtk.Image("coprint-qr", 120, 120)
@@ -372,6 +373,40 @@ class Panel(ScreenPanel, metaclass=Singleton):
         page.pack_end(menu, False, True, 0)
         self.content.add(page)
 
+    def generateRestartButtons(self):
+        if self.restartBox.get_children() != None:
+            for child in self.restartBox.get_children():
+                self.restartBox.remove(child)
+        #-----system restart button-----#
+        systemRestartIcon = self._gtk.Image("redo", 35, 35)
+        systemRestartLabel = Gtk.Label(_("System Restart"), name="bottom-menu-label")            
+        systemRestartBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+        systemRestartBox.set_halign(Gtk.Align.CENTER)
+        systemRestartBox.set_valign(Gtk.Align.CENTER)
+        systemRestartBox.pack_start(systemRestartIcon, False, False, 0)
+        systemRestartBox.pack_start(systemRestartLabel, False, False, 0)
+        self.systemRestartButton = Gtk.Button(name ="system-restart-"+self.statusLight+"-button")
+        self.systemRestartButton.add(systemRestartBox)
+        self.systemRestartButton.connect("clicked", self.reboot_poweroff, 'reboot')
+        self.systemRestartButton.set_always_show_image (True)
+
+        #-----firmware restart button-----#
+        firmwareRestartIcon = self._gtk.Image("reload", 35, 35)
+        firmwareRestartLabel = Gtk.Label(_("Firmware Restart"), name="bottom-menu-label")            
+        firmwareRestartBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+        firmwareRestartBox.set_halign(Gtk.Align.CENTER)
+        firmwareRestartBox.set_valign(Gtk.Align.CENTER)
+        firmwareRestartBox.pack_start(firmwareRestartIcon, False, False, 0)
+        firmwareRestartBox.pack_start(firmwareRestartLabel, False, False, 0)
+        self.firmwareRestartButton = Gtk.Button(name ="system-restart-"+self.statusLight+"-button")
+        self.firmwareRestartButton.add(firmwareRestartBox)
+        self.firmwareRestartButton.connect("clicked", self.on_click_firmware_restart)
+        self.firmwareRestartButton.set_always_show_image (True)
+        
+        self.restartBox.pack_start(self.systemRestartButton, False, False, 0)
+        self.restartBox.pack_start(self.firmwareRestartButton, False, False, 0)
+        self.restartBox.show_all()
+    
     def clean_version(self, version_str):
         # Başlangıçtaki 'v' karakterini kaldır
         if version_str.startswith('v'):
@@ -766,9 +801,41 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.desiredTemp = 1
         self.extruderChanged = False
 
+    def update_message(self):
+        if self.reportBox.get_children() != None:
+            for child in self.reportBox.get_children():
+                self.reportBox.remove(child)
+        self.statusLight = 'yellow'
+        if self._printer.state == 'error':
+            self.statusLight = 'red'
+        elif self._printer.state == 'startup':
+            self.statusLight = 'blue'
+        reportHeaderBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        warningHeaderLabel = Gtk.Label(_("Klipper reports: "+ (self._printer.state).upper()), name="warning-header-"+self.statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-header-red-label #
+        if self.statusLight == 'yellow':
+            warningYellowIcon = self._gtk.Image("warning-"+self.statusLight, 35, 35)
+            reportHeaderBox.pack_start(warningYellowIcon, False, False, 0)
+        reportHeaderBox.pack_start(warningHeaderLabel, False, False, 0)
+        warningContentLabel = Gtk.Label((self._printer.state_message).replace('\n', ' '), name="warning-content-"+self.statusLight+"-label") #kırmızısı için name şu class ile değişilecek: warning-content-red-label #
+        warningContentLabel.set_max_width_chars(65)
+        warningContentLabel.set_line_wrap(True)
+        warningContentLabel.set_justify(Gtk.Justification.LEFT)
+        waringContentBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        waringContentBox.pack_start(warningContentLabel, False, False, 0)
+        self.reportBox.set_name("report-box-" + self.statusLight)
+        self.reportBox.pack_start(reportHeaderBox, False, False, 0)
+        self.reportBox.pack_start(waringContentBox, False, False, 0)
+        self.reportBox.show_all()
+        
+
     def process_update(self, action, data):
 
-
+        if self._printer.state != self.state or self.state_message != self._printer.state_message:
+            self.state = self._printer.state
+            self.state_message = self._printer.state_message
+            self.update_message()
+            self.generateRestartButtons()
+            
         if self._printer.state == 'ready' :
             page_url = 'co_print_home_screen'
             self._screen.show_panel(page_url, page_url, "Language", 1, False) 

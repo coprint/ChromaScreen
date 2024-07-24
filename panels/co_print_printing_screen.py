@@ -53,6 +53,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.zoffset = 0
         self.pressure_advance = ""
         self.smooth_time = ""
+        self.pixbuf = ""
         # self.label1 = Gtk.Label("")
         # self.label2 = Gtk.Label("")
         # self.label3 = Gtk.Label("")
@@ -71,7 +72,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         # labelBox.pack_start(self.label8, True, True, 0)
         # labelBox.pack_start(self.label9, True, True, 0)
         ''' left '''
-        self.labels['thumbnail'] = self._gtk.Image("file", self._screen.width / 6, self._screen.height / 2.7)
+        self.labels['thumbnail'] = self._gtk.Image(self.pixbuf, self._screen.width / 6, self._screen.height / 2.7)
         self.labels['thumbnail'].get_style_context().add_class("thumbnail")
         
         self.heatedBed = ProgressBar(self, "0.0° / 0.0°", "tablaicon", 0.0, "progress-bar-extruder-yellow", self.change_bed_temperature_pre)
@@ -145,7 +146,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.scale_printProgress.set_hexpand(True) 
 
         self.zoffset_widget = zOffset(self)
-        self.zoffset_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.zoffset_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.zoffset_box.set_name("zoffset-box")
         self.zoffset_box.pack_start(self.zoffset_widget, True, False, 0)
         
@@ -484,6 +485,13 @@ class Panel(ScreenPanel, metaclass=Singleton):
                     if (self.extrusionFactor_newValue != self._printer.data['gcode_move']['extrude_factor']):
                         self.extrusionFactor_newValue = self._printer.data['gcode_move']['extrude_factor']
                         self.extrusionFactor_widget.updateValue(self.extrusionFactor_newValue, str(self.extrusionFactor_newValue))
+                if  action != 'notify_busy' and "gcode_move" in data :
+                    if "homing_origin" in data["gcode_move"]:
+                        if self.zoffset != float(self._printer.data["gcode_move"]["homing_origin"][2]):
+                            logging.info(f"Z Offset: {self.zoffset} -> {float(self._printer.data['gcode_move']['homing_origin'][2])}")
+                            self.zoffset = float(self._printer.data["gcode_move"]["homing_origin"][2])
+                            self.zoffset_widget.updateValue(self.zoffset)
+
                 data = self._printer.data
                 if self.speed_factor*100 != data['gcode_move']['speed_factor']:
                     self.speed_factor = data['gcode_move']['speed_factor']
@@ -495,6 +503,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
                     self.fan_spped = data['fan']['speed'] 
                     self.fanSpeed_widget.updateValue(self.fan_spped*100, str(int(self.fan_spped*100)))
                 if self.zoffset != float(self._printer.data["gcode_move"]["homing_origin"][2]):
+                    logging.info(f"Z Offset: {self.zoffset} -> {float(self._printer.data['gcode_move']['homing_origin'][2])}")
                     self.zoffset = float(self._printer.data["gcode_move"]["homing_origin"][2])
                     self.zoffset_widget.updateValue(self.zoffset)
                 if self.pressure_advance != float(self._printer.data["extruder"]["pressure_advance"]):
@@ -523,9 +532,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 self.update_time_left(total_duration, print_duration, ps['filament_used'])
 
     def image_load(self, filepath):
-        pixbuf = self.get_file_image(filepath, self._screen.width / 3, self._screen.height / 3,small=False)
-        if pixbuf is not None:
-            self.labels['thumbnail'].set_from_pixbuf(pixbuf)
+        self.pixbuf = self.get_file_image(filepath, self._screen.width / 3, self._screen.height / 3,small=False)
+        if self.pixbuf is not None:
+            self.labels['thumbnail'].set_from_pixbuf(self.pixbuf)
             #self.labels['files'][filepath]['icon'].set_image(Gtk.Image.new_from_pixbuf(pixbuf))
        
     def update_time_left(self, total_duration, print_duration, fila_used=0):
@@ -674,6 +683,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self.enable_button("pause", "cancel")
             return
         logging.debug("Canceling print")
+        self.filename = ""
         self.disable_button("pause", "resume", "cancel")
         self._screen._ws.klippy.print_cancel(self._response_callback)
     

@@ -62,6 +62,7 @@ class Printer:
         self.output_pin_count = 0
         self.tempstore = {}
         self.busy = False
+        self.selectedExtruder = ""
         if not self.store_timeout:
             self.store_timeout = GLib.timeout_add_seconds(1, self._update_temp_store)
         self.tempstore_size = 1200
