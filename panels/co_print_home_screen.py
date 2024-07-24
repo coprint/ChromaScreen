@@ -837,4 +837,5 @@ class Panel(ScreenPanel, metaclass=Singleton):
                     self.heatedBed.updateValue(heater_bed_temp/self.heater_bed_temp_target_pre, str(round(heater_bed_temp,1)) + f"° / {self.heater_bed_temp_target_pre}°")
                 else:
                     self.heatedBed.updateValue(1/1, str(round(heater_bed_temp,1)) + f"° / {self.heater_bed_temp_target_pre}°")
-
+    def reinit(self):
+        self.tab_box.generateBoxs()

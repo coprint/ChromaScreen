@@ -122,4 +122,4 @@ class BottomMenu(Gtk.Box):
         elif data == 'co_print_printing_files_screen' and  (self.parent._printer.state == 'printing' or self.parent._printer.state == 'paused'):
             self.parent._screen.show_panel('co_print_printing_screen', 'co_print_printing_screen', "Language", 1, False)
         elif(self.parent._printer.state != 'printing'):
-            self.parent._screen.show_panel(data, data, "Language", 1, False)
+            self.parent._screen.show_panel(data, data, "Language", 1, True)

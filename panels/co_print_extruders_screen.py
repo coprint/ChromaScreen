@@ -583,3 +583,8 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self.printer._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z_ADJUST={direction}{abs(value)} MOVE=1")
             # Yeni değeri entry'ye ayarlayın
             self.entry.set_text('{:.2f}'.format(new_value))
+
+
+    def reinit(self):
+        self.connectedExtruder.set_label(self._printer.selectedExtruder)
+        self.generateGrid()

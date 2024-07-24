@@ -31,7 +31,7 @@ from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-version = "0.9.9"
+version = "1.0.0"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
     'configfile',
@@ -414,6 +414,8 @@ class ChromaScreen(Gtk.Window):
             self.process_update("notify_busy", self.printer.busy)
         if hasattr(self.panels[panel_name], "activate"):
             self.panels[panel_name].activate()
+        if hasattr(self.panels[panel_name], "reinit"):
+            self.panels[panel_name].reinit()
         self.show_all()
         self.base_panel.visible_menu(False)
     # def _load_panel(self, panel, *args):
