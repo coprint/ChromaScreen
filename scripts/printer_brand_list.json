@@ -1,89 +1,118 @@
 [
     {"Brand":"Creality", "Models": [
-        {"name": "Ender 3", "dimension": "235mm x 235mm x 300mm", "image": "printer", "fileName": "cp-creality-ender3.hex", "folderName": "cp-creality-ender3", "processor": "Atmega"},
-        {"name": "CR-10 Max", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-cr10max", "fileName": "cp-creality-cr10-max.hex", "folderName": "cp-creality-cr10-max", "processor": "Atmega"},
-        {"name": "CR-10 V2", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-cr10v2", "fileName": "cp-creality-10-v2.bin", "folderName": "cp-creality-10-v2", "processor": ""},
-        {"name": "Ender 3v2 2020", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3-v2-2020", "fileName": "creality-ender3-v2-2020.bin", "folderName": "creality-ender3-v2-2020", "processor": ""},
-        {"name": "Ender 3 Pro", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3pro-2020", "fileName": "cp-creality-ender3pro-2020.bin", "folderName": "cp-creality-ender3pro-2020", "processor": ""},
-        {"name": "Ender 3v2 Neo", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3-v2-neo-2022", "fileName": "cp-creality-ender3-v2-neo-2022.bin", "folderName": "cp-creality-ender3-v2-neo-2022", "processor": ""},
-        {"name": "Ender 3 Max", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-creality-ender3max-2021", "fileName": "cp-creality-ender3max-2021.bin", "folderName": "cp-creality-ender3max-2021", "processor": ""},
-        {"name": "CR-6 SE 2020", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr6se-2020", "fileName": "cp-creality-cr6se-2020.bin", "folderName": "cp-creality-cr6se-2020", "processor": ""},
-        {"name": "CR-6 SE 2021", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr6se-2020", "fileName": "cp-creality-cr6se-2021.bin", "folderName": "cp-creality-cr6se-2021", "processor": ""},
-        {"name": "CR-6 MAX", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr6-max", "fileName": "cp-creality-cr6-max.bin", "folderName": "cp-creality-cr6-max", "processor": ""},
-        {"name": "CR-10 Smart Pro 2022", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr10-smart-pro-2022", "fileName": "cp-creality-cr10-smart-pro-2022.hex", "folderName": "cp-creality-cr10-smart-pro-2022", "processor": "Atmega"},
-        {"name": "Ender 2 Pro 2021", "dimension": "235mm x 235mm x 300mm", "image": "img-cp-creality-ender2pro-hc32-2022", "fileName": "cp-creality-ender2pro-2021.bin", "folderName": "cp-creality-ender2pro-2021", "processor": ""},
-        {"name": "Ender 2 Pro 2022", "dimension": "235mm x 235mm x 300mm", "image": "img-cp-creality-ender2pro-hc32-2022", "fileName": "cp-creality-ender2pro-hc32-2022.bin", "folderName": "cp-creality-ender2pro-hc32-2022", "processor": ""},
-        {"name": "Ender 3 S1 2021 (103)", "dimension": "220mm x 220mm x 250mm", "image": "cp-creality-ender3-s1-2021-401", "fileName": "cp-creality-ender3-s1-2021-103.bin", "folderName": "cp-creality-ender3-s1-2021-103", "processor": ""},
-        {"name": "Ender 3 S1 2021 (401)", "dimension": "235mm x 235mm x 300mm", "image": "cp-creality-ender3-s1-2021-401", "fileName": "cp-creality-ender3-s1-2021-401.bin", "folderName": "cp-creality-ender3-s1-2021-401", "processor": ""},
-        {"name": "Ender 3 S1 Plus 2022", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender3-s1plus-2022", "fileName": "cp-creality-ender3-s1-2022.bin", "folderName": "cp-creality-ender3-s1plus-2022", "processor": ""},
-        {"name": "Ender 5 S1", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender5-s1-2023", "fileName": "cp-creality-ender5-s1-2023.bin", "folderName": "cp-creality-ender5-s1-2023", "processor": ""},
-        {"name": "Ender 5 Plus", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-ender5-plus", "fileName": "cp-creality-ender5-plus.hex", "folderName": "cp-creality-ender5-plus", "processor": "Atmega"},
-        {"name": "Ender 5 Pro", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender5pro-2020", "fileName": "cp-creality-ender5pro-2020.bin", "folderName": "cp-creality-ender5pro-2020", "processor": ""},
-        {"name": "Ender 6", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-ender6-2020", "fileName": "cp-creality-ender6-2020.bin", "folderName": "cp-creality-ender6-2020", "processor": ""},
-        {"name": "CR10 Smart", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-creality-cr10-smart", "fileName": "cp-creality-cr10-smart.hex", "folderName": "cp-creality-cr10-smart", "processor": "Atmega"},
+        {"name": "Ender 3", "dimension": "235 x 235 x 300", "image": "printer", "fileName": "cp-creality-ender3.hex", "folderName": "cp-creality-ender3", "processor": "Atmega"},
+        {"name": "CR-10 Max", "dimension": "235 x 235 x 300", "image": "cp-img-cr10max", "fileName": "cp-creality-cr10-max.hex", "folderName": "cp-creality-cr10-max", "processor": "Atmega"},
+        {"name": "CR-10 V2", "dimension": "235 x 235 x 300", "image": "cp-img-cr10v2", "fileName": "cp-creality-10-v2.bin", "folderName": "cp-creality-10-v2", "processor": ""},
+        {"name": "Ender 3v2 2020", "dimension": "220 x 220 x 250", "image": "cp-img-creality-ender3-v2-2020", "fileName": "creality-ender3-v2-2020.bin", "folderName": "creality-ender3-v2-2020", "processor": ""},
+        {"name": "Ender 3 Pro", "dimension": "220 x 220 x 250", "image": "cp-img-creality-ender3pro-2020", "fileName": "cp-creality-ender3pro-2020.bin", "folderName": "cp-creality-ender3pro-2020", "processor": ""},
+        {"name": "Ender 3v2 Neo", "dimension": "300 x 300 x 340", "image": "cp-img-creality-ender3-v2-neo-2022", "fileName": "cp-creality-ender3-v2-neo-2022.bin", "folderName": "cp-creality-ender3-v2-neo-2022", "processor": ""},
+        {"name": "Ender 3 Max", "dimension": "300 x 300 x 340", "image": "cp-img-creality-ender3max-2021", "fileName": "cp-creality-ender3max-2021.bin", "folderName": "cp-creality-ender3max-2021", "processor": ""},
+        {"name": "CR-6 SE 2020", "dimension": "235 x 235 x 250", "image": "cp-img-creality-cr6se-2020", "fileName": "cp-creality-cr6se-2020.bin", "folderName": "cp-creality-cr6se-2020", "processor": ""},
+        {"name": "CR-6 SE 2021", "dimension": "235 x 235 x 250", "image": "cp-img-creality-cr6se-2020", "fileName": "cp-creality-cr6se-2021.bin", "folderName": "cp-creality-cr6se-2021", "processor": ""},
+        {"name": "CR-6 MAX", "dimension": "400 x 400 x 400", "image": "cp-img-creality-cr6-max", "fileName": "cp-creality-cr6-max.bin", "folderName": "cp-creality-cr6-max", "processor": ""},
+        {"name": "CR-10 Smart Pro 2022", "dimension": "300 x 300 x 400", "image": "cp-img-creality-cr10-smart-pro-2022", "fileName": "cp-creality-cr10-smart-pro-2022.hex", "folderName": "cp-creality-cr10-smart-pro-2022", "processor": "Atmega"},
+        {"name": "Ender 2 Pro 2021", "dimension": "165 x 165 x 180", "image": "img-cp-creality-ender2pro-hc32-2022", "fileName": "cp-creality-ender2pro-2021.bin", "folderName": "cp-creality-ender2pro-2021", "processor": ""},
+        {"name": "Ender 2 Pro 2022", "dimension": "165 x 165 x 180", "image": "img-cp-creality-ender2pro-hc32-2022", "fileName": "cp-creality-ender2pro-hc32-2022.bin", "folderName": "cp-creality-ender2pro-hc32-2022", "processor": ""},
+        {"name": "Ender 3 S1 2021 (103)", "dimension": "220 x 220 x 270", "image": "cp-creality-ender3-s1-2021-401", "fileName": "cp-creality-ender3-s1-2021-103.bin", "folderName": "cp-creality-ender3-s1-2021-103", "processor": ""},
+        {"name": "Ender 3 S1 2021 (401)", "dimension": "220 x 220 x 270", "image": "cp-creality-ender3-s1-2021-401", "fileName": "cp-creality-ender3-s1-2021-401.bin", "folderName": "cp-creality-ender3-s1-2021-401", "processor": ""},
+        {"name": "Ender 3 S1 Plus 2022", "dimension": "300 x 300 x 300", "image": "cp-img-creality-ender3-s1plus-2022", "fileName": "cp-creality-ender3-s1-2022.bin", "folderName": "cp-creality-ender3-s1plus-2022", "processor": ""},
+        {"name": "Ender 5 S1", "dimension": "220 x 220 x 280", "image": "cp-img-creality-ender5-s1-2023", "fileName": "cp-creality-ender5-s1-2023.bin", "folderName": "cp-creality-ender5-s1-2023", "processor": ""},
+        {"name": "Ender 5 Plus", "dimension": "235 x 235 x 300", "image": "cp-img-ender5-plus", "fileName": "cp-creality-ender5-plus.hex", "folderName": "cp-creality-ender5-plus", "processor": "Atmega"},
+        {"name": "Ender 5 Pro", "dimension": "220 x 220 x 300", "image": "cp-img-creality-ender5pro-2020", "fileName": "cp-creality-ender5pro-2020.bin", "folderName": "cp-creality-ender5pro-2020", "processor": ""},
+        {"name": "Ender 6", "dimension": "250 x 250 x 400", "image": "cp-img-creality-ender6-2020", "fileName": "cp-creality-ender6-2020.bin", "folderName": "cp-creality-ender6-2020", "processor": ""},
+        {"name": "CR10 Smart", "dimension": "300 x 300 x 400", "image": "cp-img-creality-cr10-smart", "fileName": "cp-creality-cr10-smart.hex", "folderName": "cp-creality-cr10-smart", "processor": "Atmega"},
         {"name": "Creality V.4.2.7 Board", "dimension": "Motherboard", "image": "cp-img-creality-v4.2.7", "fileName": "cp-creality-v4.2.7.bin", "folderName": "cp-creality-v4.2.7", "processor": ""},
         {"name": "Creality V.4.2.10 Board", "dimension": "Motherboard", "image": "cp-img-creality-v4.2.10", "fileName": "cp-creality-v4.2.10.bin", "folderName": "cp-creality-v4.2.10", "processor": ""}
     ]},
     {"Brand":"Anycubic", "Models": [
-        {"name": "Anycubic Vyper", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-vyper-2021", "fileName": "anycubic-vyper-2021.bin", "folderName": "cp-anycubic-vyper-2021", "processor": ""},
-        {"name": "Anycubic Kobra", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra", "fileName": "cp-anycubic-kobra.bin", "folderName": "cp-anycubic-kobra", "processor": ""},
-        {"name": "Anycubic Kobra Neo", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-neo", "fileName": "cp-anycubic-kobra-neo.bin", "folderName": "cp-anycubic-kobra-neo", "processor": ""}, 
-        {"name": "Anycubic Kobra go", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-go-2022", "fileName": "cp-anycubic-kobra-go-2022.bin", "folderName": "cp-anycubic-kobra-go-2022", "processor": ""},
-        {"name": "Anycubic Kobra Max", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-max", "fileName": "cp-anycubic-kobra-max.bin", "folderName": "cp-anycubic-kobra-max", "processor": ""},
-        {"name": "Anycubic Kobra Plus", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-kobra-plus-2022", "fileName": "cp-anycubic-kobra-plus-2022.bin", "folderName": "cp-anycubic-kobra-plus-2022", "processor": ""},
-        {"name": "Anycubic Chiron", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-chiron", "fileName": "cp-anycubic-chiron.hex", "folderName": "cp-anycubic-chiron", "processor": "Atmega"},
-        {"name": "Anycubic Mega S", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-mega-s", "fileName": "cp-anycubic-mega-s.hex", "folderName": "cp-anycubic-mega-s", "processor": "Atmega"}, 
-        {"name": "Anycubic Mega I3", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-mega-i3", "fileName": "cp-anycubic-mega-i3.hex", "folderName": "cp-anycubic-mega-i3", "processor": "Atmega"},
-        {"name": "Anycubic Mega Pro", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-mega-pro", "fileName": "cp-anycubic-mega-pro.hex", "folderName": "cp-anycubic-mega-pro", "processor": "Atmega"},
-        {"name": "Anycubic Mega X", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-mega-x", "fileName": "cp-anycubic-mega-x.hex", "folderName": "cp-anycubic-mega-x", "processor": "Atmega"},
-        {"name": "Anycubic Mega Zero", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-mega-zero", "fileName": "cp-anycubic-mega-zero.hex", "folderName": "cp-anycubic-mega-zero", "processor": "Atmega"},
-        {"name": "Anycubic Mega Zero 2", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-anycubic-mega-zero2", "fileName": "cp-anycubic-mega-zero-2.hex", "folderName": "cp-anycubic-mega-zero-2", "processor": "Atmega"}
+        {"name": "Anycubic Vyper", "dimension": "245 x 245 x 260", "image": "cp-img-anycubic-vyper-2021", "fileName": "anycubic-vyper-2021.bin", "folderName": "cp-anycubic-vyper-2021", "processor": ""},
+        {"name": "Anycubic Kobra", "dimension": "400 x 400 x 450", "image": "cp-img-anycubic-kobra", "fileName": "cp-anycubic-kobra.bin", "folderName": "cp-anycubic-kobra", "processor": ""},
+        {"name": "Anycubic Kobra Neo", "dimension": "420 x 420 x 500", "image": "cp-img-anycubic-kobra-neo", "fileName": "cp-anycubic-kobra-neo.bin", "folderName": "cp-anycubic-kobra-neo", "processor": ""}, 
+        {"name": "Anycubic Kobra go", "dimension": "220 x 220 x 250", "image": "cp-img-anycubic-kobra-go-2022", "fileName": "cp-anycubic-kobra-go-2022.bin", "folderName": "cp-anycubic-kobra-go-2022", "processor": ""},
+        {"name": "Anycubic Kobra Max", "dimension": "400 x 400 x 450", "image": "cp-img-anycubic-kobra-max", "fileName": "cp-anycubic-kobra-max.bin", "folderName": "cp-anycubic-kobra-max", "processor": ""},
+        {"name": "Anycubic Kobra Plus", "dimension": "300 x 300 x 350", "image": "cp-img-anycubic-kobra-plus-2022", "fileName": "cp-anycubic-kobra-plus-2022.bin", "folderName": "cp-anycubic-kobra-plus-2022", "processor": ""},
+        {"name": "Anycubic Chiron", "dimension": "400 x 400 x 450", "image": "cp-img-anycubic-chiron", "fileName": "cp-anycubic-chiron.hex", "folderName": "cp-anycubic-chiron", "processor": "Atmega"},
+        {"name": "Anycubic Mega S", "dimension": "210 x 210 x 205", "image": "cp-img-anycubic-mega-s", "fileName": "cp-anycubic-mega-s.hex", "folderName": "cp-anycubic-mega-s", "processor": "Atmega"}, 
+        {"name": "Anycubic Mega I3", "dimension": "235 x 235 x 300", "image": "cp-img-anycubic-mega-i3", "fileName": "cp-anycubic-mega-i3.hex", "folderName": "cp-anycubic-mega-i3", "processor": "Atmega"},
+        {"name": "Anycubic Mega Pro", "dimension": "235 x 235 x 300", "image": "cp-img-mega-pro", "fileName": "cp-anycubic-mega-pro.hex", "folderName": "cp-anycubic-mega-pro", "processor": "Atmega"},
+        {"name": "Anycubic Mega X", "dimension": "235 x 235 x 300", "image": "cp-img-anycubic-mega-x", "fileName": "cp-anycubic-mega-x.hex", "folderName": "cp-anycubic-mega-x", "processor": "Atmega"},
+        {"name": "Anycubic Mega Zero", "dimension": "235 x 235 x 300", "image": "cp-img-anycubic-mega-zero", "fileName": "cp-anycubic-mega-zero.hex", "folderName": "cp-anycubic-mega-zero", "processor": "Atmega"},
+        {"name": "Anycubic Mega Zero 2", "dimension": "235 x 235 x 300", "image": "cp-img-anycubic-mega-zero2", "fileName": "cp-anycubic-mega-zero-2.hex", "folderName": "cp-anycubic-mega-zero-2", "processor": "Atmega"}
     ]},
     {"Brand":"Elegoo", "Models": [
-        {"name": "Elegoo Neptune 3", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3", "fileName": "cp-elegoo-neptune3.bin", "folderName": "cp-elegoo-neptune3", "processor": ""},
-        {"name": "Elegoo Neptune 3 Plus", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3-plus", "fileName": "cp-elegoo-neptune3-plus.bin", "folderName": "cp-elegoo-neptune3-plus", "processor": ""},
-        {"name": "Elegoo Neptune 3 Max", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3-max", "fileName": "cp-elegoo-neptune3-max.bin", "folderName": "cp-elegoo-neptune3-max", "processor": ""},
-        {"name": "Elegoo Neptune 3 Pro", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune3-pro", "fileName": "cp-elegoo-neptune3-pro.bin", "folderName": "cp-elegoo-neptune3-pro", "processor": ""},
-        {"name": "Elegoo Neptune 2 (1.2)", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune2", "fileName": "cp-elegoo-neptune2-12.bin", "folderName": "cp-elegoo-neptune2", "processor": ""},
-        {"name": "Elegoo Neptune 2 (1.3)", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-elegoo-neptune2", "fileName": "cp-elegoo-neptune2-13.bin", "folderName": "cp-elegoo-neptune2", "processor": ""}
+        {"name": "Elegoo Neptune 3", "dimension": "220 x 220 x 280", "image": "cp-img-elegoo-neptune3", "fileName": "cp-elegoo-neptune3.bin", "folderName": "cp-elegoo-neptune3", "processor": ""},
+        {"name": "Elegoo Neptune 3 Plus", "dimension": "320 x 320 x 400", "image": "cp-img-elegoo-neptune3-plus", "fileName": "cp-elegoo-neptune3-plus.bin", "folderName": "cp-elegoo-neptune3-plus", "processor": ""},
+        {"name": "Elegoo Neptune 3 Max", "dimension": "420 x 420 x 500", "image": "cp-img-elegoo-neptune3-max", "fileName": "cp-elegoo-neptune3-max.bin", "folderName": "cp-elegoo-neptune3-max", "processor": ""},
+        {"name": "Elegoo Neptune 3 Pro", "dimension": "225 x 225 x 280", "image": "cp-img-elegoo-neptune3-pro", "fileName": "cp-elegoo-neptune3-pro.bin", "folderName": "cp-elegoo-neptune3-pro", "processor": ""},
+        {"name": "Elegoo Neptune 2 (1.2)", "dimension": "220 x 220 x 250", "image": "cp-img-elegoo-neptune2", "fileName": "cp-elegoo-neptune2-12.bin", "folderName": "cp-elegoo-neptune2", "processor": ""},
+        {"name": "Elegoo Neptune 2 (1.3)", "dimension": "220 x 220 x 250", "image": "cp-img-elegoo-neptune2", "fileName": "cp-elegoo-neptune2-13.bin", "folderName": "cp-elegoo-neptune2", "processor": ""}
     ]},
     {"Brand":"Prusa", "Models": [
-        {"name": "MK3", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-prusa-mk3", "fileName": "cp-prusa-mk3.hex", "folderName": "cp-prusa-mk3", "processor": "Atmega"},
-        {"name": "MK3 S", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-prusa-mk3s", "fileName": "cp-prusa-mk3s.hex", "folderName": "cp-prusa-mk3s", "processor": "Atmega"},
-        {"name": "MK3 S Plus", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-prusa-mk3splus", "fileName": "cp-prusa-mk3splus.hex", "folderName": "cp-prusa-mk3splus", "processor": "Atmega"},
-        {"name": "MK3.9", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-prusa-mk39", "fileName": "cp-prusa-mk39.hex", "folderName": "cp-prusa-mk39", "processor": "Atmega"},
-        {"name": "MK2", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-prusa-mk2", "fileName": "cp-prusa-mk2.hex", "folderName": "cp-prusa-mk2", "processor": "Atmega"},
-        {"name": "MINI+", "dimension": "235mm x 235mm x 300mm", "image": "cp-img-prusa-mini-plus", "fileName": "cp-prusa-mini-plus.bin", "folderName": "cp-prusa-mini-plus", "processor": ""}
+        {"name": "MK3", "dimension": "250 x 210 x 210", "image": "cp-img-prusa-mk3", "fileName": "cp-prusa-mk3.hex", "folderName": "cp-prusa-mk3", "processor": "Atmega"},
+        {"name": "MK3 S", "dimension": "250 x 210 x 210", "image": "cp-img-prusa-mk3s", "fileName": "cp-prusa-mk3s.hex", "folderName": "cp-prusa-mk3s", "processor": "Atmega"},
+        {"name": "MK3 S Plus", "dimension": "250 x 210 x 210", "image": "cp-img-prusa-mk3splus", "fileName": "cp-prusa-mk3splus.hex", "folderName": "cp-prusa-mk3splus", "processor": "Atmega"},
+        {"name": "MK3.9", "dimension": "250 x 210 x 210", "image": "cp-img-prusa-mk39", "fileName": "cp-prusa-mk39.hex", "folderName": "cp-prusa-mk39", "processor": "Atmega"},
+        {"name": "MK2", "dimension": "250 x 210 x 200", "image": "cp-img-prusa-mk2", "fileName": "cp-prusa-mk2.hex", "folderName": "cp-prusa-mk2", "processor": "Atmega"},
+        {"name": "MINI+", "dimension": "180 x 180 x 180", "image": "cp-img-prusa-mini-plus", "fileName": "cp-prusa-mini-plus.bin", "folderName": "cp-prusa-mini-plus", "processor": ""}
 
     ]},
     {"Brand":"Sovol", "Models": [
-        {"name": "Sovol SV06 Plus", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sovol-sv06-plus", "fileName": "cp-sovol-sv06-plus.bin", "folderName": "cp-sovol-sv06-plus", "processor": ""},
-        {"name": "Sovol SV06", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sovol-sv06", "fileName": "cp-sovol-sv06.bin", "folderName": "cp-sovol-sv06", "processor": ""},
-        {"name": "Sovol SV01", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sovol-sv1", "fileName": "cp-sovol-sv01.hex", "folderName": "cp-sovol-sv01", "processor": "Atmega"}
+        {"name": "Sovol SV06 Plus", "dimension": "300 x 300 x 340", "image": "cp-img-sovol-sv06-plus", "fileName": "cp-sovol-sv06-plus.bin", "folderName": "cp-sovol-sv06-plus", "processor": ""},
+        {"name": "Sovol SV06", "dimension": "220 x 220 x 250", "image": "cp-img-sovol-sv06", "fileName": "cp-sovol-sv06.bin", "folderName": "cp-sovol-sv06", "processor": ""},
+        {"name": "Sovol SV01", "dimension": "240 x 280 x 300", "image": "cp-img-sovol-sv1", "fileName": "cp-sovol-sv01.hex", "folderName": "cp-sovol-sv01", "processor": "Atmega"}
     ]},
     {"Brand":"Artillery", "Models": [
-        {"name": "Sidewinder x2", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sidewinderx2", "fileName": "cp-artillery-sidewinder-x2.bin", "folderName": "cp-artillery-sidewinder-x2", "processor": ""} ,
-        {"name": "Sidewinder x1", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-sidewinderx1", "fileName": "cp-artillery-sidewinder-x1.hex", "folderName": "cp-artillery-sidewinder-x1", "processor": "Atmega"}
+        {"name": "Sidewinder x2", "dimension": "300 x 300 x 400", "image": "cp-img-sidewinderx2", "fileName": "cp-artillery-sidewinder-x2.bin", "folderName": "cp-artillery-sidewinder-x2", "processor": ""} ,
+        {"name": "Sidewinder x1", "dimension": "220 x 220 x 250", "image": "cp-img-sidewinderx1", "fileName": "cp-artillery-sidewinder-x1.hex", "folderName": "cp-artillery-sidewinder-x1", "processor": "Atmega"}
     ]},
     {"Brand":"Two Trees", "Models": [
-        {"name": "Bluer Plus", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-twotrees-bluer-plus", "fileName": "cp-twotrees-bluer-plus.bin", "folderName": "cp-twotrees-bluer-plus", "processor": ""} ,
-        {"name": "Sapphire Plus SP5 v1.1", "dimension": "220mm x 220mm x 250mm", "image": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "fileName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021.bin", "folderName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "processor": ""},
-        {"name": "Sapphire Pro SP3", "dimension": "220mm x 220mm x 250mm", "image": "cp-twotrees-sapphire-pro-sp-3-2020", "fileName": "cp-twotrees-sapphire-pro-sp-3-2020.bin", "folderName": "cp-twotrees-sapphire-pro-sp-3-2020", "processor": ""}
+        {"name": "Bluer Plus", "dimension": "220 x 220 x 250", "image": "cp-img-twotrees-bluer-plus", "fileName": "cp-twotrees-bluer-plus.bin", "folderName": "cp-twotrees-bluer-plus", "processor": ""} ,
+        {"name": "Sapphire Plus SP5 v1.1", "dimension": "220 x 220 x 250", "image": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "fileName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021.bin", "folderName": "cp-twotrees-sapphire-plus-sp-5-v1.1-2021", "processor": ""},
+        {"name": "Sapphire Pro SP3", "dimension": "220 x 220 x 250", "image": "cp-twotrees-sapphire-pro-sp-3-2020", "fileName": "cp-twotrees-sapphire-pro-sp-3-2020.bin", "folderName": "cp-twotrees-sapphire-pro-sp-3-2020", "processor": ""}
     ]},
     {"Brand":"Flsun", "Models": [
-        {"name": "Super Racer", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-flsun-super-racer", "fileName": "cp-flsun-super-racer.bin", "folderName": "cp-flsun-super-racer", "processor": ""}
+        {"name": "Super Racer", "dimension": "220 x 220 x 250", "image": "cp-img-flsun-super-racer", "fileName": "cp-flsun-super-racer.bin", "folderName": "cp-flsun-super-racer", "processor": ""}
     ]},
     {"Brand":"Kingroon", "Models": [
-        {"name": "KP3S Pro V2 GD32", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-kingroon-kp3s-pro-v2", "fileName": "cp-kingroon-kp3s-pro-v2-gd32.bin", "folderName": "cp-kingroon-kp3s-pro-v2", "processor": ""},
-        {"name": "KP3S Pro V2 STM32", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-kingroon-kp3s-pro-v2", "fileName": "cp-kingroon-kp3s-pro-v2-stm32.bin", "folderName": "cp-kingroon-kp3s-pro-v2", "processor": ""}
+        {"name": "KP3S Pro V2 GD32", "dimension": "220 x 220 x 250", "image": "cp-img-kingroon-kp3s-pro-v2", "fileName": "cp-kingroon-kp3s-pro-v2-gd32.bin", "folderName": "cp-kingroon-kp3s-pro-v2", "processor": ""},
+        {"name": "KP3S Pro V2 STM32", "dimension": "220 x 220 x 250", "image": "cp-img-kingroon-kp3s-pro-v2", "fileName": "cp-kingroon-kp3s-pro-v2-stm32.bin", "folderName": "cp-kingroon-kp3s-pro-v2", "processor": ""}
     ]},
     {"Brand":"Luzbot", "Models": [
-        {"name": "Taz 6 2017", "dimension": "280mm x 280mm x 250mm", "image": "cp-img-luzbot-taz6-2017", "fileName": "cp-luzbot-taz6-2017.hex", "folderName": "cp-luzbot-taz6-2017", "processor": "Atmega"}
+        {"name": "Taz 6 2017", "dimension": "280 x 280 x 250", "image": "cp-img-luzbot-taz6-2017", "fileName": "cp-luzbot-taz6-2017.hex", "folderName": "cp-luzbot-taz6-2017", "processor": "Atmega"}
     ]},
     {"Brand":"Longer","Models":[
-        {"name": "LK5 Pro", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-longer-lk5-pro", "fileName": "cp-longer-lk5-pro.hex", "folderName": "cp-longer-lk5-pro", "processor": "Atmega"}
+        {"name": "LK5 Pro", "dimension": "220 x 220 x 250", "image": "cp-img-longer-lk5-pro", "fileName": "cp-longer-lk5-pro.hex", "folderName": "cp-longer-lk5-pro", "processor": "Atmega"}
     ]},
     {"Brand":"Anet","Models":[
-        {"name": "A8", "dimension": "220mm x 220mm x 250mm", "image": "cp-img-anet-a8", "fileName": "cp-anet-a8.hex", "folderName": "cp-anet-a8", "processor": "Atmega"}
+        {"name": "A8", "dimension": "220 x 220 x 250", "image": "cp-img-anet-a8", "fileName": "cp-anet-a8.hex", "folderName": "cp-anet-a8", "processor": "Atmega"}
+    ]},
+    {"Brand":"BigTreeTech","Models":[
+        {"name":"E3 RRF V1.1", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-e3-rrfv1", "fileName": "cp-bigtreetech-e3-rrfv1.1.bin", "folderName": "cp-bigtreetech-e3-rrfv1.1", "processor": ""},
+        {"name":"GTR", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-gtr", "fileName": "cp-bigtreetech-gtr.bin", "folderName": "cp-bigtreetech-gtr", "processor": ""},
+        {"name":"Manta E3EZ", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-e3ez", "fileName": "cp-bigtreetech-manta-e3ez.bin", "folderName": "cp-bigtreetech-manta-e3ez", "processor": ""},
+        {"name":"Manta M4P", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m4p", "fileName": "cp-bigtreetech-manta-m4p.bin", "folderName": "cp-bigtreetech-manta-m4p", "processor": ""},
+        {"name":"Manta M5P", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m5p", "fileName": "cp-bigtreetech-manta-m5p.bin", "folderName": "cp-bigtreetech-manta-m5p", "processor": ""},
+        {"name":"Manta M8P v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m8p", "fileName": "cp-bigtreetech-manta-m8p-v1.0.bin", "folderName": "cp-bigtreetech-manta-m8p-v1.0", "processor": ""},
+        {"name":"Manta M8P v1.1", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m8p", "fileName": "cp-bigtreetech-manta-m8p-v1.1.bin", "folderName": "cp-bigtreetech-manta-m8p-v1.1", "processor": ""},
+        {"name":"Octopus Max EZ", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-octopus-max-ez", "fileName": "cp-bigtreetech-octopus-max-ez.bin", "folderName": "cp-bigtreetech-octopus-max-ez", "processor": ""},
+        {"name":"Octopus Pro v1.1", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-octopus-pro-v1", "fileName": "cp-bigtreetech-octopus-pro-v1.1.bin", "folderName": "cp-bigtreetech-octopus-pro-v1.1", "processor": ""},
+        {"name":"SKR 2 (407)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr2", "fileName": "cp-bigtreetech-skr-2-407.bin", "folderName": "cp-bigtreetech-skr-2", "processor": ""},{"name":"SKR 2 (429)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr2", "fileName": "cp-bigtreetech-skr-2-429.bin", "folderName": "cp-bigtreetech-skr-2", "processor": ""},
+        {"name":"SKR 3 (723)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr3", "fileName": "cp-bigtreetech-skr-3-723.bin", "folderName": "cp-bigtreetech-skr-3", "processor": ""},{"name":"SKR 3 (743)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr3", "fileName": "cp-bigtreetech-skr-3-743.bin", "folderName": "cp-bigtreetech-skr-3", "processor": ""},
+        {"name":"SKR MINI E3 v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v1.0.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v1.0", "processor": ""},
+        {"name":"SKR MINI E3 v1.2", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v1.2.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v1.2", "processor": ""},
+        {"name":"SKR MINI E3 v2.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v2.0.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v2.0", "processor": ""},
+        {"name":"SKR MINI E3 v3.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v3.0.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v3.0", "processor": ""},
+        {"name":"SKR MINI", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini", "fileName": "cp-bigtreetech-skr-mini.bin", "folderName": "cp-bigtreetech-skr-mini", "processor": ""},
+        {"name":"SKR Pro", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-pro", "fileName": "cp-bigtreetech-skr-pro.bin", "folderName": "cp-bigtreetech-skr-pro", "processor": ""},
+        {"name":"SKR Pico v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-pico", "fileName": "cp-bigtreetech-skr-pico-v1.0.uf2", "folderName": "cp-bigtreetech-skr-pico-v1.0", "processor": ""}
+        ]},
+    {"Brand":"Makerbase","Models":[
+        {"name": "MKS Robin Nano V1", "dimension": "220 x 220 x 250", "image": "cp-img-mks-robin-nano-v1", "fileName": "cp-mks-robin-nano-v1.bin", "folderName": "cp-mks-robin-nano-v1", "processor": ""},
+        {"name": "MKS Robin Nano V2", "dimension": "220 x 220 x 250", "image": "cp-img-mks-robin-nano-v2", "fileName": "cp-mks-robin-nano-v2.bin", "folderName": "cp-mks-robin-nano-v2", "processor": ""},
+        {"name": "MKS Robin Nano V3", "dimension": "220 x 220 x 250", "image": "cp-img-mks-robin-nano-v3", "fileName": "cp-mks-robin-nano-v3.bin", "folderName": "cp-mks-robin-nano-v3", "processor": ""},
+        {"name": "MKS Robin Nano E3", "dimension": "220 x 220 x 250", "image": "cp-img-mks-robin-e3", "fileName": "cp-mks-robin-e3.bin", "folderName": "cp-mks-robin-e3", "processor": ""},
+        {"name": "MKS Monster 8", "dimension": "220 x 220 x 250", "image": "cp-img-mks-monster-8", "fileName": "cp-mks-monster-8.bin", "folderName": "cp-mks-monster-8", "processor": ""},
+        {"name": "MKS Rumba 32 v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-mks-rumba32-v1.0", "fileName": "cp-mks-rumba32-v1.0.bin", "folderName": "cp-mks-rumba32-v1.0", "processor": ""},
+        {"name": "MKS Sgenl", "dimension": "220 x 220 x 250", "image": "cp-img-mks-sgenl", "fileName": "cp-mks-sgenl.bin", "folderName": "cp-mks-sgenl", "processor": ""}
     ]}
 ]
