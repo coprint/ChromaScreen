@@ -86,26 +86,25 @@
     {"Brand":"Anet","Models":[
         {"name": "A8", "dimension": "220 x 220 x 250", "image": "cp-img-anet-a8", "fileName": "cp-anet-a8.hex", "folderName": "cp-anet-a8", "processor": "Atmega"}
     ]},
-    {"Brand":"Big tree tech","Models":[
+    {"Brand":"BigTreeTech","Models":[
         {"name":"E3 RRF V1.1", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-e3-rrfv1", "fileName": "cp-bigtreetech-e3-rrfv1.1.bin", "folderName": "cp-bigtreetech-e3-rrfv1.1", "processor": ""},
         {"name":"GTR", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-gtr", "fileName": "cp-bigtreetech-gtr.bin", "folderName": "cp-bigtreetech-gtr", "processor": ""},
-        {"name":"Manta E3EZ", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-e2ez", "fileName": "cp-bigtreetech-manta-e3ez.bin", "folderName": "cp-bigtreetech-manta-e3ez", "processor": ""},
+        {"name":"Manta E3EZ", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-e3ez", "fileName": "cp-bigtreetech-manta-e3ez.bin", "folderName": "cp-bigtreetech-manta-e3ez", "processor": ""},
         {"name":"Manta M4P", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m4p", "fileName": "cp-bigtreetech-manta-m4p.bin", "folderName": "cp-bigtreetech-manta-m4p", "processor": ""},
         {"name":"Manta M5P", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m5p", "fileName": "cp-bigtreetech-manta-m5p.bin", "folderName": "cp-bigtreetech-manta-m5p", "processor": ""},
         {"name":"Manta M8P v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m8p", "fileName": "cp-bigtreetech-manta-m8p-v1.0.bin", "folderName": "cp-bigtreetech-manta-m8p-v1.0", "processor": ""},
         {"name":"Manta M8P v1.1", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-manta-m8p", "fileName": "cp-bigtreetech-manta-m8p-v1.1.bin", "folderName": "cp-bigtreetech-manta-m8p-v1.1", "processor": ""},
         {"name":"Octopus Max EZ", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-octopus-max-ez", "fileName": "cp-bigtreetech-octopus-max-ez.bin", "folderName": "cp-bigtreetech-octopus-max-ez", "processor": ""},
-        {"name":"Octopus Pro v1.1", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-octopus-pro-v1.1", "fileName": "cp-bigtreetech-octopus-pro-v1.1.bin", "folderName": "cp-bigtreetech-octopus-pro-v1.1", "processor": ""},
-        {"name":"SKR 2 (407)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-2", "fileName": "cp-bigtreetech-skr-2-407.bin", "folderName": "cp-bigtreetech-skr-2", "processor": ""},{"name":"SKR 2 (429)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-2", "fileName": "cp-bigtreetech-skr-2-429.bin", "folderName": "cp-bigtreetech-skr-2", "processor": ""},
-        {"name":"SKR 3 (723)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-3", "fileName": "cp-bigtreetech-skr-3-723.bin", "folderName": "cp-bigtreetech-skr-3", "processor": ""},{"name":"SKR 3 (743)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-3", "fileName": "cp-bigtreetech-skr-3-743.bin", "folderName": "cp-bigtreetech-skr-3", "processor": ""},
+        {"name":"Octopus Pro v1.1", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-octopus-pro-v1", "fileName": "cp-bigtreetech-octopus-pro-v1.1.bin", "folderName": "cp-bigtreetech-octopus-pro-v1.1", "processor": ""},
+        {"name":"SKR 2 (407)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr2", "fileName": "cp-bigtreetech-skr-2-407.bin", "folderName": "cp-bigtreetech-skr-2", "processor": ""},{"name":"SKR 2 (429)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr2", "fileName": "cp-bigtreetech-skr-2-429.bin", "folderName": "cp-bigtreetech-skr-2", "processor": ""},
+        {"name":"SKR 3 (723)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr3", "fileName": "cp-bigtreetech-skr-3-723.bin", "folderName": "cp-bigtreetech-skr-3", "processor": ""},{"name":"SKR 3 (743)", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr3", "fileName": "cp-bigtreetech-skr-3-743.bin", "folderName": "cp-bigtreetech-skr-3", "processor": ""},
         {"name":"SKR MINI E3 v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v1.0.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v1.0", "processor": ""},
         {"name":"SKR MINI E3 v1.2", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v1.2.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v1.2", "processor": ""},
         {"name":"SKR MINI E3 v2.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v2.0.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v2.0", "processor": ""},
         {"name":"SKR MINI E3 v3.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-e3", "fileName": "cp-bigtreetech-skr-mini-e3-v3.0.bin", "folderName": "cp-bigtreetech-skr-mini-e3-v3.0", "processor": ""},
-        {"name":"SKR MINI MZ", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini-mz", "fileName": "cp-bigtreetech-skr-mini-mz.bin", "folderName": "cp-bigtreetech-skr-mini-mz", "processor": ""},
         {"name":"SKR MINI", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-mini", "fileName": "cp-bigtreetech-skr-mini.bin", "folderName": "cp-bigtreetech-skr-mini", "processor": ""},
         {"name":"SKR Pro", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-pro", "fileName": "cp-bigtreetech-skr-pro.bin", "folderName": "cp-bigtreetech-skr-pro", "processor": ""},
-        {"name":"SKR Pico v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-pico-v1.0", "fileName": "cp-bigtreetech-skr-pico-v1.0.uf2", "folderName": "cp-bigtreetech-skr-pico-v1.0", "processor": ""}
+        {"name":"SKR Pico v1.0", "dimension": "220 x 220 x 250", "image": "cp-img-bigtreetech-skr-pico", "fileName": "cp-bigtreetech-skr-pico-v1.0.uf2", "folderName": "cp-bigtreetech-skr-pico-v1.0", "processor": ""}
         ]},
     {"Brand":"Makerbase","Models":[
         {"name": "MKS Robin Nano V1", "dimension": "220 x 220 x 250", "image": "cp-img-mks-robin-nano-v1", "fileName": "cp-mks-robin-nano-v1.bin", "folderName": "cp-mks-robin-nano-v1", "processor": ""},
