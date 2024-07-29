@@ -433,11 +433,12 @@ class BasePanel(ScreenPanel):
             #os.chdir(self._screen.base_dir)
             # Git pull komutunu çalıştırarak en son değişiklikleri al
             print("Proje güncelleniyor...")
-            #self.run_command("git pull")
-            dialog = InfoDialog(self, "Updating, please wait", False)
-            dialog.get_style_context().add_class("alert-info-dialog")
-            dialog.set_decorated(False)
-            dialog.run()
+            self.run_command("git pull")
+            self._screen.show_popup_message(_("Updating, please wait..."), level=1)
+            # dialog = InfoDialog(self, "Updating, please wait", False)
+            # dialog.get_style_context().add_class("alert-info-dialog")
+            # dialog.set_decorated(False)
+            # dialog.run()
             #dialog.set_size_request(0, 0)
             latest_version, download_url = self.get_latest_version()
             if latest_version > self._screen.version:
@@ -452,9 +453,11 @@ class BasePanel(ScreenPanel):
                 print("Bağımlılıklar güncelleniyor...")
             self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
             print("Güncelleme tamamlandı.")
+            self._screen.close_popup_message()
             self._screen.restart_ks()
             print('Ok')
-            dialog.destroy()
+            
+            # dialog.destroy()
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
 
