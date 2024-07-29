@@ -66,14 +66,14 @@ class Panel(ScreenPanel):
             self._screen.base_panel.open_dialog()
 
     def refresh_updates(self, widget=None):
-        #self._screen.show_popup_message(_("Checking for updates, please wait..."), level=1)
-        dialog = InfoDialog(self, "Checking for updates, please wait...", False)
-        dialog.get_style_context().add_class("alert-info-dialog")
-        dialog.set_decorated(False)
-        dialog.run()
+        self._screen.show_popup_message(_("Checking for updates, please wait..."), level=1)
+        # dialog = InfoDialog(self, "Checking for updates, please wait...", False)
+        # dialog.get_style_context().add_class("alert-info-dialog")
+        # dialog.set_decorated(False)
+        # dialog.run()
         self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
-        dialog.destroy()
-        #self._screen.close_popup_message()
+        # dialog.destroy()
+        self._screen.close_popup_message()
       
     def on_click_skip_button(self, continueButton):
         self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", None, 1,True)
