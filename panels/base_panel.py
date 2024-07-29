@@ -415,7 +415,7 @@ class BasePanel(ScreenPanel):
         return latest_version, download_url
     
     def open_dialog(self):
-        content = _("Your update has been completed. For the changes to take effect Do you want to restart?")  
+        content = _("ChromaScreen Will update and restart?")  
         dialog = AreYouSureDialog( content, self)
         dialog.get_style_context().add_class("network-dialog")
         dialog.set_decorated(False)
@@ -433,7 +433,7 @@ class BasePanel(ScreenPanel):
             #os.chdir(self._screen.base_dir)
             # Git pull komutunu çalıştırarak en son değişiklikleri al
             print("Proje güncelleniyor...")
-            self.run_command("git pull")
+            #self.run_command("git pull")
             self._screen.show_popup_message(_("Updating, please wait..."), level=1)
             # dialog = InfoDialog(self, "Updating, please wait", False)
             # dialog.get_style_context().add_class("alert-info-dialog")
