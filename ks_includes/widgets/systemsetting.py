@@ -20,7 +20,7 @@ class SystemSetting(Gtk.Box):
         refreshButton = Gtk.Button(name ="setting-button")
         refreshButton.set_image(refreshIcon)
         refreshButton.set_always_show_image(True)
-        macroBox.pack_start(refreshButton, False, False, 10)
+        refreshButton.connect("clicked", this.refresh_updates)
             
         macroLabel = Gtk.Label(_macroName, name="wifi-name-label")
         macroLabel.set_justify(Gtk.Justification.LEFT)
@@ -36,6 +36,7 @@ class SystemSetting(Gtk.Box):
         macroBox.set_name("system-setting-card-box")
         macroBox.pack_start(macroLabelBox, False, False, 0)
         macroBox.pack_end(macroButton, False, False, 0)
+        macroBox.pack_end(refreshButton, False, False, 10)
         macroBox.set_valign(Gtk.Align.CENTER)
         
 

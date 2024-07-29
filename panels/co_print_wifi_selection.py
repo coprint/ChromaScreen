@@ -223,7 +223,7 @@ class Panel(ScreenPanel):
         #     self._screen.show_panel("co_print_wifi_selection_select", "co_print_wifi_selection_select", None, 1, True, items=self.selectedWifiIndex)
         # else:
         #     #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", None, 2)
-        self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", None, 1,False)
+        self._screen.show_panel("co_print_update_screen", "co_print_update_screen", None, 1,False)
        
 
     #asıl kullanılan metod bu diğer metodu sayfayı görüntülemek için yazdım
