@@ -159,6 +159,7 @@ class Panel(ScreenPanel):
         GLib.timeout_add_seconds(1, self.get_updates, "true")
 
     def get_updates(self, refresh="false"):
+        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
         update_resp = self._screen.apiclient.send_request(f"machine/update/status?refresh={refresh}")
         if not update_resp:
             self.update_status = {}
@@ -194,7 +195,7 @@ class Panel(ScreenPanel):
     def VersionControl(self, widget, name):
 
         if name == 'ChromaScreen':
-            self._screen.base_panel.update_project()
+            self._screen.base_panel.open_dialog()
         else:
             isDialogShow = True
             if name == "klipper" and self.IsKlipperNeedUpdate:

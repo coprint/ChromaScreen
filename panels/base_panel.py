@@ -8,6 +8,7 @@ import sys
 import gi
 import requests
 from ks_includes.functions import internet_on
+from ks_includes.widgets.infodialog import InfoDialog
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gtk, Pango
@@ -413,48 +414,47 @@ class BasePanel(ScreenPanel):
         logging.info(f"  {latest_version, download_url}")
         return latest_version, download_url
     
+    def open_dialog(self):
+        content = _("Your update has been completed. For the changes to take effect Do you want to restart?")  
+        dialog = AreYouSureDialog( content, self)
+        dialog.get_style_context().add_class("network-dialog")
+        dialog.set_decorated(False)
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            dialog.destroy()
+            self.update_project()
+        elif response == Gtk.ResponseType.CANCEL:
+                print('Cancel')
+                dialog.destroy()
+
     def update_project(self):
         try:
            # Proje dizinine git
-        
             #os.chdir(self._screen.base_dir)
-            
             # Git pull komutunu çalıştırarak en son değişiklikleri al
             print("Proje güncelleniyor...")
             #self.run_command("git pull")
-            
-        
-            
-            content = _("Your update has been completed. For the changes to take effect Do you want to restart?")  
-            dialog = AreYouSureDialog( content, self)
-            dialog.get_style_context().add_class("network-dialog")
+            dialog = InfoDialog(self, "Updating, please wait", False)
+            dialog.get_style_context().add_class("alert-info-dialog")
             dialog.set_decorated(False)
-
-            response = dialog.run()
-    
-            if response == Gtk.ResponseType.OK:
-                latest_version, download_url = self.get_latest_version()
-                if latest_version > self._screen.version:
-                    os.chdir("/tmp/")
-                    self.run_command(f"wget {download_url}")
-                    self.run_command("unzip ChromaScreen.zip")
-                    self.run_command("rsync -av --progress /tmp/ChromaScreen ~/ --exclude scripts/config.json ")
-                    self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen")
-
-                # Gerekirse bağımlılıkları güncelle
-                requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
-                if os.path.exists(requirements_file):
-                    print("Bağımlılıklar güncelleniyor...")
-                self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
-                print("Güncelleme tamamlandı.")
-                self._screen.restart_ks()
-                print('Ok')
-                dialog.destroy()
-            
-
-            elif response == Gtk.ResponseType.CANCEL:
-                print('Cancel')
-                dialog.destroy()
+            dialog.run()
+            #dialog.set_size_request(0, 0)
+            latest_version, download_url = self.get_latest_version()
+            if latest_version > self._screen.version:
+                os.chdir("/tmp/")
+                self.run_command(f"wget {download_url}")
+                self.run_command("unzip ChromaScreen.zip")
+                self.run_command("rsync -av --progress /tmp/ChromaScreen ~/ --exclude scripts/config.json ")
+                self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen")
+            # Gerekirse bağımlılıkları güncelle
+            requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
+            if os.path.exists(requirements_file):
+                print("Bağımlılıklar güncelleniyor...")
+            self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
+            print("Güncelleme tamamlandı.")
+            self._screen.restart_ks()
+            print('Ok')
+            dialog.destroy()
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
 

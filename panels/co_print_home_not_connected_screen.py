@@ -424,7 +424,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
     
     def VersionControl(self, widget, name):
         if name == 'ChromaScreen':
-            self._screen.base_panel.update_project()
+            self._screen.base_panel.open_dialog()
         else:
             isDialogShow = True
             if name == "klipper" and self.IsKlipperNeedUpdate:
