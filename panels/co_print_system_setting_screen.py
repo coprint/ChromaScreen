@@ -43,24 +43,24 @@ class Panel(ScreenPanel):
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
         macrofour = SystemSetting(self,_("Moonraker") + " "+_("Current") + " (" + self.version_info['moonraker']['version'] +")", ("Update"), isUpdateReqMoonraker, 'moonraker')
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        self.config_data = None
-        try:
-            f = open(self._screen.path_config, encoding='utf-8')
+        # self.config_data = None
+        # try:
+        #     f = open(self._screen.path_config, encoding='utf-8')
        
-            self.config_data = json.load(f)
-        except Exception as e:
-            logging.exception(e) 
+        #     self.config_data = json.load(f)
+        # except Exception as e:
+        #     logging.exception(e) 
 
-        self.IsKlipperNeedUpdate = False
-        self.IsMainsailNeedUpdate = False
-        self.IsMoonrakerNeedUpdate = False
-        if(self.config_data != None):
-            if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
-                self.IsKlipperNeedUpdate = True
-            if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
-                self.IsMainsailNeedUpdate = True
-            if(self.clean_version(self.config_data['MoonrakerVersion']) > self.clean_version(self.version_info['moonraker']['remote_version'])):
-                self.IsMoonrakerNeedUpdate = True
+        # self.IsKlipperNeedUpdate = False
+        # self.IsMainsailNeedUpdate = False
+        # self.IsMoonrakerNeedUpdate = False
+        # if(self.config_data != None):
+        #     if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
+        #         self.IsKlipperNeedUpdate = True
+        #     if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
+        #         self.IsMainsailNeedUpdate = True
+        #     if(self.clean_version(self.config_data['MoonrakerVersion']) > self.clean_version(self.version_info['moonraker']['remote_version'])):
+        #         self.IsMoonrakerNeedUpdate = True
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.macro_flowbox.pack_start(macrotwo, True, True, 10)
         self.macro_flowbox.pack_start(macroone, True, True, 0)
