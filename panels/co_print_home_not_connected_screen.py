@@ -170,13 +170,13 @@ class Panel(ScreenPanel, metaclass=Singleton):
             logging.exception(e) 
         
         self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
-        self.IsKlipperNeedUpdate = False
-        self.IsMainsailNeedUpdate = False
-        if(self.config_data != None) and (self.version_info != False) : 
-            if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
-                self.IsKlipperNeedUpdate = True
-            if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
-                self.IsMainsailNeedUpdate = True
+        # self.IsKlipperNeedUpdate = False
+        # self.IsMainsailNeedUpdate = False
+        # if(self.config_data != None) and (self.version_info != False) : 
+        #     if( self.clean_version(self.config_data['KlipperVersion']) > self.clean_version(self.version_info['klipper']['remote_version'])):
+        #         self.IsKlipperNeedUpdate = True
+        #     if(self.clean_version(self.config_data['MainsailVersion']) > self.clean_version(self.version_info['mainsail']['remote_version'])):
+        #         self.IsMainsailNeedUpdate = True
         isUpdateReqKlipper = False
         if self.version_info and self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
             isUpdateReqKlipper = True
