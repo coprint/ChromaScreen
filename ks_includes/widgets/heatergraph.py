@@ -1,13 +1,9 @@
 import datetime
 import logging
 import math
-
 import gi
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gdk, Gtk
-
-
 class HeaterGraph(Gtk.DrawingArea):
     def __init__(self, printer, font_size):
         super().__init__()
@@ -61,31 +57,25 @@ class HeaterGraph(Gtk.DrawingArea):
     def draw_graph(self, da, ctx):
         width = da.get_allocated_width()
         height = da.get_allocated_height()
-
         g_width_start = round(self.font_size * 2.75)
         g_width = width - 15
         g_height_start = 10
         g_height = height - self.font_size * 2
-
         ctx.set_source_rgb(.5, .5, .5)
         ctx.set_line_width(1)
         ctx.set_tolerance(0.1)
-
         ctx.move_to(g_width_start, g_height_start)
         ctx.line_to(g_width, g_height_start)
         ctx.line_to(g_width, g_height)
         ctx.line_to(g_width_start, g_height)
         ctx.line_to(g_width_start, g_height_start)
         ctx.stroke()
-
         ctx.set_source_rgb(1, 0, 0)
         ctx.move_to(g_width_start, height)
-
         gsize = [
             [g_width_start, g_height_start],
             [g_width, g_height]
         ]
-
         self.max_length = self.get_max_length()
         graph_width = gsize[1][0] - gsize[0][0]
         points_per_pixel = self.max_length / graph_width

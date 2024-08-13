@@ -1,13 +1,9 @@
 import gi
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-
-
 class KeyPadNew(Gtk.Dialog):
     def __init__(self, this):
         super().__init__(title="My Dialog", parent=None, flags=0)
-        
          # Get current position of dialog
         pos = self.get_position()
         # Move dialog to the desired location
@@ -17,11 +13,6 @@ class KeyPadNew(Gtk.Dialog):
         numpad = Gtk.Grid()
         numpad.set_direction(Gtk.TextDirection.LTR)
         numpad.get_style_context().add_class('numpad-new')
-
-
-       
-
-
         keys = [
             ['1', 'numpad_tleft'],
             ['2', 'numpad_top'],
@@ -55,17 +46,14 @@ class KeyPadNew(Gtk.Dialog):
             self.labels[k_id].connect('clicked', self.update_entry, keys[i][0])
             self.labels[k_id].get_style_context().add_class("numpad-new-button")
             numpad.attach(self.labels[k_id], i % 3, i / 3, 1, 1)
-
         self.labels["keypad"] = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.labels['entry'] = Gtk.Entry()
         self.labels['entry'].get_style_context().add_class("numpad-new-label")
         self.labels['entry'].props.xalign = 0.5
         self.labels['entry'].connect("activate", self.update_entry, "E")
-
         entryBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         entryBox.set_name("numpad-entry-box")
         entryBox.pack_start(self.labels['entry'], True, True, 0)
-        
         closeIcon = this._gtk.Image("keypad-close", this._screen.width *.03, this._screen.width *.03)
         closeButton = Gtk.Button(name ="numpad-close-button")
         closeButton.set_image(closeIcon)
@@ -73,24 +61,16 @@ class KeyPadNew(Gtk.Dialog):
         closeButton.connect("clicked", lambda x: self.destroy())
         closeButton.set_halign(Gtk.Align.END)  # Kapatma düğmesini sağa hizala
         closeButton.set_valign(Gtk.Align.START)  # Kapatma düğmesini yukarı hizala
-        
         labelandbuttonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         labelandbuttonBox.set_name("keypad-dialog-content")
         labelandbuttonBox.set_spacing(10)
         labelandbuttonBox.add(entryBox)
         labelandbuttonBox.add(numpad)
-        
-       
-        
         box = self.get_content_area()
-       
         box.set_name("keypad-dialog")
         box.pack_start(closeButton, False, False, 0)
         box.add(labelandbuttonBox)
-        
         self.show_all()
-        
-
         self.labels["keypad"] = numpad
         
     def clear(self):
@@ -114,5 +94,3 @@ class KeyPadNew(Gtk.Dialog):
             return
         else:
             self.labels['entry'].set_text(text + digit)
-            
- 

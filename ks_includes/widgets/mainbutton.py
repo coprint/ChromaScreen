@@ -7,20 +7,11 @@ from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.heatergraph import HeaterGraph
 from ks_includes.widgets.infodialog import InfoDialog
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib
-
-
-
-
+from gi.repository import Gtk
 class MainButton(Gtk.Box):
-  
-
     def __init__(self,this, _image, _label, _style, _clickMenu, _imageDimension, _isOpenDialog):
         super().__init__(orientation=Gtk.Orientation.VERTICAL)
         self.parent = this
-      
-            
-        
         if _isOpenDialog:
             Button = this._gtk.Button(_image, _label, _style, _imageDimension)
             Button.connect("clicked", self.open_info_dialog)
@@ -54,11 +45,6 @@ class MainButton(Gtk.Box):
         else:
             self.parent._screen.show_panel(data, data, "Language", 1, False)
         
-    # def on_click_menu_button(self, button, data):
-    #     if(data == 'co_print_printing_screen' and self.parent._printer.state != 'printing'):
-    #         data = 'co_print_printing_files_screen'
-    #     self.parent._screen.show_panel(data, data, "Language", 1, False)
-
     def open_info_dialog(self, widget):
         if (self.parent._printer.state != 'printing' and self.parent._printer.state != 'paused') :
             self.dialog = InfoDialog(self.parent, ("Printer is returning to the starting position, please wait.."), False)
@@ -68,8 +54,6 @@ class MainButton(Gtk.Box):
             self.dialog.set_size_request(0, 0)
             response = self.dialog.run()
  
-       
-        
     def home(self):
         self.parent._screen._ws.klippy.gcode_script(KlippyGcodes.HOME, self.finished)
         

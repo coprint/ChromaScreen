@@ -20,20 +20,20 @@ class Panel(ScreenPanel):
         if self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
             isUpdateReqKlipper = True        
         isUpdateReqMainsail = False
-        if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
-            isUpdateReqMainsail = True
+        # if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
+        #     isUpdateReqMainsail = True
         isUpdateReqMoonraker = False
         if self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
             isUpdateReqMoonraker = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
         macrotwo = SystemSetting(self, "ChromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , self.ChromaScreenNeedUpdate, 'ChromaScreen')
-        macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
+        # macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
         macrofour = SystemSetting(self,_("Moonraker") + " "+_("Current") + " (" + self.version_info['moonraker']['version'] +")", ("Update"), isUpdateReqMoonraker, 'moonraker')
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.macro_flowbox.pack_start(macrotwo, True, True, 10)
         self.macro_flowbox.pack_start(macroone, True, True, 0)
-        self.macro_flowbox.pack_start(macrothree, True, True, 0)
+        # self.macro_flowbox.pack_start(macrothree, True, True, 0)
         self.macro_flowbox.pack_start(macrofour, True, True, 0)
         
         updateButton = self._gtk.Button("download", _("Full Update"), "system-full-update", 1.4)
@@ -90,22 +90,22 @@ class Panel(ScreenPanel):
         update_resp = self._screen.apiclient.send_request("machine/update/status")
         self.update_status = update_resp['result']
         self.version_info = self.update_status['version_info']
-        self.version_info['mainsail']['version']
+        # self.version_info['mainsail']['version']
         isUpdateReqKlipper = False
         if self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
             isUpdateReqKlipper = True
         isUpdateReqMainsail = False
-        if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
-            isUpdateReqMainsail = True
+        # if self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
+        #     isUpdateReqMainsail = True
         if self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
             isUpdateReqMoonraker = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
         macrotwo = SystemSetting(self, "Co Print Smart (Current v1.435b)", ("Update"), True)
-        macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
+        # macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
         macrofour = SystemSetting(self,_("Moonraker") + " "+_("Current") + " (" + self.version_info['moonraker']['version'] +")", ("Update"), isUpdateReqMoonraker, 'moonraker')
         self.macro_flowbox.pack_start(macrotwo, True, True, 0)
         self.macro_flowbox.pack_start(macroone, True, True, 0)
-        self.macro_flowbox.pack_start(macrothree, True, True, 0)
+        # self.macro_flowbox.pack_start(macrothree, True, True, 0)
         self.macro_flowbox.pack_start(macrofour, True, True, 0)
         self.macro_flowbox_parent.pack_start(self.macro_flowbox, True, True, 0)
         self.content.show_all()

@@ -3,12 +3,10 @@ import contextlib
 import logging
 import os
 import pathlib
-
 import gi
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gdk, GdkPixbuf, Gio, Gtk, Pango
-
 
 def format_label(widget, lines=2):
     if type(widget) == Gtk.Label:
@@ -22,8 +20,6 @@ def format_label(widget, lines=2):
                 lbl.set_ellipsize(True)
                 lbl.set_ellipsize(Pango.EllipsizeMode.END)
                 lbl.set_lines(lines)
-
-
 class KlippyGtk:
     labels = {}
 

@@ -1,15 +1,10 @@
 import logging
 import os
-
 import gi
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib
-
-
 class Keyboard(Gtk.Box):
     langs = ["de", "en", "fr", "es"]
-
     def __init__(self, screen, close_cb, entry=None):
         super().__init__(orientation=Gtk.Orientation.VERTICAL)
         self.close_cb = close_cb
@@ -17,10 +12,8 @@ class Keyboard(Gtk.Box):
         self.keyboard.set_direction(Gtk.TextDirection.LTR)
         self.timeout = self.clear_timeout = None
         self.entry = entry
-
         language = self.detect_language(screen._config.get_main_config().get("language", None))
         logging.info(f"Keyboard {language}")
-
         if language == "de":
             self.keys = [
                 [
@@ -90,14 +83,8 @@ class Keyboard(Gtk.Box):
                     ["123", ".", ",", "?", "!", "'", "⌫"],
                 ]
             ]
-
-            # if language == "es":
-            #     self.keys[0][1].append("ñ")
-            #     self.keys[1][1].append("Ñ")
-
         for pallet in self.keys:
             pallet.append(["✕","123", " ", "✔", "ABC"])
-
         self.buttons = self.keys.copy()
         for p, pallet in enumerate(self.keys):
             for r, row in enumerate(pallet):
@@ -114,15 +101,10 @@ class Keyboard(Gtk.Box):
                     self.buttons[p][r][k].set_vexpand(True)
                     self.buttons[p][r][k].connect('button-press-event', self.repeat, key)
                     self.buttons[p][r][k].connect('button-release-event', self.release)
-
                     if key == "⇧" or key =="⬆" or key == "⌫":
                         self.buttons[p][r][k].get_style_context().add_class("keyboard_pad_special")
-                        
                     else:
                         self.buttons[p][r][k].get_style_context().add_class("keyboard_pad")
-
-        
-
         self.pallet_nr = 0
         self.set_pallet(self.pallet_nr)
         self.add(self.keyboard)
@@ -147,21 +129,12 @@ class Keyboard(Gtk.Box):
                     x = k * 2 +1 if r == 1 else k * 2
                 else:
                     x = k * 2  if r == 1 else k * 2
-              
-                
-                
                 self.keyboard.attach(self.buttons[p][r][k], x, r, 2, 1)
-        
-        
-        
         self.keyboard.attach(self.buttons[p][3][0], 0, 4, 2, 1)  # ✕
-
         if p == 1 or p ==0:
             self.keyboard.attach(self.buttons[p][3][1], 2, 4, 2, 1)  # ABC
         else:
             self.keyboard.attach(self.buttons[p][3][4], 2, 4, 2, 1)  # ABC
-
-
         self.keyboard.attach(self.buttons[p][3][2], 4, 4, 14, 1)  # Space
         self.keyboard.attach(self.buttons[p][3][3], 18, 4, 2, 1)  # ✔
         self.show_all()
@@ -214,4 +187,3 @@ class Keyboard(Gtk.Box):
             self.set_pallet(3)
         else:
             Gtk.Entry.do_insert_at_cursor(self.entry, key)
-

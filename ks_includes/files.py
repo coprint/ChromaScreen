@@ -1,12 +1,8 @@
 import logging
 import os
-
 import gi
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib
-
-
 class KlippyFiles:
     def __init__(self, screen):
         self._screen = screen
@@ -41,10 +37,8 @@ class KlippyFiles:
                     else:
                         newfiles.append(file)
                         self.add_file(item, False)
-
                 if newfiles or len(deletedfiles) > 0:
                     self.run_callbacks(newfiles, deletedfiles)
-
                 if len(deletedfiles) > 0:
                     for file in deletedfiles:
                         self.remove_file(file)
@@ -53,20 +47,17 @@ class KlippyFiles:
                 directory = params['path'][7:] if params['path'].startswith('gcodes/') else params['path']
                 if directory[-1] == '/':
                     directory = directory[:-1]
-
                 newfiles = []
                 for file in result['result']['files']:
                     fullpath = f"{directory}/{file['filename']}"
                     if fullpath not in self.filelist:
                         newfiles.append(fullpath)
-
                 if newfiles:
                     self.run_callbacks(newfiles)
         elif method == "server.files.metadata":
             if "error" in result.keys():
                 logging.debug(f"Error in getting metadata for {params['filename']}. Retrying in 6 seconds")
                 return
-
             for x in result['result']:
                 self.files[params['filename']][x] = result['result'][x]
             if "thumbnails" in self.files[params['filename']]:
@@ -90,7 +81,6 @@ class KlippyFiles:
         if 'filename' not in item and 'path' not in item:
             logging.info(f"Error adding item, unknown filename or path: {item}")
             return
-
         filename = item['path'] if "path" in item else item['filename']
         if filename in self.filelist:
             logging.info(f"File already exists: {filename}")
@@ -98,8 +88,6 @@ class KlippyFiles:
             args = None, None, [filename]
             GLib.idle_add(self.run_callbacks, *args)
             return
-
-        
         self.filelist.append(filename)
         self.files[filename] = {
             "size": item['size'],
@@ -118,7 +106,6 @@ class KlippyFiles:
     def process_update(self, data):
         if 'item' in data and data['item']['root'] != 'gcodes':
             return
-
         if data['action'] == "create_dir":
             self._screen._ws.klippy.get_file_dir(f"gcodes/{data['item']['path']}", self._callback)
         elif data['action'] == "create_file":

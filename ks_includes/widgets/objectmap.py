@@ -1,11 +1,7 @@
 import logging
-
 import gi
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gdk, Gtk
-
-
 class ObjectMap(Gtk.DrawingArea):
     def __init__(self, screen, printer, font_size):
         super().__init__()

@@ -1,11 +1,8 @@
 import logging
 import datetime
 import gi
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-
-
 class ScreenPanel:
     _screen = None
     _config = None
@@ -14,17 +11,12 @@ class ScreenPanel:
     _gtk = None
     ks_printer_cfg = None
     
-   
     def __init__(self, screen, title):
         self.menu = None
         ScreenPanel._screen = screen
         ScreenPanel._config = screen._config
         ScreenPanel._files = screen.files
-        ScreenPanel._printer = screen.printer
-        #if(ScreenPanel._printer):
-            #ScreenPanel._printer.selected_extrude = None
-            #ScreenPanel._printer.selected_extrude_index = 0
-        
+        ScreenPanel._printer = screen.printer    
         ScreenPanel._gtk = screen.gtk
         self.labels = {}
         self.control = {}
@@ -37,14 +29,11 @@ class ScreenPanel:
         self.content.set_vexpand(True)
         self._show_heater_power = self._config.get_main_config().getboolean('show_heater_power', False)
         self.bts = self._gtk.bsidescale
-
         self.update_dialog = None
 
     def _autoscroll(self, scroll, *args):
         adj = scroll.get_vadjustment()
         adj.set_value(adj.get_upper() - adj.get_page_size())
-
-  
 
     def emergency_stop(self, widget):
         if self._config.get_main_config().getboolean('confirm_estop', False):
@@ -73,10 +62,8 @@ class ScreenPanel:
     def load_menu(self, widget, name, title=None):
         if f"{name}_menu" not in self.labels:
             return
-
         for child in self.content.get_children():
             self.content.remove(child)
-
         self.menu.append(f'{name}_menu')
         self.content.add(self.labels[self.menu[-1]])
         self.content.show_all()
@@ -164,13 +151,10 @@ class ScreenPanel:
     def update_temp(self, dev, temp, target, power, lines=1):
         if temp is None:
             return
-
         show_target = bool(target)
         if dev in self.devices and not self.devices[dev]["can_target"]:
             show_target = False
-
         show_power = show_target and self._show_heater_power and power is not None
-
         new_label_text = f"{int(temp):3}"
         if show_target:
             new_label_text += f"/{int(target)}"
@@ -182,7 +166,6 @@ class ScreenPanel:
                 # this is a workaround
                 new_label_text += "\n  "
             new_label_text += f" {int(power*100):3}%"
-
         if dev in self.labels:
             self.labels[dev].set_label(new_label_text)
         elif dev in self.devices:

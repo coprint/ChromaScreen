@@ -1,22 +1,16 @@
 import gi
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-
-
 class Keypad(Gtk.Box):
     def __init__(self, screen, change_temp, close_function):
         super().__init__(orientation=Gtk.Orientation.VERTICAL)
-
         self.labels = {}
         self.change_temp = change_temp
         self.screen = screen
         self._gtk = screen.gtk
-
         numpad = self._gtk.HomogeneousGrid()
         numpad.set_direction(Gtk.TextDirection.LTR)
         numpad.get_style_context().add_class('numpad')
-
         keys = [
             ['1', 'numpad_tleft'],
             ['2', 'numpad_top'],
@@ -42,19 +36,15 @@ class Keypad(Gtk.Box):
             self.labels[k_id].connect('clicked', self.update_entry, keys[i][0])
             self.labels[k_id].get_style_context().add_class(keys[i][1])
             numpad.attach(self.labels[k_id], i % 3, i / 3, 1, 1)
-
         self.labels["keypad"] = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.labels['entry'] = Gtk.Entry()
         self.labels['entry'].props.xalign = 0.5
         self.labels['entry'].connect("activate", self.update_entry, "E")
-
         b = self._gtk.Button('cancel', _('Close'), None, .66, Gtk.PositionType.LEFT, 1)
         b.connect("clicked", close_function)
-
         self.add(self.labels['entry'])
         self.add(numpad)
         self.add(b)
-
         self.labels["keypad"] = numpad
 
     def clear(self):

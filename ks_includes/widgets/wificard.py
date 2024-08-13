@@ -1,25 +1,14 @@
-import logging
-import os
 import subprocess
-
 import gi
 import numpy as np
-
 from ks_includes.widgets.infodialog import InfoDialog
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib
-
-
 class WifiCard(Gtk.Box):
-  
-
     def __init__(self, this, _image, _wifiName, _connectStatus, _connectionButtonVisible = False):
         super().__init__()
-
         self.parent = this
         image = this._gtk.Image(_image, this._gtk.content_width * .08 , this._gtk.content_height * .08)
-
         self.disconnectNetworkButton = Gtk.Button(_('Disconnect'),name ="disconnect-network-button")
         self.disconnectNetworkButton.connect("clicked", self.disconnect_network, _wifiName)
         disconnectNetworkButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -51,8 +40,6 @@ class WifiCard(Gtk.Box):
         wifi_list_string = subprocess.check_output(['nmcli', '-f', 'NAME', 'con', 'show']).decode()
         wifi_list = wifi_list_string.split("\n")
         self.is_saved = np.any([_wifiName == i.strip() for i in wifi_list])
-
-
         if _connectionButtonVisible == True:
             wifiCardBox.set_name("wifi-card-box")
             wifiCardBox.pack_start(wifiLabelBox, False, False, 0)
@@ -66,13 +53,9 @@ class WifiCard(Gtk.Box):
             wifiCardBox.pack_end(image, False, False, 20)
             if self.is_saved:
                 wifiCardBox.pack_end(forgetNetworkButtonBox, False, False, 0)
-
-        
         cartesianTypeEventBox = Gtk.EventBox()
         cartesianTypeEventBox.connect("button-press-event", this.wifiChanged, _wifiName)
         cartesianTypeEventBox.add(wifiCardBox)
-
-
         self.add(cartesianTypeEventBox)
 
     def rename_string(self, string, length_string):
@@ -87,7 +70,6 @@ class WifiCard(Gtk.Box):
         else:
             return string
         
-    
     def execute_command(self, name):
         process = subprocess.run(['nmcli', 'con', 'down', 'id', name], stdout=subprocess.PIPE)
         self.parent.refresh(None)
@@ -96,14 +78,11 @@ class WifiCard(Gtk.Box):
 
     def disconnect_network(self, widget, name):
         GLib.idle_add(self.execute_command, name)  
-       
         self.waitDialog = InfoDialog(self, _("Please Wait"), True)
         self.waitDialog.get_style_context().add_class("alert-info-dialog")
-
         self.waitDialog.set_decorated(False)
         self.waitDialog.set_size_request(0, 0)
         response = self.waitDialog.run()
-
 
     def execute_command_remove(self, name):
         process = subprocess.run(['nmcli', 'connection', 'delete', name], stdout=subprocess.PIPE)
@@ -113,13 +92,8 @@ class WifiCard(Gtk.Box):
 
     def remove_network(self, widget, name):
         GLib.idle_add(self.execute_command_remove, name)  
-       
         self.waitDialog = InfoDialog(self, _("Please Wait"), True)
         self.waitDialog.get_style_context().add_class("alert-info-dialog")
-
         self.waitDialog.set_decorated(False)
         self.waitDialog.set_size_request(0, 0)
         response = self.waitDialog.run()
-        
-
-    

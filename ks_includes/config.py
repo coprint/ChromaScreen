@@ -7,9 +7,7 @@ import re
 import copy
 import pathlib
 import locale
-
 from io import StringIO
-
 SCREEN_BLANKING_OPTIONS = [
     300,  # 5 Minutes
     900,  # 15 Minutes
@@ -18,20 +16,14 @@ SCREEN_BLANKING_OPTIONS = [
     7200,  # 2 Hours
     14400,  # 4 Hours
 ]
-
 chromascreendir = pathlib.Path(__file__).parent.resolve().parent
-
-
 class ConfigError(Exception):
     pass
-
-
 class ChromaScreenConfig:
     config = None
     configfile_name = "ChromaScreen.conf"
     do_not_edit_line = "#~# --- Do not edit below this line. This section is auto generated --- #~#"
     do_not_edit_prefix = "#~#"
-
     def __init__(self, configfile, screen=None):
         self.lang_list = None
         self.errors = []
@@ -42,20 +34,16 @@ class ChromaScreenConfig:
         self.defined_config = None
         self.lang = None
         self.langs = {}
-
         try:
             self.config.read(self.default_config_path)
             if self.config_path != self.default_config_path:
                 user_def, saved_def = self.separate_saved_config(self.config_path)
                 self.defined_config = configparser.ConfigParser()
                 self.defined_config.read_string(user_def)
-
                 includes = [i[8:] for i in self.defined_config.sections() if i.startswith("include ")]
                 for include in includes:
                     self._include_config("/".join(self.config_path.split("/")[:-1]), include)
-
                 self.exclude_from_config(self.defined_config)
-
                 self.log_config(self.defined_config)
                 self.config.read_string(user_def)
                 if saved_def is not None:
@@ -83,11 +71,9 @@ class ChromaScreenConfig:
             msg = f"Unknown error with the config:\n{e}"
             logging.exception(msg)
             self.errors.append(msg)
-
         printers = sorted([i for i in self.config.sections() if i.startswith("printer ")])
         if len(printers) == 0:
             printers.append("Printer Printer")
-
         self.printers = [
             {printer[8:]: {
                 "moonraker_host": self.config.get(printer, "moonraker_host", fallback="127.0.0.1"),
@@ -98,8 +84,6 @@ class ChromaScreenConfig:
         i =0
         for printer in self.printers:
             i += 1
-           
-
             name = list(printer)[0]
             item = self.printers[self.printers.index(printer)]
             item[name]['moonraker_port'] = str(7124 + i)
@@ -109,7 +93,6 @@ class ChromaScreenConfig:
                 item[name]['log_file'] = 'printer_' + str(i) + '_data'
             if item[name]['moonraker_api_key'] != "":
                 item[name]['moonraker_api_key'] = "redacted"
-
         conf_printers_debug = copy.deepcopy(self.printers)
         for printer in conf_printers_debug:
             i +=1
@@ -120,7 +103,6 @@ class ChromaScreenConfig:
             if item[name]['moonraker_api_key'] != "":
                 item[name]['moonraker_api_key'] = "redacted"
         logging.debug(f"Configured printers: {json.dumps(conf_printers_debug, indent=2)}")
-
         self.create_translations()
         self._create_configurable_options(screen)
 
@@ -130,7 +112,6 @@ class ChromaScreenConfig:
         self.lang_list.sort()
         for lng in self.lang_list:
             self.langs[lng] = gettext.translation('ChromaScreen', localedir=lang_path, languages=[lng], fallback=True)
-
         lang = self.get_main_config().get("language", None)
         logging.debug(f"Selected lang: {lang} OS lang: {locale.getdefaultlocale()[0]}")
         self.install_language(lang)
@@ -234,7 +215,6 @@ class ChromaScreenConfig:
         return "".join(f'{error}\n\n' for error in self.errors)
 
     def _create_configurable_options(self, screen):
-
         self.configurable_options = [
             {"language": {
                 "section": "main", "name": _("Language"), "type": "dropdown", "value": "system_lang",
@@ -283,7 +263,6 @@ class ChromaScreenConfig:
                                    "value": "False", "callback": screen.reload_panels}},
             # {"": {"section": "main", "name": _(""), "type": ""}}
         ]
-
         # Options that are in panels and shouldn't be added to the main settings
         panel_options = [
             {"invert_x": {"section": "main", "name": _("Invert X"), "type": None, "value": "False"}},
@@ -293,7 +272,6 @@ class ChromaScreenConfig:
             {"move_speed_z": {"section": "main", "name": _("Z Move Speed (mm/s)"), "type": None, "value": "10"}},
             {"print_sort_dir": {"section": "main", "type": None, "value": "date_desc"}},
         ]
-
         self.configurable_options.extend(panel_options)
 
         lang_opt = self.configurable_options[0]['language']['options']
@@ -307,7 +285,6 @@ class ChromaScreenConfig:
 
         for theme in themes:
             theme_opt.append({"name": theme, "value": theme})
-
         index = self.configurable_options.index(
             [i for i in self.configurable_options if list(i)[0] == "screen_blanking"][0])
         for num in SCREEN_BLANKING_OPTIONS:
@@ -320,7 +297,6 @@ class ChromaScreenConfig:
                 "name": name,
                 "value": f"{num}"
             })
-
         for item in self.configurable_options:
             name = list(item)[0]
             vals = item[name]
@@ -344,7 +320,6 @@ class ChromaScreenConfig:
     def _include_config(self, directory, filepath):
         full_path = filepath if filepath[0] == "/" else f"{directory}/{filepath}"
         parse_files = []
-
         if "*" in full_path:
             parent_dir = "/".join(full_path.split("/")[:-1])
             file = full_path.split("/")[-1]
@@ -354,13 +329,11 @@ class ChromaScreenConfig:
             files = os.listdir(parent_dir)
             regex = f"^{file.replace('*', '.*')}$"
             parse_files.extend(os.path.join(parent_dir, file) for file in files if re.match(regex, file))
-
         else:
             if not os.path.exists(os.path.join(full_path)):
                 logging.info(f"Config Error: {full_path} does not exist")
                 return
             parse_files.append(full_path)
-
         logging.info(f"Parsing files: {parse_files}")
         for file in parse_files:
             config = configparser.ConfigParser()
@@ -396,14 +369,12 @@ class ChromaScreenConfig:
         logging.info(f"Passed config (-c): {file}")
         if os.path.exists(file):
             return file
-
         file = os.path.join(chromascreendir, self.configfile_name)
         if os.path.exists(file):
             return file
         file = os.path.join(chromascreendir, self.configfile_name.lower())
         if os.path.exists(file):
             return file
-
         klipper_config = os.path.join(os.path.expanduser("~/"), "printer_data", "config")
         file = os.path.join(klipper_config, self.configfile_name)
         if os.path.exists(file):
@@ -411,7 +382,6 @@ class ChromaScreenConfig:
         file = os.path.join(klipper_config, self.configfile_name.lower())
         if os.path.exists(file):
             return file
-
         # OLD config folder
         klipper_config = os.path.join(os.path.expanduser("~/"), "klipper_config")
         file = os.path.join(klipper_config, self.configfile_name)
@@ -420,7 +390,6 @@ class ChromaScreenConfig:
         file = os.path.join(klipper_config, self.configfile_name.lower())
         if os.path.exists(file):
             return file
-
         # fallback
         return self.default_config_path
 
@@ -446,7 +415,6 @@ class ChromaScreenConfig:
             split = item.split()
             if len(split) == 1:
                 menu_items.append(self._build_menu_item(menu, index + item))
-
         return menu_items
 
     def get_menu_name(self, menu="__main", subsection=""):
@@ -467,7 +435,6 @@ class ChromaScreenConfig:
     def get_printer_config(self, name):
         if not name.startswith("printer "):
             name = f"printer {name}"
-
         return None if name not in self.config else self.config[name]
 
     def get_printers(self):
@@ -485,7 +452,6 @@ class ChromaScreenConfig:
                 if opt['section'] not in save_config.sections():
                     save_config.add_section(opt['section'])
                 save_config.set(opt['section'], name, str(curval))
-
         extra_sections = [i for i in self.config.sections() if i.startswith("displayed_macros")]
         extra_sections.extend([i for i in self.config.sections() if i.startswith("graph")])
         for section in extra_sections:
@@ -498,23 +464,19 @@ class ChromaScreenConfig:
                     if section not in save_config.sections():
                         save_config.add_section(section)
                     save_config.set(section, item, str(value))
-
         save_output = self._build_config_string(save_config).split("\n")
         for i in range(len(save_output)):
             save_output[i] = f"{self.do_not_edit_prefix} {save_output[i]}"
-
         if self.config_path == self.default_config_path:
             user_def = ""
             saved_def = None
         else:
             user_def, saved_def = self.separate_saved_config(self.config_path)
-
         contents = (f"{user_def}\n"
                     f"{self.do_not_edit_line}\n"
                     f"{self.do_not_edit_prefix}\n"
                     + '\n'.join(save_output) + f"\n"
                                                f"{self.do_not_edit_prefix}\n")
-
         if self.config_path != self.default_config_path:
             filepath = self.config_path
         else:
@@ -528,7 +490,6 @@ class ChromaScreenConfig:
             else:
                 filepath = os.path.join(filepath, self.configfile_name)
             logging.info(f'Creating a new config file in {filepath}')
-
         try:
             with open(filepath, 'w') as file:
                 file.write(contents)
@@ -572,5 +533,4 @@ class ChromaScreenConfig:
             "params": cfg.get("params", "{}"),
             "style": cfg.get("style", None)
         }
-
         return {name[(len(menu) + 6):]: item}

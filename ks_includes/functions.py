@@ -8,7 +8,6 @@ import threading
 import time
 import traceback
 from queue import SimpleQueue as Queue
-
 import ctypes
 import struct
 from urllib import request
@@ -17,7 +16,6 @@ dpms_loaded = False
 try:
     ctypes.cdll.LoadLibrary('libXext.so.6')
     libXext = ctypes.CDLL('libXext.so.6')
-
     class DPMS_State:
         Fail = -1
         On = 0
@@ -188,5 +186,4 @@ def setup_logging(log_file, software_version):
 
     sys.excepthook = logging_exception_handler
     logging.captureWarnings(True)
-
     return listener, fh

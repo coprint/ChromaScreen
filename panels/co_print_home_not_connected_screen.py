@@ -102,9 +102,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
         isUpdateReqKlipper = False
         if self.version_info and self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
             isUpdateReqKlipper = True
-        isUpdateReqMainsail = False
-        if self.version_info and self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
-            isUpdateReqMainsail = True
+        # isUpdateReqMainsail = False
+        # if self.version_info and self.version_info['mainsail']['version'] != self.version_info['mainsail']['remote_version']:
+        #     isUpdateReqMainsail = True
         isUpdateReqMoonraker = False
         if self.version_info and self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
             isUpdateReqMoonraker = True
@@ -162,33 +162,33 @@ class Panel(ScreenPanel, metaclass=Singleton):
         klipperUpdateBox.pack_end(klipperUpdateButton, False, False, 0)
         box_array.append(klipperUpdateBox)
         #-----mainsail update-----#
-        mainsailUpdateLabel = Gtk.Label(_("Mainsail"), name="kipper-label")
-        mainsailUpdateLabel.set_justify(Gtk.Justification.LEFT)
-        mainsailUpdateLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        mainsailUpdateLabelBox.pack_start(mainsailUpdateLabel, False, False, 0)
-        label_text_mainsail = ''
-        if self.version_info:
-            label_text_mainsail = _(self.version_info['mainsail']['version'])
-        mainsailVersionLabel = Gtk.Label(_("Version: ") + label_text_mainsail, name="klipper-version-label")
-        mainsailVersionLabel.set_justify(Gtk.Justification.LEFT)
-        mainsailVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        mainsailVersionLabelBox.pack_start(mainsailVersionLabel, False, False, 0)
-        if isUpdateReqMainsail:
-            mainsailUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
-            mainsailUpdateButton.connect("clicked", self.VersionControl, "mainsail")
-            mainsailVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            mainsailVersionBox.pack_start(mainsailUpdateLabelBox, False, False, 0)
-            mainsailVersionBox.pack_start(mainsailVersionLabelBox, False, False, 0)
-        else:
-            mainsailUpdateButton = Gtk.Button(_('Up-to-date'),name ="up-to-date-button")
-            mainsailVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            mainsailVersionBox.pack_start(mainsailUpdateLabelBox, False, False, 0)
-            mainsailVersionBox.pack_start(mainsailVersionLabelBox, False, False, 0)
-        mainsailUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        mainsailUpdateBox.set_name("update-box")
-        mainsailUpdateBox.pack_start(mainsailVersionBox, False, False, 0)
-        mainsailUpdateBox.pack_end(mainsailUpdateButton, False, False, 0)
-        box_array.append(mainsailUpdateBox)
+        # mainsailUpdateLabel = Gtk.Label(_("Mainsail"), name="kipper-label")
+        # mainsailUpdateLabel.set_justify(Gtk.Justification.LEFT)
+        # mainsailUpdateLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        # mainsailUpdateLabelBox.pack_start(mainsailUpdateLabel, False, False, 0)
+        # label_text_mainsail = ''
+        # if self.version_info:
+        #     label_text_mainsail = _(self.version_info['mainsail']['version'])
+        # mainsailVersionLabel = Gtk.Label(_("Version: ") + label_text_mainsail, name="klipper-version-label")
+        # mainsailVersionLabel.set_justify(Gtk.Justification.LEFT)
+        # mainsailVersionLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        # mainsailVersionLabelBox.pack_start(mainsailVersionLabel, False, False, 0)
+        # if isUpdateReqMainsail:
+        #     mainsailUpdateButton = Gtk.Button(_('Update'),name ="update-manager-button")
+        #     mainsailUpdateButton.connect("clicked", self.VersionControl, "mainsail")
+        #     mainsailVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        #     mainsailVersionBox.pack_start(mainsailUpdateLabelBox, False, False, 0)
+        #     mainsailVersionBox.pack_start(mainsailVersionLabelBox, False, False, 0)
+        # else:
+        #     mainsailUpdateButton = Gtk.Button(_('Up-to-date'),name ="up-to-date-button")
+        #     mainsailVersionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        #     mainsailVersionBox.pack_start(mainsailUpdateLabelBox, False, False, 0)
+        #     mainsailVersionBox.pack_start(mainsailVersionLabelBox, False, False, 0)
+        # mainsailUpdateBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        # mainsailUpdateBox.set_name("update-box")
+        # mainsailUpdateBox.pack_start(mainsailVersionBox, False, False, 0)
+        # mainsailUpdateBox.pack_end(mainsailUpdateButton, False, False, 0)
+        # box_array.append(mainsailUpdateBox)
         #-----moonraker update-----#
         moonrakerUpdateLabel = Gtk.Label(_("Moonraker"), name="kipper-label")
         moonrakerUpdateLabel.set_justify(Gtk.Justification.LEFT)
