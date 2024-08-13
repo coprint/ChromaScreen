@@ -1,33 +1,20 @@
-import logging
-import os
+
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.infodialog import InfoDialog
-
-
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
+from gi.repository import Gtk, GLib
 from ks_includes.screen_panel import ScreenPanel
 
-
-# def create_panel(*args):
-#     return CoPrintAutoLevelingScreen(*args)
-
-
-# class CoPrintAutoLevelingScreen(ScreenPanel):
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-
         menu = BottomMenu(self, False)
-
         self.grid = Gtk.Grid(column_homogeneous=True,
-                             column_spacing=0,
-                             row_spacing=0)
+                                column_spacing=0,
+                                row_spacing=0)
         self.count_grid = 0
         self.row_grid = 0
         row = 4
@@ -41,19 +28,15 @@ class Panel(ScreenPanel):
         self.z_cal_values = []
 
         for x in range(25):
-
             self.numberlabel[str(row_s) + '/' + str(count_s)] = Gtk.Label(calibration_value, name="auto-leveling-label")
             self.numberLabelBox[str(row_s) + '/' + str(count_s)] = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,
-                                                                           spacing=0)
+                                                                            spacing=0)
             self.numberLabelBox[str(row_s) + '/' + str(count_s)].set_valign(Gtk.Align.CENTER)
             self.numberLabelBox[str(row_s) + '/' + str(count_s)].set_halign(Gtk.Align.CENTER)
             self.numberLabelBox[str(row_s) + '/' + str(count_s)].set_name("auto-leveling-label-box")
             self.numberLabelBox[str(row_s) + '/' + str(count_s)].add(self.numberlabel[str(row_s) + '/' + str(count_s)])
 
             self.grid.attach(self.numberLabelBox[str(row_s) + '/' + str(count_s)], count, row, 1, 1)
-
-
-
             if direction == '+':
                 count += 1
             else:
@@ -72,10 +55,9 @@ class Panel(ScreenPanel):
                 row -= 1
                 row_s += 1
 
-
         left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         left_box.pack_start(self.grid, False, False, 0)
-
+        
         autoLevelingLabel = Gtk.Label(_("Automatic Table Calibration"), name="auto-leveling-title-label")
         autoLevelingContentLabel = Gtk.Label(
             _("Click the “Start Calibration” button to perform automatic table calibration."),
@@ -132,17 +114,14 @@ class Panel(ScreenPanel):
 
         self.content.add(self.page)
 
-    def process_update(self, action, data):
-        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
-        #     page_url = 'co_print_home_not_connected_screen'
-        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)    
+    def process_update(self, action, data): 
         if action == "notify_status_update":
-             if ('configfile' in data) and data['configfile']['save_config_pending_items']['bed_mesh default']['points']:
-                 matrix_array= []
-                 pending_data = data['configfile']['save_config_pending_items']['bed_mesh default']['points']
-                 pending_data.split('\n')
-                 for index_x, x in enumerate( pending_data.split('\n ')):
-                      if x != '':
+            if ('configfile' in data) and data['configfile']['save_config_pending_items']['bed_mesh default']['points']:
+                matrix_array= []
+                pending_data = data['configfile']['save_config_pending_items']['bed_mesh default']['points']
+                pending_data.split('\n')
+                for index_x, x in enumerate( pending_data.split('\n ')):
+                    if x != '':
                         array_x = x.split(', ')
                         for index_y, value_s in enumerate(array_x):
                                 if value_s != '':
@@ -154,41 +133,28 @@ class Panel(ScreenPanel):
                                     self.numberLabelBox[str(index_x-1) + '/' + str(index_y)].get_style_context().add_class(
                                         "auto-leveling-label-box-active")
 
-             if 'bed_mesh' in data:
+            if 'bed_mesh' in data:
                 matrix_array= []
                 if len(data['bed_mesh']['probed_matrix']) > 1:
                     matrix_array = data['bed_mesh']['probed_matrix']
-                   
                     print(data['bed_mesh']['probed_matrix'])
                 else:
-                     if 'default' in data['bed_mesh']['profiles']:
-                         matrix_array = data['bed_mesh']['profiles']['default']['points']
+                    if 'default' in data['bed_mesh']['profiles']:
+                        matrix_array = data['bed_mesh']['profiles']['default']['points']
                 for index_x, x in enumerate(matrix_array):
                         for index_y, value in enumerate(x):
-                            self.numberlabel[str(index_x) + '/' + str(index_y)].set_label(str(value))
-                            
+                            self.numberlabel[str(index_x) + '/' + str(index_y)].set_label(str(value))    
                             self.numberLabelBox[str(index_x) + '/' + str(index_y)].get_style_context().remove_class(
                                 "auto-leveling-label-box-active-white")
                             self.numberLabelBox[str(index_x) + '/' + str(index_y)].get_style_context().add_class(
                                 "auto-leveling-label-box-active")
-                            #if index_x < 5:
-                            # self.numberLabelBox[str(index_x) + '/' + str(index_y)].get_style_context().add_class(
-                            #   "auto-leveling-label-box-active-white")
 
         if action == "notify_gcode_response":
-            # print(data)
             if data.find("z=") != -1:
-               # if len(self.z_cal_values) <  25:
                     xy = data.split(" ")[3].split(',')
                     val = {"x" : xy[0], "y": xy[1],  "z": data.split("z=", 1)[1]}
                     print(data.split("z=", 1)[1])
                     calibration_value = str(round(float(data.split("z=", 1)[1]), 2))
-                    #self.numberlabel[str(self.row_grid) + '/' + str(self.count_grid)].set_label(calibration_value)
-                    
-                    #self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().remove_class(
-                    #    "auto-leveling-label-box-active-white")
-                    #self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().add_class(
-                    #    "auto-leveling-label-box-active")
                     self.z_cal_values.append(val)
                     print(len(self.z_cal_values))
 
@@ -196,15 +162,10 @@ class Panel(ScreenPanel):
                     if self.count_grid % 5 == 0:
                         self.count_grid = 0
                         self.row_grid += 1
-                   # if self.row_grid < 5:
-                     #   self.numberLabelBox[str(self.row_grid) + '/' + str(self.count_grid)].get_style_context().add_class(
-                      #      "auto-leveling-label-box-active-white")
 
-        # if self._printer.state != 'error':
-
-        # print(self._printer.data['bed_mesh']['probed_matrix'])
     def save_calibration(self, widget):
-         self.save_config()
+        self.save_config()
+
     def start_calibration(self, widget):
         self.count_grid = 0
         self.row_grid = 0
@@ -237,7 +198,7 @@ class Panel(ScreenPanel):
             self.autoLevelingContentLabelBox.remove(child)
 
         autoLevelingContentLabel = Gtk.Label(_("Automatic bed leveling is being performed. Please wait.."),
-                                             name="auto-leveling-content-label")
+                                            name="auto-leveling-content-label")
         autoLevelingContentLabel.set_max_width_chars(25)
         autoLevelingContentLabel.set_line_wrap(True)
         autoLevelingContentLabel.set_justify(Gtk.Justification.CENTER)
@@ -316,43 +277,29 @@ class Panel(ScreenPanel):
 
         self.dialog.set_decorated(False)
         self.dialog.set_size_request(0, 0)
-        # timer_duration = 1000
-        # GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
         response = self.dialog.run()
 
     def finished(self, asd, a, b):
         self.dialog.response(Gtk.ResponseType.CANCEL)
         self.dialog.destroy()
         self._screen._ws.send_method("printer.gcode.script", {"script": "BED_MESH_CALIBRATE"}, self.finished_calibrate)
-        # self._screen._ws.klippy.gcode_script("BED_MESH_CALIBRATE")
 
     def finished_calibrate(self, result, method, params):
         print(result)
-       
         self.stop_calibration(None)
-       
         if  ('error' in result) == False:
-            #self.save_config()
             print('success')
         else:
             self.open_info_dialog(str(result['error']))
-        # self._screen._ws.klippy.gcode_script("SAVE_CONFIG")
-
 
     def open_info_dialog(self, error):
         self.dialog = InfoDialog(self, (error), True)
         self.dialog.get_style_context().add_class("alert-info-dialog")
-       
         self.dialog.set_decorated(False)
         self.dialog.set_size_request(0, 0)
-      
-     
-
         response = self.dialog.run()
- 
 
     def save_config(self):
-
         script = {"script": "SAVE_CONFIG"}
         self._screen._confirm_send_action(
             None,
@@ -362,13 +309,12 @@ class Panel(ScreenPanel):
         )
 
     def calibrate_mesh(self):
-        #self.stop_calibration(None)
         self._screen.show_popup_message(_("Calibrating"), level=1)
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self.home()
         else:
             self._screen._ws.send_method("printer.gcode.script", {"script": "BED_MESH_CALIBRATE"},
-                                         self.finished_calibrate)
+                                        self.finished_calibrate)
 
     def start_timer(self):
         """ Start the timer. """
@@ -388,7 +334,7 @@ class Panel(ScreenPanel):
             self.autoLevelingContentLabelBox.remove(child)
 
         autoLevelingContentLabel = Gtk.Label(_("Automatic bed calibration is completed. Please restart the system."),
-                                             name="auto-leveling-content-label")
+                                            name="auto-leveling-content-label")
         autoLevelingContentLabel.set_max_width_chars(35)
         autoLevelingContentLabel.set_line_wrap(True)
         autoLevelingContentLabel.set_justify(Gtk.Justification.CENTER)
@@ -402,11 +348,7 @@ class Panel(ScreenPanel):
         self.startButton.connect("clicked", self.send_save_mesh)
         rebootButtonBox.set_halign(Gtk.Align.CENTER)
         rebootButtonBox.pack_start(rebootButton, False, False, 0)
-
         self.buttonBox.pack_start(rebootButtonBox, True, False, 0)
-
         self.content.show_all()
-
         self.timeout_id = None
-
         return False

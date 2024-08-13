@@ -1,6 +1,5 @@
 import logging
 import os
-import gi
 from gi.repository import Gtk 
 from ks_includes.screen_panel import ScreenPanel
 from ks_includes.widgets.initheader import InitHeader
@@ -154,8 +153,10 @@ class Panel(ScreenPanel):
                 self.configFiles = True
             else:
                 self.configFiles = False
+
     def new_values(self, printer_data):
         logging.info(f"new_values: {printer_data}")
+
     def upload_config_files(self, button):
         if self.selected_printer:
             sudoPassword = self._screen.pc_password
@@ -171,10 +172,8 @@ class Panel(ScreenPanel):
         
             self.dialog = InfoDialog(self, "Config Files have been uploaded", True, False)
             self.dialog.get_style_context().add_class("alert-info-dialog")
-        
             self.dialog.set_decorated(False)
             self.dialog.set_size_request(0, 0)
-        
             response = self.dialog.run()
 
     def on_click_continue_button(self, continueButton):

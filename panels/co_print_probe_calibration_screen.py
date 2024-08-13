@@ -1,32 +1,17 @@
 import logging
-import os
 import gi
-import contextlib
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.kalibrationinfodialog import KalibrationInfoDialog
 from ks_includes.widgets.zaxishorizontalcalibration import zAxisHorizontalCalibration
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
+from gi.repository import Gtk, GLib
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintProbeCalibrationScreen(*args)
-
-
-# class CoPrintProbeCalibrationScreen(ScreenPanel):
-
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-        
         menu = BottomMenu(self, False)
-        
         self.labels['probeImage'] = self._gtk.Image("probcalibre", self._screen.width / 2.25, self._screen.height / 1.80)
-        # self.labels['probeImage'].get_style_context().add_class("thumbnail")
-        
         zOffsetDistanceLabel = Gtk.Label(_("Z Probe Distance") + ":", name="zoffset-distance-label")
         distanceLabel = Gtk.Label("4.325" + _("mm"), name="distance-label")
         zOffsetLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -48,8 +33,6 @@ class Panel(ScreenPanel):
         zoffset_calibration_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         zoffset_calibration_box.set_valign(Gtk.Align.CENTER)
         zoffset_calibration_box.pack_start(self.labels['probeImage'], True, True, 0)
-        #zoffset_calibration_box.pack_start(zOffsetLabelBox, False, False, 0)
-        
         
         left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         left_box.pack_start(probeCalibrationBox, False, False, 0)
@@ -60,25 +43,19 @@ class Panel(ScreenPanel):
         changeOffsetButtonBox.set_spacing(-10)
     
         self.OffsetConstant = 0.5
-        
-        
         self.buttons = {"0.01": Gtk.Button("0.01", name ="probe-change-offset-button"),
                         "0.1": Gtk.Button("0.1", name ="probe-change-offset-button"),
                         "0.5": Gtk.Button("0.5", name ="probe-change-offset-button"),
                         "1": Gtk.Button("1", name ="probe-change-offset-button"),
                         "2": Gtk.Button("2", name ="probe-change-offset-button")
         }
-
         self.OffsetConstant = 0.5
         self.buttons[f"{0.01}"].connect("clicked", self.chanceOffset, 0.01)
         self.buttons[f"{0.1}"].connect("clicked", self.chanceOffset, 0.1)
         self.buttons[f"{0.5}"].connect("clicked", self.chanceOffset, 0.5)
         self.buttons[f"{1}"].connect("clicked", self.chanceOffset, 1)
         self.buttons[f"{2}"].connect("clicked", self.chanceOffset, 2)
-        
         self.buttons[f"{0.5}"].get_style_context().add_class("probe-change-offset-button-active")
-        
-        
 
         changeOffsetButtonBox.pack_start(self.buttons[f"{0.01}"], True, True, 0)
         changeOffsetButtonBox.pack_start(self.buttons[f"{0.1}"], True, True, 0)
@@ -94,13 +71,9 @@ class Panel(ScreenPanel):
         changeOffsetBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         changeOffsetBox.pack_start(changeOffsetLabelBox, False, False, 10)
         changeOffsetBox.pack_start(changeOffsetButtonBox, False, False, 20)
-        
-        
-        
-        zAxis = zAxisHorizontalCalibration(self, True)
-        
+
+        zAxis = zAxisHorizontalCalibration(self, True)        
         zOffsetLabel = Gtk.Label(_("Z Probe"))
-        
         self.zoffset = Gtk.Label("0", name="number-label")
         numberLabelBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         numberLabelBox.set_valign(Gtk.Align.CENTER)
@@ -128,70 +101,45 @@ class Panel(ScreenPanel):
         right_box.pack_start(zOffsetBox, False, False, 20)
         right_box.pack_end(okButtonBox, False, False, 20)
         
-        
-        
         main_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         main_box.set_vexpand(True)
         main_box.set_halign(Gtk.Align.CENTER)
         main_box.pack_start(left_box, False, False, 0)
         main_box.pack_start(right_box, False, False, 0)
         
-        
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         page.pack_start(main_box, True, True, 0)
         page.pack_end(menu, False, True, 0)
         
-
-        
         self.content.add(page)
 
     def open_info_dialog(self, widget):
-        
-       
-        
-        #timer_duration = 3000
-        #GLib.timeout_add(timer_duration, self.close_dialog, dialog)
         GLib.idle_add(self.start_calibration)
         
-        
-       
-        #dialog.destroy()    
-        
     def close_dialog(self, dialog):
-        
         dialog.response(Gtk.ResponseType.CANCEL)
         dialog.destroy()
 
     def process_update(self, action, data):
         if action == "notify_busy":
-            #self.process_busy(data)
             return
         if action == "notify_status_update":
             if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
-               # self.widgets['zposition'].set_text("Z: ?")
                 print("Z: ?")
             elif "gcode_move" in data and "gcode_position" in data['gcode_move']:
-                #self.update_position(data['gcode_move']['gcode_position'])
                 print(data['gcode_move']['gcode_position'])
         elif action == "notify_gcode_response":
             data = data.lower()
             if "unknown" in data:
-                #self.buttons_not_calibrating()
                 logging.info(data)
-            #elif "save_config" in data:
-                #self.buttons_not_calibrating()
             elif "out of range" in data:
                 self._screen.show_popup_message(data)
-                #self.buttons_not_calibrating()
                 logging.info(data)
             elif "fail" in data and "use testz" in data:
                 self._screen.show_popup_message(_("Failed, adjust position first"))
-                #self.buttons_not_calibrating()
                 logging.info(data)
-            #elif "use testz" in data or "use abort" in data or "z position" in data:
-                #self.buttons_calibrating()
         return
-                    
+
     def start_calibration(self):
         self.zoffset.set_label('{:.3f}'.format(0))
         functions = []
@@ -201,30 +149,21 @@ class Panel(ScreenPanel):
             method = "endstop"
             functions.append("endstop")
         if self.probe:
-           
             method = "probe"
             functions.append("probe")
         if self._printer.config_section_exists("bed_mesh") and "probe" not in functions:
-            # This is used to do a manual bed mesh if there is no probe
-            
             method = "mesh"
             functions.append("mesh")
         if "delta" in self._printer.get_config_section("printer")['kinematics']:
             if "probe" in functions:
-                
                 method = "delta"
                 functions.append("delta")
             # Since probes may not be accturate enough for deltas, always show the manual method
-           
             method = "delta_manual"
             functions.append("delta_manual")
-
-        #self.labels['popover'].popdown()
         if self._printer.get_stat("toolhead", "homed_axes") != "xyz":
             self.home()
-
         if method == "probe":
-            #self._move_to_position()
             self._screen._ws.klippy.gcode_script(KlippyGcodes.PROBE_CALIBRATE)
         elif method == "mesh":
             self._screen._ws.klippy.gcode_script("BED_MESH_CALIBRATE")
@@ -246,13 +185,9 @@ class Panel(ScreenPanel):
             # OLD global way, this should be deprecated
             x_position = self._config.get_config()['z_calibrate_position'].getfloat("calibrate_x_position", None)
             y_position = self._config.get_config()['z_calibrate_position'].getfloat("calibrate_y_position", None)
-
         if self.probe:
-            #if "sample_retract_dist" in self.probe:
-                #z_hop = self.probe['sample_retract_dist']
             if "speed" in self.probe:
                 speed = self.probe['speed']
-
         # Use safe_z_home position
         if "safe_z_home" in self._printer.get_config_section_list():
             safe_z = self._printer.get_config_section("safe_z_home")
@@ -268,21 +203,12 @@ class Panel(ScreenPanel):
                 #z_hop = safe_z['z_hop']
             if 'z_hop_speed' in safe_z:
                 speed = safe_z['z_hop_speed']
-
         speed = 15 if speed is None else speed
-        #z_hop = 5 if z_hop is None else z_hop
-       
         self._screen._ws.klippy.gcode_script(f"TESTZ Z={zhop}")
-        #self._screen._ws.klippy.gcode_script(f"G91\nG0 Z{zhop} F{float(speed) * 60}")
-       # if self._printer.get_stat("gcode_move", "absolute_coordinates"):
-        #    self._screen._ws.klippy.gcode_script("G90")
-
         if x_position is not None and y_position is not None:
             logging.debug(f"Configured probing position X: {x_position} Y: {y_position}")
-           # self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
         elif "delta" in self._printer.get_config_section("printer")['kinematics']:
             logging.info("Detected delta kinematics calibrating at 0,0")
-           # self._screen._ws.klippy.gcode_script('G0 X0 Y0 F3000')
         else:
             self._calculate_position()
 
@@ -297,7 +223,6 @@ class Panel(ScreenPanel):
         x_position = xmax / 2
         y_position = ymax / 2
         logging.info(f"Center position X:{x_position} Y:{y_position}")
-
         # Find probe offset
         x_offset = y_offset = None
         if self.probe:
@@ -310,7 +235,6 @@ class Panel(ScreenPanel):
             x_position = x_position - x_offset
         if y_offset is not None:
             y_position = y_position - y_offset
-
         logging.info(f"Moving to X:{x_position} Y:{y_position}")
         self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} F3000')
 
@@ -319,9 +243,7 @@ class Panel(ScreenPanel):
         self._screen._ws.klippy.gcode_script(KlippyGcodes.ACCEPT)
         self.save_config()
 
-
     def save_config(self):
-
         script = {"script": "SAVE_CONFIG"}
         self._screen._confirm_send_action(
             None,
@@ -336,17 +258,13 @@ class Panel(ScreenPanel):
         self.dialog.get_style_context().add_class("info-dialog")
         self.dialog.set_decorated(False)
         self.dialog.set_size_request(0, 0)
-        #timer_duration = 1000
-        #GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
         response = self.dialog.run()
+
     def finished(self,asd,a,b):
         self.dialog.response(Gtk.ResponseType.CANCEL)
         self.dialog.destroy()
 
-
-    def chanceOffset(self,widget,  number):
-        
+    def chanceOffset(self,widget,  number):        
         self.buttons[f"{self.OffsetConstant}"].get_style_context().remove_class("probe-change-offset-button-active")
         self.buttons[f"{number}"].get_style_context().add_class("probe-change-offset-button-active")
         self.OffsetConstant = number
-

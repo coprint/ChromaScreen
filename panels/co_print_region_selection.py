@@ -1,4 +1,3 @@
-import logging
 import os
 import pytz
 import subprocess
@@ -6,15 +5,8 @@ from datetime import datetime
 import gi
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
-#from ks_includes.widgets.timezone import Timezone
-
-# def create_panel(*args):
-#     return CoPrintRegionSelection(*args)
-
-
-# class CoPrintRegionSelection(ScreenPanel):
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -55,9 +47,8 @@ class Panel(ScreenPanel):
             tz = pytz.FixedOffset(item['offset'] * 60)
             item['current_time']=current_time_utc.astimezone(tz).strftime('%H:%M')
             item['offset_str']=f"GMT{'+' if item['offset'] >= 0 else ''}{item['offset']}"
-        
         now = datetime.now()        
-             
+
         currentLabel = Gtk.Label("Current: ", name="current-time-label")
         self.timeLabel = Gtk.Label(now.strftime('%H:%M')  , name="current-time-label")
         currentTimeBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -71,7 +62,7 @@ class Panel(ScreenPanel):
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
         buttonBox.set_center_widget(self.continueButton)
-           
+
         backIcon = self._gtk.Image("back-arrow", 35, 35)
         backLabel = Gtk.Label(_("Back"), name="bottom-menu-label")            
         backButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -124,12 +115,6 @@ class Panel(ScreenPanel):
                 self.set_timezone(item['oset'])
                 self.timeLabel.set_label(item['current_time'])
                 item['timeZoneBox'].get_style_context().add_class("timezonebox-active")
-    # def timezone_select(self,a,b,c, d):
-     
-    #    self.set_timezone(c)
-    #    self.time_zone_box.get_style_context().add_class("timezone-select-box")
-          
-    #    self.timeLabel.set_label(d)
 
     def generateTimeZoneGrid(self):
         timezone_grid = Gtk.Grid()
@@ -160,45 +145,11 @@ class Panel(ScreenPanel):
         self.scroll = self._gtk.ScrolledWindow()
         self.scroll.add(timezone_grid)
         return(self.scroll)
-    # def on_country_combo_changed(self, combo):
-    #     tree_iter = combo.get_active_iter()
-    #     if tree_iter is not None:
-    #         model = combo.get_model()
-    #         country = model[tree_iter][0]
-    #         print("Selected: country=%s" % country)
-
-    # def change_timezone(self, timezone):
-    #     command = f"timedatectl set-timezone {timezone.get_text()}"
-    #     subprocess.run(command, shell=True)
 
     def on_click_continue_button(self, continueButton):
         self._screen.show_panel("co_print_product_naming", "co_print_product_naming", None, 1,False)
-        
-    # def on_combobox_changed(self, combobox):
-    #     active_text = combobox.get_active_text()
-    #     print("Seçilen seçenek:", active_text)
-        
-    # def on_listbox_row_activated(self, listbox, row):
-    #     selected_value = row.get_child().get_label()
-    #     self.entry.set_text(selected_value)
-        
-    # def on_arrow_clicked(self, widget, event):
-    #     if self.listbox.get_visible():
-    #         self.listbox.hide()
-    #     else:
-    #         allocation = self.entry.get_allocation()
-    #         x, y = self.entry.translate_coordinates(self, allocation.x, allocation.y + allocation.height)
-    #         self.listbox.set_size_request(allocation.width, -1)
-    #         self.move(x, y)
-    #         self.listbox.show_all()
-    # def on_button_clicked(self, button):
-    #     if self.listbox.get_visible():
-    #         self.listbox.hide()
-    #     else:
-    #         self.listbox.show()
-    
+
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)
 
     def set_timezone(self, timezone):
@@ -206,7 +157,6 @@ class Panel(ScreenPanel):
             sudoPassword = self._screen.pc_password
             command = 'timedatectl set-timezone ' + timezone
             p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
-            #subprocess.run(["sudo", "timedatectl", "set-timezone", timezone], check=True)
             print(f"Zaman dilimi başarıyla '{timezone}' olarak ayarlandı.")
         except subprocess.CalledProcessError as e:
             print(f"Zaman dilimi ayarlanırken bir hata oluştu: {e}")

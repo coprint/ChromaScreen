@@ -1,27 +1,13 @@
 import logging
 import os
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk
-
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintMcuApplicationAddress(*args)
-
-
-# class CoPrintMcuApplicationAddress(ScreenPanel):
-
 class Panel(ScreenPanel):     
     def __init__(self, screen, title):
         super().__init__(screen, title)
-     
-      
-        
         self.labels['actions'] = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self.labels['actions'].set_hexpand(True)
         self.labels['actions'].set_vexpand(True)
@@ -29,16 +15,12 @@ class Panel(ScreenPanel):
         self.labels['actions'].set_homogeneous(True)
         self.labels['actions'].set_size_request(self._gtk.content_width, -1)
 
-       
-        initHeader = InitHeader (self, _('Com Interface'), _('Select the com interface model located on the board you will be controlling.'), "mikrochip")
-
-        
+        initHeader = InitHeader (self, _('Com Interface'), _('Select the com interface model located on the board you will be controlling.'), "mikrochip")        
         grid = Gtk.Grid(column_homogeneous=True,
-                         column_spacing=10,
-                         row_spacing=10)
+                        column_spacing=10,
+                        row_spacing=10)
         row = 0
         count = 0
-        
         listMcu = []
         for choice in self._screen.kconfig.choices:
             if choice.visibility != 0 and choice.nodes[0].prompt[0] == "Application Address":
@@ -48,28 +30,19 @@ class Panel(ScreenPanel):
                         tempChip['Obj'] = chip
                         tempChip['Button'] = Gtk.RadioButton()
                         listMcu.append(tempChip)
-            
-
         group = next((x for x in listMcu if x['Obj'].str_value == 'y'), None)['Button']
-
         for chip in listMcu:
             chipName = Gtk.Label(self._screen.rename_string(chip['Obj'].nodes[0].prompt[0],15),name ="wifi-label")
             chipName.set_alignment(0,0.5)
-            
             if chip['Obj'].str_value == 'y':
-                 chip['Button'] = Gtk.RadioButton(label="")
+                chip['Button'] = Gtk.RadioButton(label="")
             else:
                 chip['Button'] = Gtk.RadioButton.new_with_mnemonic_from_widget(group,"")
-           
-           
-            
             chip['Button'].connect("toggled",self.radioButtonSelected, chip['Obj'])
             chip['Button'].set_alignment(1,0.5)
             chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
-           
             f = Gtk.Frame(name="chip")
             chipBox.pack_start(chipName, False, True, 10)
-           
             chipBox.pack_end(chip['Button'], False, False, 10)
             
             eventBox = Gtk.EventBox()
@@ -81,15 +54,9 @@ class Panel(ScreenPanel):
             if count % 1 == 0:
                 count = 0
                 row += 1
-
-
-       
-        
         gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
- 
-        
         self.scroll = self._gtk.ScrolledWindow()
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.scroll.set_min_content_height(self._screen.height * .3)
@@ -126,13 +93,10 @@ class Panel(ScreenPanel):
         main.pack_start(self.scroll, True, True, 0)
         main.pack_end(buttonBox, False, False, 15)
         
-        
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         page.pack_start(mainBackButtonBox, False, False, 0)
         page.pack_start(main, True, True, 0)
         
-       
-      
         self.content.add(page)
         self._screen.base_panel.visible_menu(False)
 
@@ -146,11 +110,8 @@ class Panel(ScreenPanel):
        
     def on_click_continue_button(self, continueButton):
         self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, True)
-        
-   
 
     def update_text(self, text):
-        
         self.show_restart_buttons()
 
     def clear_action_bar(self):
@@ -158,15 +119,12 @@ class Panel(ScreenPanel):
             self.labels['actions'].remove(child)
 
     def show_restart_buttons(self):
-
         self.clear_action_bar()
         if self.ks_printer_cfg is not None and self._screen._ws.connected:
             power_devices = self.ks_printer_cfg.get("power_devices", "")
             if power_devices and self._printer.get_power_devices():
                 logging.info(f"Associated power devices: {power_devices}")
                 self.add_power_button(power_devices)
-
-      
 
     def add_power_button(self, powerdevs):
         self.labels['power'] = self._gtk.Button("shutdown", _("Power On Printer"), "color3")
@@ -200,18 +158,17 @@ class Panel(ScreenPanel):
     def shutdown(self, widget):
         if self._screen._ws.connected:
             self._screen._confirm_send_action(widget,
-                                              _("Are you sure you wish to shutdown the system?"),
-                                              "machine.shutdown")
+                                                _("Are you sure you wish to shutdown the system?"),
+                                                "machine.shutdown")
         else:
             logging.info("OS Shutdown")
             os.system("systemctl poweroff")
 
     def restart_system(self, widget):
-
         if self._screen._ws.connected:
             self._screen._confirm_send_action(widget,
-                                              _("Are you sure you wish to reboot the system?"),
-                                              "machine.reboot")
+                                                _("Are you sure you wish to reboot the system?"),
+                                                "machine.reboot")
         else:
             logging.info("OS Reboot")
             os.system("systemctl reboot")
@@ -226,5 +183,4 @@ class Panel(ScreenPanel):
         self.show_restart_buttons()
 
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)

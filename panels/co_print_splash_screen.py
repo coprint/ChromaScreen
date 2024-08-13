@@ -7,13 +7,6 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Pango, GLib
 
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintSplashScreenPanel(*args)
-
-
-# class CoPrintSplashScreenPanel(ScreenPanel):
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -63,25 +56,18 @@ class Panel(ScreenPanel):
         self.show_restart_buttons()
         try:
             f = open(self._screen.path_config, encoding='utf-8')
-       
             self.config_data = json.load(f)
         except Exception as e:
             logging.exception(e) 
-       
-
         self.start_timerr()
         self.content.add(main)
-        
-        
 
     def update_text(self, text):
-        
         self.show_restart_buttons()
 
     def start_timerr(self):
         """ Start the timer. """
         self.timeout_id = GLib.timeout_add(2500, self.on_timeout, None)
-        
 
     def on_timeout(self, *args, **kwargs):
         self.changed = False
@@ -92,26 +78,15 @@ class Panel(ScreenPanel):
             elif(self.config_data['Printer1WizardDone'] == False):
                 self.changed = True
                 self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
-           
-
-
         if(self.changed == False):
             if self._screen.connected_printer :
                 if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
-
                     self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
-                    #self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
                 else:
                     self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
-                    #self._screen.show_panel("co_print_home_screen", "co_print_home_screen", "Language", 1, False)
             else:
                 self._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen", "Language", 1, False)
-
-        
-       
-        
         self.timeout_id = None
-        #self.destroy()
         return False
     
     def clear_action_bar(self):
@@ -125,8 +100,6 @@ class Panel(ScreenPanel):
             if power_devices and self._printer.get_power_devices():
                 logging.info(f"Associated power devices: {power_devices}")
                 self.add_power_button(power_devices)
-
-      
 
     def add_power_button(self, powerdevs):
         self.labels['power'] = self._gtk.Button("shutdown", _("Power On Printer"), "color3")
@@ -168,7 +141,6 @@ class Panel(ScreenPanel):
             os.system("systemctl poweroff")
 
     def restart_system(self, widget):
-
         if self._screen._ws.connected:
             self._screen._confirm_send_action(widget,
                                               _("Are you sure you wish to reboot the system?"),

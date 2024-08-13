@@ -1,19 +1,11 @@
-import logging
-import os
 import time
 from datetime import datetime
 import re
 import gi
-import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintConsoleScreen(*args)
 
 COLORS = {
     "command": "#bad8ff",
@@ -22,48 +14,29 @@ COLORS = {
     "time": "grey",
     "warning": "#c9c9c9"
 }
-# class CoPrintConsoleScreen(ScreenPanel):
-
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.menu = BottomMenu(self, False)
-        
         self.autoscroll = True
-        #self.hidetemps = True
         o1_lbl = Gtk.Label(_("Auto Scroll"))
-        #o1_switch = Gtk.Switch()
         o1_switch = Gtk.CheckButton()
         o1_switch.set_active(self.autoscroll)
         o1_switch.connect("notify::active", self.set_autoscroll)
-
-        # o2_lbl = Gtk.Label(("Hide temp."))
-        # o2_switch = Gtk.Switch()
-        # o2_switch.set_active(self.hidetemps)
-        # o2_switch.connect("notify::active", self.hide_temps)
-
         if self._screen.vertical_mode:
             o1_lbl.set_halign(Gtk.Align.CENTER)
-            #o2_lbl.set_halign(Gtk.Align.CENTER)
         else:
             o1_lbl.set_halign(Gtk.Align.END)
-            #o2_lbl.set_halign(Gtk.Align.END)
-        #o3_button = self._gtk.Button("refresh", ('Clear') + " ", None, self.bts, Gtk.PositionType.RIGHT, 1)
         refreshIcon = self._gtk.Image("update", self._screen.width *.02, self._screen.width *.02)
         o3_button = Gtk.Button(_("Clear"), name ="refresh-button")
         o3_button.connect("clicked", self.clear)
         o3_button.set_image(refreshIcon)
         o3_button.set_always_show_image(True)
-     
-        
-
         options = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         options.set_hexpand(True)
         options.pack_start(o1_switch, False, False, 0)
         options.pack_start(o1_lbl, False, False, 5)
         options.pack_end(o3_button, False, False, 0)
-        
-       
 
         sw = Gtk.ScrolledWindow()
         sw.set_hexpand(True)
@@ -138,11 +111,8 @@ class Panel(ScreenPanel):
             return
         else:
             color = COLORS['response']
-
         message = f'<span color="{color}"><b>{message}</b></span>'
-
         message = message.replace('\n', '\n         ')
-
         self.labels['tb'].insert_markup(
             self.labels['tb'].get_end_iter(),
             f'\n<span color="{COLORS["time"]}">{datetime.fromtimestamp(msgtime).strftime("%H:%M:%S")}</span> {message}',
@@ -162,9 +132,6 @@ class Panel(ScreenPanel):
     def process_update(self, action, data):
         if action == "notify_gcode_response":
             self.add_gcode("response", time.time(), data)
-
-    # def hide_temps(self, *args):
-    #     self.hidetemps ^= True
 
     def set_autoscroll(self, *args):
         self.autoscroll ^= True

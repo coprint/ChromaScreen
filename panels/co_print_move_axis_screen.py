@@ -1,5 +1,4 @@
 import logging
-import os
 import gi
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.bottommenu import BottomMenu
@@ -9,36 +8,24 @@ from ks_includes.widgets.movebuttonbox import MoveButtonBox
 from ks_includes.widgets.zaxis import zAxis
 from ks_includes.widgets.keypad_new import KeyPadNew
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
 from ks_includes.widgets.keypad import Keypad
-
-# def create_panel(*args):
-#     return CoPrintMoveAxisScreen(*args)
-
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
-   
-
-# class CoPrintMoveAxisScreen(ScreenPanel, metaclass=Singleton):
 class Panel(ScreenPanel, metaclass=Singleton):
-
     def __init__(self, screen, title):
         super().__init__(screen, title)
-        
         self.grid = self._gtk.HomogeneousGrid()
         self.grid.set_hexpand(True)
         self.grid.set_vexpand(True)
-
-
         self.desiredExtruderTemp = -1
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.set_name("x-y-axis-buttons-box")
-        
         downIcon = self._gtk.Image("movealt", self._screen.width *.06, self._screen.width *.06)
         upIcon = self._gtk.Image("moveust", self._screen.width *.06, self._screen.width *.06)
         leftIcon = self._gtk.Image("movesol", self._screen.width *.06, self._screen.width *.06)
@@ -84,7 +71,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         homeButton.set_image(homeIcon)
         homeButton.set_always_show_image(True)
         homeButton.connect("clicked", self.home)
-        #homeButton.connect("clicked", self.show_numpad)
         homeButtonBox.add(homeButton)
         
         disableStepperButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -116,11 +102,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
         multiButton_grid.attach(rightButtonBox, 2, 2, 1, 1)
         multiButton_grid.attach(disableStepperButtonBox, 0, 3, 1, 1)
         
-        
         multiButton_grid_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         multiButton_grid_box.set_halign(Gtk.Align.CENTER)
         multiButton_grid_box.set_name("move-page-common-box")
-      
         multiButton_grid_box.add(multiButton_grid)
         
         self.distance = 1
@@ -131,12 +115,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
         moveButtonBox.add(moveButtons)
         
         zAxisBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        
         zAxisBox.set_name("move-page-common-box")
         zAxisBox.set_halign(Gtk.Align.CENTER)
         ZAxis = zAxis(self, _("Z Axis"), True)
         zAxisBox.add(ZAxis)
-        
         
         self.extruderSwitch = Gtk.Switch(name = "extruder-switch-2")
         self.extruderSwitch.connect("notify::active", self.on_switch_activated, 'extruder')
@@ -158,7 +140,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         switchWithImageBox.add(extruderImage)
         switchWithImageBox.add(switchBox)
         
-        
         extrudeBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         extrudeBox.set_valign(Gtk.Align.CENTER)
         extrudeBox.pack_start(switchWithImageBox, False, False, 0)
@@ -170,7 +151,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         numPadButton.set_always_show_image(True)
         
         self.extrudeHeatLevel = Gtk.Label("100", name="number-label")
-        
         
         numberLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         numberLabelBox.set_valign(Gtk.Align.CENTER)
@@ -190,7 +170,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         ExtrudeBox.set_halign(Gtk.Align.CENTER)
         
         extrudeBox.pack_start(ExtrudeBox, False, False, 0)
-        
         
         extrudeBox_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         extrudeBox_box.set_halign(Gtk.Align.CENTER)
@@ -212,29 +191,23 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.content.add(self.grid)
         
     def open_numpad(self, widget):
-        
         dialog = KeyPadNew(self)
         dialog.get_style_context().add_class("new-numpad-dialog")
         dialog.set_decorated(False)
         response = dialog.run()
-
         if response == Gtk.ResponseType.OK:
             print(dialog.resp)
             resp = dialog.resp
             self.extrudeHeatLevel.set_label(resp)
-            
-            
         elif response == Gtk.ResponseType.CANCEL:
             print("The Cancel button was clicked")
-       
         dialog.destroy()
+        
     def close_dialog(self, dialog):
         zero_gcode  = self._printer.data["gcode_move"]["gcode_position"][0]
         zero_homing = self._printer.data["gcode_move"]["homing_origin"][0]
-
         one_gcode  = self._printer.data["gcode_move"]["gcode_position"][1]
         one_homing = self._printer.data["gcode_move"]["homing_origin"][1]
-
         two_gcode  = self._printer.data["gcode_move"]["gcode_position"][2]
         two_homing = self._printer.data["gcode_move"]["homing_origin"][2]
         if(zero_gcode + zero_homing == 0 and one_gcode + one_homing == 0 and two_gcode + two_homing == 0):
@@ -242,26 +215,23 @@ class Panel(ScreenPanel, metaclass=Singleton):
           dialog.destroy()
         else:
             return True
-    def disable_motors(self, widget):
         
+    def disable_motors(self, widget):
         self._screen._ws.klippy.gcode_script(
             "M18"  # Disable motors
         )        
+        
     def home(self, widget):
         self._screen._ws.klippy.gcode_script(KlippyGcodes.HOME, self.finished)
         self.dialog = InfoDialog(self, _("Printer is returning to the starting position, please wait.."), False)
         self.dialog.get_style_context().add_class("alert-info-dialog")
-       
         self.dialog.set_decorated(False)
         self.dialog.set_size_request(0, 0)
-        #timer_duration = 1000
-        #GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
         response = self.dialog.run()
-       
+        
     def finished(self,asd,a,b):
         self.dialog.response(Gtk.ResponseType.CANCEL)
         self.dialog.destroy()
-
 
     def homexy(self, widget):
         self._screen._ws.klippy.gcode_script(KlippyGcodes.HOME_XY)
@@ -277,9 +247,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             temp = 200
         else:
             temp = 0
-
         self.change_extruder_temperature(temp)
-    
     
     def change_extruder_temperature(self,temp):
         max_temp = float(self._printer.get_config_section('extruder')['max_temp'])
@@ -288,19 +256,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
     
     def reset_values(self):
         self.desiredExtruderTemp = -1
-    
-   
         
     def process_update(self, action, data):
-        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
-        #     page_url = 'co_print_home_not_connected_screen'
-        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)   
-    
         if self._printer.state != 'error' :
-             
-          
             extruder_array = self._printer.get_temp_store('extruder')
-           
             extruder_temp_target = extruder_array['targets'][-1]
             if(self.desiredExtruderTemp == -1):
                 self.desiredExtruderTemp = 0
@@ -310,30 +269,24 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 else:
                     if(self.extruderSwitch.get_active()):
                         self.extruderSwitch.set_active(False)
-              
 
     def move(self, widget, axis, direction):
         if self._config.get_config()['main'].getboolean(f"invert_{axis.lower()}", False):
             direction = "-" if direction == "+" else "+"
-
         dist = f"{direction}{self.distance}"
         config_key = "move_speed_z" if axis == "Z" else "move_speed_xy"
         speed = None if self.ks_printer_cfg is None else self.ks_printer_cfg.getint(config_key, None)
         if speed is None:
             speed = self._config.get_config()['main'].getint(config_key, 20)
         speed = 60 * max(1, speed)
-
         self._screen._ws.klippy.gcode_script(f"{KlippyGcodes.MOVE_RELATIVE}\n{KlippyGcodes.MOVE} {axis}{dist} F{speed}")
         if self._printer.get_stat("gcode_move", "absolute_coordinates"):
             self._screen._ws.klippy.gcode_script("G90")
 
     def show_numpad(self, widget, device=None):
-        
-
         if "keypad" not in self.labels:
             self.labels["keypad"] = Keypad(self._screen, self.change_target_temp, self.hide_numpad)
         self.labels["keypad"].clear()
-
         if self._screen.vertical_mode:
             self.grid.remove_row(1)
             self.grid.attach(self.labels["keypad"], 0, 1, 1, 1)
@@ -341,11 +294,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self.grid.remove_column(1)
             self.grid.attach(self.labels["keypad"], 1, 0, 1, 1)
         self.grid.show_all()
-
         self.labels['popover'].popdown()
 
     def hide_numpad(self, widget=None):
-       
         if self._screen.vertical_mode:
             self.grid.remove_row(1)
             self.grid.attach(self.main, 1, 1, 1, 1)
@@ -355,14 +306,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.grid.show_all()
 
     def change_target_temp(self, temp):
-
         max_temp = int(float(self._printer.get_config_section(self.active_heater)['max_temp']))
         if temp > max_temp:
             self._screen.show_popup_message(_("Can't set above the maximum:") + f' {max_temp}')
             return
         temp = max(temp, 0)
         name = self.active_heater.split()[1] if len(self.active_heater.split()) > 1 else self.active_heater
-
         if self.active_heater.startswith('extruder'):
             self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number(self.active_heater), temp)
         elif self.active_heater == "heater_bed":
@@ -388,20 +337,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
         return False
     
     def on_button_clicked(self, widget, value):
-            # Mevcut değeri alın
-            #current_value = float(self.entry.get_text())
             current_value = float(self.printer._printer.data["gcode_move"]["homing_origin"][2])
-            # Yeni değeri hesaplayın
             new_value = current_value + value
             direction = '-'
             if value > 0:
-                 direction = '+'
-                
+                direction = '+'
             self.printer._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z_ADJUST={direction}{abs(value)} MOVE=1")
-            
-            
-            # Yeni değeri entry'ye ayarlayın
             self.entry.set_text('{:.2f}'.format(new_value))
-   
-    
-  

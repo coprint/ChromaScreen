@@ -1,34 +1,25 @@
 import logging
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.bottommenu import BottomMenu
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
 import contextlib
-from math import pi, sqrt
+from math import sqrt
 from ks_includes.widgets.counterinputfloat import CounterInputFloat
-from ks_includes.widgets.initheader import InitHeader
-from ks_includes.widgets.keypad import Keypad
 from ks_includes.widgets.keypad_new import KeyPadNew
 from ks_includes.widgets.percentagefactor import PercentageFactor
 from ks_includes.widgets.progressbar import ProgressBar
 from ks_includes.widgets.zoffset import zOffset
 from ks_includes.widgets.counterinput import CounterInput
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gtk, Pango
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintPrintingScreen(*args)
-
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
-   
-# class CoPrintPrintingScreen(ScreenPanel, metaclass=Singleton):
+
 class Panel(ScreenPanel, metaclass=Singleton):
     extruderChanged = False
     def __init__(self, screen, title):
@@ -44,7 +35,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.labels['file'].set_hexpand(True)
         self.labels['status'] = Gtk.Label(_("Estimated Time") + ": " + "-") 
         self.labels['status'].get_style_context().add_class("printing-status")
-     
+
         self.filename = ''        
         self.file_metadata = self.fans = {}
         self.speed_factor = 1
@@ -54,24 +45,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.pressure_advance = ""
         self.smooth_time = ""
         self.pixbuf = ""
-        # self.label1 = Gtk.Label("")
-        # self.label2 = Gtk.Label("")
-        # self.label3 = Gtk.Label("")
-        # self.label4 = Gtk.Label("")
-        # self.label5 = Gtk.Label("")
-        # self.label6 = Gtk.Label("")
-        # self.label7 = Gtk.Label("")
-        # self.label8 = Gtk.Label("")
-        # self.label9 = Gtk.Label("")
-        # labelBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        # labelBox.pack_start(self.label3, True, True, 0)
-        # labelBox.pack_start(self.label4, True, True, 0)
-        # labelBox.pack_start(self.label5, True, True, 0)
-        # labelBox.pack_start(self.label6, True, True, 0)
-        # labelBox.pack_start(self.label7, True, True, 0)
-        # labelBox.pack_start(self.label8, True, True, 0)
-        # labelBox.pack_start(self.label9, True, True, 0)
-        ''' left '''
         self.labels['thumbnail'] = self._gtk.Image(self.pixbuf, self._screen.width / 6, self._screen.height / 2.7)
         self.labels['thumbnail'].get_style_context().add_class("thumbnail")
         
@@ -104,13 +77,13 @@ class Panel(ScreenPanel, metaclass=Singleton):
         left_box.pack_start(self.labels['thumbnail'], False, False, 0)
         left_box.pack_start(extruder_main_box, False, False, 0)
         left_box.pack_start(heatedBed_main_box, False, False, 0)
-        ''''''
+
         self.buttons = {}
         self.create_buttons()
         for button in self.buttons: 
             self.buttons[button].set_halign(Gtk.Align.START)
             self.buttons[button].set_valign(Gtk.Align.START)
-          
+
         button_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.button_pause_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.button_pause_box.set_name("pause-cancel-button-box")
@@ -153,8 +126,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         changeOffsetButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         changeOffsetButtonBox.set_spacing(-13)
     
-       
-
         self.buttonss = {"0.005": Gtk.Button("0.005", name ="change-offset-button"),
                         "0.01": Gtk.Button("0.01", name ="change-offset-button"),
                         "0.025": Gtk.Button("0.025", name ="change-offset-button"),
@@ -193,7 +164,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.firstPageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.firstPageBox.set_name("zoffset-box")
         self.firstPageBox.pack_start(self.zoffset_box, False, False, 0)
-        #self.firstPageBox.pack_start(self.separatorFirst, True, False, 0)
         self.firstPageBox.pack_start(self.speedFactor_box, False, False, 0)
         #------------------
         self.pressureAdvanceInput = CounterInputFloat(self, ("s"), ("Pressure Advance"), self.pressure_advance, "SET_PRESSURE_ADVANCE EXTRUDER=extruder ADVANCE=", 0.001)
@@ -201,19 +171,13 @@ class Panel(ScreenPanel, metaclass=Singleton):
         pressure_smooth_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         pressure_smooth_box.set_valign(Gtk.Align.CENTER)
         pressure_smooth_box.pack_start(self.pressureAdvanceInput, True, True, 0)
-
         pressure_smooth_box.pack_end(self.smoothTimeInput, True, True, 0)
-        
         separator = Gtk.HSeparator()
-        separatorsecond = Gtk.HSeparator()
         self.extrusionFactor_widget = PercentageFactor(self, "extrudericon", ("Extrusion Factor"),200, 1, 'extrusionFactor')
         self.extrusionFactor_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.extrusionFactor_box.set_name("zoffset-box")
         self.extrusionFactor_box.pack_start(self.extrusionFactor_widget, True, False, 0)
         self.extrusionFactor_box.pack_start(separator, True, False, 0)
-        #self.extrusionFactor_box.pack_start(pressure_smooth_box, True, False, 0)
-        #extrusionFactor_box.pack_start(separatorsecond, True, False, 0)
-        #extrusionFactor_box.pack_start(filament_extrusion_box, True, False, 0)
         
         self.fanSpeed_widget = PercentageFactor(self, "fanayari", ("Fan Speed"),100,0, 'fan')
         self.fanSpeed_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -284,13 +248,9 @@ class Panel(ScreenPanel, metaclass=Singleton):
         gridBox.set_name("printing-grid-box")
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.set_valign(Gtk.Align.CENTER)
-        # gridBox.add(zoffset_box)
-        # gridBox.add(speedFactor_box)
         gridBox.add(filametChangeCountBox)
         gridBox.add(filamentButtonBox)
-        #gridBox.add(self.extrusionFactor_box)
-        #gridBox.add(machine_Box)
-        #gridBox.add(self.fanSpeed_box)
+
         nextIcon = self._gtk.Image("forward-arrow", 30, 30)
         self.nextButton = Gtk.Button(name ="prev-next-button")
         self.nextButton.add(nextIcon)
@@ -308,23 +268,14 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.selectableBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.selectableBox.set_name("zoffset-with-speed-factor-box")
         self.selectableBox.pack_start(self.firstPageBox, False, False, 0)
-        #self.selectableBox.pack_start(self.separatorFirst, True, False, 0)
-        #self.selectableBox.pack_start(self.speedFactor_box, False, False, 0)
-        #gridBox.add(labelBox)
-        # scroll = self._gtk.ScrolledWindow()
-        # scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        # scroll.set_kinetic_scrolling(True)
-        # scroll.get_overlay_scrolling()
-        # scroll.set_hexpand(True)
-        # scroll.add(gridBox)
-        # scroll.set_min_content_height(self._screen.height / 2)
+
         right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         right_box.set_name("printing-right-box")
         right_box.pack_start(rightInfo_box, True, False, 0)
         right_box.pack_start(self.scale_printProgress, False, True, 0)
         right_box.pack_end(self.selectableBox, False, False, 0)
         right_box.set_valign(Gtk.Align.START)
-        #right_box.pack_end(scroll, False, False, 0)
+
         fixed = Gtk.Fixed()
         fixed.set_valign(Gtk.Align.START)
         fixed.set_halign(Gtk.Align.START)
@@ -335,9 +286,8 @@ class Panel(ScreenPanel, metaclass=Singleton):
         main_box.pack_start(left_box, False, False, 0)
         main_box.pack_start(fixed, False, False, 0)
         main_box.set_valign(Gtk.Align.START)
+        
         pagee = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        # pagee.set_hexpand(True)
-        # pagee.set_vexpand(True)
         pagee.pack_start(main_box, True, True, 0)      
         pagee.pack_end(BottomMenu(self, False), False, True, 0)
         self.content.add(pagee)
@@ -348,17 +298,8 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 self.selectableBox.remove(child)
         if self.startIndex == 1:
             self.selectableBox.pack_start(self.firstPageBox, False, False, 0)
-            #self.selectableBox.pack_start(self.separatorFirst, True, False, 0)
-            #self.selectableBox.pack_start(self.speedFactor_box, False, False, 0)
         if self.startIndex == 2:
             self.selectableBox.pack_start(self.extrusionFactor_box, False, False, 0)
-            #self.selectableBox.pack_start(self.fanSpeed_box, False, False, 0)  
-            #self.selectableBox.pack_start(self.fanSpeed_box, False, False, 0)
-        #if self.startIndex == 3:
-            #self.selectableBox.pack_start(self.extrusionFactor_box, False, False, 0)
-            #self.selectableBox.pack_start(self.machine_Box, False, False, 0)
-        #if self.startIndex == 4:
-           #self.selectableBox.pack_start(self.fanSpeed_box, False, False, 0)    
         self.content.show_all()
 
     def show_next_page(self, widget):
@@ -420,9 +361,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
     isFirst = True
 
     def process_update(self, action, data):
-        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
-        #     page_url = 'co_print_home_not_connected_screen'
-        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)
         if action == 'notify_status_update' and 'print_stats' in data :
             if 'state'in data['print_stats']:
                 if data['print_stats']['state'] == 'paused' :
@@ -462,15 +400,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 machine_velocity = self._printer.data['toolhead']['max_velocity']
                 square_corner_velocity = self._printer.data['toolhead']['square_corner_velocity']
                 max_accel = self._printer.data['toolhead']['max_accel']
-                #max_accel_to_decel = self._printer.data['toolhead']['max_accel_to_decel']
                 if(self.velocityInput.getValue() != int(machine_velocity)):
                     self.velocityInput.updateValue(int(machine_velocity))
                 if(self.squareCornerInput.getValue() != float(square_corner_velocity)):
                     self.squareCornerInput.updateValue(float(square_corner_velocity))
                 if(self.acceleration.getValue() != int(max_accel)):
                     self.acceleration.updateValue(int(max_accel))
-                #if(self.maxAcceltoDecel.getValue() != int(max_accel_to_decel)):
-                #    self.maxAcceltoDecel.updateValue(int(max_accel_to_decel))
             if self.isFirst:
                 self.isFirst = False
                 if(self._printer.data['fan'] != {} and self._printer.data['fan']['speed']):
@@ -621,14 +556,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
             else:
                 width = self._screen.width / 3
                 height = self._gtk.content_height * 0.47
-           
 
     def _callback_metadata(self, newfiles, deletedfiles, modifiedfiles):
         if not bool(self.file_metadata) and self.filename in modifiedfiles:
             self.update_file_metadata()
             self._files.remove_file_callback(self._callback_metadata)
 
-    
     def set_fan_speed(self, progressType, value):
         if progressType == "fan":
             self._screen._ws.klippy.gcode_script(KlippyGcodes.set_fan_speed(value))
@@ -638,7 +571,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
             self._screen._ws.klippy.gcode_script(KlippyGcodes.set_speed_rate(value))
 
     def check_fan_speed(self, fan):
-        #self.update_fan_speed(None, fan, self._printer.get_fan_speed(fan))
         return False
     
     def cancelPrint(self, widget):
@@ -663,20 +595,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
     def cancel_confirm(self, dialog, response_id):
         self._gtk.remove_dialog(dialog)
         if response_id == Gtk.ResponseType.APPLY:
-            # self.objects = self._printer.get_stat("exclude_object", "objects")
-            # self.labels['map'] = None
-            # #self._screen._ws.klippy.emergency_stop()
-            # #self._screen._ws.klippy.restart_firmware()
-            # #for obj in self.objects:
-            # name = self.filename
-            # logging.info(f"Adding {name}")
-            # script = {"script": f"EXCLUDE_OBJECT NAME={'Servo_holder_fus_X.gcode'}"}
-            # self._screen._confirm_send_action(
-            # dialog,
-            # _("Are you sure do you want to exclude the object?") + f"\n\n{name}",
-            # "printer.gcode.script",
-            # script
-            # )
             self._screen._ws.klippy.print_cancel(self._response_callback)
             return
         if response_id == Gtk.ResponseType.CANCEL:
@@ -696,10 +614,8 @@ class Panel(ScreenPanel, metaclass=Singleton):
         for child in self.button_pause_box.get_children():
             self.button_pause_box.remove(child)
         self.button_pause_box.add(self.buttons['resume'])
-        #self.button_pause_box.show()
         self.buttons['resume'].show()
         print('pause')
-        #self.content.show_all()  
         return True
 
     def resumePrint(self, widget):
@@ -710,7 +626,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.buttons['pause'].show()
         print('pause')
         return True
-        #self._screen.show_all()
 
     def _response_callback(self, response, method, params, func=None, *args):
         if func == "enable_button":
@@ -758,14 +673,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
 
     def change_target_temp(self, temp):
         return True
-    
+
     def hide_numpad(self, widget=None):
         self.devices[self.active_heater]['name'].get_style_context().remove_class("button_active")
         self.active_heater = None
-
         for d in self.active_heaters:
             self.devices[d]['name'].get_style_context().add_class("button_active")
-
         if self._screen.vertical_mode:
             self.grid.remove_row(1)
             self.grid.attach(self.create_right_panel(), 0, 1, 1, 1)

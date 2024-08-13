@@ -1,30 +1,13 @@
-import logging
-import os
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintSdCardSelectionProcess(*args)
-
-
-# class CoPrintSdCardSelectionProcess(ScreenPanel):
-
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-     
-       
         initHeader = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaScreen to change the program of your 3D printer.'), "sdkart")
-
         self.image = self._gtk.Image("usbstickokey", self._gtk.content_width * .25 , self._gtk.content_height * .25)
-       
         
         self.continueButton = Gtk.Button(_('USB drive has been inserted.'),name ="flat-button-green")
         self.continueButton.connect("clicked", self.on_click_continue_button)
@@ -55,22 +38,14 @@ class Panel(ScreenPanel):
         main.pack_start(self.image, True, True, 25)
         main.pack_end(buttonBox, True, False, 15)
         
-        
-       
-      
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
-        
-       
-   
             
     def radioButtonSelected(self, button, baudRate):
         self.selected = baudRate
-    
     
     def on_click_continue_button(self, continueButton):
         self._screen.show_panel("co_print_printing_selection", "co_print_printing_selection", None, 2)
         
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)

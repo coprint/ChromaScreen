@@ -1,32 +1,16 @@
-import logging
-import math
-import os
 from ks_includes.widgets.brandselectdialog import BrandSelectionDialog
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gtk
 import json
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintPrintingBrandSelection(*args)
-
-
-# class CoPrintPrintingBrandSelection(ScreenPanel):
-
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.selected_event_box = None
-     
         initHeader = InitHeader (self, _('Connect Your 3D Printer'), _('Connect your 3D printer to Co Print Smart using a USB cable.'))
-        
         self.image = self._gtk.Image("printer", self._gtk.content_width * .42 , self._gtk.content_height * .42)
-        
         #finish button  
         self.continueButton = Gtk.Button(_('Finish'),name ="flat-button-blue-brand")
         self.continueButton.connect("clicked", self.on_click_continue_button)
@@ -78,22 +62,13 @@ class Panel(ScreenPanel):
         prevButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         prevButtonBox.pack_start(self.prevButton, False, False, 0)
 
-        
         self.contentMainBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-
         f = open(self._screen.path_brand, encoding='utf-8')
-       
         self.data = json.load(f)
-
         print( self._screen.selected_wizard_printer)
 
-
-
         self.entry = Gtk.Label(xalign=0, name="region-menu-label")
-        #self.entry.set_margin_left(20) 
         self.entry.get_style_context().add_class("brand-entry")
-
-
         self.listOpenButton = Gtk.Button(image=self._gtk.Image("expand-arrow-down", 50, 50), name ="region-combobox-button")
         self.listOpenButton.connect("clicked", self.on_button_clicked, 1)
 
@@ -105,21 +80,15 @@ class Panel(ScreenPanel):
         eventBox.connect("button-press-event", self.on_button_clicked)
         eventBox.add(vbox)
         
-       
         self.page_size = 3
         self.current_page = 0
 
         self.entry.set_text(self.data[0]['Brand'])
-      
-
-       
         self.show_current_page(self.data[0]['Brand'])
-        #self.on_combo_changed(self.brand_combo)
 
         comboBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         comboBox.set_halign(Gtk.Align.START)
         comboBox.pack_start(eventBox, False, False, 82)
-        
 
         sliderBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         sliderBox.pack_start(prevButtonBox, False, False, 0)
@@ -148,94 +117,63 @@ class Panel(ScreenPanel):
         pageBox.pack_start(sliderBox, False, False, 0)
         pageBox.pack_start(printerSelectButtonBox, False, False, 0)
         
-        
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        
         main.pack_start(mainBackButtonBox, False, False, 0)
         main.pack_start(initHeader, False, False, 0)
-        
         main.pack_start(pageBox, False, False, 0)
-           
-       
-      
         self.content.add(main)
 
-  
-
     def on_listbox_row_activated(self, listbox, row):
-        # Seçilen öğenin değerini Entry kutusuna yazdırma
         selected_value = row.get_child().get_label()
         self.entry.set_text(selected_value)
         self.current_page = 0
         self.show_current_page(selected_value)
         self.dialog.destroy()
     
-    def on_button_clicked(self, button, edit):
-        
+    def on_button_clicked(self, button, edit):        
         self.dialog = BrandSelectionDialog(  self, self.data)
         self.dialog.get_style_context().add_class("network-dialog")
         self.dialog.set_decorated(False)
-
         response = self.dialog.run()
- 
         if response == Gtk.ResponseType.OK:
             self.dialog.destroy()
-            
-
-
-            
         elif response == Gtk.ResponseType.CANCEL:
-           
             self.dialog.destroy()
     def on_combo_changed(self, combo):
-        # ComboBox'taki marka değiştikçe sayfa numarasını sıfırla
         self.current_page = 0
         self.show_current_page(combo)
 
     def show_current_page(self, text):
-
         start_index = self.current_page 
         end_index = start_index + self.page_size
-
         grid = Gtk.Grid(column_homogeneous=True,column_spacing=10,row_spacing=10)
         count = 0
-
         if self.contentMainBox.get_children() != None:
-
             for child in self.contentMainBox.get_children():
                 self.contentMainBox.remove(child)
-
-        # ComboBox'taki seçili öğeyi al
         self.selected_model = None
         selected_brand = text
         if selected_brand is not None:
             for  model_data in self.data:
                 if model_data['Brand'] == selected_brand:
                     for i, model_data in enumerate(model_data['Models'][start_index:end_index]):
-                        
                         printerImage = self._gtk.Image(model_data['image'], self._gtk.content_width * .42 , self._gtk.content_height * .42)
                         printerName= Gtk.Label(model_data['name'], name="selected-printer-name")
                         printerDimension = Gtk.Label(_('D.') + ": " + model_data['dimension'], name="selected-printer-dimension")
-
                         printerBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
                         printerBox.set_name("selected-printer-box")
                         printerBox.pack_start(printerImage, False, True, 5)
                         printerBox.pack_start(printerName, False, False, 5)
                         printerBox.pack_end(printerDimension, True, True, 5)
-
                         self.eventBox = Gtk.EventBox()
                         self.eventBox.set_name("printer-event-box")
                         self.eventBox.connect("button-press-event", self.event_box_select,model_data)
                         self.eventBox.add(printerBox)
-                
-                        
                         grid.attach(self.eventBox, count, 0, 1, 1)
                         count += 1     
         gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
-                     
-
         self.contentMainBox.pack_start(gridBox, False, False, 0)
         self.content.show_all()
         return False
@@ -249,10 +187,8 @@ class Panel(ScreenPanel):
         style_context.remove_class("printer-event-box")
         style_context.add_class("selected-event-box")
         self.selected_event_box = clicked_event_box
-      #  self.eventBox.get_style_context().add_class("printer-event-boxx")
         
     def reset_selected_event_box_style(self):
-        # Seçilen EventBox'un stilini sıfırla
         style_context = self.selected_event_box.get_style_context()
         style_context.remove_class("selected-event-box")
         style_context.add_class("printer-event-box")
@@ -273,10 +209,9 @@ class Panel(ScreenPanel):
         if self.current_page > 0:
             self.current_page -= 1
             self.show_current_page(selected_brand)
-       
+            
     def radioButtonSelected(self, button, baudRate):
         self.selected = baudRate
-    
     
     def on_click_continue_button(self, continueButton):
         self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, False)
@@ -287,7 +222,6 @@ class Panel(ScreenPanel):
             print("You selected", model[treeiter][0])
             
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)
     
     def on_completed(self, continueButton):
@@ -296,5 +230,3 @@ class Panel(ScreenPanel):
                 self._screen.show_panel("co_print_printers_qr", "co_print_printers_qr", self.selected_model, 1, False)
             else:
                 self._screen.show_panel("co_print_sd_card_selection_process_waiting", "co_print_sd_card_selection_process_waiting", self.selected_model, 1, False)
-        
-   

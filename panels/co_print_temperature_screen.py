@@ -1,32 +1,20 @@
 import contextlib
 import logging
-import os
 from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.keypad_new import KeyPadNew
 import gi
 from ks_includes.widgets.keypad import Keypad
-
-from ks_includes.widgets.printfile import PrintFile
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
+from gi.repository import Gtk, GLib
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintTemperatureScreen(*args)
-
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
-
-# class CoPrintTemperatureScreen(ScreenPanel, metaclass=Singleton):
 class Panel(ScreenPanel, metaclass=Singleton):
-
     active_heater = None 
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -51,7 +39,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
             current_extruder = self._printer.get_stat("toolhead", "extruder")
             if current_extruder:
                 selection.append(current_extruder)
-
         # Select heaters
         for h in selection:
             if h.startswith("temperature_sensor "):
@@ -63,13 +50,11 @@ class Panel(ScreenPanel, metaclass=Singleton):
             if h not in self.active_heaters:
                 self.select_heater(None, h)
 
-
         numPadIconExtruder = self._gtk.Image("calculator", self._screen.width *.04, self._screen.width *.04)
         numPadButtonExtruder = Gtk.Button(name ="speed-factor-button")
         numPadButtonExtruder.connect("clicked", self.open_numpad, 'extruder')
         numPadButtonExtruder.set_image(numPadIconExtruder)
-        numPadButtonExtruder.set_always_show_image(True)
-        
+        numPadButtonExtruder.set_always_show_image(True)        
         #extruder
         self.extruderLabel = Gtk.Label("0.0° / 0.0°", name="temperature-label")
         extruderLabelBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -108,7 +93,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         extruderBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         extruderBox.add(extruderImage)
         extruderBox.add(extruderInputBox)
-        
         #heatedBed
         numPadIconHeatedBed = self._gtk.Image("calculator", self._screen.width *.04, self._screen.width *.04)
         numPadButtonHeatedBed = Gtk.Button(name ="speed-factor-button")
@@ -128,7 +112,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         heatedBedLabelBoxEventBox = Gtk.EventBox()
         heatedBedLabelBoxEventBox.add(heatedBedLabelBox)
         heatedBedLabelBoxEventBox.connect("button-press-event", self.open_numpad_event, 'bed')
-   
         
         downIcon = self._gtk.Image("eksi", self._screen.width *.03, self._screen.width *.03)
         upIcon = self._gtk.Image("arti", self._screen.width *.03, self._screen.width *.03)
@@ -142,16 +125,14 @@ class Panel(ScreenPanel, metaclass=Singleton):
         downButton.set_image(downIcon)
         downButton.set_always_show_image(True)
         downButton.connect("clicked", self.up_down_button_clicked, "heatedBed", "-")
-       
         heatedBedInputBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         heatedBedInputBox.set_valign(Gtk.Align.CENTER)
         heatedBedInputBox.set_halign(Gtk.Align.CENTER)
         heatedBedInputBox.add(downButton)     
         heatedBedInputBox.add(heatedBedLabelBoxEventBox)
         heatedBedInputBox.add(upButton)  
-        
-        heatedBedImage = self._gtk.Image("tablaicon", self._screen.width *.07, self._screen.width *.07)
-        
+
+        heatedBedImage = self._gtk.Image("tablaicon", self._screen.width *.07, self._screen.width *.07)        
         heatedBedBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         heatedBedBox.add(heatedBedImage)
         heatedBedBox.add(heatedBedInputBox)
@@ -165,7 +146,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
         
         increaseLabel = Gtk.Label(_("Select + - increase value"), name="increase-label")
         
-       
         self.buttons = {"1": Gtk.Button("1", name ="increase-button"),
                         "5": Gtk.Button("5", name ="increase-button"),
                         "10": Gtk.Button("10", name ="increase-button"),
@@ -240,22 +220,17 @@ class Panel(ScreenPanel, metaclass=Singleton):
         contentBox.pack_start(progressBarBox, False, False, 0)
         contentBox.pack_start(preButtonBox, False, False, 20)
         
-        
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         main.set_vexpand(True)
         main.pack_start(contentBox, False, True, 0)
         main.pack_end(BottomMenu(self, True), False, True, 0)
-        
- 
         self.content.add(main)
         
     def open_numpad(self, widget, type):
-        
         dialog = KeyPadNew(self)
         dialog.get_style_context().add_class("new-numpad-dialog")
         dialog.set_decorated(False)
         response = dialog.run()
-
         if response == Gtk.ResponseType.OK:
             print(dialog.resp)
             resp = dialog.resp
@@ -263,20 +238,15 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 self.change_extruder_temperature(int(resp))
             else:
                 self.change_bed_temperature(int(resp))
-            
-            
         elif response == Gtk.ResponseType.CANCEL:
             print("The Cancel button was clicked")
-       
         dialog.destroy()
 
     def open_numpad_event(self, widget, event, type):
-        
         dialog = KeyPadNew(self)
         dialog.get_style_context().add_class("new-numpad-dialog")
         dialog.set_decorated(False)
         response = dialog.run()
-
         if response == Gtk.ResponseType.OK:
             print(dialog.resp)
             resp = dialog.resp
@@ -284,12 +254,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 self.change_extruder_temperature(int(resp))
             else:
                 self.change_bed_temperature(int(resp))
-            
-            
         elif response == Gtk.ResponseType.CANCEL:
             print("The Cancel button was clicked")
-       
         dialog.destroy()
+        
     def change_temp_constant(self, widget, constant):
         logging.info(f"### Temp constant {constant}")
         self.buttons[f"{self.constant}"].get_style_context().remove_class("increase-button-active")
@@ -310,7 +278,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
             logging.info(f"Seselecting {device}")
         return
     
-
     def set_temperature(self, widget, setting):
         if len(self.active_heaters) == 0:
             self._screen.show_popup_message(_("Nothing selected"))
@@ -358,7 +325,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
             # and then changed the target again using preheat gcode
             GLib.timeout_add(250, self.preheat_gcode, setting)
     
-    
     def preheat_gcode(self, setting):
         with contextlib.suppress(KeyError):
             self._screen._ws.klippy.gcode_script(self.preheat_options[setting]['gcode'])
@@ -378,18 +344,14 @@ class Panel(ScreenPanel, metaclass=Singleton):
     def add_device(self, device):
         self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])
         self.HeaterBedMax_temp = float(self._printer.get_config_section('heater_bed')['max_temp'])
-    
         logging.info(f"Adding device: {device}")
-
         temperature = self._printer.get_dev_stat(device, "temperature")
         if temperature is None:
             return False
-
         devname = device.split()[1] if len(device.split()) > 1 else device
         # Support for hiding devices by name
         if devname.startswith("_"):
             return False
-
         if device.startswith("extruder"):
             i = sum(d.startswith('extruder') for d in self.devices)
             image = f"extruder-{i}" if self._printer.extrudercount > 1 else "extruder"
@@ -417,9 +379,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             image = "heat-up"
             class_name = f"graph_label_sensor_{self.h}"
             dev_type = "sensor"
-
         rgb = self._gtk.get_temp_color(dev_type)
-
         name = self._gtk.Button(image, devname.capitalize().replace("_", " "), None, self.bts, Gtk.PositionType.LEFT, 1)
         name.set_alignment(0, .5)
         visible = self._config.get_config().getboolean(f"graph {self._screen.connected_printer}", device, fallback=True)
@@ -427,21 +387,15 @@ class Panel(ScreenPanel, metaclass=Singleton):
             name.get_style_context().add_class(class_name)
         else:
             name.get_style_context().add_class("graph_label_hidden")
-
         can_target = self._printer.device_has_target(device)
-        
         if can_target:
-            
             name.connect('button-press-event', self.name_pressed, device)
             name.connect('button-release-event', self.name_released, device)
         else:
             name.connect("clicked", self.toggle_visibility, device)
-       
-
         temp = self._gtk.Button(label="", lines=1)
         if can_target:
             temp.connect("clicked", self.show_numpad, device)
-
         self.devices[device] = {
             "class": class_name,
             "name": name,
@@ -449,15 +403,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
             "can_target": can_target,
             "visible": visible
         }
-
         if self.devices[device]["can_target"]:
             self.devices[device]['select'] = self._gtk.Button(label=_("Select"))
             self.devices[device]['select'].connect('clicked', self.select_heater, device)
-
-       
-        
         return True
-    
 
     def name_pressed(self, widget, event, device):
         self.popover_timeout = GLib.timeout_add_seconds(1, self.popover_popup, widget, device)
@@ -474,13 +423,11 @@ class Panel(ScreenPanel, metaclass=Singleton):
             device = self.popover_device
         self.devices[device]['visible'] ^= True
         logging.info(f"Graph show {self.devices[device]['visible']}: {device}")
-
         section = f"graph {self._screen.connected_printer}"
         if section not in self._config.get_config().sections():
             self._config.get_config().add_section(section)
         self._config.set(section, f"{device}", f"{self.devices[device]['visible']}")
         self._config.save_user_config_options()
-
         self.update_graph_visibility()
         if self.devices[device]['can_target']:
             self.popover_populate_menu()
@@ -507,23 +454,15 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.labels['popover'].popdown()
    
     def on_scale_changed(self, scale, valuee):
-        # Ölçek değeri değiştiğinde çağrılır
         value = int(scale.get_value())
         self.set_fan_speed(value)
-       
         self.fanSpeedInput.set_label('{:.0f}'.format(value) + '%')
     
     def set_fan_speed(self, value):
         self._screen._ws.klippy.gcode_script(KlippyGcodes.set_fan_speed(value))
     
     def process_update(self, action, data):
-        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
-        #     page_url = 'co_print_home_not_connected_screen'
-        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)
-            
         if self._printer.state != 'error' :
-            
-           
             heater_bed_array = self._printer.get_temp_store('heater_bed')
             if(heater_bed_array):
                 self.heater_bed_temp = heater_bed_array['temperatures'][-1]
@@ -545,8 +484,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             if 'fan' in data and self.fan_spped != data['fan']['speed']:
                 self.fan_spped = data['fan']['speed'] 
                 self.scale.set_value(self.fan_spped*100)
-                #self.fanSpeed_widget.updateValue(self.fan_spped*100, str(int(self.fan_spped*100)))
-           
+                
     def change_bed_temperature(self, temp):
         max_temp = float(self._printer.get_config_section('heater_bed')['max_temp'])
         if self.validate('heater_bed', temp, max_temp):
@@ -563,17 +501,13 @@ class Panel(ScreenPanel, metaclass=Singleton):
         
 
     def on_timeout(self, *args, **kwargs):
-        self.isDisable = False
-        
+        self.isDisable = False        
         self.timeout_id = None
-        #self.destroy()
         return False      
 
     def change_extruder_temperature(self,temp):
-        
         max_temp = float(self._printer.get_config_section('extruder')['max_temp'])
         if self.validate('extrude', temp, max_temp):
-
             self._screen._ws.klippy.set_tool_temp(self._printer.get_tool_number('extruder'), temp)
             if self.isDisable ==False:
                 self.start_timer()
@@ -581,7 +515,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
 
     def del_obj(self):
         self.isDisable = False
-
 
     def up_down_button_clicked(self, widget, tempType , direction):
         value =0
@@ -595,17 +528,12 @@ class Panel(ScreenPanel, metaclass=Singleton):
                 value = self.extruder_temp_target - self.constant
             else:
                 value = self.heater_bed_temp_target - self.constant
-
         if (value < 0):
             value = 0
         if(tempType == 'extruder'):
             self.change_extruder_temperature(value)
-              
         else:
             self.change_bed_temperature(value)
-                
-                
+
     def on_click_continue_button(self, continueButton):
         self._screen.show_panel("co_print_printing_selection_port", "co_print_printing_selection_port", None, 2)
-        
-   

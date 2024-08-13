@@ -1,43 +1,23 @@
-import crypt
 import json
 import logging
-import os
 from signal import SIGTERM
-import subprocess
-
-
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 from ks_includes.widgets.keyboard import Keyboard
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk
-
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintProductNaming(*args)
-
-
-# class CoPrintProductNaming(ScreenPanel):
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-
-       
-        
         initHeader = InitHeader (self, _('Rename Your Device'),_('Please specify a custom name for your device.'), "naming")
-
         self.deviceImage = self._gtk.Image("device", self._gtk.content_width * .4 , self._gtk.content_height * .4)
-       
         self.continueButton = Gtk.Button(_('Continue'),name ="flat-button-blue")
         self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
         self.buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         self.buttonBox.pack_start(self.continueButton, False, False, 0)
-   
-        
+
         self.entry = Gtk.Entry(name="device-name")
         self.entry.connect("activate", self.rename)
         self.entry.connect("focus-in-event", self.give_name)
@@ -86,22 +66,15 @@ class Panel(ScreenPanel):
         self.main.pack_start(initHeader, False, False, 0)
         self.main.pack_start(eventBox, False, False, 5)
         self.main.pack_start(self.tempBox, False, False, 0)
-   
-
         self.content.add(self.main)
-    
-
 
     def give_name(self,a,b):
-       
         for child in self.tempBox.get_children():
             self.tempBox.remove(child) 
         self._screen.show_keyboard()
         self.content.show_all()
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_size_request(self._screen.gtk.content_width, self._screen.gtk.keyboard_height)
-
-       
         box.get_style_context().add_class("keyboard_box")
         box.add(Keyboard(self._screen, self.remove_keyboard, entry=self.entry))
         self.tempBox.pack_end(box, False, False, 0)
@@ -114,33 +87,21 @@ class Panel(ScreenPanel):
         self.tempBox.pack_start(self.buttonBox, False, False, 0)
         self.content.show_all()
 
-
     def rename(self, widget):
         params = {"source": self.source, "dest": f"gcodes/{self.labels['new_name'].get_text()}"}
-       
 
     def on_click_continue_button(self, continueButton):
-
         logging.debug(f"Device Name: " + self.entry.get_text())
-
-       
-        
         try:
             f = open(self._screen.path_config, encoding='utf-8')
-       
             self.config_data = json.load(f)
             self.config_data['InitConfigDone'] = True
             json_object = json.dumps(self.config_data, indent=4)
- 
-          
             with open(self._screen.path_config, "w") as outfile:
                 outfile.write(json_object)
-
         except Exception as e:
             logging.exception(e) 
-
         self._screen.show_panel("co_print_wifi_selection", "co_print_wifi_selection", None, 1,False)
         
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)

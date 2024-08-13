@@ -4,60 +4,31 @@ import subprocess
 from ks_includes.widgets.changeMcuSetting import ChangeMCUDialog
 from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk
-
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintMcuUsbIds(*args)
-
-
-# class CoPrintMcuUsbIds(ScreenPanel):
-
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-     
-       
-        
         self.labels['actions'] = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self.labels['actions'].set_hexpand(True)
         self.labels['actions'].set_vexpand(False)
         self.labels['actions'].set_halign(Gtk.Align.CENTER)
         self.labels['actions'].set_homogeneous(True)
         self.labels['actions'].set_size_request(self._gtk.content_width, -1)
-
-       
         initHeader = InitHeader (self, _('USB IDS'), _('Select the usb ids located on the board you will be controlling.'), "mikrochip")
-
-    
-        '''diller bitis'''
-        
         self.checkButton = CheckButtonBox(self, _('USB serial number from CHIPID'),  self.lowLevelChanged)
-
         grid = self.handleMenu()
-       
-        
         gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
- 
-        
         self.scroll = self._gtk.ScrolledWindow()
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.scroll.set_min_content_height(self._screen.height * .3)
         self.scroll.set_kinetic_scrolling(True)
         self.scroll.get_overlay_scrolling()
-    
-        
         self.scroll.add(gridBox)
-        
-       
-        
         self.checkButton.set_hexpand(True)
         self.checkButton.set_margin_left(self._gtk.action_bar_width *3)
         self.checkButton.set_margin_right(self._gtk.action_bar_width*3)
@@ -93,151 +64,101 @@ class Panel(ScreenPanel):
         main.pack_start(self.scroll, True, True, 0)
         main.pack_end(buttonBox, True, False, 10)
         main.pack_end(checkButtonBox, False, True, 5)
-        
-        
+
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         page.pack_start(mainBackButtonBox, False, False, 0)
         page.pack_start(main, True, True, 0)
-        
+
         self.show_restart_buttons()
-      
+
         self.content.add(page)
         self._screen.base_panel.visible_menu(False)
-        
-    
-    
 
     def lowLevelChanged(self, lowLeveStatus):
-       
         if lowLeveStatus:
-             self._screen._changeKconfig("USB_SERIAL_NUMBER_CHIPID")
+            self._screen._changeKconfig("USB_SERIAL_NUMBER_CHIPID")
         else:
             self._screen._changeKconfigFalse("USB_SERIAL_NUMBER_CHIPID")
-
         for child in self.scroll.get_children():
             self.scroll.remove(child)
-
         grid = self.handleMenu()
-
         gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
-
-        
-        
         self.scroll.add(gridBox)
         self.content.show_all()
 
-
     def handleMenu(self):
         sym = self._screen.kconfig.syms['USB_SERIAL_NUMBER_CHIPID']
-       
         if sym.str_value == 'y':
-              
             self.checkButton.set_active(True)
         else:
             self.checkButton.set_active(False)
-
         grid = Gtk.Grid(column_homogeneous=True,
                             column_spacing=10,
                             row_spacing=10)
         row = 0
         count = 0
-        
         listMcu = []
         for choice in self._screen.kconfig.menus:
             if choice.prompt[0] == "USB ids":
                 for choice in self._screen.kconfig.unique_defined_syms:
                     if choice.visibility != 0 and choice.choice == None and choice.name != 'LOW_LEVEL_OPTIONS':
-                        
                         print(choice.name+ ' ' + choice.nodes[len(choice.nodes)-1].prompt[0] + ' ' + choice.str_value)
-                        
-                        
                         if 'USB'  in choice.name :
                             tempChip ={}
                             tempChip['Obj'] = choice
                             
                             listMcu.append(tempChip)
-            
-
-        
         for chip in listMcu:
             if chip['Obj'].str_value != 'n' and chip['Obj'].str_value != 'y':
                 chipName = Gtk.Label(self._screen.rename_string('(' + chip['Obj'].str_value + ') ' + chip['Obj'].nodes[len(chip['Obj'].nodes)-1].prompt[0],15),name ="wifi-label")
                 chipName.set_alignment(0,0.5)
-                
-                
-                
-                
-                
                 chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
-                
                 f = Gtk.Frame(name="chip")
                 chipBox.pack_start(chipName, False, True, 10)
                 eventBox = Gtk.EventBox()
-            
-                    
                 eventBox.connect("button-press-event", self.openDialog, chip['Obj'])
-                
                 eventBox.add(chipBox)
-                        
                 f.add(eventBox)
                 grid.attach(f, count, row, 1, 1)
                 count += 1
                 if count % 1 == 0:
                     count = 0
                     row += 1
-            
         return grid
 
     def openDialog(self, a,b, choice):
-        
         dialog = ChangeMCUDialog( choice.nodes[len(choice.nodes)-1].prompt[0], self,choice.str_value)
         dialog.get_style_context().add_class("network-dialog")
         dialog.set_decorated(False)
-
         response = dialog.run()
- 
         if response == Gtk.ResponseType.OK:
             dialog.destroy()
             self._screen._changeKconfigSetValue(choice.name, dialog.psw)
-            
             for child in self.scroll.get_children():
                 self.scroll.remove(child)
-           
             grid = self.handleMenu()
-
-
             gridBox = Gtk.Box()
             gridBox.set_halign(Gtk.Align.CENTER)
             gridBox.add(grid)
-
-            
-            
             self.scroll.add(gridBox)
-            self.content.show_all()
-
-
-            
+            self.content.show_all()            
         elif response == Gtk.ResponseType.CANCEL:
             subprocess.Popen(["pkill", "onboard"])
             dialog.destroy()
 
     def eventBoxFunc(self,a,b,obj):
         self.radioButtonSelected(None, obj)
-        
+
     def radioButtonSelected(self, button, selected):
-       
         self._screen._changeKconfig(selected.name)
         self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, True)
-       
+
     def on_click_continue_button(self, continueButton):
         self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, True)
         
-   
-
     def update_text(self, text):
-        
         self.show_restart_buttons()
 
     def clear_action_bar(self):
@@ -245,15 +166,12 @@ class Panel(ScreenPanel):
             self.labels['actions'].remove(child)
 
     def show_restart_buttons(self):
-
         self.clear_action_bar()
         if self.ks_printer_cfg is not None and self._screen._ws.connected:
             power_devices = self.ks_printer_cfg.get("power_devices", "")
             if power_devices and self._printer.get_power_devices():
                 logging.info(f"Associated power devices: {power_devices}")
                 self.add_power_button(power_devices)
-
-      
 
     def add_power_button(self, powerdevs):
         self.labels['power'] = self._gtk.Button("shutdown", _("Power On Printer"), "color3")
@@ -294,7 +212,6 @@ class Panel(ScreenPanel):
             os.system("systemctl poweroff")
 
     def restart_system(self, widget):
-
         if self._screen._ws.connected:
             self._screen._confirm_send_action(widget,
                                               _("Are you sure you wish to reboot the system?"),
@@ -313,5 +230,4 @@ class Panel(ScreenPanel):
         self.show_restart_buttons()
 
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)

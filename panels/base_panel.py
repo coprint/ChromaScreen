@@ -4,12 +4,9 @@ import logging
 import os
 import subprocess
 import sys
-
 import gi
 import requests
 from ks_includes.functions import internet_on
-from ks_includes.widgets.infodialog import InfoDialog
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import GLib, Gtk, Pango
 from jinja2 import Environment
@@ -17,8 +14,6 @@ from datetime import datetime
 from math import log
 from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 from ks_includes.screen_panel import ScreenPanel
-
-
 class BasePanel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
@@ -39,24 +34,19 @@ class BasePanel(ScreenPanel):
         self.control['back'].connect("clicked", self.back)
         self.control['home'] = self._gtk.Button('main', scale=abscale)
         self.control['home'].connect("clicked", self._screen._menu_go_back, True)
-
         if len(self._config.get_printers()) > 1:
             self.control['printer_select'] = self._gtk.Button('shuffle', scale=abscale)
             self.control['printer_select'].connect("clicked", self._screen.show_printer_select)
-
         self.control['macros_shortcut'] = self._gtk.Button('custom-script', scale=abscale)
         self.control['macros_shortcut'].connect("clicked", self.menu_item_clicked, "gcode_macros", {
             "name": "Macros",
             "panel": "gcode_macros"
         })
-
         self.control['estop'] = self._gtk.Button('emergency', scale=abscale)
         self.control['estop'].connect("clicked", self.emergency_stop)
-
         # Any action bar button should close the keyboard
         for item in self.control:
             self.control[item].connect("clicked", self._screen.remove_keyboard)
-
         # Action bar
         self.action_bar = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
         if self._screen.vertical_mode:
@@ -70,22 +60,17 @@ class BasePanel(ScreenPanel):
         self.action_bar.add(self.control['back'])
         self.action_bar.add(self.control['home'])
         self.show_back(False)
-
         self.show_macro_shortcut(self._config.get_main_config().getboolean('side_macro_shortcut', True))
         self.action_bar.add(self.control['estop'])
         self.show_estop(False)
-
         # Titlebar
-
         # This box will be populated by show_heaters
         self.control['temp_box'] = Gtk.Box(spacing=10)
-
         self.titlelbl = Gtk.Label()
         self.titlelbl.set_hexpand(True)
         self.titlelbl.set_halign(Gtk.Align.CENTER)
         self.titlelbl.set_ellipsize(Pango.EllipsizeMode.END)
         self.set_title(title)
-
         self.control['time'] = Gtk.Label("00:00 AM")
         self.control['time_box'] = Gtk.Box()
         self.control['time_box'].set_halign(Gtk.Align.END)
@@ -394,7 +379,6 @@ class BasePanel(ScreenPanel):
         stdout, stderr = process.communicate()
         if process.returncode != 0:
             print(f"Komut çalıştırılırken hata oluştu: {stderr.decode('utf-8')}")
-           
         else:
             print(stdout.decode('utf-8'))
     def need_update(self):
@@ -403,8 +387,8 @@ class BasePanel(ScreenPanel):
             if latest_version > self._screen.version:
                 return True
         return False
+    
     def get_latest_version(self):
-        
         url = f"https://api.github.com/repos/coprint/ChromaScreen/releases/latest"
         response = requests.get(url)
         response.raise_for_status()  # Raise an error for bad responses
@@ -429,17 +413,8 @@ class BasePanel(ScreenPanel):
 
     def update_project(self):
         try:
-           # Proje dizinine git
-            #os.chdir(self._screen.base_dir)
-            # Git pull komutunu çalıştırarak en son değişiklikleri al
             print("Proje güncelleniyor...")
-            #self.run_command("git pull")
             self._screen.show_popup_message(_("Updating, please wait..."), level=1)
-            # dialog = InfoDialog(self, "Updating, please wait", False)
-            # dialog.get_style_context().add_class("alert-info-dialog")
-            # dialog.set_decorated(False)
-            # dialog.run()
-            #dialog.set_size_request(0, 0)
             latest_version, download_url = self.get_latest_version()
             if latest_version > self._screen.version:
                 os.chdir("/tmp/")
@@ -447,7 +422,6 @@ class BasePanel(ScreenPanel):
                 self.run_command("unzip ChromaScreen.zip")
                 self.run_command("rsync -av --progress /tmp/ChromaScreen ~/ --exclude scripts/config.json ")
                 self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen")
-            # Gerekirse bağımlılıkları güncelle
             requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
             if os.path.exists(requirements_file):
                 print("Bağımlılıklar güncelleniyor...")
@@ -456,10 +430,5 @@ class BasePanel(ScreenPanel):
             self._screen.close_popup_message()
             self._screen.restart_ks()
             print('Ok')
-            
-            # dialog.destroy()
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
-
-       
-        

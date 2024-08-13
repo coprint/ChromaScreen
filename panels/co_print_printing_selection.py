@@ -1,34 +1,15 @@
-import logging
-import os
-import subprocess
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gtk, GLib
 import pyudev
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintPrintingSelection(*args)
-
-
-# class CoPrintPrintingSelection(ScreenPanel):
-
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-     
-       
         initHeader = InitHeader (self, _('Connect Your 3D Printer'), _('Connect your 3D printer to Co Print Smart using a USB cable.'), "yazicibaglama")
-
         self.image = self._gtk.Image("printer-connect", self._gtk.content_width * .3 , self._gtk.content_height * .3)
-       
-        
         self.continueButton = Gtk.Button(_('Searching for Printer..'),name ="flat-button-yellow")
-        #self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
@@ -75,9 +56,7 @@ class Panel(ScreenPanel):
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
         GLib.timeout_add_seconds(3, self.control_usb,None)
-        #GLib.idle_add(self.control_usb, None)
 
-   
     def control_usb(self, args):
         self.isSuccess= False
         context = pyudev.Context()
@@ -85,24 +64,20 @@ class Panel(ScreenPanel):
         monitor.filter_by(subsystem='usb')
         device = monitor.poll(timeout=30)
         if device != None:
-            
             if device.action == 'add':
-               self.on_click_continue_button()
-               self.isSuccess= True
-               
-                    
+                self.on_click_continue_button()
+                self.isSuccess= True
             if device.action == 'unbind':
                 print('{} unbind'.format(device))
         if self.isSuccess  == False:
             GLib.timeout_add_seconds(1, self.control_usb, None)
         return False
+    
     def radioButtonSelected(self, button, baudRate):
         self.selected = baudRate
-    
-    
+
     def on_click_continue_button(self):
         self._screen.show_panel("co_print_printing_selection_port", "co_print_printing_selection_port", None, 1, True)
-        
+
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)

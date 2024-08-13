@@ -1,15 +1,7 @@
-import logging
-import os
-
 import gi
-
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib, GdkPixbuf, Pango
-
-
+from gi.repository import Gtk
 class PrinterDetail(Gtk.Box):
-  
-
     def __init__(self, this, _printerName, _printerSubName, _printerStatus, _printerStatusStyle, _printerImage):
         super().__init__()
         self.this = this

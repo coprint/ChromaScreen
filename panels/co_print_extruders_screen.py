@@ -1,6 +1,5 @@
 import contextlib
 import logging
-#import os
 import time
 import gi
 from ks_includes.widgets.keypad_new import KeyPadNew
@@ -10,25 +9,18 @@ from ks_includes.widgets.keypad import Keypad
 from ks_includes.widgets.movebuttonbox import MoveButtonBox
 from ks_includes.widgets.zaxis import zAxis
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gtk, GLib, GdkPixbuf
 from ks_includes.screen_panel import ScreenPanel
-
-# def create_panel(*args):
-#     return CoPrintExtrudersScreen(*args)
-
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
-
-# class CoPrintExtrudersScreen(ScreenPanel, metaclass=Singleton):
 class Panel(ScreenPanel, metaclass=Singleton):
     active_heater = None
     extruderChanged = False
     temp_extruder_temp = 0
-    
     def __init__(self, screen, title):
         super().__init__(screen, title)
         self.extruders = self._printer.extruders
@@ -38,24 +30,20 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.preheat_options = self._screen._config.get_preheat_options()
         self.h = 1
         self.grid = Gtk.Grid(column_homogeneous=True,
-                         column_spacing=10,
-                         row_spacing=10)
+                        column_spacing=10,
+                        row_spacing=10)
         self.sliderBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.sliderBox.set_halign(Gtk.Align.CENTER)
         self.startIndex = 0
         for extruder in self.extruders:
-
             extruder['Image'] = self._gtk.Image(extruder['Icon'], self._gtk.content_width * .10 , self._gtk.content_height * .10)
             extruder['RadioButton'] = self._gtk.Image('passive', self._gtk.content_width * .04 , self._gtk.content_height * .04)
-
             alignment = Gtk.Alignment.new(1, 0, 0, 0)
             alignment.add(extruder['RadioButton'])
-
             extruderBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
             extruderBox.set_name("extruder-extruder-select-box")
             extruderBox.pack_start(alignment, False, False, 5)
             extruderBox.pack_start(extruder['Image'], False, True, 5)
-
             eventBox = Gtk.EventBox()
             eventBox.add(extruderBox)
             extruder['EventBox'] = Gtk.Frame(name= "extrude")
@@ -74,7 +62,6 @@ class Panel(ScreenPanel, metaclass=Singleton):
             current_extruder = self._printer.get_stat("toolhead", "extruder")
             if current_extruder:
                 selection.append(current_extruder)
-
         # Select heaters
         for h in selection:
             if h.startswith("temperature_sensor "):
@@ -572,18 +559,13 @@ class Panel(ScreenPanel, metaclass=Singleton):
         self.labels['popover'].popdown()
 
     def on_button_clicked(self, widget, value):
-            # Mevcut değeri alın
-            #current_value = float(self.entry.get_text())
             current_value = float(self.printer._printer.data["gcode_move"]["homing_origin"][2])
-            # Yeni değeri hesaplayın
             new_value = current_value + value
             direction = '-'
             if value > 0:
-                 direction = '+'
+                direction = '+'
             self.printer._screen._ws.klippy.gcode_script(f"SET_GCODE_OFFSET Z_ADJUST={direction}{abs(value)} MOVE=1")
-            # Yeni değeri entry'ye ayarlayın
             self.entry.set_text('{:.2f}'.format(new_value))
-
 
     def reinit(self):
         self.connectedExtruder.set_label(self._printer.selectedExtruder)

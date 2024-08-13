@@ -1,30 +1,14 @@
 import logging
-import os
-
 from ks_includes.KlippyGcodes import KlippyGcodes
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
-from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
 from ks_includes.widgets.infodialog import InfoDialog
-from ks_includes.widgets.wificard import WifiCard
-
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-
+from gi.repository import Gtk, GLib
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintInputShaperScreen(*args)
-
-
-# class CoPrintInputShaperScreen(ScreenPanel):
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-
         self.menu = BottomMenu(self, False)
         self.inputShaperTye = ""
         printerTypeLabel = Gtk.Label(_("Select Your Printer Type"), name="printer-type-title-label")
@@ -94,19 +78,15 @@ class Panel(ScreenPanel):
         self.content.add(self.page)
 
     def on_printer_box_clicked(self, widget, event, inputShaperTye):
-
         self.inputShaperTye = inputShaperTye
         for child in self.printerTypeLabelBox.get_children():
             self.printerTypeLabelBox.remove(child)
-
         printerTypeLabel = Gtk.Label(_("Connect the Sensor"), name="printer-type-title-label")
         printerTypeLabel.set_justify(Gtk.Justification.CENTER)
         self.printerTypeLabelBox.set_halign(Gtk.Align.CENTER)
         self.printerTypeLabelBox.pack_start(printerTypeLabel, False, False, 0)
-
         for child in self.printerTypeContentLabelBox.get_children():
             self.printerTypeContentLabelBox.remove(child)
-
         printerTypeContentLabel = Gtk.Label(_("Place the Initial Sensor to the head of your printer."),
                                             name="printer-type-content-label")
         printerTypeContentLabel.set_max_width_chars(60)
@@ -114,10 +94,8 @@ class Panel(ScreenPanel):
         printerTypeContentLabel.set_justify(Gtk.Justification.CENTER)
         self.printerTypeContentLabelBox.set_halign(Gtk.Align.CENTER)
         self.printerTypeContentLabelBox.pack_start(printerTypeContentLabel, False, False, 0)
-
         for child in self.printersBox.get_children():
             self.printersBox.remove(child)
-
         sensorImage = self._gtk.Image("sensor", self._screen.width * .5, self._screen.width * .5)
         sensorLabel = Gtk.Label(
             _("Calibration will disconnect from other printers. Please make sure that other printers are not in operation"),
@@ -125,28 +103,20 @@ class Panel(ScreenPanel):
         sensorLabel.set_max_width_chars(45)
         sensorLabel.set_line_wrap(True)
         sensorLabel.set_justify(Gtk.Justification.CENTER)
-
         nextStepButton = Gtk.Button(_('Next Step'), name="next-step-button")
         nextStepButton.connect("clicked", self.check_sensor_connection_page)
         nextStepButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         nextStepButtonBox.set_halign(Gtk.Align.CENTER)
         nextStepButtonBox.pack_start(nextStepButton, False, False, 0)
-
         sensorBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         sensorBox.set_valign(Gtk.Align.CENTER)
         sensorBox.pack_start(sensorImage, False, False, 0)
         sensorBox.pack_start(sensorLabel, False, False, 0)
         sensorBox.pack_start(nextStepButtonBox, False, False, 0)
-
         self.printersBox.pack_start(sensorBox, False, False, 0)
-
         self.content.show_all()
 
     def process_update(self, action, data):
-        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
-        #     page_url = 'co_print_home_not_connected_screen'
-        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)    
-
         if action == "notify_gcode_response":
             if data.startswith('//') and data.endswith('"ACCELEROMETER_QUERY"'):
                 self.sensor_cannot_connected_page(None, 1)
@@ -161,33 +131,26 @@ class Panel(ScreenPanel):
             self.sensor_connected_page(None)
 
     def check_sensor_connection_page(self, widget):
-
         for child in self.page.get_children():
             self.page.remove(child)
-
         spinner = Gtk.Spinner()
         spinner.props.width_request = 100
         spinner.props.height_request = 100
         spinner.start()
-
         titleLabel = Gtk.Label(_("Checking the Sensor Connection"), name="printer-type-title-label")
         contentLabel = Gtk.Label(_("Please Wait"), name="printer-type-content-label")
-
         passiveNextStepButton = Gtk.Button(_('Next Step'), name="passive-next-step-button")
         passiveNextStepButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         passiveNextStepButtonBox.set_halign(Gtk.Align.CENTER)
         passiveNextStepButtonBox.pack_start(passiveNextStepButton, False, False, 0)
-
         checkingSensorConnectionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         checkingSensorConnectionBox.set_halign(Gtk.Align.CENTER)
         checkingSensorConnectionBox.pack_start(spinner, False, False, 50)
         checkingSensorConnectionBox.pack_start(titleLabel, False, False, 0)
         checkingSensorConnectionBox.pack_start(contentLabel, False, False, 0)
         checkingSensorConnectionBox.pack_start(passiveNextStepButtonBox, False, False, 50)
-
         self.page.pack_start(checkingSensorConnectionBox, True, True, 0)
         self.page.pack_end(self.menu, False, True, 0)
-        # self.start_timer_sensor_connection_page()
         self._screen._ws.klippy.gcode_script("ACCELEROMETER_QUERY")
         self.content.show_all()
 
@@ -207,34 +170,27 @@ class Panel(ScreenPanel):
         self.sensor_timeout_id = None
         for child in self.page.get_children():
             self.page.remove(child)
-
         checkmark = self._gtk.Image("Checkmark", self._screen.width * .1, self._screen.width * .1)
-
         titleLabel = Gtk.Label(_("Sensor Connected"), name="printer-type-title-label")
         contentLabel = Gtk.Label(_("You are ready to start the test."), name="printer-type-content-label")
-
         nextStepButton = Gtk.Button(_('Start Calibration'), name="next-step-button")
         nextStepButton.connect("clicked", self.xaxis_progress_page)
         nextStepButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         nextStepButtonBox.set_halign(Gtk.Align.CENTER)
         nextStepButtonBox.pack_start(nextStepButton, False, False, 0)
-
         checkingSensorConnectionBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         checkingSensorConnectionBox.set_halign(Gtk.Align.CENTER)
         checkingSensorConnectionBox.pack_start(checkmark, False, False, 50)
         checkingSensorConnectionBox.pack_start(titleLabel, False, False, 0)
         checkingSensorConnectionBox.pack_start(contentLabel, False, False, 0)
         checkingSensorConnectionBox.pack_start(nextStepButtonBox, False, False, 50)
-
         self.page.pack_start(checkingSensorConnectionBox, True, True, 0)
         self.page.pack_end(self.menu, False, True, 0)
-
         self.content.show_all()
         return False
 
     def sensor_cannot_connected_page(self, widget, pop):
         logging.info(f"sensor cannot connected page")
-        #self.sensor_timeout_id = None
         for child in self.page.get_children():
             self.page.remove(child)
         checkmark = self._gtk.Image("Cannotmark", self._screen.width * .1, self._screen.width * .1)
@@ -283,20 +239,15 @@ class Panel(ScreenPanel):
 
         self.dialog.set_decorated(False)
         self.dialog.set_size_request(0, 0)
-        # timer_duration = 1000
-        # GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
         response = self.dialog.run()
+        
     def xaxis_progress_page(self, widget):
-
-
         for child in self.page.get_children():
             self.page.remove(child)
-
         spinner = Gtk.Spinner()
         spinner.props.width_request = 100
         spinner.props.height_request = 100
         spinner.start()
-
         start_label = "X"
         if self.inputShaperTye == "corexyType":
             start_label = "XY"
@@ -370,7 +321,6 @@ class Panel(ScreenPanel):
         return False
 
     def sensor_connection_pagee(self, widget):
-
         for child in self.printerTypeLabelBox.get_children():
             self.printerTypeLabelBox.remove(child)
 
@@ -378,10 +328,8 @@ class Panel(ScreenPanel):
         printerTypeLabel.set_justify(Gtk.Justification.CENTER)
         self.printerTypeLabelBox.set_halign(Gtk.Align.CENTER)
         self.printerTypeLabelBox.pack_start(printerTypeLabel, False, False, 0)
-
         for child in self.printerTypeContentLabelBox.get_children():
             self.printerTypeContentLabelBox.remove(child)
-
         printerTypeContentLabel = Gtk.Label(
             _("Place the Initial Sensor on your printer's bed using double-sided tape."),
             name="printer-type-content-label")
@@ -390,10 +338,8 @@ class Panel(ScreenPanel):
         printerTypeContentLabel.set_justify(Gtk.Justification.CENTER)
         self.printerTypeContentLabelBox.set_halign(Gtk.Align.CENTER)
         self.printerTypeContentLabelBox.pack_start(printerTypeContentLabel, False, False, 0)
-
         for child in self.printersBox.get_children():
             self.printersBox.remove(child)
-
         sensorImage = self._gtk.Image("tablapid", self._screen.width * .5, self._screen.width * .5)
         sensorLabel = Gtk.Label(_("Hot Bed"), name="printer-type-content-label")
         sensorLabel.set_max_width_chars(45)
@@ -427,12 +373,10 @@ class Panel(ScreenPanel):
     def yaxis_progress_page(self, widget):
         for child in self.page.get_children():
             self.page.remove(child)
-
         spinner = Gtk.Spinner()
         spinner.props.width_request = 100
         spinner.props.height_request = 100
         spinner.start()
-
         titleLabel = Gtk.Label(_("Y Axis Vibration Detection in Progress"), name="printer-type-title-label")
         contentLabel = Gtk.Label(_("Please don’t touch the printer"), name="printer-type-content-label")
 
@@ -450,7 +394,6 @@ class Panel(ScreenPanel):
 
         self.page.pack_start(checkingSensorConnectionBox, True, True, 0)
         self.page.pack_end(self.menu, False, True, 0)
-        #self.start_timer_yaxis_progress_page()
         self._screen._ws.klippy.gcode_script("SHAPER_CALIBRATE AXIS=Y", self.finished_y_calibrate)
 
        # yaxis_complete_page
@@ -461,7 +404,6 @@ class Panel(ScreenPanel):
             self.yaxis_complete_page(None)
 
     def save_config(self, widget):
-
         script = {"script": "SAVE_CONFIG"}
         self._screen._confirm_send_action(
             None,
@@ -475,14 +417,11 @@ class Panel(ScreenPanel):
         self.xaxis_timeout_id = None
         for child in self.page.get_children():
             self.page.remove(child)
-
         checkmark = self._gtk.Image("Checkmark", self._screen.width * .1, self._screen.width * .1)
-
         titleLabel = Gtk.Label(_("Y Axis Vibration Detection Complete"), name="printer-type-title-label")
         contentLabel = Gtk.Label(
             _("Y-axis vibration compensation detection has been completed and the status is normal."),
             name="printer-type-content-label")
-
         self.startButton = Gtk.Button(_('Complete'), name="next-step-button")
         self.startButton.connect("clicked", self.save_config)
         startButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -500,5 +439,4 @@ class Panel(ScreenPanel):
         self.page.pack_end(self.menu, False, True, 0)
 
         self.content.show_all()
-
         return False

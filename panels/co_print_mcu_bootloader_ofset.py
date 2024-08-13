@@ -1,46 +1,23 @@
-import logging
-import os
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 import gi
-
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk
-
+from gi.repository import Gtk
 from ks_includes.screen_panel import ScreenPanel
-
-
-# def create_panel(*args):
-#     return CoPrintMcuBootloaderOfsetSelection(*args)
-
-
-# class CoPrintMcuBootloaderOfsetSelection(ScreenPanel):
 class Panel(ScreenPanel):
-     
     def __init__(self, screen, title):
         super().__init__(screen, title)
-     
-      
         self.labels['actions'] = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         self.labels['actions'].set_hexpand(True)
         self.labels['actions'].set_vexpand(False)
         self.labels['actions'].set_halign(Gtk.Align.CENTER)
         self.labels['actions'].set_homogeneous(True)
         self.labels['actions'].set_size_request(self._gtk.content_width, -1)
-
-       
         initHeader = InitHeader (self, _('Bootloader Offset'), _('Select the bootloader offset located on the board you will be controlling.'), "mikrochip")
-
-    
-        '''diller bitis'''
-        
         grid = Gtk.Grid(column_homogeneous=True,
-                         column_spacing=10,
-                         row_spacing=10)
+                        column_spacing=10,
+                        row_spacing=10)
         row = 0
         count = 0
-        
         listMcu = []
         for choice in self._screen.kconfig.choices:
             if choice.visibility != 0 and choice.nodes[0].prompt[0] == "Bootloader offset":
@@ -50,32 +27,21 @@ class Panel(ScreenPanel):
                         tempChip['Obj'] = chip
                         tempChip['Button'] = Gtk.RadioButton()
                         listMcu.append(tempChip)
-            
-
         group = next((x for x in listMcu if x['Obj'].str_value == 'y'), None)['Button']
-
-
         for chip in listMcu:
             name = self._screen.rename_string(chip['Obj'].nodes[0].prompt[0],15)
             chipName = Gtk.Label(name,name ="wifi-label")
             chipName.set_alignment(0,0.5)
-            
             if chip['Obj'].str_value == 'y':
-                 chip['Button'] = Gtk.RadioButton(label="")
+                chip['Button'] = Gtk.RadioButton(label="")
             else:
                 chip['Button'] = Gtk.RadioButton.new_with_mnemonic_from_widget(group,"")
-           
-           
-            
             chip['Button'].connect("toggled",self.radioButtonSelected, chip['Obj'])
             chip['Button'].set_alignment(1,0.5)
             chipBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=40, name="chip")
-           
             f = Gtk.Frame(name="chip")
             chipBox.pack_start(chipName, False, True, 10)
-           
             chipBox.pack_end(chip['Button'], False, False, 10)
-            
             eventBox = Gtk.EventBox()
             eventBox.connect("button-press-event", self.eventBoxFunc, chip['Obj'])
             eventBox.add(chipBox)
@@ -85,22 +51,15 @@ class Panel(ScreenPanel):
             if count % 1 == 0:
                 count = 0
                 row += 1
-
-
-       
-        
         gridBox = Gtk.Box()
         gridBox.set_halign(Gtk.Align.CENTER)
         gridBox.add(grid)
- 
         
         self.scroll = self._gtk.ScrolledWindow()
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.scroll.set_min_content_height(self._screen.height * .3)
         self.scroll.set_kinetic_scrolling(True)
         self.scroll.get_overlay_scrolling()
-        
-        
         self.scroll.add(gridBox)
         
         self.continueButton = Gtk.Button(_('Continue'),name ="flat-button-blue")
@@ -132,24 +91,18 @@ class Panel(ScreenPanel):
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         page.pack_start(mainBackButtonBox, False, False, 0)
         page.pack_start(main, True, True, 0)
-      
         self.content.add(page)
         self._screen.base_panel.visible_menu(False)
 
-   
     def eventBoxFunc(self,a,b,obj):
         self.radioButtonSelected(None, obj)
 
     def radioButtonSelected(self, button, selected):
-       
         self._screen._changeKconfig(selected.name)
         self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, True)
-       
+
     def on_click_continue_button(self, continueButton):
         self._screen.show_panel("co_print_chip_selection", "co_print_chip_selection", None, 1, True)
         
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "co_print_chip_selection", 1, False)
-
-    

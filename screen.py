@@ -50,11 +50,7 @@ PRINTER_BASE_STATUS_OBJECTS = [
     'firmware_retraction',
     'exclude_object',
 ]
-
-
 chromascreendir = pathlib.Path(__file__).parent.resolve()
-
-
 
 def set_text_direction(lang=None):
     rtl_languages = ['he']
@@ -69,7 +65,6 @@ def set_text_direction(lang=None):
         return False
     Gtk.Widget.set_default_direction(Gtk.TextDirection.LTR)
     return True
-
 
 def state_execute(callback):
     callback()
@@ -92,7 +87,6 @@ class ChromaScreen(Gtk.Window):
     config_data = []
     is_debug = False
     is_redirect_not_connected = True
-
     _cur_panels = []
     connecting = False
     connecting_to_printer = None
@@ -111,25 +105,19 @@ class ChromaScreen(Gtk.Window):
     reinit_count = 0
     max_retries = 4
     initialized = False
-   
     computer_name = os.path.expanduser("~/")
     klipper_path = f'{computer_name}klipper'
-   
     path_read = f'{computer_name}klipper/src/Kconfig'
     path_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_list.json'
     base_dir = f'{computer_name}ChromaScreen'
     path_config = f'{computer_name}ChromaScreen/scripts/config.json'
     selected_wizard_printer = 'Printer1WizardDone'
     selected_printer_index = 1
-    
     path_base_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_mcu/'
     kconfig = None
-    
     log_path = os.path.join(os.path.expanduser("~/"), "printer_data", "logs")
 
-    
-
-    def __init__(self, args): #, version
+    def __init__(self, args): 
         try:
             super().__init__(title="ChromaScreen")
         except Exception as e:
@@ -144,13 +132,10 @@ class ChromaScreen(Gtk.Window):
         self.dialogs = []
         self.confirm = None
         self.panels_reinit = []
-
         chromascreendir = pathlib.Path(__file__).parent.resolve()
         configfile = os.path.normpath(os.path.expanduser(args.configfile))
-       
         self._config = ChromaScreenConfig(configfile, self)
         self.lang_ltr = set_text_direction(self._config.get_main_config().get("language", None))
-
         self.connect("key-press-event", self._key_press_event)
         #self.connect("configure_event", self.update_size)
         monitor = Gdk.Display.get_default().get_primary_monitor()
@@ -221,19 +206,16 @@ class ChromaScreen(Gtk.Window):
             return string
         
     def _changeKconfig(self, name):
+        sym = self.kconfig.syms[name]
+        sym.set_value("y")
         
-         sym = self.kconfig.syms[name]
-         sym.set_value("y")
     def _changeKconfigSetValue(self, name, value):
-        
-         sym = self.kconfig.syms[name]
-         sym.set_value(value)
+        sym = self.kconfig.syms[name]
+        sym.set_value(value)
         
     def _changeKconfigFalse(self, name):
-        
-         sym = self.kconfig.syms[name]
-         sym.set_value("n")
-   
+        sym = self.kconfig.syms[name]
+        sym.set_value("n")
 
     def initial_connection(self):
         self.printers = self._config.get_printers()
@@ -256,17 +238,16 @@ class ChromaScreen(Gtk.Window):
             pname = list(self.printers[0])[0]
             self.connect_printer(pname)
         else:
-           # self.base_panel.show_printer_select(True)
-           # self.show_printer_select()
-           pname = list(self.printers[0])[0]
-           self.connect_printer(pname)
+            # self.base_panel.show_printer_select(True)
+            # self.show_printer_select()
+            pname = list(self.printers[0])[0]
+            self.connect_printer(pname)
 
     def connect_printer(self, name):
-        
         for i, printer in enumerate(self.printers):
-             if list(printer)[0] == name:
-                 self.selected_wizard_printer = 'Printer'+str(i+1)+'WizardDone'
-                 self.selected_printer_index = i+1
+            if list(printer)[0] == name:
+                self.selected_wizard_printer = 'Printer'+str(i+1)+'WizardDone'
+                self.selected_printer_index = i+1
         self.connecting_to_printer = name
         if self._ws is not None and self._ws.connected:
             self._ws.close()
@@ -275,10 +256,8 @@ class ChromaScreen(Gtk.Window):
             if self.files:
                 self.files.reset()
                 self.files = None
-
         self.connecting = True
         self.initialized = False
-
         logging.info(f"Connecting to printer: {name}")
         for printer in self.printers:
             if name == list(printer)[0]:
@@ -292,19 +271,12 @@ class ChromaScreen(Gtk.Window):
             self.printers[ind][name]["moonraker_port"],
             self.printers[ind][name]["moonraker_api_key"],
         )
-
         self.printer_initializing(_("Connecting to %s") % name, remove=True)
-
         self._ws = KlippyWebsocket(self,
-                                   {
-                                       "on_connect": self.init_printer,
-                                       "on_message": self._websocket_callback,
-                                       "on_close": self.websocket_disconnected
-                                   },
-                                   self.printers[ind][name]["moonraker_host"],
-                                   self.printers[ind][name]["moonraker_port"],
-                                   )
-
+                                    {"on_connect": self.init_printer, "on_message": self._websocket_callback, "on_close": self.websocket_disconnected},
+                                    self.printers[ind][name]["moonraker_host"],
+                                    self.printers[ind][name]["moonraker_port"],
+                                    )
         self.files = KlippyFiles(self)
         self._ws.initial_connect()
 
@@ -321,7 +293,7 @@ class ChromaScreen(Gtk.Window):
                 "print_stats": ["print_duration", "total_duration", "filament_used", "filename", "state", "message",
                                 "info"],
                 "toolhead": ["homed_axes", "estimated_print_time", "print_time", "position", "extruder",
-                             "max_accel", "max_accel_to_decel", "max_velocity", "square_corner_velocity"],
+                            "max_accel", "max_accel_to_decel", "max_velocity", "square_corner_velocity"],
                 "virtual_sdcard": ["file_position", "is_active", "progress"],
                 "webhooks": ["state", "state_message"],
                 "firmware_retraction": ["retract_length", "retract_speed", "unretract_extra_length", "unretract_speed"],
@@ -340,11 +312,9 @@ class ChromaScreen(Gtk.Window):
             requested_updates['objects'][f] = ["enabled", "filament_detected"]
         for p in self.printer.get_output_pins():
             requested_updates['objects'][p] = ["value"]
-
         self._ws.klippy.object_subscription(requested_updates)
 
     def _load_panel(self, panel, *args):
-       # if panel not in self.load_panel:
         logging.debug(f"Loading panel: {panel}")
         panel_path = os.path.join(os.path.dirname(__file__), 'panels', f"{panel}.py")
         logging.info(f"Panel path: {panel_path}")
@@ -352,21 +322,6 @@ class ChromaScreen(Gtk.Window):
             logging.error(f"Panel {panel} does not exist")
             raise FileNotFoundError(os.strerror(2), "\n" + panel_path)
         return import_module(f"panels.{panel}")
-        # self.load_panel[panel] = None
-        # module = import_module(f"panels.{panel}")
-
-        # reload(module)
-        # if not hasattr(module, "create_panel"):
-        #     raise ImportError(f"Cannot locate create_panel function for {panel}")
-        # self.load_panel[panel] = getattr(module, "create_panel")
-
-
-        # try:
-        #     return self.load_panel[panel](*args)
-        # except Exception as e:
-        #     logging.exception(e)
-        #     raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
-
     def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
         try:
             if remove == 2:
@@ -374,8 +329,6 @@ class ChromaScreen(Gtk.Window):
                 self._remove_all_panels()
             elif remove == 1:
                 self._remove_current_panel(pop)
-
-            #if panel_name not in self.panels:
             if panel_name not in self.panels:
                 try:
                     self.panels[panel_name] = self._load_panel(panel_name).Panel(self, title)
@@ -388,10 +341,6 @@ class ChromaScreen(Gtk.Window):
                 logging.info(f"Reinitializing panel {panel_name}")
                 self.panels[panel_name].__init__(self, title)
                 self.panels_reinit.remove(panel_name)
-                #if panel_name in self.panels:
-                #    del self.panels[panel_name]
-                #self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
-                #return
             self._cur_panels.append(panel_name)
             if hasattr(self.panels[panel_name], "reset_values"):
                self.panels[panel_name].reset_values()
@@ -418,60 +367,7 @@ class ChromaScreen(Gtk.Window):
             self.panels[panel_name].reinit()
         self.show_all()
         self.base_panel.visible_menu(False)
-    # def _load_panel(self, panel, *args):
-    #     logging.debug(f"Loading panel: {panel}")
-    #     panel_path = os.path.join(os.path.dirname(__file__), 'panels', f"{panel}.py")
-    #     logging.info(f"Panel path: {panel_path}")
-    #     if not os.path.exists(panel_path):
-    #         logging.error(f"Panel {panel} does not exist")
-    #         raise FileNotFoundError(os.strerror(2), "\n" + panel_path)
-    #     self.load_panel[panel] = None
-    #     module = import_module(f"panels.{panel}")
-    #     reload(module)
-    #     if not hasattr(module, "create_panel"):
-    #         raise ImportError(f"Cannot locate create_panel function for {panel}")
-    #     self.load_panel[panel] = getattr(module, "create_panel")
-    #     try:
-    #         return self.load_panel[panel](*args)
-    #     except Exception as e:
-    #         logging.exception(e)
-    #         raise RuntimeError(f"Unable to create panel: {panel}\n{e}") from e
-        
-    # def show_panel(self, panel_name, panel_type, title, remove=None, pop=True, **kwargs):
-    #     try:
-    #         if remove == 2:
-    #             self._remove_all_panels()
-    #         elif remove == 1:
-    #             self._remove_current_panel(pop)
-    #         try:
-    #             self.panels[panel_name] = self._load_panel(panel_type, self, title)
-    #             if hasattr(self.panels[panel_name], "initialize"):
-    #                 self.panels[panel_name].initialize(**kwargs)
-    #         except Exception as e:
-    #             if panel_name in self.panels:
-    #                 del self.panels[panel_name]
-    #             self.show_error_modal(f"Unable to load panel {panel_type}", f"{e}")
-    #             return
-    #         self._cur_panels.append(panel_name)
-    #         if hasattr(self.panels[panel_name], "reset_values"):
-    #             self.panels[panel_name].reset_values()
-    #         self.attach_panel(panel_name)
-    #     except Exception as e:
-    #         logging.exception(f"Error attaching panel:\n{e}")
-
-    # def attach_panel(self, panel_name):
-    #     self.base_panel.add_content(self.panels[panel_name])
-    #     logging.debug(f"Current panel hierarchy: {' > '.join(self._cur_panels)}")
-    #     self.base_panel.show_back(len(self._cur_panels) > 1)
-    #     if hasattr(self.panels[panel_name], "process_update"):
-    #         self.add_subscription(panel_name)
-    #         self.process_update("notify_status_update", self.printer.data)
-    #         self.process_update("notify_busy", self.printer.busy)
-    #     if hasattr(self.panels[panel_name], "activate"):
-    #         self.panels[panel_name].activate()
-    #     self.show_all()
-    #     self.base_panel.visible_menu(False)
-
+    
     def close_dialog(self, dialog):
         dialog.response(Gtk.ResponseType.CANCEL)
         dialog.destroy()
@@ -485,39 +381,6 @@ class ChromaScreen(Gtk.Window):
         timer_duration = 1000
         GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
         response = self.dialog.run()
-         
-        # self.close_screensaver()
-        # if self.popup_message is not None:
-        #     self.close_popup_message()
-
-        # msg = Gtk.Button(label=f"{message}")
-        # msg.set_hexpand(True)
-        # msg.set_vexpand(True)
-        # msg.get_child().set_line_wrap(True)
-        # msg.get_child().set_line_wrap_mode(Pango.WrapMode.WORD_CHAR)
-        # msg.get_child().set_max_width_chars(40)
-        # msg.connect("clicked", self.close_popup_message)
-        # msg.get_style_context().add_class("message_popup")
-        # if level == 1:
-        #     msg.get_style_context().add_class("message_popup_echo")
-        # elif level == 2:
-        #     msg.get_style_context().add_class("message_popup_warning")
-        # else:
-        #     msg.get_style_context().add_class("message_popup_error")
-
-        # popup = Gtk.Popover.new(self.base_panel.titlebar)
-        # popup.get_style_context().add_class("message_popup_popover")
-        # popup.set_size_request(self.width * .9, -1)
-        # popup.set_halign(Gtk.Align.CENTER)
-        # popup.add(msg)
-        # popup.popup()
-
-        # self.popup_message = popup
-        # self.popup_message.show_all()
-
-        # if self._config.get_main_config().getboolean('autoclose_popups', True):
-        #     GLib.timeout_add_seconds(10, self.close_popup_message)
-
         return False
 
     def close_popup_message(self, widget=None):
@@ -670,14 +533,12 @@ class ChromaScreen(Gtk.Window):
         if hasattr(self.panels[self._cur_panels[-1]], "deactivate"):
             self.panels[self._cur_panels[-1]].deactivate()
         if hasattr(self.panels[self._cur_panels[-1]], "del_obj"):
-                    self.panels[self._cur_panels[-1]].del_obj()
-             
+            self.panels[self._cur_panels[-1]].del_obj()
         if self._cur_panels[-1] in self.subscriptions:
             self.subscriptions.remove(self._cur_panels[-1])
         if pop:
             self.panels.pop(self._cur_panels[-1])
             del self._cur_panels[-1]
-            #self.attach_panel(self._cur_panels[-1])
 
     def _menu_go_back(self, widget=None, home=False):
         logging.info(f"#### Menu go {'home' if home else 'back'}")
@@ -872,8 +733,6 @@ class ChromaScreen(Gtk.Window):
         self._config._create_configurable_options(self)
         self._config.set('main', 'language', lang)
         self._config.save_user_config_options()
-        #self.restart_ks()
-        #self.reload_panels()
 
     def reload_panels(self, *args):
         if "printer_select" in self._cur_panels:
@@ -1062,14 +921,14 @@ class ChromaScreen(Gtk.Window):
 
         self.ws_subscribe()
         extra_items = (self.printer.get_tools()
-                       + self.printer.get_heaters()
-                       + self.printer.get_fans()
-                       + self.printer.get_filament_sensors()
-                       + self.printer.get_output_pins()
-                       )
+                        + self.printer.get_heaters()
+                        + self.printer.get_fans()
+                        + self.printer.get_filament_sensors()
+                        + self.printer.get_output_pins()
+                        )
 
         data = self.apiclient.send_request("printer/objects/query?" + "&".join(PRINTER_BASE_STATUS_OBJECTS +
-                                                                               extra_items))
+                                                                                extra_items))
         if data is False:
             self.printer_initializing("Error getting printer object data with extra items")
             GLib.timeout_add_seconds(3, self.init_printer)
@@ -1197,11 +1056,8 @@ def main():
     os.system("xrandr --newmode  \"1024x600_60.00\"  48.96  1024 1064 1168 1312  600 601 604 622  -HSync +Vsync")
     os.system("xrandr --addmode HDMI-1 \"1024x600_60.00\" ")
     os.system("xrandr --output HDMI-1 --mode \"1024x600_60.00\" ")
-    #version = functions.get_software_version()
-    
     parser = argparse.ArgumentParser(description="ChromaScreen - A GUI for Klipper")
     homedir = os.path.expanduser("~")
-
     parser.add_argument(
         "-c", "--configfile", default=os.path.join(homedir, "ChromaScreen.conf"), metavar='<configfile>',
         help="Location of ChromaScreen configuration file"
@@ -1214,14 +1070,11 @@ def main():
         help="Location of ChromaScreen logfile output"
     )
     args = parser.parse_args()
-
     functions.setup_logging(
         os.path.normpath(os.path.expanduser(args.logfile)),
         version
     )
-
     functions.patch_threading_excepthook()
-
     logging.info(f"ChromaScreen version: {version}")
     if not Gtk.init_check(None)[0]:
         logging.critical("Failed to initialize Gtk")

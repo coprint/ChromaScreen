@@ -1,35 +1,18 @@
-import json
-import logging
 import gi
-
 from ks_includes.widgets.initheader import InitHeader
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-
 from ks_includes.screen_panel import ScreenPanel
-
-# def create_panel(*args):
-#     return CoPrintSdCardSelection(*args)
-
-
-# class CoPrintSdCardSelection(ScreenPanel):
-
 class Panel(ScreenPanel):     
     def __init__(self, screen, title):
         super().__init__(screen, title)
-     
-       
         initHeader = InitHeader (self, _('Writing to SD Card'), _('Insert the SD Card of your printer into ChromaScreen to change the program of your 3D printer.'), "sdkart")
-
         self.image = self._gtk.Image("usbokey", self._gtk.content_width * .25 , self._gtk.content_height * .25)
-       
-        
         self.continueButton = Gtk.Button(_('Continue'),name ="flat-button-blue")
         self.continueButton.connect("clicked", self.on_click_continue_button)
         self.continueButton.set_hexpand(True)
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         buttonBox.pack_start(self.continueButton, False, False, 0)
-
         backIcon = self._gtk.Image("back-arrow", 35, 35)
         backLabel = Gtk.Label(_("Back"), name="bottom-menu-label")
         backButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -62,38 +45,15 @@ class Panel(ScreenPanel):
         main.pack_start(initHeader, False, False, 0)
         main.pack_start(self.image, True, True, 25)
         main.pack_end(buttonBox, True, False, 15)
-        
-        
-       
-      
+
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
-       
 
-   
-      
     def radioButtonSelected(self, button, baudRate):
         self.selected = baudRate
-    
-    
+
     def on_click_continue_button(self, continueButton):
-        # try:
-        #     f = open(self._screen.path_config, encoding='utf-8')
-       
-        #     self.config_data = json.load(f)
-        #     self.config_data[self._screen.selected_wizard_printer] = True
-        #     json_object = json.dumps(self.config_data, indent=4)
- 
-          
-
-        #     with open(self._screen.path_config, "w") as outfile:
-        #         outfile.write(json_object)
-
-        # except Exception as e:
-        #     logging.exception(e) 
         self._screen.show_panel("co_print_printing_selection", "co_print_printing_selection", None, 1, True)
-        
-   
+
     def on_click_back_button(self, button, data):
-        
         self._screen.show_panel(data, data, "Language", 1, True)
