@@ -380,7 +380,7 @@ class Panel(ScreenPanel):
         
     def open_test_screen(self, widget, event):
         self.open_test += 1
-        if self.open_test == 5:
+        if self.open_test == 3:
             self.open_test = 0
             self._screen.show_panel("co_print_test_screen", "co_print_test_screen", None, 1,False)
         

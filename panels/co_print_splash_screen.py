@@ -74,7 +74,7 @@ class Panel(ScreenPanel):
         
         
 
-    def update_text(self, text):
+    def update_text(self):
         
         self.show_restart_buttons()
 
@@ -178,7 +178,7 @@ class Panel(ScreenPanel):
             os.system("systemctl reboot")
 
     def retry(self, widget):
-        self.update_text((_("Connecting to %s") % self._screen.connecting_to_printer))
+        self.update_text()
         if self._screen._ws and not self._screen._ws.connecting:
             self._screen._ws.retry()
         else:

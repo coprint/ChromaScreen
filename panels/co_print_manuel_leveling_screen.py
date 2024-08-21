@@ -171,18 +171,20 @@ class Panel(ScreenPanel):
     
 
     def manuel_level(self, widget, value):
-        gcode_script = "go_screw_" + str(value)
-
-
-        self._screen._ws.klippy.gcode_script(gcode_script, self.finished)
-        self.dialog = InfoDialog(self, _("Processing, Please Wait.."), False)
+        self.dialog = InfoDialog(self, _("This Feature is coming in the next update, thank you for using ChromaScreen."), True)
         self.dialog.get_style_context().add_class("alert-info-dialog")
+        # gcode_script = "go_screw_" + str(value)
+
+
+        # self._screen._ws.klippy.gcode_script(gcode_script, self.finished)
+        # self.dialog = InfoDialog(self, _("Processing, Please Wait.."), False)
+        # self.dialog.get_style_context().add_class("alert-info-dialog")
        
-        self.dialog.set_decorated(False)
-        self.dialog.set_size_request(0, 0)
-        #timer_duration = 1000
-        #GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
-        response = self.dialog.run()
+        # self.dialog.set_decorated(False)
+        # self.dialog.set_size_request(0, 0)
+        # #timer_duration = 1000
+        # #GLib.timeout_add(timer_duration, self.close_dialog, self.dialog)
+        # response = self.dialog.run()
 
     def finished(self,asd,a,b):
         self.dialog.response(Gtk.ResponseType.CANCEL)

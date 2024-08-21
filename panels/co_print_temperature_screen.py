@@ -376,9 +376,10 @@ class Panel(ScreenPanel, metaclass=Singleton):
         return False
     
     def add_device(self, device):
-        self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])
-        self.HeaterBedMax_temp = float(self._printer.get_config_section('heater_bed')['max_temp'])
-    
+        if type(self._printer.get_config_section('extruder')) != bool:
+            self.ExtruderMax_temp = float(self._printer.get_config_section('extruder')['max_temp'])    
+        if type(self._printer.get_config_section('heater_bed')) != bool:
+            self.HeaterBedMax_temp = float(self._printer.get_config_section('heater_bed')['max_temp'])
         logging.info(f"Adding device: {device}")
 
         temperature = self._printer.get_dev_stat(device, "temperature")
