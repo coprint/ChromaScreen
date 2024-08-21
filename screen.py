@@ -852,7 +852,12 @@ class ChromaScreen(Gtk.Window):
         # Do not return to main menu if completing a job, timeouts/user input will return
         if "job_status" in self._cur_panels:
             return
-        self.printer_ready()
+        list = ['co_print_test_main_fan','co_print_test_waiting_head', 'co_print_test_chromapad_usb']
+        if len(self._cur_panels) > 0 :
+            if self._cur_panels[-1] not in list:
+                self.printer_ready()
+        else:
+            self.printer_ready()
 
     def state_startup(self):
         self.printer_initializing(_("Klipper is attempting to start"))
@@ -985,7 +990,7 @@ class ChromaScreen(Gtk.Window):
 
     def printer_initializing(self, msg, remove=False):
         self.close_popup_message()
-        list = ['co_print_language_select_screen', 'co_print_contract_approval', 'co_print_region_selection', 'co_print_product_naming', 'co_print_wifi_selection', 'co_print_wifi_selection_select', 'co_print_wifi_selection_connect', 'co_print_printing_brand_selection_new', 'co_print_chip_selection', 'co_print_sd_card_selection_process_waiting','co_print_mcu_selection','co_print_mcu_model_selection','co_print_mcu_com_interface','co_print_mcu_bootloader_ofset','co_print_mcu_clock_reference', 'co_print_baud_rate_selection', 'co_print_mcu_flash_chip', 'co_print_mcu_clock_speed', 'co_print_mcu_applicaiton_address', 'co_print_mcu_usb_ids', 'co_print_mcu_optional_feature', 'co_print_chip_selection_loading','co_print_sd_card_selection', 'co_print_printing_selection', 'co_print_printing_selection_port', 'co_print_printing_selection_done', 'co_print_printers_qr', 'co_print_update_screen']
+        list = ['co_print_language_select_screen', 'co_print_contract_approval', 'co_print_region_selection', 'co_print_product_naming', 'co_print_wifi_selection', 'co_print_wifi_selection_select', 'co_print_wifi_selection_connect', 'co_print_printing_brand_selection_new', 'co_print_chip_selection', 'co_print_sd_card_selection_process_waiting','co_print_mcu_selection','co_print_mcu_model_selection','co_print_mcu_com_interface','co_print_mcu_bootloader_ofset','co_print_mcu_clock_reference', 'co_print_baud_rate_selection', 'co_print_mcu_flash_chip', 'co_print_mcu_clock_speed', 'co_print_mcu_applicaiton_address', 'co_print_mcu_usb_ids', 'co_print_mcu_optional_feature', 'co_print_chip_selection_loading','co_print_sd_card_selection', 'co_print_printing_selection', 'co_print_printing_selection_port', 'co_print_printing_selection_done', 'co_print_printers_qr', 'co_print_update_screen', 'co_print_test_screen', 'co_print_test_chromahead', 'co_print_test_chromapad_touch', 'co_print_test_chromapad_usb', 'co_print_test_chromahead_passed', 'co_print_test_chromahead_tools', 'co_print_test_chromahead_tools_passed', 'co_print_test_error_filament_cut','co_print_test_error_filament_extrude','co_print_test_error_filament_pull','co_print_test_error_hotend_fan','co_print_test_error_main_fan', 'co_print_test_error_proximity_sensor', 'co_print_test_extrude', 'co_print_test_filament_cut', 'co_print_test_filament_pull', 'co_print_test_hotend_fan', 'co_print_test_main_fan', 'co_print_test_proximity_sensor', 'co_print_test_waiting_head']
         if len(self._cur_panels) > 0 :
             if self._cur_panels[-1] not in list:
                 if 'co_print_splash_screen' not in self.panels or remove:
