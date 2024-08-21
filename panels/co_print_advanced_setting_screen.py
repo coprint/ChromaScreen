@@ -27,6 +27,7 @@ class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
         box_array = []
+        self.open_test = 0
         estimatedMethod = [ { "name":"auto" , "value":"auto" }, { "name":"file", "value":"file" }, { "name":"filament", "value":"filament" }, { "name":"slicer" , "value":"slicer" }]
         fontSize = [ { "name":"small" , "value":"small" }, { "name":"medium", "value":"medium" }, { "name":"large", "value":"large" }]
         powerOffTime = [{ "name":"300" , "value":"300"}, { "name":"900", "value":"900" }, { "name":"1800", "value":"1800" }, { "name":"3600", "value":"3600" }, 
@@ -59,6 +60,9 @@ class Panel(ScreenPanel):
         #24 Hour Time#
         #
         hourLabel = Gtk.Label(_("24 Hour Time"))
+        hourLabelBox = Gtk.EventBox()
+        hourLabelBox.add(hourLabel)
+        hourLabelBox.connect("button-press-event",self.open_test_screen)
         self.hourSwitch = Gtk.Switch(name = "adv-setting-switch")
         self.hourSwitch.connect("notify::active", self.switch_config_option, 'main', '24htime',None)
         self.hourSwitch.set_active(self._config.get_config().getboolean('main', '24htime'))
@@ -66,7 +70,7 @@ class Panel(ScreenPanel):
 
         hourBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
         hourBox.set_name("adv-settings-box-with-switch")
-        hourBox.pack_start(hourLabel, False, False, 0)
+        hourBox.pack_start(hourLabelBox, False, False, 0)
         hourBox.pack_end(self.hourSwitch, False, False, 0)
         box_array.append(hourBox)
         
@@ -372,9 +376,14 @@ class Panel(ScreenPanel):
         self._screen.show_panel("co_print_system_setting_screen", "co_print_system_setting_screen", "Language", 1, False)
 
     def change_page(self, widget, event):
-        self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1,
-                                False)
-
+        self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
+        
+    def open_test_screen(self, widget, event):
+        self.open_test += 1
+        if self.open_test == 3:
+            self.open_test = 0
+            self._screen.show_panel("co_print_test_screen", "co_print_test_screen", None, 1,False)
+        
     def on_scale_changed(self, scale, value):
         
         # Ölçek değeri değiştiğinde çağrılır

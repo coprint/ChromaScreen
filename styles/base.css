@@ -298,6 +298,41 @@ progressbar#printing-progress trough {
 	font-size: 1.35rem;
 	font-weight: 600;
 }
+#test-header-white-label {
+	color: #ffffff;
+	font-size: 1.65rem;
+	font-weight: 900;
+}
+#test-green-label {
+	color: #37ab56;
+	font-size: 1.1rem;
+	font-weight: 200;
+}
+#test-orange-label {
+	color: #ab5a37;
+	font-size: 1.1rem;
+	font-weight: 200;
+}
+#test-content-white-label {
+	color: #9a9a9a;
+	font-size: 1.35rem;
+	font-weight: 200;
+}
+#test-content-green-label {
+	color: #37ab56;
+	font-size: 1.35rem;
+	font-weight: 200;
+}
+#test-content-yellow-label {
+	color: #f7ba17;
+	font-size: 1.35rem;
+	font-weight: 200;
+}
+#test-content-red-label {
+	color: #d65757;
+	font-size: 1.35rem;
+	font-weight: 200;
+}
 #wiki-head-white-label {
 	color: #ffffff;
 	font-size: 1.2rem;
@@ -1039,6 +1074,45 @@ button#flat-button-blue {
 	min-width: 10rem;
 }
 button#flat-button-blue:active {
+	background-color: #ffffff;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
+}
+button#test-button-green {
+	background-color: #37ab56;
+	background: #37ab56;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
+}
+button#test-button-green:active {
+	background-color: #ffffff;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
+}
+button#test-button-blue {
+	background-color: #3788ab;
+	background: #3788ab;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
+}
+button#test-button-blue:active {
+	background-color: #ffffff;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
+}
+button#test-button-orange {
+	background-color: #ab5a37;
+	background: #ab5a37;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 10rem;
+}
+button#test-button-orange:active {
 	background-color: #ffffff;
 	font-size: 1.5em;
 	border-radius: 5px;
@@ -2428,6 +2502,44 @@ box.auto-leveling-label-box-active-white {
 	font-weight: 700;
 	color: #000000;
 }
+#fan-test-box {
+	background-color: #3a7aaa;
+	border-radius: 1rem;
+	padding: 1.2rem;
+}
+#touch-test-buttons {
+	background-color: #000000;
+	border: 1px solid #eeeeee;
+	padding: 0.3rem 1.1em 0.1rem 1.5rem;
+	border-radius: 100px;
+}
+#touch-test-buttons-active {
+	background-color: #eeeeee;
+	border: 1px solid #000000;
+	padding: 0.3rem 1.1em 0.1rem 1.5rem;
+	border-radius: 100px;
+}
+#touch-test-buttons:focus {
+	background-color: #eeeeee;
+	border: 1px solid #000000;
+	padding: 0.3rem 1.1em 0.1rem 1.5rem;
+	border-radius: 100px;
+}
+#touch-test-buttons label {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #eeeeee;
+}
+#touch-test-buttons-active label {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #000000;
+}
+#touch-test-buttons:focus label {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #000000;
+}
 #z-calibration-title-box {
 	padding: 1rem;
 	background: linear-gradient(
@@ -3146,7 +3258,15 @@ frame.timezonebox-active {
 	font-size: 20px;
 	font-weight: 400;
 }
-
+#usb-yellow-label {
+	color: yellow;
+}
+#usb-green-label {
+	color: green;
+}
+#usb-red-label {
+	color: red;
+}
 /* Yeni CSSler */
 
 /* Hardcoded values until creation of dynamic CSS updates */
