@@ -32,7 +32,7 @@ from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 version = "1.0.4"
-config_version = "0.9.0"
+#config_version = "0.9.0"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
     'configfile',
@@ -142,7 +142,7 @@ class ChromaScreen(Gtk.Window):
         self.apiclient = None
         self.not_connected_log_file = None
         self.version = version
-        self.config_version = config_version
+        #self.config_version = config_version
         self.dialogs = []
         self.confirm = None
         self.panels_reinit = []
@@ -202,6 +202,14 @@ class ChromaScreen(Gtk.Window):
             logging.exception(e) 
         if(self.config_data != None):
             self.pc_password = self.config_data['PcPassWord']
+            if 'ConfigVersion' in self.config_data:
+                self.config_version = self.config_data['ConfigVersion']
+            else:
+                self.config_version = '0.9.0'
+                self.config_data['ConfigVersion'] = '0.9.0'
+                with open('test.json', 'w', encoding='utf-8') as file:
+                    json.dump(self.config_data, file, indent=4) 
+               
 
         with cd(self.klipper_path):
             self.kconfig = Kconfig(self.path_read)
