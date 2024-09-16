@@ -31,7 +31,7 @@ from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-version = "1.0.5"
+version = "1.0.4"
 config_version = "0.9.0"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
@@ -139,7 +139,7 @@ class ChromaScreen(Gtk.Window):
         self.blanking_time = 600
         self.use_dpms = True
         self.isEnter = False
-        self.apiclient = config_dataNone
+        self.apiclient = None
         self.not_connected_log_file = None
         self.version = version
         self.config_version = config_version
@@ -202,7 +202,7 @@ class ChromaScreen(Gtk.Window):
             logging.exception(e) 
         if(self.config_data != None):
             self.pc_password = self.config_data['PcPassWord']
-            
+
         with cd(self.klipper_path):
             self.kconfig = Kconfig(self.path_read)
         
@@ -1223,12 +1223,13 @@ def main():
     args = parser.parse_args()
 
     functions.setup_logging(
-        os.path.normpath(os.path.expanduser(args.logfile))
+        os.path.normpath(os.path.expanduser(args.logfile)),
+        version
     )
 
     functions.patch_threading_excepthook()
 
-    #logging.info(f"ChromaScreen version: {version}")
+    logging.info(f"ChromaScreen version: {version}")
     if not Gtk.init_check(None)[0]:
         logging.critical("Failed to initialize Gtk")
         raise RuntimeError
