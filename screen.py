@@ -31,8 +31,8 @@ from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-version = "1.0.4"
-config_version = "0.9.0"
+#version = "1.0.5"
+#config_version = "0.9.0"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
     'configfile',
@@ -141,8 +141,8 @@ class ChromaScreen(Gtk.Window):
         self.isEnter = False
         self.apiclient = None
         self.not_connected_log_file = None
-        self.version = version
-        self.config_version = config_version
+        #self.version = version
+        #self.config_version = config_version
         self.dialogs = []
         self.confirm = None
         self.panels_reinit = []
@@ -202,6 +202,8 @@ class ChromaScreen(Gtk.Window):
             logging.exception(e) 
         if(self.config_data != None):
             self.pc_password = self.config_data['PcPassWord']
+            self.config_version = self.config_data['ConfigVersion']
+            self.version = self.config_data['Version']
 
         with cd(self.klipper_path):
             self.kconfig = Kconfig(self.path_read)
