@@ -63,129 +63,133 @@ class HomeTab(Gtk.Box):
 
 
     def static_value(self):
+        self.tab1Button.set_active(True)
+        self.tab2Button.set_active(False)
+        self.tab3Button.set_active(False)
+        self.axCanEnter = False
         for child in self.bodyBox.get_children():
             self.bodyBox.remove(child)
-        if self.staticTabBox == None:
-            data = []
-            for key in self.this.print_stats:
-                data.append(key['value'])
-            colors = ['#3E3E3E', '#ADADAD', '#5A5A5A', '#3E3E3E']
-            fig = Figure(figsize=(6, 3), dpi=100)
-            ax = fig.add_subplot()
-            #fig, ax = plt.plot(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
-            wedges,  texts = ax.pie(data, colors=colors, wedgeprops=dict(width=0.1), startangle=-40)
-            kw = dict(arrowprops=dict(arrowstyle="-", color="w"),
-                    zorder=0, va="center")
-            for i, p in enumerate(wedges):
-                ang = (p.theta2 - p.theta1)/2. + p.theta1
-                y = np.sin(np.deg2rad(ang))
-                x = np.cos(np.deg2rad(ang))
-                horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
-                connectionstyle = f"angle,angleA=0,angleB={ang}"
-                kw["arrowprops"].update({"connectionstyle": connectionstyle})
-                if "_" in self.this.print_stats[i]['name'] :
-                    ax.annotate(_((self.this.print_stats[i]['name']).split('_')[1].capitalize()) + ': ' +str(int(self.this.print_stats[i]['value'])), color='w', 
-                            xy=(x, y), xytext=(1.20*np.sign(x), 1.4*y),fontsize=7,
-                            horizontalalignment=horizontalalignment, **kw)
-                else: 
-                    ax.annotate(_((self.this.print_stats[i]['name'].replace("_", " ")).capitalize()) + ': ' +str(int(self.this.print_stats[i]['value'])), color='w', 
-                            xy=(x, y), xytext=(1.20*np.sign(x), 1.4*y),fontsize=7,
-                            horizontalalignment=horizontalalignment, **kw)
+        #if self.staticTabBox == None:
+        data = []
+        for key in self.this.print_stats:
+            data.append(key['value'])
+        colors = ['#3E3E3E', '#ADADAD', '#5A5A5A', '#3E3E3E']
+        fig = Figure(figsize=(6, 3), dpi=100)
+        ax = fig.add_subplot()
+        #fig, ax = plt.plot(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
+        wedges,  texts = ax.pie(data, colors=colors, wedgeprops=dict(width=0.1), startangle=-40)
+        kw = dict(arrowprops=dict(arrowstyle="-", color="w"),
+                zorder=0, va="center")
+        for i, p in enumerate(wedges):
+            ang = (p.theta2 - p.theta1)/2. + p.theta1
+            y = np.sin(np.deg2rad(ang))
+            x = np.cos(np.deg2rad(ang))
+            horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
+            connectionstyle = f"angle,angleA=0,angleB={ang}"
+            kw["arrowprops"].update({"connectionstyle": connectionstyle})
+            if "_" in self.this.print_stats[i]['name'] :
+                ax.annotate(_((self.this.print_stats[i]['name']).split('_')[1].capitalize()) + ': ' +str(int(self.this.print_stats[i]['value'])), color='w', 
+                        xy=(x, y), xytext=(1.20*np.sign(x), 1.4*y),fontsize=7,
+                        horizontalalignment=horizontalalignment, **kw)
+            else: 
+                ax.annotate(_((self.this.print_stats[i]['name'].replace("_", " ")).capitalize()) + ': ' +str(int(self.this.print_stats[i]['value'])), color='w', 
+                        xy=(x, y), xytext=(1.20*np.sign(x), 1.4*y),fontsize=7,
+                        horizontalalignment=horizontalalignment, **kw)
 
-            l = ax.legend(title='Total Job \n' + str(int(self.this.total_used['total_jobs'])), loc='center',facecolor='#0E0E0E', edgecolor='#0E0E0E')
-            ax.get_legend().get_title().set_color('white')
-            plt.setp(l.get_title(), multialignment='center')
-            for text in texts:
-                text.set_c('red')
-            [text.set_c('red') for text in texts]
-            ax.plot()
-            canvas = FigureCanvas(fig)  # a Gtk.DrawingArea
-            canvas.set_has_window(False)
-            canvas.set_size_request(300, 188)
-            fig.set_facecolor('#0E0E0E')
-            fig2 = Figure(figsize=(6, 3), dpi=100)
-            ax2 = fig2.add_subplot()
-            days = []
-            counts = []
-            max_filament = 10
-            for usage in self.this.filament_usage_array:
-                dt_object = datetime.fromtimestamp(usage[0])
-                days.append(dt_object.day)
-                if usage[1] > max_filament:
-                    max_filament = usage[1]
-                counts.append(usage[1])
-            colors2 = ['#63ABFD']
-            ax2.bar(days, counts,  color=colors2, width=0.2)
-            ax2.spines['bottom'].set_color('#4F4F4F')
-            ax2.spines['top'].set_color('#4F4F4F')
-            ax2.spines['right'].set_color('#4F4F4F')
-            ax2.spines['left'].set_color('#4F4F4F')
-            ax2.tick_params(axis='x', colors='white')      
-            ax2.tick_params(axis='y', colors='white')
-            ax2.set_axisbelow(True)      
-            new_patches = []
-            for patch in reversed(ax2.patches):
-                bb = patch.get_bbox()
-                color=patch.get_facecolor()
-                p_bbox = FancyBboxPatch((bb.xmin, bb.ymin),
-                                    abs(bb.width), abs(bb.height),
-                                    boxstyle="round,pad=-0.0040,rounding_size=0.015",
-                                    ec="none", fc=color,
-                                    mutation_aspect=4
-                                    )
-                patch.remove()
-                new_patches.append(p_bbox)
-            for patch in new_patches:
-                ax2.add_patch(patch)
-            ax2.grid(zorder=-1, color = '#4F4F4F', linewidth = 0.5)
-            ax2.set_facecolor("#0E0E0E")
-            ax2.set(ylim=[0, max_filament])
-            ax2.plot()
-            canvas2 = FigureCanvas(fig2)
-            canvas2.set_size_request(380, 188)
-            canvas2.set_has_window(False)
-            fig2.set_facecolor('#0E0E0E')
-            mon, sec = divmod(self.this.total_used['total_print_time'], 60)
-            hr, mon = divmod(mon, 60)
-            label = ("%dh %02dm %02ds" % (hr, mon, sec))
-            totalPrintTimeLabel = Gtk.Label(_("Total Print Time"), name="system-total-times-title-label")
-            totalPrintTimeLabel.set_halign(Gtk.Align.START)
-            totalPrintTimeValue = Gtk.Label(label, name="system-total-times-content-label")
-            totalPrintTimeValue.set_halign(Gtk.Align.START)
-            separatorTotalPrint = Gtk.HSeparator()
-            separatorTotalPrint.get_style_context().add_class("tab-separator")
-            
-            bodyBoxTotalPrintTimeBox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            bodyBoxTotalPrintTimeBox.set_valign(Gtk.Align.START)
-            bodyBoxTotalPrintTimeBox.add(totalPrintTimeLabel)
-            bodyBoxTotalPrintTimeBox.add(totalPrintTimeValue)
-            bodyBoxTotalPrintTimeBox.add(separatorTotalPrint)
-            bodyBoxTotalPrintTimeBox.set_name("tab-total-usabe-box")
+        l = ax.legend(title='Total Jobs \n' + str(int(self.this.total_used['total_jobs'])), loc='center',facecolor='#0E0E0E', edgecolor='#0E0E0E')
+        ax.get_legend().get_title().set_color('white')
+        plt.setp(l.get_title(), multialignment='center')
+        for text in texts:
+            text.set_c('red')
+        [text.set_c('red') for text in texts]
+        ax.plot()
+        canvas = FigureCanvas(fig)  # a Gtk.DrawingArea
+        canvas.set_has_window(False)
+        canvas.set_size_request(300, 188)
+        fig.set_facecolor('#0E0E0E')
+        fig2 = Figure(figsize=(6, 3), dpi=100)
+        ax2 = fig2.add_subplot()
+        days = []
+        counts = []
+        max_filament = 10
+        for usage in self.this.filament_usage_array:
+            dt_object = datetime.fromtimestamp(usage[0])
+            days.append(dt_object.day)
+            if usage[1] > max_filament:
+                max_filament = usage[1]
+            counts.append(usage[1])
+        colors2 = ['#63ABFD']
+        ax2.bar(days, counts,  color=colors2, width=0.2)
+        ax2.spines['bottom'].set_color('#4F4F4F')
+        ax2.spines['top'].set_color('#4F4F4F')
+        ax2.spines['right'].set_color('#4F4F4F')
+        ax2.spines['left'].set_color('#4F4F4F')
+        ax2.tick_params(axis='x', colors='white')      
+        ax2.tick_params(axis='y', colors='white')
+        ax2.set_axisbelow(True)      
+        new_patches = []
+        for patch in reversed(ax2.patches):
+            bb = patch.get_bbox()
+            color=patch.get_facecolor()
+            p_bbox = FancyBboxPatch((bb.xmin, bb.ymin),
+                                abs(bb.width), abs(bb.height),
+                                boxstyle="round,pad=-0.0040,rounding_size=0.015",
+                                ec="none", fc=color,
+                                mutation_aspect=4
+                                )
+            patch.remove()
+            new_patches.append(p_bbox)
+        for patch in new_patches:
+            ax2.add_patch(patch)
+        ax2.grid(zorder=-1, color = '#4F4F4F', linewidth = 0.5)
+        ax2.set_facecolor("#0E0E0E")
+        ax2.set(ylim=[0, max_filament])
+        ax2.plot()
+        canvas2 = FigureCanvas(fig2)
+        canvas2.set_size_request(380, 188)
+        canvas2.set_has_window(False)
+        fig2.set_facecolor('#0E0E0E')
+        mon, sec = divmod(self.this.total_used['total_print_time'], 60)
+        hr, mon = divmod(mon, 60)
+        label = ("%dh %02dm %02ds" % (hr, mon, sec))
+        totalPrintTimeLabel = Gtk.Label(_("Total Print Time"), name="system-total-times-title-label")
+        totalPrintTimeLabel.set_halign(Gtk.Align.START)
+        totalPrintTimeValue = Gtk.Label(label, name="system-total-times-content-label")
+        totalPrintTimeValue.set_halign(Gtk.Align.START)
+        separatorTotalPrint = Gtk.HSeparator()
+        separatorTotalPrint.get_style_context().add_class("tab-separator")
+        
+        bodyBoxTotalPrintTimeBox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        bodyBoxTotalPrintTimeBox.set_valign(Gtk.Align.START)
+        bodyBoxTotalPrintTimeBox.add(totalPrintTimeLabel)
+        bodyBoxTotalPrintTimeBox.add(totalPrintTimeValue)
+        bodyBoxTotalPrintTimeBox.add(separatorTotalPrint)
+        bodyBoxTotalPrintTimeBox.set_name("tab-total-usabe-box")
 
-            totalFilamentLabel = Gtk.Label(_("Total Filament Used"), name="system-total-times-title-label")
-            totalFilamentLabel.set_halign(Gtk.Align.START)
-            totalFilamentValue = Gtk.Label( "{:.1f}m".format( float(self.this.total_used['total_filament_used']/1000)) , name="system-total-times-content-label")
-            totalFilamentValue.set_halign(Gtk.Align.START)
-            separatorTotalFilament = Gtk.HSeparator()
-            separatorTotalFilament.get_style_context().add_class("tab-separator")
-            
-            bodyBoxTotalFilament =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            bodyBoxTotalFilament.set_valign(Gtk.Align.START)
-            bodyBoxTotalFilament.add(totalFilamentLabel)
-            bodyBoxTotalFilament.add(totalFilamentValue)
-            bodyBoxTotalFilament.add(separatorTotalFilament)
-            bodyBoxTotalFilament.set_name("tab-total-usabe-box")
+        totalFilamentLabel = Gtk.Label(_("Total Filament Used"), name="system-total-times-title-label")
+        totalFilamentLabel.set_halign(Gtk.Align.START)
+        totalFilamentValue = Gtk.Label( "{:.1f}m".format( float(self.this.total_used['total_filament_used']/1000)) , name="system-total-times-content-label")
+        totalFilamentValue.set_halign(Gtk.Align.START)
+        separatorTotalFilament = Gtk.HSeparator()
+        separatorTotalFilament.get_style_context().add_class("tab-separator")
+        
+        bodyBoxTotalFilament =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        bodyBoxTotalFilament.set_valign(Gtk.Align.START)
+        bodyBoxTotalFilament.add(totalFilamentLabel)
+        bodyBoxTotalFilament.add(totalFilamentValue)
+        bodyBoxTotalFilament.add(separatorTotalFilament)
+        bodyBoxTotalFilament.set_name("tab-total-usabe-box")
 
-            bodyBoxTotal =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            bodyBoxTotal.add(bodyBoxTotalPrintTimeBox)
-            bodyBoxTotal.add(canvas)
-            bodyBoxGraphic =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-            bodyBoxGraphic.add(bodyBoxTotalFilament)
-            bodyBoxGraphic.add(canvas2)
+        bodyBoxTotal =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        bodyBoxTotal.add(bodyBoxTotalPrintTimeBox)
+        bodyBoxTotal.add(canvas)
+        bodyBoxGraphic =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        bodyBoxGraphic.add(bodyBoxTotalFilament)
+        bodyBoxGraphic.add(canvas2)
 
-            self.staticTabBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-            self.staticTabBox.add(bodyBoxTotal)
-            self.staticTabBox.add(bodyBoxGraphic)
+        self.staticTabBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        self.staticTabBox.add(bodyBoxTotal)
+        self.staticTabBox.add(bodyBoxGraphic)
 
         self.bodyBox.add(self.staticTabBox)
         self.bodyBox.show_all()
@@ -217,8 +221,8 @@ class HomeTab(Gtk.Box):
             for text in texts:
                 text.set_c('red')
             [text.set_c('red') for text in texts]
-            self.canvas = FigureCanvas(self.fig)  # a Gtk.DrawingArea
-            self.canvas.set_size_request(110, 110)
+            self.cpuCanvas = FigureCanvas(self.fig)  # a Gtk.DrawingArea
+            self.cpuCanvas.set_size_request(110, 110)
             self.fig.set_facecolor('#0E0E0E')
             grid = Gtk.Grid(column_homogeneous=True,
                             column_spacing=10,
@@ -238,13 +242,13 @@ class HomeTab(Gtk.Box):
                 leftTopContentBox.pack_start(versionLabel1, False, False, 0)
                 leftTopContentBox.pack_start(loadLabel1, False, False, 0)
 
-                leftTopImage = self.this._gtk.Image("extrr", self.this._screen.width *.07, self.this._screen.width *.07)
-                self.leftTopImageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-                self.leftTopImageBox.pack_start(self.canvas, False, False, 0)
+#                leftTopImage = self.this._gtk.Image("extrr", self.this._screen.width *.07, self.this._screen.width *.07)
+#                self.leftTopImageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+#                self.leftTopImageBox.pack_start(self.cpuCanvas, False, False, 0)
 
                 leftTopBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
                 leftTopBox.pack_start(leftTopContentBox, False, False, 0)
-                leftTopBox.pack_start(self.leftTopImageBox, False, False, 0)
+#                leftTopBox.pack_start(self.leftTopImageBox, False, False, 0)
 
                 separator1 = Gtk.HSeparator()
                 separator1.get_style_context().add_class("tab-separator")
@@ -253,10 +257,10 @@ class HomeTab(Gtk.Box):
                 leftTopTotalBox.pack_start(separator1, False, False, 0)
                 
                 grid.attach(leftTopTotalBox, count, row, 1, 1)
-                count += 1
-                if count % 2 is 0:
-                    count = 0
-                    row += 1
+                row += 1
+                #if count % 2 is 0:
+                #    count = 0
+                #    row += 1
 
             data2 = [self.this.instant_mem, 100- self.this.instant_mem]
             colors2 = ['#7AD3FF', '#E6F5FD']
@@ -280,8 +284,8 @@ class HomeTab(Gtk.Box):
             for text in texts:
                 text.set_c('red')
             [text.set_c('red') for text in texts]
-            self.canvas2 = FigureCanvas(fig2)  # a Gtk.DrawingArea
-            self.canvas2.set_size_request(110, 110)
+            self.memCanvas = FigureCanvas(fig2)  # a Gtk.DrawingArea
+            self.memCanvas.set_size_request(110, 110)
             fig2.set_facecolor('#0E0E0E')
             if self.this.hostInfo:
                 host = self.this.hostInfo
@@ -302,10 +306,10 @@ class HomeTab(Gtk.Box):
                 leftTopContentBox.pack_start(versionLabel2, False, False, 0)
                 leftTopContentBox.pack_start(loadLabel1, False, False, 0)
 
-                leftTopImage = self.this._gtk.Image("extrr", self.this._screen.width *.07, self.this._screen.width *.07)
-                leftTopImageBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-                leftTopImageBox.pack_start(self.canvas2, False, False, 0)
-
+#                leftTopImage = self.this._gtk.Image("extrr", self.this._screen.width *.07, self.this._screen.width *.07)
+                leftTopImageBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+                leftTopImageBox.pack_start(self.memCanvas, False, False, 0)
+                leftTopImageBox.pack_start(self.cpuCanvas, False, False, 0)
                 leftTopBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
                 leftTopBox.pack_start(leftTopContentBox, False, False, 0)
                 leftTopBox.pack_start(leftTopImageBox, False, False, 0)
@@ -317,10 +321,10 @@ class HomeTab(Gtk.Box):
                 leftTopTotalBox.pack_start(separator1, False, False, 0)
                 
                 grid.attach(leftTopTotalBox, count, row, 1, 1)
-                count += 1
-                if count % 2 is 0:
-                    count = 0
-                    row += 1
+                row += 1
+                #if count % 2 is 0:
+                #    count = 0
+                #    row += 1
 
             gridBox = Gtk.Box()
             gridBox.set_halign(Gtk.Align.CENTER)
@@ -403,7 +407,7 @@ class HomeTab(Gtk.Box):
                 text.set_c('red')
             [text.set_c('red') for text in texts]
             plt.ion()
-            self.canvas.draw()
+            self.cpuCanvas.draw()
           
     def updateMEM(self, mem):
             if self.axCanEnter and round(self.mem) != round(mem):
@@ -429,7 +433,7 @@ class HomeTab(Gtk.Box):
                     text.set_c('red')
                 [text.set_c('red') for text in texts]
                 plt.ion()
-                self.canvas2.draw()
+                self.memCanvas.draw()
         
     def filament_value(self):
         for child in self.bodyBox.get_children():

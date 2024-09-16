@@ -41,5 +41,6 @@ class Panel(ScreenPanel):
         return False
 
     def on_click_continue_button(self):
-        self._screen.show_panel("co_print_test_main_fan", "co_print_test_main_fan", None, 1,True)
+        # self._screen.show_panel("co_print_test_main_fan", "co_print_test_main_fan", None, 1,True)
+        self._screen.show_panel("co_print_test_extrude", "co_print_test_extrude", None, 1,True)
 

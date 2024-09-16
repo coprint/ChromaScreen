@@ -169,7 +169,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
         except Exception as e:
             logging.exception(e) 
         
-        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
+        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update('ChromaScreen')
         # self.IsKlipperNeedUpdate = False
         # self.IsMainsailNeedUpdate = False
         # if(self.config_data != None) and (self.version_info != False) : 

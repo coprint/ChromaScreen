@@ -1118,6 +1118,19 @@ button#test-button-orange:active {
 	border-radius: 5px;
 	min-width: 10rem;
 }
+button#dialog-blue {
+	background-color: #3788ab;
+	background: #3788ab;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 5rem;
+}
+button#dialog-blue:active {
+	background-color: #ffffff;
+	font-size: 1.5em;
+	border-radius: 5px;
+	min-width: 5rem;
+}
 button#flat-button-yellow-skip {
 	background-color: #f7ba17;
 	background: #f7ba17;
@@ -2926,6 +2939,13 @@ combobox.adv-setting-combo window.popup * {
 .info-dialog {
 	border: 0.1em solid black;
 	padding: 2rem;
+	background-color: black;
+	margin: 1em;
+	border-radius: 15px;
+}
+.setup-printer-dialog {
+	border: 0.1em solid #fbf7f7;
+	padding: 5rem;
 	background-color: black;
 	margin: 1em;
 	border-radius: 15px;

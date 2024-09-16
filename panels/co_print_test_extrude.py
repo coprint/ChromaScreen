@@ -12,11 +12,14 @@ class Panel(ScreenPanel):
         testContentLabel.set_max_width_chars(50)
         testContentLabel.set_line_wrap(True)
         testContentLabel.set_halign(Gtk.Align.START)
+        extrudedButton = Gtk.Button(_('Extrude'),name ="test-button-blue")
+        extrudedButton.connect("clicked", self.on_click_extrude_button)
         yesButton = Gtk.Button(_('Yes'),name ="test-button-green")
         yesButton.connect("clicked", self.on_click_button,"yes")
         noButton = Gtk.Button(_('No'),name ="test-button-orange")
         noButton.connect("clicked", self.on_click_button,"no")
         ButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        ButtonBox.pack_start(extrudedButton, False, False, 0)
         ButtonBox.pack_start(yesButton, False, False, 0)
         ButtonBox.pack_end(noButton, False, False, 20)
         testBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -32,6 +35,9 @@ class Panel(ScreenPanel):
         main.set_halign(Gtk.Align.CENTER)
         main.set_valign(Gtk.Align.CENTER)
         self.content.add(main)
+
+    def on_click_extrude_button(self,widget):
+        self._screen._ws.klippy.gcode_script("G1 E60 F900")
 
     def on_click_button(self,widget,value):
         if value == "yes":

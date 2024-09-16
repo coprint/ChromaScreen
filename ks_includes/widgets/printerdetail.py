@@ -2,7 +2,7 @@ import logging
 import os
 
 import gi
-
+from ks_includes.widgets.setupprinter import SetupPrinter
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib, GdkPixbuf, Pango
 
@@ -108,8 +108,9 @@ class PrinterDetail(Gtk.Box):
 
     def setup_printer(self, widget):
         print(self.printerNumber)
-        self.this._screen.selected_wizard_printer = 'Printer'+str(self.printerNumber)+'WizardDone'
-        self.this._screen.selected_printer_index = self.printerNumber
-        self.this._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
-
-    
+        dialog = SetupPrinter(self.this, self.printerNumber)
+        dialog.get_style_context().add_class("setup-printer-dialog")
+        dialog.set_decorated(False)
+        # self.this._screen.selected_wizard_printer = 'Printer'+str(self.printerNumber)+'WizardDone'
+        # self.this._screen.selected_printer_index = self.printerNumber
+        # self.this._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)

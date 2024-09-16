@@ -46,17 +46,17 @@ class Panel(ScreenPanel):
         chromaPadTestEventBox.connect("button-press-event", self.on_chromapad_test)
         chromaPadTestEventBox.add(chromaPadTestBox)
         #--------Chroma-Head-Test-------
-        chromaHeadTestImage = self._gtk.Image("testasma", self._screen.width * .25, self._screen.width * .50)
-        chromaHeadTestLabel = Gtk.Label(_("Chroma Head Test"), name="printer-type-label")
-        chromaHeadTestBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        chromaHeadTestBox.set_halign(Gtk.Align.CENTER)
-        chromaHeadTestBox.set_valign(Gtk.Align.CENTER)
-        chromaHeadTestBox.set_name("printer-type-box")
-        chromaHeadTestBox.pack_start(chromaHeadTestImage, False, False, 0)
-        chromaHeadTestBox.pack_start(chromaHeadTestLabel, False, False, 0)
-        chromaHeadTestEventBox = Gtk.EventBox()
-        chromaHeadTestEventBox.connect("button-press-event", self.on_chromahead_test)
-        chromaHeadTestEventBox.add(chromaHeadTestBox)
+        # chromaHeadTestImage = self._gtk.Image("testasma", self._screen.width * .25, self._screen.width * .50)
+        # chromaHeadTestLabel = Gtk.Label(_("Chroma Head Test"), name="printer-type-label")
+        # chromaHeadTestBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        # chromaHeadTestBox.set_halign(Gtk.Align.CENTER)
+        # chromaHeadTestBox.set_valign(Gtk.Align.CENTER)
+        # chromaHeadTestBox.set_name("printer-type-box")
+        # chromaHeadTestBox.pack_start(chromaHeadTestImage, False, False, 0)
+        # chromaHeadTestBox.pack_start(chromaHeadTestLabel, False, False, 0)
+        # chromaHeadTestEventBox = Gtk.EventBox()
+        # chromaHeadTestEventBox.connect("button-press-event", self.on_chromahead_test)
+        # chromaHeadTestEventBox.add(chromaHeadTestBox)
         #--------Chroma-Head-Test-------
         chromaHeadTestImage1 = self._gtk.Image("chromahead", self._screen.width * .25, self._screen.width * .50)
         chromaHeadTestLabel1 = Gtk.Label(_("Chroma Head Tools Test"), name="printer-type-label")
@@ -73,7 +73,7 @@ class Panel(ScreenPanel):
         testsBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=30)
         testsBox.set_halign(Gtk.Align.CENTER)
         testsBox.pack_start(chromaPadTestEventBox, False, False, 0)
-        testsBox.pack_start(chromaHeadTestEventBox, False, False, 0)
+        #testsBox.pack_start(chromaHeadTestEventBox, False, False, 0)
         testsBox.pack_start(chromaHeadTestEventBox1, False, False, 0)
         #----------Main-Box--------
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
@@ -85,8 +85,8 @@ class Panel(ScreenPanel):
     def on_chromapad_test(self, widget, event):
         self._screen.show_panel("co_print_test_chromapad_touch", "co_print_test_chromapad_touch", "Language", 1, True)
 
-    def on_chromahead_test(self, widget, event):
-        self._screen.show_panel("co_print_test_chromahead", "co_print_test_chromahead", "Language", 1, True)
+    # def on_chromahead_test(self, widget, event):
+    #     self._screen.show_panel("co_print_test_chromahead", "co_print_test_chromahead", "Language", 1, True)
     
     def on_chromahead_test1(self, widget, event):
         self._screen.show_panel("co_print_test_waiting_head", "co_print_test_waiting_head", "Language", 1, True)
