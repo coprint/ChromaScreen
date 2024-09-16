@@ -397,22 +397,35 @@ class BasePanel(ScreenPanel):
            
         else:
             print(stdout.decode('utf-8'))
-    def need_update(self):
+    def need_update(self, value):
         if internet_on():
-            latest_version, download_url = self.get_latest_version()
-            if latest_version > self._screen.version:
-                return True
+            latest_version, download_url = self.get_latest_version(value)
+            if value == 'ChromaScreen':
+                if latest_version > self._screen.version:
+                    return True
+            elif value == 'configs':
+                if latest_version > self._screen.config_version:
+                    return True
         return False
-    def get_latest_version(self):
-        
-        url = f"https://api.github.com/repos/coprint/ChromaScreen/releases/latest"
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an error for bad responses
-        latest_release = response.json()
-        latest_version = latest_release['tag_name']
-        download_url = latest_release['assets'][0]['browser_download_url']
-        logging.info(f"  {latest_version, download_url}")
-        return latest_version, download_url
+    def get_latest_version(self, value):
+        if value == 'ChromaScreen':
+            url = f"https://api.github.com/repos/coprint/ChromaScreen/releases/latest"
+            response = requests.get(url)
+            response.raise_for_status()  # Raise an error for bad responses
+            latest_release = response.json()
+            latest_version = latest_release['tag_name']
+            download_url = latest_release['assets'][0]['browser_download_url']
+            logging.info(f"  {latest_version, download_url}")
+            return latest_version, download_url
+        elif value == 'configs':
+            url = f"https://api.github.com/repos/coprint/configs/releases/latest"
+            response = requests.get(url)
+            response.raise_for_status()  # Raise an error for bad responses
+            latest_release = response.json()
+            latest_version = latest_release['tag_name']
+            download_url = latest_release['assets'][0]['browser_download_url']
+            logging.info(f"  {latest_version, download_url}")
+            return latest_version, download_url
     
     def open_dialog(self):
         content = _("ChromaScreen Will update and restart?")  
@@ -458,6 +471,19 @@ class BasePanel(ScreenPanel):
             print('Ok')
             
             # dialog.destroy()
+        except Exception as e:
+            logging.debug(f"Error parsing jinja for title:\n{e}")
+
+    def update_configs(self):
+        try:
+            latest_version, download_url = self.get_latest_version('configs')
+            if latest_version > self._screen.config_version:
+                os.chdir("/tmp/")
+                self.run_command(f"wget {download_url}")
+                self.run_command("unzip configs.zip")
+                self.run_command("chmod 777 configs/update_configs.sh")
+                self.run_command("./configs/update_configs.sh")
+                self.run_command("rm -rf /tmp/configs.zip /tmp/configs")
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
 

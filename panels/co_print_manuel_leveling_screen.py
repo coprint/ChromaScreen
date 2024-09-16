@@ -1,6 +1,6 @@
 import logging
 import os
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
+from ks_includes.KlippyGcodes import KlippyGcodes
 import gi
 import contextlib
 from ks_includes.widgets.bottommenu import BottomMenu
@@ -21,7 +21,7 @@ from ks_includes.screen_panel import ScreenPanel
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-        
+        self.screws = {}
         menu = BottomMenu(self, False)
         
         #tabla = self._gtk.Image("tabla1", self._screen.width *.35, self._screen.width *.35)
@@ -52,13 +52,18 @@ class Panel(ScreenPanel):
         autoFourButtonBox.set_halign(Gtk.Align.CENTER)
         autoFourButtonBox.pack_start(self.autoFourButton, False, False, 0)
         
+        self.homeButton = Gtk.Button(_('Homing'),name ="save-settings-button")
+        self.homeButton.connect("clicked", self.homing)
+        homeButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        homeButtonBox.set_halign(Gtk.Align.CENTER)
+        homeButtonBox.pack_start(self.homeButton, False, False, 0)
         
         fixed = Gtk.Fixed()
         fixed.set_valign(Gtk.Align.START)
         fixed.set_halign(Gtk.Align.START)
         fixed.put(tabla, 5, 5)
-        fixed.put(autoThreeButtonBox, 8, 4)
-        fixed.put(autoFourButtonBox, 305, 4)
+        fixed.put(autoThreeButtonBox, 305, 4)
+        fixed.put(autoFourButtonBox, 8, 4)
         fixed.put(autoOneButtonBox, 8, 305)
         fixed.put(autoTwoButtonBox, 305, 305)
       
@@ -68,6 +73,7 @@ class Panel(ScreenPanel):
         left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         left_box.set_name("manuel-fixed-box")
         left_box.pack_start(fixedBox, False, False, 0)
+        left_box.pack_start(homeButtonBox, False, False, 0)
        
         changeOffsetButtonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         changeOffsetButtonBox.set_spacing(-13)
@@ -168,11 +174,21 @@ class Panel(ScreenPanel):
         self.page.pack_end(menu, False, True, 0)
         
         self.content.add(self.page)
+#        GLib.timeout_add_seconds(1, self._screen._ws.klippy.gcode_script(f'G28'),None)
     
+    def homing(self, widget):
+        self._screen._ws.klippy.gcode_script(KlippyGcodes.HOME)
 
     def manuel_level(self, widget, value):
-        self.dialog = InfoDialog(self, _("This Feature is coming in the next update, thank you for using ChromaScreen."), True)
-        self.dialog.get_style_context().add_class("alert-info-dialog")
+        for screw in self.screws:
+            if self.screw == 'screw' + str(value):
+                logging.info(f"{screw}{self.screws[screw]}")
+                x_position = self.screws[screw].split(',')[0]
+                y_position = self.screws[screw].split(',')[1].replace(' ', '')
+                self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} Z0 F3000')
+        
+        # self.dialog = InfoDialog(self, _("This Feature is coming in the next update, thank you for using ChromaScreen."), True)
+        # self.dialog.get_style_context().add_class("alert-info-dialog")
         # gcode_script = "go_screw_" + str(value)
 
 
@@ -200,10 +216,8 @@ class Panel(ScreenPanel):
         )
    
     def process_update(self, action, data):
-
-        # if self._printer.state == 'error' or self._printer.state == 'shutdown' or self._printer.state ==  'disconnected':
-        #     page_url = 'co_print_home_not_connected_screen'
-        #     self._screen.show_panel(page_url, page_url, "Language", 1, False)    
+        if action == 'notify_status_update' and 'configfile' in data:
+            self.screws = data['configfile']['config']['bed_screws']
 
         zoffset = float(self._printer.data["gcode_move"]["homing_origin"][2])
         if self.zoffset.get_label() != '{:.3f}'.format(zoffset):
@@ -213,6 +227,3 @@ class Panel(ScreenPanel):
         self.buttons[f"{self.OffsetConstant}"].get_style_context().remove_class("probe-change-offset-button-active")
         self.buttons[f"{number}"].get_style_context().add_class("probe-change-offset-button-active")
         self.OffsetConstant = number
-
-
-    

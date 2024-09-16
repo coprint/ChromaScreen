@@ -521,7 +521,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
             else:
                     self.heatedBed.updateValue(1/1, str(round(heater_bed_temp,1)) + f"° / {self.heater_bed_temp_target}°")
             ps = self._printer.get_stat("print_stats")
-            if 'filename' in ps and (ps['filename'] != self.filename):
+            if 'filename' in ps : #and (ps['filename'] != self.filename):
                 logging.debug(f"Changing filename: '{self.filename}' to '{ps['filename']}'")
                 self.image_load(ps['filename'])
                 self.filename = ps['filename']

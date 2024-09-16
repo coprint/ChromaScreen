@@ -101,8 +101,11 @@ def get_software_version():
     return "?"
 def internet_on():
     try:
-        request.urlopen('https://github.com/coprint/ChromaScreen/releases', timeout=2)
-        return True
+        response = request.urlopen('https://github.com/coprint/ChromaScreen/releases', timeout=2) 
+        if response.getcode() == 200:
+            return True
+        else:
+            return False
     except request.URLError as err: 
         return False
 

@@ -32,6 +32,7 @@ from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 version = "1.0.4"
+config_version = "0.9.0"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
     'configfile',
@@ -141,6 +142,7 @@ class ChromaScreen(Gtk.Window):
         self.apiclient = None
         self.not_connected_log_file = None
         self.version = version
+        self.config_version = config_version
         self.dialogs = []
         self.confirm = None
         self.panels_reinit = []
@@ -995,12 +997,12 @@ class ChromaScreen(Gtk.Window):
             if self._cur_panels[-1] not in list:
                 if 'co_print_splash_screen' not in self.panels or remove:
                     self.show_panel('co_print_splash_screen', "co_print_splash_screen",  self.isEnter, 2)
-                self.panels['co_print_splash_screen'].update_text()
+                #self.panels['co_print_splash_screen'].update_text()
                 self.isEnter = True
         else:
             if 'co_print_splash_screen' not in self.panels or remove:
                 self.show_panel('co_print_splash_screen', "co_print_splash_screen",  self.isEnter, 2)
-            self.panels['co_print_splash_screen'].update_text()
+            #self.panels['co_print_splash_screen'].update_text()
             self.isEnter = True
 
     def search_power_devices(self, devices):

@@ -28,7 +28,8 @@ class Panel(ScreenPanel):
         self.update_status = update_resp['result']
         self.version_info = self.update_status['version_info']
         self.version_info['mainsail']['version']
-        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
+        # self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update('ChromaScreen')
+        # self.ChromaScreenConfigsUpdate = self._screen.base_panel.need_update('configs')
         isUpdateReqKlipper = False
         if self.version_info['klipper']['version'] != self.version_info['klipper']['remote_version']:
             isUpdateReqKlipper = True        
@@ -39,7 +40,8 @@ class Panel(ScreenPanel):
         if self.version_info['moonraker']['version'] != self.version_info['moonraker']['remote_version']:
             isUpdateReqMoonraker = True
         macroone = SystemSetting(self, _("Klipper Update") + " " +_("Current")+ " ("  + self.version_info['klipper']['version'] +")", ("Update"), isUpdateReqKlipper, 'klipper')
-        macrotwo = SystemSetting(self, "ChromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , self.ChromaScreenNeedUpdate, 'ChromaScreen')
+        # macrotwo = SystemSetting(self, "ChromaScreen"+" "+_("Current") + " (" + self._screen.version +")", ("Update") , self.ChromaScreenNeedUpdate, 'ChromaScreen')
+        # macrotwoo = SystemSetting(self, "ChromaScreen Configs"+" "+_("Current") + " (" + self._screen.config_version +")", ("Update") , self.ChromaScreenConfigsUpdate, 'configs')
         macrothree = SystemSetting(self,_("Mainsail") + " "+_("Current") + " (" + self.version_info['mainsail']['version'] +")", ("Update"), isUpdateReqMainsail, 'mainsail')
         macrofour = SystemSetting(self,_("Moonraker") + " "+_("Current") + " (" + self.version_info['moonraker']['version'] +")", ("Update"), isUpdateReqMoonraker, 'moonraker')
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
@@ -62,7 +64,8 @@ class Panel(ScreenPanel):
         #     if(self.clean_version(self.config_data['MoonrakerVersion']) > self.clean_version(self.version_info['moonraker']['remote_version'])):
         #         self.IsMoonrakerNeedUpdate = True
         self.macro_flowbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        self.macro_flowbox.pack_start(macrotwo, True, True, 10)
+        #self.macro_flowbox.pack_start(macrotwo, True, True, 10)
+        #self.macro_flowbox.pack_start(macrotwoo, True, True, 0)
         self.macro_flowbox.pack_start(macroone, True, True, 0)
         self.macro_flowbox.pack_start(macrothree, True, True, 0)
         self.macro_flowbox.pack_start(macrofour, True, True, 0)
@@ -72,6 +75,12 @@ class Panel(ScreenPanel):
         updateButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         updateButtonBox.set_name("main-button-box")
         updateButtonBox.add(updateButton)
+        
+        chromaupdateButton = self._gtk.Button("download", _("Chroma Updates"), "system-refresh", 1.4)
+        chromaupdateButton.connect("clicked", self.VersionControl, 'ChromaScreen')
+        chromaupdateButtonBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
+        chromaupdateButtonBox.set_name("main-button-box")
+        chromaupdateButtonBox.add(chromaupdateButton)
         
         self.refreshButton = self._gtk.Button("redo", _("Refresh"), "system-refresh", 1.4)
         self.refreshButton.connect("clicked", self.refresh_updates)
@@ -95,6 +104,7 @@ class Panel(ScreenPanel):
        
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=20)
         buttonBox.set_halign(Gtk.Align.CENTER)
+        buttonBox.pack_start(chromaupdateButtonBox, False, False, 0)
         buttonBox.pack_start(updateButtonBox, False, False, 0)
         buttonBox.pack_start(refreshButtonBox, False, False, 0)
         buttonBox.pack_start(restartButtonBox, False, False, 0)
@@ -102,7 +112,7 @@ class Panel(ScreenPanel):
         
         self.macro_flowbox_parent = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.macro_flowbox_parent.pack_start(self.macro_flowbox, True, True, 0)
-
+        self.macro_flowbox_parent.set_halign(Gtk.Align.CENTER)
         main = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20)
         main.set_hexpand(True)
         main.set_halign(Gtk.Align.CENTER)
@@ -159,7 +169,7 @@ class Panel(ScreenPanel):
         GLib.timeout_add_seconds(1, self.get_updates, "true")
 
     def get_updates(self, refresh="false"):
-        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update()
+        self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update('ChromaScreen')
         update_resp = self._screen.apiclient.send_request(f"machine/update/status?refresh={refresh}")
         if not update_resp:
             self.update_status = {}
@@ -169,7 +179,7 @@ class Panel(ScreenPanel):
             vi = update_resp['result']['version_info']
             items = sorted(list(vi))
             
-            self.update_program_info()
+            #self.update_program_info()
         self.refreshButton.set_sensitive(True)
         self._screen.close_popup_message()
 
@@ -195,7 +205,10 @@ class Panel(ScreenPanel):
     def VersionControl(self, widget, name):
 
         if name == 'ChromaScreen':
-            self._screen.base_panel.open_dialog()
+            self._screen.show_panel("co_print_update_screen", "co_print_update_screen", 'home', 1,True)
+            #self._screen.base_panel.open_dialog()
+        elif name == 'configs':
+            self._screen.base_panel.update_configs()
         else:
             isDialogShow = True
             # if name == "klipper" and self.IsKlipperNeedUpdate:
