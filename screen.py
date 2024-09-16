@@ -202,8 +202,9 @@ class ChromaScreen(Gtk.Window):
             logging.exception(e) 
         if(self.config_data != None):
             self.pc_password = self.config_data['PcPassWord']
-            self.config_version = self.config_data['ConfigVersion']
             self.version = self.config_data['Version']
+            self.config_version = self.config_data['ConfigVersion']
+            
 
         with cd(self.klipper_path):
             self.kconfig = Kconfig(self.path_read)
@@ -1225,13 +1226,12 @@ def main():
     args = parser.parse_args()
 
     functions.setup_logging(
-        os.path.normpath(os.path.expanduser(args.logfile)),
-        version
+        os.path.normpath(os.path.expanduser(args.logfile))
     )
 
     functions.patch_threading_excepthook()
 
-    logging.info(f"ChromaScreen version: {version}")
+    #logging.info(f"ChromaScreen version: {version}")
     if not Gtk.init_check(None)[0]:
         logging.critical("Failed to initialize Gtk")
         raise RuntimeError
