@@ -486,6 +486,16 @@ class BasePanel(ScreenPanel):
                 self.run_command("chmod 777 configs/update_configs.sh")
                 self.run_command("./configs/update_configs.sh")
                 self.run_command("rm -rf /tmp/configs.zip /tmp/configs")
+                try:
+                    f = open(self._screen.path_config, encoding='utf-8')
+                    self.config_data = json.load(f)
+                    self.config_data['ConfigVesion'] = latest_version
+                    json_object = json.dumps(self.config_data, indent=4)
+                    with open(self._screen.path_config, "w") as outfile:
+                        outfile.write(json_object)
+
+                except Exception as e:
+                    logging.exception(e) 
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
 
