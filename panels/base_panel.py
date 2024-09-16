@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import contextlib
+import json
 import logging
 import os
 import subprocess
@@ -453,21 +454,31 @@ class BasePanel(ScreenPanel):
             # dialog.set_decorated(False)
             # dialog.run()
             #dialog.set_size_request(0, 0)
-            latest_version, download_url = self.get_latest_version()
+            latest_version, download_url = self.get_latest_version('ChromaScreen')
             if latest_version > self._screen.version:
                 os.chdir("/tmp/")
                 self.run_command(f"wget {download_url}")
                 self.run_command("unzip ChromaScreen.zip")
                 self.run_command("rsync -av --progress /tmp/ChromaScreen ~/ --exclude scripts/config.json ")
                 self.run_command("rm -rf /tmp/ChromaScreen.zip /tmp/ChromaScreen")
+
             # Gerekirse bağımlılıkları güncelle
-            requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
-            if os.path.exists(requirements_file):
-                print("Bağımlılıklar güncelleniyor...")
-            self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
-            print("Güncelleme tamamlandı.")
-            self._screen.close_popup_message()
-            self._screen.restart_ks()
+                requirements_file = os.path.join(self._screen.base_dir, "scripts/ChromaScreen-requirements.txt")
+                if os.path.exists(requirements_file):
+                    print("Bağımlılıklar güncelleniyor...")
+                self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
+                print("Güncelleme tamamlandı.")
+                try:
+                    f = open(self._screen.path_config, encoding='utf-8')
+                    self.config_data = json.load(f)
+                    self.config_data['Version'] = latest_version
+                    json_object = json.dumps(self.config_data, indent=4)
+                    with open(self._screen.path_config, "w") as outfile:
+                        outfile.write(json_object)
+                except Exception as e:
+                    logging.exception(e) 
+                self._screen.close_popup_message()
+                self._screen.restart_ks()
             print('Ok')
             
             # dialog.destroy()
@@ -484,6 +495,15 @@ class BasePanel(ScreenPanel):
                 self.run_command("chmod 777 configs/update_configs.sh")
                 self.run_command("./configs/update_configs.sh")
                 self.run_command("rm -rf /tmp/configs.zip /tmp/configs")
+                try:
+                    f = open(self._screen.path_config, encoding='utf-8')
+                    self.config_data = json.load(f)
+                    self.config_data['ConfigVersion'] = latest_version
+                    json_object = json.dumps(self.config_data, indent=4)
+                    with open(self._screen.path_config, "w") as outfile:
+                        outfile.write(json_object)
+                except Exception as e:
+                    logging.exception(e) 
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
 

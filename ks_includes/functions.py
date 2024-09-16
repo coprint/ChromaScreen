@@ -134,11 +134,10 @@ def patch_threading_excepthook():
 
 # Rotating file handler based on Klipper and Moonraker's implementation
 class ChromaScreenLoggingHandler(logging.handlers.RotatingFileHandler):
-    def __init__(self, software_version, filename, **kwargs):
+    def __init__(self, filename, **kwargs):
         super(ChromaScreenLoggingHandler, self).__init__(filename, **kwargs)
         self.rollover_info = {
             'header': f"{'-' * 20}ChromaScreen Log Start{'-' * 20}",
-            'version': f"Git Version: {software_version}",
         }
         lines = [line for line in self.rollover_info.values() if line]
         if self.stream is not None:
@@ -155,7 +154,7 @@ class ChromaScreenLoggingHandler(logging.handlers.RotatingFileHandler):
 
 
 # Logging based on Arksine's logging setup
-def setup_logging(log_file, software_version):
+def setup_logging(log_file):
     root_logger = logging.getLogger()
     queue = Queue()
     queue_handler = logging.handlers.QueueHandler(queue)
@@ -168,7 +167,7 @@ def setup_logging(log_file, software_version):
     stdout_hdlr.setFormatter(stdout_fmt)
     fh = listener = None
     try:
-        fh = ChromaScreenLoggingHandler(software_version, log_file, maxBytes=4194304, backupCount=1)
+        fh = ChromaScreenLoggingHandler( log_file, maxBytes=4194304, backupCount=1)
         formatter = logging.Formatter('%(asctime)s [%(filename)s:%(funcName)s()] - %(message)s')
         fh.setFormatter(formatter)
         listener = logging.handlers.QueueListener(queue, fh, stdout_hdlr)
