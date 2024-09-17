@@ -3,7 +3,7 @@ import logging
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-class SetupPrinterDialog(Gtk.Dialog):
+class SetupPrinter(Gtk.Dialog):
     def __init__(self, this, printerNumber):
         super().__init__(title="Setup Printer Dialog",parent=None ,flags=0)
         self.this = this
@@ -31,7 +31,6 @@ class SetupPrinterDialog(Gtk.Dialog):
         box.add(content)
         box.add(ButtonBox)
         self.show_all()
-        
     def on_click_button(self, widget, response_id):
         self.destroy()
         if response_id == 'yes':
@@ -47,7 +46,7 @@ class SetupPrinterDialog(Gtk.Dialog):
                 logging.exception(e) 
             self.this._screen.connect_printer('Printer_'+str(self.printerNumber))
 
-        else:
+        elif response_id == 'no':
             self.this._screen.selected_wizard_printer = 'Printer'+str(self.printerNumber)+'WizardDone'
             self.this._screen.selected_printer_index = self.printerNumber
             self.this._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
