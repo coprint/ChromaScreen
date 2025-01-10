@@ -2,32 +2,34 @@
 
 import argparse
 import json
+import locale
 import logging
 import os
-import subprocess
 import pathlib
-import traceback  # noqa
-import locale
+import subprocess
 import sys
+import traceback  # noqa
+
 import gi
 from kconfiglib import Kconfig
+
 from ks_includes.widgets.infodialog import InfoDialog
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk, GLib, Pango
-from importlib import import_module
-from importlib import reload
-from jinja2 import Environment
+from importlib import import_module, reload
 from signal import SIGTERM
 
+from gi.repository import Gdk, GLib, Gtk, Pango
+from jinja2 import Environment
+
 from ks_includes import functions
-from ks_includes.KlippyWebsocket import KlippyWebsocket
-from ks_includes.KlippyRest import KlippyRest
+from ks_includes.config import ChromaScreenConfig
 from ks_includes.files import KlippyFiles
 from ks_includes.KlippyGtk import KlippyGtk
+from ks_includes.KlippyRest import KlippyRest
+from ks_includes.KlippyWebsocket import KlippyWebsocket
 from ks_includes.printer import Printer
 from ks_includes.widgets.keyboard import Keyboard
-from ks_includes.config import ChromaScreenConfig
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -202,14 +204,20 @@ class ChromaScreen(Gtk.Window):
             logging.exception(e) 
         if(self.config_data != None):
             self.pc_password = self.config_data['PcPassWord']
+            if  'ChromaScreeenVersion' in self.config_data:
+                self.version = self.config_data['ChromaScreeenVersion']
+            else:
+                self.config_data['ChromaScreeenVersion'] = self.version
+                with open('config.json', 'w', encoding='utf-8') as file:
+                    json.dump(self.config_data, file, indent=4) 
+                    
             if 'ConfigVersion' in self.config_data:
                 self.config_version = self.config_data['ConfigVersion']
             else:
                 self.config_version = '0.9.0'
                 self.config_data['ConfigVersion'] = '0.9.0'
-                with open('test.json', 'w', encoding='utf-8') as file:
-                    json.dump(self.config_data, file, indent=4) 
-               
+                with open('config.json', 'w', encoding='utf-8') as file:
+                    json.dump(self.config_data, file, indent=4)
 
         with cd(self.klipper_path):
             self.kconfig = Kconfig(self.path_read)

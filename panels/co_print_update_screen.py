@@ -1,10 +1,12 @@
 import json
 import logging
+
 import gi
 
 from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.initheader import InitHeader
 from ks_includes.widgets.systemsetting import SystemSetting
+
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
@@ -62,13 +64,12 @@ class Panel(ScreenPanel):
         main.pack_end(buttonBox, False, False, 25)
         self.content.add(main)
         self._screen.base_panel.visible_menu(False)
-       
 
     def VersionControl(self, widget, name):
         if name == 'ChromaScreen':
-            self._screen.base_panel.open_dialog()
+            self._screen.base_panel.open_dialog("ChromaScreen")
         elif name == 'configs':
-            self._screen.base_panel.update_configs()
+            self._screen.base_panel.open_dialog("configs")
 
     def refresh_updates(self, widget=None):
         self._screen.show_popup_message(_("Checking for updates, please wait..."), level=1)
@@ -79,7 +80,7 @@ class Panel(ScreenPanel):
         self.ChromaScreenNeedUpdate = self._screen.base_panel.need_update('ChromaScreen')
         # dialog.destroy()
         self._screen.close_popup_message()
-      
+
     def on_click_button(self, continueButton, data):
         if self.way == 'home':
             self._screen.show_panel("co_print_system_setting_screen", "co_print_system_setting_screen", None, 1,True)

@@ -8,16 +8,19 @@ import sys
 
 import gi
 import requests
+
 from ks_includes.functions import internet_on
 from ks_includes.widgets.infodialog import InfoDialog
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib, Gtk, Pango
-from jinja2 import Environment
 from datetime import datetime
 from math import log
-from ks_includes.widgets.areyousuredialog import AreYouSureDialog
+
+from gi.repository import GLib, Gtk, Pango
+from jinja2 import Environment
+
 from ks_includes.screen_panel import ScreenPanel
+from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 
 
 class BasePanel(ScreenPanel):
@@ -428,19 +431,32 @@ class BasePanel(ScreenPanel):
             logging.info(f"  {latest_version, download_url}")
             return latest_version, download_url
     
-    def open_dialog(self):
-        content = _("ChromaScreen Will update and restart?")  
-        dialog = AreYouSureDialog( content, self)
-        dialog.get_style_context().add_class("network-dialog")
-        dialog.set_decorated(False)
-        response = dialog.run()
-        if response == Gtk.ResponseType.OK:
-            dialog.destroy()
-            self.update_project()
-        elif response == Gtk.ResponseType.CANCEL:
-                print('Cancel')
+    def open_dialog(self, update_project):
+        if update_project == "ChromaScreen":
+            content = _("ChromaScreen Will update and restart?")  
+            dialog = AreYouSureDialog( content, self)
+            dialog.get_style_context().add_class("network-dialog")
+            dialog.set_decorated(False)
+            response = dialog.run()
+            if response == Gtk.ResponseType.OK:
                 dialog.destroy()
-
+                self.update_project()
+            elif response == Gtk.ResponseType.CANCEL:
+                    print('Cancel')
+                    dialog.destroy()
+        elif update_project == "configs":
+            now = datetime.now()
+            content = _("The currently selected printer_"+str(self._screen.selected_printer_index)+" configurations will back up as configs_backup_"+ now.strftime("%d_%m_%Y")+".zip. The printer.cfg file will not be updated, but the other configuration files will be updated. Do you confirm?")  
+            dialog = AreYouSureDialog( content, self)
+            dialog.get_style_context().add_class("network-dialog")
+            dialog.set_decorated(False)
+            response = dialog.run()
+            if response == Gtk.ResponseType.OK:
+                dialog.destroy()
+                self.update_configs()
+            elif response == Gtk.ResponseType.CANCEL:
+                    print('Cancel')
+                    dialog.destroy()
     def update_project(self):
         try:
            # Proje dizinine git
@@ -480,24 +496,19 @@ class BasePanel(ScreenPanel):
         try:
             latest_version, download_url = self.get_latest_version('configs')
             if latest_version > self._screen.config_version:
+                destination_data_folder =  os.path.join(os.path.expanduser("~/"), "printer_"+str(self._screen.selected_printer_index)+"_data", "config")
+                os.chdir(destination_data_folder)
+                now = datetime.now()
+                self.run_command("zip -rv configs_backup_"+ now.strftime("%d_%m_%Y")+".zip .")
                 os.chdir("/tmp/")
                 self.run_command(f"wget {download_url}")
                 self.run_command("unzip configs.zip")
-                self.run_command("chmod 777 configs/update_configs.sh")
-                self.run_command("./configs/update_configs.sh")
+                self.run_command('cp -r configs/* '+ destination_data_folder)
                 self.run_command("rm -rf /tmp/configs.zip /tmp/configs")
-                try:
-                    f = open(self._screen.path_config, encoding='utf-8')
-                    self.config_data = json.load(f)
-                    self.config_data['ConfigVesion'] = latest_version
-                    json_object = json.dumps(self.config_data, indent=4)
-                    with open(self._screen.path_config, "w") as outfile:
-                        outfile.write(json_object)
-
-                except Exception as e:
-                    logging.exception(e) 
+                self._screen.config_data['ConfigVersion'] = latest_version
+                json_object = json.dumps(self._screen.config_data, indent=4)
+                with open(self._screen.path_config, "w") as outfile:
+                    outfile.write(json_object)
+                self._screen.restart_ks() 
         except Exception as e:
             logging.debug(f"Error parsing jinja for title:\n{e}")
-
-       
-        

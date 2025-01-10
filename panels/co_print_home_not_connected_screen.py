@@ -1,22 +1,25 @@
+import contextlib
 import json
 import logging
 import os
 import time
+
+import gi
+
+from ks_includes.functions import internet_on
 from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
 from ks_includes.widgets.areyousuredialog import AreYouSureDialog
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
-import gi
-import contextlib
-from ks_includes.functions import internet_on
 from ks_includes.widgets.bottommenu import BottomMenu
+from ks_includes.widgets.checkbuttonbox import CheckButtonBox
 from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.keypad import Keypad
-from ks_includes.widgets.progressbar import ProgressBar
 from ks_includes.widgets.mainbutton import MainButton
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-from ks_includes.screen_panel import ScreenPanel
+from ks_includes.widgets.progressbar import ProgressBar
 
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk, Pango
+
+from ks_includes.screen_panel import ScreenPanel
 
 # def create_panel(*args):
 #     return CoPrintHomeNotConnectedScreen(*args)
@@ -424,7 +427,7 @@ class Panel(ScreenPanel, metaclass=Singleton):
     
     def VersionControl(self, widget, name):
         if name == 'ChromaScreen':
-            self._screen.base_panel.open_dialog()
+            self._screen.base_panel.open_dialog("ChromaScreen")
         else:
             isDialogShow = True
             # if name == "klipper" and self.IsKlipperNeedUpdate:

@@ -1,16 +1,18 @@
+import contextlib
 import logging
 import os
-from ks_includes.KlippyGcodes import KlippyGcodes
+
 import gi
-import contextlib
+
+from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.zaxishorizontal import zAxisHorizontal
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk, Pango
 
 from ks_includes.screen_panel import ScreenPanel
-
 
 # def create_panel(*args):
 #     return CoPrintManuelLevelingScreen(*args)
@@ -181,7 +183,7 @@ class Panel(ScreenPanel):
 
     def manuel_level(self, widget, value):
         for screw in self.screws:
-            if self.screw == 'screw' + str(value):
+            if screw == 'screw' + str(value):
                 logging.info(f"{screw}{self.screws[screw]}")
                 x_position = self.screws[screw].split(',')[0]
                 y_position = self.screws[screw].split(',')[1].replace(' ', '')
