@@ -1229,7 +1229,7 @@ def main():
         "-c", "--configfile", default=os.path.join(homedir, "ChromaScreen.conf"), metavar='<configfile>',
         help="Location of ChromaScreen configuration file"
     )
-    logdir = os.path.join(homedir, "printer_data", "logs")
+    logdir = os.path.join(homedir, "printer_1_data", "logs")
     if not os.path.exists(logdir):
         logdir = "/tmp"
     parser.add_argument(
