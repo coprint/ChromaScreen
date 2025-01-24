@@ -3,11 +3,11 @@ import logging
 import os
 
 import gi
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib
+from gi.repository import GLib, Gtk, Pango
 
 from ks_includes.screen_panel import ScreenPanel
-
 
 # def create_panel(*args):
 #     return CoPrintSplashScreenPanel(*args)
@@ -89,7 +89,7 @@ class Panel(ScreenPanel):
             if(self.config_data['InitConfigDone'] == False):
                 self.changed = True
                 self._screen.show_panel("co_print_language_select_screen", "co_print_language_select_screen", "Language", 1, False)
-            elif(self.config_data['Printer1WizardDone'] == False):
+            elif(self.config_data[self._screen.selected_wizard_printer] == False):
                 self.changed = True
                 self._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
            

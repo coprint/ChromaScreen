@@ -2,14 +2,15 @@ import logging
 import os
 
 import gi
+
+from ks_includes.widgets.printersetting import PrinterSetting
 from ks_includes.widgets.setupprinter import SetupPrinter
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib, GdkPixbuf, Pango
+from gi.repository import GdkPixbuf, GLib, Gtk, Pango
 
 
 class PrinterDetail(Gtk.Box):
-  
-
     def __init__(self, this, _printerName, _printerSubName, _printerStatus, _printerStatusStyle, _printerImage):
         super().__init__()
         self.this = this
@@ -26,12 +27,11 @@ class PrinterDetail(Gtk.Box):
         settingButton.set_always_show_image(True)
         settingButton.set_halign(Gtk.Align.END)
         settingButton.set_valign(Gtk.Align.START)
-       # printerDetailBox.pack_start(settingButton, False, False, 0)
-        
-        
+        settingButton.connect("clicked", self.printer_setting)
+        if _printerStatusStyle != 'printer-status-not-configured':
+            printerDetailBox.pack_start(settingButton, False, False, 0)
         
         printerName = Gtk.Label('Printer: ' + this._screen.rename_string(_printerName,20), name="printer-name-label")
-        
         
         #printerName = Gtk.Label(_printerName, name="printer-name-label")
         
@@ -90,8 +90,10 @@ class PrinterDetail(Gtk.Box):
         
             
         settingButtonWithChangePrinterBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        settingButtonWithChangePrinterBox.set_name("change-printer-box")
-        settingButtonWithChangePrinterBox.pack_start(settingButton, False, False, 0)
+        if _printerName == this._screen.connected_printer:
+            settingButtonWithChangePrinterBox.set_name("change-printer-box-active")
+        else:
+            settingButtonWithChangePrinterBox.set_name("change-printer-box")
         settingButtonWithChangePrinterBox.pack_start(changePrinterBox, False, False, 0)
         
         
@@ -114,3 +116,9 @@ class PrinterDetail(Gtk.Box):
         # self.this._screen.selected_wizard_printer = 'Printer'+str(self.printerNumber)+'WizardDone'
         # self.this._screen.selected_printer_index = self.printerNumber
         # self.this._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
+        
+        
+        def printer_setting(self, widget):
+            dialog = PrinterSetting(self.this, self.printerNumber)
+            dialog.get_style_context().add_class("setup-printer-dialog")
+            dialog.set_decorated(False)

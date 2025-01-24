@@ -122,8 +122,8 @@ class ChromaScreen(Gtk.Window):
     path_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_list.json'
     base_dir = f'{computer_name}ChromaScreen'
     path_config = f'{computer_name}ChromaScreen/scripts/config.json'
-    selected_wizard_printer = 'Printer1WizardDone'
-    selected_printer_index = 1
+    selected_wizard_printer = ''
+    selected_printer_index = 0
     
     path_base_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_mcu/'
     kconfig = None
