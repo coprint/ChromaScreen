@@ -483,7 +483,10 @@ class BasePanel(ScreenPanel):
                 if os.path.exists(requirements_file):
                     print("Bağımlılıklar güncelleniyor...")
                 self.run_command(f"{sys.executable} -m pip install -r scripts/ChromaScreen-requirements.txt")
-                print("Güncelleme tamamlandı.")
+                self._screen.config_data['ChromaScreenVersion'] = latest_version
+                json_object = json.dumps(self._screen.config_data, indent=4)
+                with open(self._screen.path_config, "w") as outfile:
+                    outfile.write(json_object)
                 self._screen.close_popup_message()
                 self._screen.restart_ks()
             print('Ok')
