@@ -118,7 +118,7 @@ class PrinterDetail(Gtk.Box):
         # self.this._screen.show_panel("co_print_printing_brand_selection_new", "co_print_printing_brand_selection_new", "Language", 1, False)
         
         
-        def printer_setting(self, widget):
-            dialog = PrinterSetting(self.this, self.printerNumber)
-            dialog.get_style_context().add_class("setup-printer-dialog")
-            dialog.set_decorated(False)
+    def printer_setting(self, widget):
+        dialog = PrinterSetting(self.this, self.printerNumber)
+        dialog.get_style_context().add_class("setup-printer-dialog")
+        dialog.set_decorated(False)

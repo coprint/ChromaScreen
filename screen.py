@@ -33,7 +33,7 @@ from ks_includes.widgets.keyboard import Keyboard
 from panels.base_panel import BasePanel
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-version = "1.0.5"
+version = "1.0.6"
 #config_version = "0.9.0"
 PRINTER_BASE_STATUS_OBJECTS = [
     'bed_mesh',
@@ -128,7 +128,7 @@ class ChromaScreen(Gtk.Window):
     path_base_brand = f'{computer_name}ChromaScreen/scripts/printer_brand_mcu/'
     kconfig = None
     
-    log_path = os.path.join(os.path.expanduser("~/"), "printer_data", "logs")
+    log_path = os.path.join(os.path.expanduser("~/"), "printer_1_data", "logs")
 
     
 
@@ -204,10 +204,10 @@ class ChromaScreen(Gtk.Window):
             logging.exception(e) 
         if(self.config_data != None):
             self.pc_password = self.config_data['PcPassWord']
-            if  'ChromaScreeenVersion' in self.config_data:
-                self.version = self.config_data['ChromaScreeenVersion']
+            if  'ChromaScreenVersion' in self.config_data:
+                self.version = self.config_data['ChromaScreenVersion']
             else:
-                self.config_data['ChromaScreeenVersion'] = self.version
+                self.config_data['ChromaScreenVersion'] = self.version
                 with open('config.json', 'w', encoding='utf-8') as file:
                     json.dump(self.config_data, file, indent=4) 
                     

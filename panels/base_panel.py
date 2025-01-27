@@ -446,7 +446,7 @@ class BasePanel(ScreenPanel):
                     dialog.destroy()
         elif update_project == "configs":
             now = datetime.now()
-            content = _("The currently selected printer_"+str(self._screen.selected_printer_index)+" configurations will back up as configs_backup_"+ now.strftime("%d_%m_%Y")+".zip. The printer.cfg file will not be updated, but the other configuration files will be updated. Do you confirm?")  
+            content = _("All printers configurations will back up one by one in config folders as configs_backup_"+ now.strftime("%d_%m_%Y")+".zip. The printer.cfg file will not be updated, but the other configuration files will be updated. Do you confirm?")  
             dialog = AreYouSureDialog( content, self)
             dialog.get_style_context().add_class("network-dialog")
             dialog.set_decorated(False)
@@ -496,14 +496,15 @@ class BasePanel(ScreenPanel):
         try:
             latest_version, download_url = self.get_latest_version('configs')
             if latest_version > self._screen.config_version:
-                destination_data_folder =  os.path.join(os.path.expanduser("~/"), "printer_"+str(self._screen.selected_printer_index)+"_data", "config")
-                os.chdir(destination_data_folder)
-                now = datetime.now()
-                self.run_command("zip -rv configs_backup_"+ now.strftime("%d_%m_%Y")+".zip .")
-                os.chdir("/tmp/")
-                self.run_command(f"wget {download_url}")
-                self.run_command("unzip configs.zip")
-                self.run_command('cp -r configs/* '+ destination_data_folder)
+                for i in range(1,9):
+                    destination_data_folder =  os.path.join(os.path.expanduser("~/"), "printer_"+str(i)+"_data", "config")
+                    os.chdir(destination_data_folder)
+                    now = datetime.now()
+                    self.run_command("zip -rv configs_backup_"+ now.strftime("%d_%m_%Y")+".zip .")
+                    os.chdir("/tmp/")
+                    self.run_command(f"wget {download_url}")
+                    self.run_command("unzip configs.zip")
+                    self.run_command('cp -r configs/* '+ destination_data_folder)
                 self.run_command("rm -rf /tmp/configs.zip /tmp/configs")
                 self._screen.config_data['ConfigVersion'] = latest_version
                 json_object = json.dumps(self._screen.config_data, indent=4)

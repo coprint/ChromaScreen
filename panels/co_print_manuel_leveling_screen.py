@@ -216,6 +216,7 @@ class Panel(ScreenPanel):
         self.dialog.destroy()
 
     def save(self,asd):
+        self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_PROBE")
         script = {"script": "SAVE_CONFIG"}
         self._screen._confirm_send_action(
             None,
