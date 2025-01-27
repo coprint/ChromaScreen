@@ -4,7 +4,7 @@ import os
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib, GdkPixbuf
+from gi.repository import GdkPixbuf, GLib, Gtk
 
 
 class BottomMenu(Gtk.Box):
@@ -58,7 +58,7 @@ class BottomMenu(Gtk.Box):
         printFilesButtonBox.pack_start(printFilesLabel, False, False, 0)
         printFilesButton = Gtk.Button(name ="menu-buttons")
         printFilesButton.add(printFilesButtonBox)
-        printFilesButton.connect("clicked", self.on_click_menu_button, 'co_print_printing_files_screen', False)
+        printFilesButton.connect("clicked", self.on_click_menu_button, 'co_print_printing_files_screen')
         printFilesButton.set_always_show_image (True)
         menuBox.pack_start(printFilesButton, True, True, 0)
             
@@ -70,7 +70,7 @@ class BottomMenu(Gtk.Box):
         pintersButtonBox.pack_start(pintersLabel, False, False, 0)
         pintersButton = Gtk.Button(name ="menu-buttons")
         pintersButton.add(pintersButtonBox)
-        pintersButton.connect("clicked", self.on_click_menu_button, 'co_print_change_printer', False)
+        pintersButton.connect("clicked", self.on_click_menu_button, 'co_print_change_printer')
         pintersButton.set_always_show_image (True)
         menuBox.pack_start(pintersButton, True, True, 0)
 
@@ -82,7 +82,7 @@ class BottomMenu(Gtk.Box):
         configureButtonBox.pack_start(configureLabel, False, False, 0)
         configureButton = Gtk.Button(name ="menu-buttons")
         configureButton.add(configureButtonBox)
-        configureButton.connect("clicked", self.on_click_menu_button, 'co_print_setting_screen', False)
+        configureButton.connect("clicked", self.on_click_menu_button, 'co_print_setting_screen')
         configureButton.set_always_show_image (True)
         menuBox.pack_start(configureButton, True, True, 0)
         
@@ -112,14 +112,15 @@ class BottomMenu(Gtk.Box):
     def on_click_emergency_stop(self, button):
         self.parent._screen._ws.klippy.emergency_stop()
 
-    def on_click_menu_button(self, button, data, active_page = True):
-        if  active_page:
-            if self.parent._printer.state == 'error' or self.parent._printer.state == 'shutdown' or self.parent._printer.state == 'disconnected':
+    def on_click_menu_button(self, button, data):
+        if  data == "co_print_home_screen" and self.parent._printer.state == 'error' or self.parent._printer.state == 'shutdown' or self.parent._printer.state == 'disconnected':
                 self.parent._screen.show_panel("co_print_home_not_connected_screen", "co_print_home_not_connected_screen",
                                         "Language", 1, True)
-            else:
-                self.parent._screen.show_panel(data, data, "Language", 1, True)
         elif data == 'co_print_printing_files_screen' and  (self.parent._printer.state == 'printing' or self.parent._printer.state == 'paused'):
             self.parent._screen.show_panel('co_print_printing_screen', 'co_print_printing_screen', "Language", 1, False)
+        elif data == 'co_print_change_printer':
+            logging.info("Change Printer")
+            self.parent._screen.show_panel(data, data, "Language", 1, False) 
         elif(self.parent._printer.state != 'printing'):
             self.parent._screen.show_panel(data, data, "Language", 1, True)
+            

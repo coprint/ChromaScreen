@@ -1,20 +1,23 @@
+import contextlib
 import logging
 import os
 import subprocess
 import time
-from ks_includes.widgets.areyousuredialog import AreYouSureDialog
-from ks_includes.widgets.checkbuttonbox import CheckButtonBox
+
 import gi
-import contextlib
-from ks_includes.widgets.bottommenu import BottomMenu
+
 from ks_includes.widgets.addnetworkdialog import AddNetworkDialog
+from ks_includes.widgets.areyousuredialog import AreYouSureDialog
+from ks_includes.widgets.bottommenu import BottomMenu
+from ks_includes.widgets.checkbuttonbox import CheckButtonBox
+from ks_includes.widgets.factoryreset import FactoryReset
 from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.wificard import WifiCard
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk, Pango
 
 from ks_includes.screen_panel import ScreenPanel
-
 
 # def create_panel(*args):
 #     return CoPrintAdvancedSettingScreen(*args)
@@ -344,6 +347,15 @@ class Panel(ScreenPanel):
         slicerTimeBox.pack_end(self.scale, True, True, 0)
         #box_array.append(slicerTimeBox)
         
+        #Factory Reset  #
+        resetLabel = Gtk.Label(_("Factory Reset"))
+        resetButton = Gtk.Button(_('Reset'),name ="advanced-setting-button")
+        resetButton.connect("clicked", self.factory_reset)
+        resetBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        resetBox.set_name("adv-settings-box-with-button")
+        resetBox.pack_start(resetLabel, False, False, 0)
+        resetBox.pack_end(resetButton, False, False, 0)
+        box_array.append(resetBox)
         
         scrollBox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         for box in box_array:
@@ -476,4 +488,9 @@ class Panel(ScreenPanel):
         elif response == Gtk.ResponseType.CANCEL:
             print('Cancel')
             dialog.destroy()
-    
+            
+    def factory_reset(self,widget):        
+        logging.info("Factory Reset initiated")
+        dialog = FactoryReset(self)
+        dialog.get_style_context().add_class("setup-printer-dialog")
+        dialog.set_decorated(False)

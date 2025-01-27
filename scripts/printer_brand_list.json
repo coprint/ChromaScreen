@@ -3,7 +3,7 @@
         {"name": "Ender 3", "dimension": "235 x 235 x 300", "image": "printer", "fileName": "cp-creality-ender3.hex", "folderName": "cp-creality-ender3", "processor": "Atmega"},
         {"name": "CR-10 Max", "dimension": "235 x 235 x 300", "image": "cp-img-cr10max", "fileName": "cp-creality-cr10-max.hex", "folderName": "cp-creality-cr10-max", "processor": "Atmega"},
         {"name": "CR-10 V2", "dimension": "235 x 235 x 300", "image": "cp-img-cr10v2", "fileName": "cp-creality-10-v2.bin", "folderName": "cp-creality-10-v2", "processor": ""},
-        {"name": "Ender 3v2 2020", "dimension": "220 x 220 x 250", "image": "cp-img-creality-ender3-v2-2020", "fileName": "creality-ender3-v2-2020.bin", "folderName": "creality-ender3-v2-2020", "processor": ""},
+        {"name": "Ender 3v2 2020", "dimension": "220 x 220 x 250", "image": "cp-img-creality-ender3-v2-2020", "fileName": "cp-creality-ender3-v2-2020.bin", "folderName": "cp-creality-ender3-v2-2020", "processor": ""},
         {"name": "Ender 3 Pro", "dimension": "220 x 220 x 250", "image": "cp-img-creality-ender3pro-2020", "fileName": "cp-creality-ender3pro-2020.bin", "folderName": "cp-creality-ender3pro-2020", "processor": ""},
         {"name": "Ender 3v2 Neo", "dimension": "300 x 300 x 340", "image": "cp-img-creality-ender3-v2-neo-2022", "fileName": "cp-creality-ender3-v2-neo-2022.bin", "folderName": "cp-creality-ender3-v2-neo-2022", "processor": ""},
         {"name": "Ender 3 Max", "dimension": "300 x 300 x 340", "image": "cp-img-creality-ender3max-2021", "fileName": "cp-creality-ender3max-2021.bin", "folderName": "cp-creality-ender3max-2021", "processor": ""},

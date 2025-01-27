@@ -1,18 +1,21 @@
+import contextlib
 import json
 import logging
 import os
 import subprocess
 import sys
+
 import gi
-import contextlib
+
 from ks_includes.widgets.areyousuredialog import AreYouSureDialog
 from ks_includes.widgets.bottommenu import BottomMenu
 from ks_includes.widgets.macros import Macros
 from ks_includes.widgets.systemsetting import SystemSetting
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
-from ks_includes.screen_panel import ScreenPanel
 
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk, Pango
+
+from ks_includes.screen_panel import ScreenPanel
 
 # def create_panel(*args):
 #     return CoPrintSystemSettingScreen(*args)
@@ -207,8 +210,8 @@ class Panel(ScreenPanel):
         if name == 'ChromaScreen':
             self._screen.show_panel("co_print_update_screen", "co_print_update_screen", 'home', 1,True)
             #self._screen.base_panel.open_dialog()
-        elif name == 'configs':
-            self._screen.base_panel.update_configs()
+        # elif name == 'configs':
+        #     self._screen.base_panel.update_configs()
         else:
             isDialogShow = True
             # if name == "klipper" and self.IsKlipperNeedUpdate:

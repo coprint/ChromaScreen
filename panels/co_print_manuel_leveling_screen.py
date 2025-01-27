@@ -1,16 +1,19 @@
+import contextlib
 import logging
 import os
-from ks_includes.KlippyGcodes import KlippyGcodes
+
 import gi
-import contextlib
+
+from ks_includes.KlippyGcodes import KlippyGcodes
 from ks_includes.widgets.bottommenu import BottomMenu
+from ks_includes.widgets.emptyscrews import EmptyScrews
 from ks_includes.widgets.infodialog import InfoDialog
 from ks_includes.widgets.zaxishorizontal import zAxisHorizontal
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Pango, GLib, Gdk, GdkPixbuf
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk, Pango
 
 from ks_includes.screen_panel import ScreenPanel
-
 
 # def create_panel(*args):
 #     return CoPrintManuelLevelingScreen(*args)
@@ -21,7 +24,7 @@ from ks_includes.screen_panel import ScreenPanel
 class Panel(ScreenPanel):
     def __init__(self, screen, title):
         super().__init__(screen, title)
-        self.screws = {}
+        self.screws = None
         menu = BottomMenu(self, False)
         
         #tabla = self._gtk.Image("tabla1", self._screen.width *.35, self._screen.width *.35)
@@ -180,13 +183,19 @@ class Panel(ScreenPanel):
         self._screen._ws.klippy.gcode_script(KlippyGcodes.HOME)
 
     def manuel_level(self, widget, value):
-        for screw in self.screws:
-            if self.screw == 'screw' + str(value):
-                logging.info(f"{screw}{self.screws[screw]}")
-                x_position = self.screws[screw].split(',')[0]
-                y_position = self.screws[screw].split(',')[1].replace(' ', '')
-                self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} Z0 F3000')
-        
+        if self.screws is None:
+            logging.info("Screws list is empty")
+            dialog = EmptyScrews(self)
+            dialog.get_style_context().add_class("setup-printer-dialog")
+            dialog.set_decorated(False)
+        else:    
+            for screw in self.screws:
+                if screw == 'screw' + str(value):
+                    logging.info(f"{screw}{self.screws[screw]}")
+                    x_position = self.screws[screw].split(',')[0]
+                    y_position = self.screws[screw].split(',')[1].replace(' ', '')
+                    self._screen._ws.klippy.gcode_script(f'G0 X{x_position} Y{y_position} Z0 F3000')
+            
         # self.dialog = InfoDialog(self, _("This Feature is coming in the next update, thank you for using ChromaScreen."), True)
         # self.dialog.get_style_context().add_class("alert-info-dialog")
         # gcode_script = "go_screw_" + str(value)
@@ -207,6 +216,7 @@ class Panel(ScreenPanel):
         self.dialog.destroy()
 
     def save(self,asd):
+        self._screen._ws.klippy.gcode_script("Z_OFFSET_APPLY_PROBE")
         script = {"script": "SAVE_CONFIG"}
         self._screen._confirm_send_action(
             None,
@@ -214,7 +224,7 @@ class Panel(ScreenPanel):
             "printer.gcode.script",
             script
         )
-   
+        
     def process_update(self, action, data):
         if action == 'notify_status_update' and 'configfile' in data:
             self.screws = data['configfile']['config']['bed_screws']
